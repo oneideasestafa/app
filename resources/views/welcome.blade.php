@@ -86,6 +86,7 @@
 
                 <div class="links">
                     <a href="#">Proximamente</a>
+                    <a href="{{ url('/login') }}">Login</a>
                 </div>
             </div>
         </div>
