@@ -101,7 +101,7 @@ class LoginController extends Controller
                         $exito = Auth::guard('usuarios')->login($user);
 
                         //genero el log de inicio de sesion
-                        $log = generateLog('inicio', 'usuarios');
+                        //$log = generateLog('inicio', 'usuarios');
 
                         return response()->json(['code' => 200, 'msj' => 'exito', 'tipo' => 'camarero' ]);
 
@@ -110,16 +110,17 @@ class LoginController extends Controller
                         $exito = Auth::guard('usuarios')->login($user);
 
                         //genero el log de inicio de sesion
-                        $log = generateLog('inicio', 'usuarios');
+                        //$log = generateLog('inicio', 'usuarios');
 
                         return response()->json(['code' => 200, 'msj' => 'exito', 'tipo' => 'repartidor' ]);
 
                     }else{
 
+                        
                         $exito = Auth::guard('web')->login($user);
 
                         //genero el log de inicio de sesion
-                        $log = generateLog('inicio', 'web');
+                        //$log = generateLog('inicio', 'web');
 
                         return response()->json(['code' => 200, 'msj' => 'exito', 'tipo' => 'one' ]);
 
@@ -161,7 +162,7 @@ class LoginController extends Controller
         $request->session()->forget('pedido');
 
         //genero log de cierre de sesion
-        $log = generateLog('cierre', 'web');
+        //$log = generateLog('cierre', 'web');
 
         //invoca al metodo de cierre de session
         $this->auth->logout();

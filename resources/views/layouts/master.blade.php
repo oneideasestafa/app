@@ -48,6 +48,8 @@
 
 <body class="roboto-condensed">
 
+    @include('layouts.header-menu')
+
     <div class="container-fluid">
         @yield('content')
     </div>

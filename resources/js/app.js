@@ -14,3 +14,5 @@ require('./bootstrap');
  */
 
 require('./components/Login');
+require('./components/Inicio');
+require('./components/Menu');

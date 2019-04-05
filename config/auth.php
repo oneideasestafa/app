@@ -38,13 +38,20 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'Clientes',
         ],
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',
-            'hash' => false,
+            'provider' => 'Clientes',
+        ],
+        'usuarios' => [
+            'driver' => 'session',
+            'provider' => 'Usuarios',
+        ],
+        'usuarios-api' => [
+            'driver' => 'token',
+            'provider' => 'Usuarios',
         ],
     ],
 
@@ -66,9 +73,14 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'Clientes' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Models\MongoDB\Cliente::class,
+        ],
+
+        'Usuarios' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\MongoDB\Usuario::class,
         ],
 
         // 'users' => [
@@ -97,6 +109,11 @@ return [
             'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
+        ],
+        'usuarios' => [
+            'provider' => 'usuarios',
+            'table' => 'password_resets',
+            'expire' => 15,
         ],
     ],
 
