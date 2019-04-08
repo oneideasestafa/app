@@ -75294,14 +75294,11 @@ var Inicio = function (_Component) {
                                 urlCamareroList = url + '/comensal/' + mesa + '/cart';
                         }
 
+                        document.body.style.backgroundImage = "url('" + '../public' + __WEBPACK_IMPORTED_MODULE_7__public_images_fondo_jpeg___default.a + "')";
                         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'div',
                                 { className: 'main' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                        'div',
-                                        { className: '' },
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_7__public_images_fondo_jpeg___default.a, style: { 'width': '100%', 'position': 'inherit' } })
-                                )
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: '' })
                         );
                 }
         }]);

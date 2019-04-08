@@ -109,15 +109,13 @@ export default class Inicio extends Component {
 
         }
 
-
+        document.body.style.backgroundImage = "url('"+'../public'+fondo+"')";
         return (
 
             <div className="main">
 
                     <div className="">
-                        <img src={'../public'+fondo} style={{'width': '100%','position': 'inherit'}} />
                     </div>
-                       
 
 
 
