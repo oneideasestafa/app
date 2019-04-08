@@ -2695,7 +2695,7 @@ input[type="search"]::-webkit-search-cancel-button {
     box-shadow: none !important;
 }
 .navbar-toggler-icon{
-    color: red; 
+    color: black; 
     filter: invert(100%);
     -webkit-filter: invert(100%);
 }
