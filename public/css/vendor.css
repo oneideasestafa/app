@@ -2697,3 +2697,13 @@ input[type="search"]::-webkit-search-cancel-button {
 .btn-rojo{
     color: #dadada;
 }
+
+.bg-rojo {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+.navbar-toggler-icon{
+    color: red; 
+    filter: invert(100%);
+    -webkit-filter: invert(100%);
+}
