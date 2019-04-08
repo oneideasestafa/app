@@ -2687,6 +2687,13 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 ::placeholder {
-  color: white !important;
+  color: #dadada !important;
   opacity: 1 !important; /* Firefox */
+}
+
+.btn-negro {
+    color: #dadada;
+}
+.btn-rojo{
+    color: #dadada;
 }
