@@ -11,6 +11,12 @@ class IndexController extends Controller
     public function index(){
         //devuelve la vista asociada
         //return view('index');
+        return view('index');
+    }
+    //metodo que crea la vista
+    public function inicio(){
+        //devuelve la vista asociada
+        //return view('index');
         return view('inicio');
     }
 

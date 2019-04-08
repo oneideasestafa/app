@@ -44,7 +44,7 @@ class LoginController extends Controller
 
                     $exito = Auth::login($user);
 
-                    return redirect()->intended('logisticas');
+                    return redirect()->intended('inicio');
 
                 }else{
                     $mensaje = 'Correo y/o Contraseña incorrectos';

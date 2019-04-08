@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import swal from "sweetalert2";
-
+import fondo from '../../../public/images/fondo.jpeg';
 library.add( faSync);
 
 export default class Inicio extends Component {
@@ -114,12 +114,12 @@ export default class Inicio extends Component {
 
             <div className="main">
 
-                    <div className="row">
-
+                    <div className="">
+                        <img src={'../public'+fondo} style={{'width': '100%'}} />
+                    </div>
                        
 
 
-                    </div>
 
             </div>
 

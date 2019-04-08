@@ -16,3 +16,5 @@ require('./bootstrap');
 require('./components/Login');
 require('./components/Inicio');
 require('./components/Menu');
+require('./components/Index');
+require('./components/Registro');

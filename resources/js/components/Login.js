@@ -126,7 +126,7 @@ export default class Login extends Component {
                 <form method="POST" onSubmit={this.handleLogin} className="form-login">
 
                     <div className="">
-                        <img src={logoOne} className="img-fluid logo-box-login"/>
+                        <img src={'../public'+logoOne} className="img-fluid logo-box-login"/>
                     </div>
 
                     <div className="text-center">

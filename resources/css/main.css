@@ -2,7 +2,7 @@ html, body {
     font-family: 'Roboto', sans-serif;
     height: 100%;
     position: relative;
-    background-color: #000;
+    background-color: #313131;
     color:#fff;
 }
 
@@ -2664,4 +2664,21 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .navdrawer-nav .nav-link:active, .navdrawer-nav .nav-link:focus, .navdrawer-nav .nav-link:hover {
     background-color: #000 !important;
+}
+.form-control,.form-control:hover {
+    border: 1px solid #fff;
+}
+.link-recovery-password a:active, a:focus, a:hover ,.link-recovery-password a{
+     color: #8c8c8c; 
+    text-decoration: underline;
+}
+
+.link-recovery-password a:hover {
+    color: #909090;
+    text-decoration: underline; 
+}
+
+::placeholder {
+  color: white !important;
+  opacity: 1 !important; /* Firefox */
 }

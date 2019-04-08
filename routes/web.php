@@ -21,7 +21,7 @@ Route::get('/', function () {
 Route::middleware(['guest'])->group(function(){
 
     //ruta inicial
-    Route::get('/', 'IndexController@index')->name('index');
+    Route::get('/', 'IndexController@index')->name('index1');
     //ruta inicial
     Route::get('/index', 'IndexController@index')->name('index');
 
@@ -55,5 +55,5 @@ Route::middleware(['auth:web,usuarios', 'role:cliente'])->group(function(){
 
     //ruta de logout
     Route::get('/logout', 'LoginController@logout')->name('logout');
-    Route::get('/', 'IndexController@index')->name('logout');
+    Route::get('/inicio', 'IndexController@inicio')->name('inicio');
 });
