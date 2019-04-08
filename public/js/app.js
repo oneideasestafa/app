@@ -75295,6 +75295,7 @@ var Inicio = function (_Component) {
                         }
 
                         document.body.style.backgroundImage = "url('" + '../public' + __WEBPACK_IMPORTED_MODULE_7__public_images_fondo_jpeg___default.a + "')";
+                        document.body.style.backgroundPosition = "center";
                         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'div',
                                 { className: 'main' },
