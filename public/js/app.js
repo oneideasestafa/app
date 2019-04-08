@@ -75717,7 +75717,7 @@ var Index = function (_Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         { className: '' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../' + __WEBPACK_IMPORTED_MODULE_7__public_images_logo_one_png___default.a, className: 'img-fluid logo-box-index' })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_7__public_images_logo_one_png___default.a, className: 'img-fluid logo-box-index' })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',

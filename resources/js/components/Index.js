@@ -74,7 +74,7 @@ export default class Index extends Component {
                 <div className="box">
 
                     <div className="">
-                        <img src={'../'+logoOne} className="img-fluid logo-box-index" />
+                        <img src={'../public'+logoOne} className="img-fluid logo-box-index" />
                     </div>
 
                     <div className="text-center">
