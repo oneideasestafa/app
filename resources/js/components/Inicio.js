@@ -115,7 +115,7 @@ export default class Inicio extends Component {
             <div className="main">
 
                     <div className="">
-                        <img src={'../'+fondo} style={{'width': '100%'}} />
+                        <img src={'../public'+fondo} style={{'width': '100%'}} />
                     </div>
                        
 
