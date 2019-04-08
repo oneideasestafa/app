@@ -134,7 +134,7 @@ export default class RegistroCliente extends Component {
                 <ToastContainer position="top-center" />
 
                 <div className="">
-                    <img src={'../public'+logoOne} className="img-fluid logo-box-registro" />
+                    <img src={'../'+logoOne} className="img-fluid logo-box-registro" />
                 </div>
 
                 <div className="text-center">

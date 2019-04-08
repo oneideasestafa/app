@@ -49616,7 +49616,7 @@ var Login = function (_Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         { className: '' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_7__public_images_logo_one_png___default.a, className: 'img-fluid logo-box-login' })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../' + __WEBPACK_IMPORTED_MODULE_7__public_images_logo_one_png___default.a, className: 'img-fluid logo-box-login' })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
@@ -75300,7 +75300,7 @@ var Inicio = function (_Component) {
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                         'div',
                                         { className: '' },
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_7__public_images_fondo_jpeg___default.a, style: { 'width': '100%' } })
+                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../' + __WEBPACK_IMPORTED_MODULE_7__public_images_fondo_jpeg___default.a, style: { 'width': '100%' } })
                                 )
                         );
                 }
@@ -75717,7 +75717,7 @@ var Index = function (_Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         { className: '' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_7__public_images_logo_one_png___default.a, className: 'img-fluid logo-box-index' })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../' + ogoOne, className: 'img-fluid logo-box-index' })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
@@ -75947,7 +75947,7 @@ var RegistroCliente = function (_Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: '' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_7__public_images_logo_one_png___default.a, className: 'img-fluid logo-box-registro' })
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../' + __WEBPACK_IMPORTED_MODULE_7__public_images_logo_one_png___default.a, className: 'img-fluid logo-box-registro' })
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
