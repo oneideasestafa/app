@@ -41,7 +41,8 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,bolditalic">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:regular,bold,italic,bolditalic" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/vendor.css') }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{{ secure_asset('css/vendor.css') }}">
 
 
 </head>
@@ -77,8 +78,8 @@
             }
         }
     </script>
-    <script class="jscache" src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/vendor.js') }}"></script>
+    <script class="jscache" src="{{ secure_asset('js/app.js') }}"></script>
+    <script src="{{ secure_asset('js/vendor.js') }}"></script>
 
     @yield('javascript')
 
