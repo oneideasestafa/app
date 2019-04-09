@@ -2707,3 +2707,17 @@ input[type="search"]::-webkit-search-cancel-button {
     filter: invert(100%);
     -webkit-filter: invert(100%);
 }
+
+.form-control, .form-control:hover, .form-control:focus {
+    background-color: #313131 !important;
+}
+
+input:focus {
+    background: #313131 !important;
+    color: #dadada !important;
+}
+
+.navdrawer-header, .navdrawer-content, .nav-link, .navdrawer-nav .nav-link, .nav-tabs .nav-link.active {
+    color: #fff !important;
+    background-color: #313131 !important;
+}

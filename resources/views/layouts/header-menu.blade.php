@@ -17,7 +17,7 @@
 <div aria-hidden="true" class="navdrawer" id="navdrawerDefault" tabindex="-1">
     <div class="navdrawer-content">
         <div class="navdrawer-header roboto-condensed">
-            <a class="navbar-brand px-0" href="javascript:void(0)" style="margin-right: 0.1rem;"> <img src="{{ url('/') }}/images/ONE_ISOLOGO.png" style="height: 1rem;" /></a><p style="display: inline;font-size: 1rem;"> ONE Show</p>
+            <a class="navbar-brand px-0" href="javascript:void(0)" style="margin-right: 0.1rem;"> <img src="{{ url('/') }}/images/logo-one.png" style="height: 1rem;" /></a><p style="display: inline;font-size: 1rem;"></p>
         </div>
 
         <div id="menu" data-tipocuenta="{{ Auth::user()->TipoCuenta }}" data-fotoproducto="{{ (boolean)(Auth::user()->MostrarFotoProducto)  }}" data-pais="{{ (string)(Auth::user()->Pais_id) }}" data-url="{{ url('/') }}" ></div>

@@ -7,6 +7,10 @@ import axios from 'axios';
 import swal from "sweetalert2";
 import logoOne from '../../../public/images/logo-one.png';
 
+import logoFacebook from '../../../public/images/social/facebook-icon.svg';
+import logoGoogle from '../../../public/images/social/google-icon.svg';
+import logoTwitter from '../../../public/images/social/twitter-icon.svg';
+import logoInstagram from '../../../public/images/social/instagram-icon.svg';
 library.add( faSync);
 
 export default class Login extends Component {
@@ -39,7 +43,7 @@ export default class Login extends Component {
             isLoading: true
         });
 
-        let urlInicio = this.state.url+'/';
+        let urlInicio = this.state.url+'/inicio';
         let urlInicioCamarero = this.state.url+'/camarero';
         let urlInicioRepartidor = this.state.url+'/repartidor';
         let correo = this.state.correo;
@@ -119,6 +123,9 @@ export default class Login extends Component {
         let urlRecuperar    = url + '/recovery-password';
         let urlIndex        = url + '/';
 
+        let urlFacebook    = url + '/auth/facebook';
+        let urlGoogle      = url + '/auth/google';
+
         return (
 
             <div className="abs-center roboto-condensed">
@@ -152,6 +159,28 @@ export default class Login extends Component {
                             { this.state.isLoading ? <FontAwesomeIcon icon="sync" size="lg" spin /> : '' }
                             &nbsp;&nbsp; Ingresar
                         </button>
+                    </div>
+                     <div className="text-center roboto-condensed text-can-login-social">
+                        <p>o puedes ingresar con</p>
+                    </div>
+
+                    <div className="text-center mb-4">
+
+                        <a href={urlFacebook}>
+                            <img src={'../public'+logoFacebook} className="img-fluid icon-social mr-3" />
+                        </a>
+
+                        <a href={urlGoogle}>
+                            <img src={'../public'+logoGoogle} className="img-fluid icon-social mr-3" />
+                        </a>
+                        <a href={urlFacebook}>
+                            <img src={'../public'+logoTwitter} className="img-fluid icon-social mr-3" />
+                        </a>
+
+                        <a href={urlGoogle}>
+                            <img src={'../public'+logoInstagram} className="img-fluid icon-social" />
+                        </a>
+
                     </div>
 
                     <div className="text-center">

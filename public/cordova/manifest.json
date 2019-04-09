@@ -1,0 +1,17 @@
+{
+    "short_name": "ONE Show",
+    "name": "ONE",
+    "theme_color": "#FFFFFF",
+    "background_color": "#FFFFFF",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "images/icons/onemenu-1024-1024.png",
+            "type": "image/png",
+            "sizes": "1024x1024"
+        }
+    ],
+    "start_url": "https://one-food.app/",
+    "scope": "/",
+    "orientation": "portrait"
+}

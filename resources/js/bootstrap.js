@@ -54,3 +54,147 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+window.app = {pedidos:[],gpsintervalo:10,url:'',cache:true};
+var app = {
+    datos:{},
+    servicio:false,
+    preguntasGPS:0,
+    // Application Constructor
+    initialize: function(datos) {
+        this.datos=datos;
+      //  console.log('iniciar');
+       // console.log(this.datos);
+        this.bindEvents();
+    },
+    // Bind Event Listeners
+    //
+    // Bind any events that are required on startup. Common events are:
+    // 'load', 'deviceready', 'offline', and 'online'.
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+    },
+    // deviceready Event Handler
+    //
+    // The scope of 'this' is the event. In order to call the 'receivedEvent'
+    // function, we must explicitly call 'app.receivedEvent(...);'
+    onDeviceReady: function() {
+
+        console.log('ready');
+    var routerObject={};  
+cordova.plugins.CordovaMqTTPlugin.connect({
+    url:"tcp://ricardo-pc", //a public broker used for testing purposes only. Try using a self hosted broker for production.
+    port:1883,
+    clientId:window.Laravel.cliente,
+    connectionTimeout:3000,
+    willTopicConfig:{
+        qos:0, //default is 0
+        retain:true, //default is true
+        topic:"sampletopic",
+        payload:"test1"
+    },
+    username:null,
+    password:null,
+    keepAlive:60,
+    isBinaryPayload: false, //setting this 'true' will make plugin treat all data as binary and emit ArrayBuffer instead of string on events
+    success:function(s){
+    	console.log(s);
+        console.log("connect success");
+        //Simple subscribe
+cordova.plugins.CordovaMqTTPlugin.subscribe({
+   topic:"sampletopic",
+   qos:0,
+  success:function(s){
+ console.log(s);
+  },
+  error:function(e){
+ console.log(s);
+  }
+});
+
+
+cordova.plugins.CordovaMqTTPlugin.listen("sampletopic",function(payload,params){
+	console.log("testxd2");
+  //Callback:- (If the user has published to /topic/room/hall)
+  //payload : contains payload data
+  //params : {singlewc:room,multiwc:hall}
+  window.plugins.flashlight.toggle(
+  function() {}, // optional success callback
+  function() {}, // optional error callback
+  {intensity: 0.3} // optional as well, used on iOS when switching on
+);
+   console.log(payload);
+  console.log(params);
+});
+
+
+    },
+    error:function(e){
+        console.log(e);
+        console.log("connect error");
+    },
+    onConnectionLost:function (e){
+    	console.log(e);
+        console.log("disconnect");
+    },
+    routerConfig:{
+        publishMethod:"emit", //refer your custom router documentation to get the emitter/publishing function name. The parameter should be a string and not a function.
+        useDefaultRouter:true //Set false to use your own topic router implementation. Set true to use the stock topic router implemented in the plugin.
+    }
+});
+/*
+document.addEventListener("connected",function(e){
+ console.log(e.type)
+},false)
+
+
+
+
+*/
+
+/*
+cordova.plugins.CordovaMqTTPlugin.publish({
+   topic:"sampletopic",
+   payload:"hello from the plugin",
+   qos:0,
+   retain:false,
+   success:function(s){
+ console.log(s);
+   },
+   error:function(e){
+ console.log(s);
+   }
+})
+//Declare this function in any scope to access the router function "on" to receive the payload for certain topic
+*/
+/*
+ //Deprecated
+ document.addEventListener("sampletopic",function(e){
+  console.log(e.payload)
+ },false);
+
+ //New way to listen to topics
+ cordova.plugins.CordovaMqTTPlugin.listen("/topic/+singlewc/#multiwc",function(payload,params){
+  //Callback:- (If the user has published to /topic/room/hall)
+  //payload : contains payload data
+  //params : {singlewc:room,multiwc:hall}
+   console.log(payload);
+  console.log(params);
+})*/
+///later, to stop
+//bgLocationServices.stop();
+    },
+    // Update DOM on a Received Event
+    receivedEvent: function(id) {
+      /*  var parentElement = document.getElementById(id);
+        var listeningElement = parentElement.querySelector('.listening');
+        var receivedElement = parentElement.querySelector('.received');
+
+        listeningElement.setAttribute('style', 'display:none;');
+        receivedElement.setAttribute('style', 'display:block;');*/
+
+        //console.log('Received Event: ' + id);
+    }
+};
+
+app.initialize({});

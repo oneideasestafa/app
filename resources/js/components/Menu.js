@@ -220,7 +220,15 @@ console.log('test');
 
                 <li className="nav-item">
                     <a className="nav-link" href={urlInicio}><i
-                        className="fas fa-home fa-lg"></i>&nbsp;&nbsp; Inicio</a>
+                        className="fas fa-home fa-lg"></i>&nbsp;&nbsp; Show</a>
+                </li>
+                 <li className="nav-item">
+                    <a className="nav-link" href={urlPerfil}><i
+                        className="fas fa-cog fa-lg"></i>&nbsp;&nbsp;  Perfil</a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link" href={urlChatSoporte}><i
+                        className="fab fa-weixin fa-lg"></i>&nbsp;&nbsp; Notificaciones</a>
                 </li>
                 <li className="nav-item">
                     <a className="nav-link" href="#" onClick={this.handleLogout}><i

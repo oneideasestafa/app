@@ -6,8 +6,10 @@ import { faSync } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import swal from "sweetalert2";
 import logoOne from '../../../public/images/logo-one.png';
-//import logoFacebook from '../../../../public/images/social/facebook-icon.svg';
-//import logoGoogle from '../../../../public/images/social/google-icon.svg';
+import logoFacebook from '../../../public/images/social/facebook-icon.svg';
+import logoGoogle from '../../../public/images/social/google-icon.svg';
+import logoTwitter from '../../../public/images/social/twitter-icon.svg';
+import logoInstagram from '../../../public/images/social/instagram-icon.svg';
 //import logoGooglePlay from '../../../../public/images/others/download-google-play.png';
 //import logoAppleStore from '../../../../public/images/others/download-app-store.png';
 //import {isMobile,isMobileOnly,isAndroid,isIOS,isChrome,isFirefox,isSafari,isMobileSafari,osVersion,osName,browserName, } from 'react-device-detect';
@@ -90,7 +92,28 @@ export default class Index extends Component {
                     </div>
 
                   
+                      <div className="text-center roboto-condensed text-can-login-social">
+                        <p>o puedes ingresar con</p>
+                    </div>
 
+                    <div className="text-center mb-4">
+
+                        <a href={urlFacebook}>
+                            <img src={'../public'+logoFacebook} className="img-fluid icon-social mr-3" />
+                        </a>
+
+                        <a href={urlGoogle}>
+                            <img src={'../public'+logoGoogle} className="img-fluid icon-social mr-3" />
+                        </a>
+                        <a href={urlFacebook}>
+                            <img src={'../public'+logoTwitter} className="img-fluid icon-social mr-3" />
+                        </a>
+
+                        <a href={urlGoogle}>
+                            <img src={'../public'+logoInstagram} className="img-fluid icon-social" />
+                        </a>
+
+                    </div>
 
                     
 

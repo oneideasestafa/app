@@ -13,6 +13,7 @@
     if ('serviceWorker' in navigator ) --}}
 
     
+    @include('layouts.data-laravel-echo')
 
     <script>
         if ('serviceWorker' in navigator ) {
@@ -67,14 +68,14 @@
             if(isCordovaIos()){
                 var script = document.createElement( "script" );
                 script.type = "text/javascript";
-                //script.src = '/OnePWA/public/cordova/cordova.js';
-                script.src = window.location.protocol+'//'+window.location.host+'/cordovaios/cordova.js';
+                //script.src = '/ONEShow/public/cordova/cordova.js';
+                script.src = window.location.protocol+'//'+window.location.host+'/public/cordovaios/cordova.js';
                 document.getElementsByTagName('head')[0].appendChild(script)
             }else{
                 var script = document.createElement( "script" );
                 script.type = "text/javascript";
-                //script.src = '/OnePWA/public/cordova/cordova.js';
-                script.src = window.location.protocol+'//'+window.location.host+'/cordova/cordova.js';
+                //script.src = '/ONEShow/public/cordova/cordova.js';
+                script.src = window.location.protocol+'//'+window.location.host+'/public/cordova/cordova.js';
                 document.getElementsByTagName('head')[0].appendChild(script)
             }
         }

@@ -7,6 +7,11 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 //import 'react-toastify/dist/ReactToastify.css';
 import logoOne from '../../../public/images/logo-one.png';
+
+import logoFacebook from '../../../public/images/social/facebook-icon.svg';
+import logoGoogle from '../../../public/images/social/google-icon.svg';
+import logoTwitter from '../../../public/images/social/twitter-icon.svg';
+import logoInstagram from '../../../public/images/social/instagram-icon.svg';
 //import imgAR from '../../../../../public/images/countrys/ar.png';
 //import imgCL from '../../../../../public/images/countrys/cl.png';
 //import logoFacebook from '../../../../../public/images/social/facebook-icon.svg';
@@ -126,8 +131,10 @@ export default class RegistroCliente extends Component {
 
     render() {
 
-        let {nombre, apellido, correo, password, pais, facebook, google} = this.state;
+        let {nombre, apellido, correo, password, pais, facebook, google,url} = this.state;
 
+        let urlFacebook    = url + '/auth/facebook';
+        let urlGoogle      = url + '/auth/google';
 
         return (
             <div className='box'>
@@ -171,28 +178,35 @@ export default class RegistroCliente extends Component {
                         <input type="password" id="password" name="password" value={password} onChange={this.handleChange} className="form-control" placeholder="Ingrese su password" />
                     </div>
 
-                    <div className="input-group mb-4 mt-4">
-                        <div className="input-group-prepend">
-                            <label className="input-group-text"><i className="fa fa-globe-americas fa-lg"></i></label>
-                        </div>
-
-                        <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" name="pais" id="inlineRadio1" value="586f91fff8c715650b244841" checked={pais === '586f91fff8c715650b244841'} onChange={this.handleChange} />
-                            <label className="form-check-label" htmlFor="inlineRadio1"></label>
-                        </div>
-
-                        <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" name="pais" id="inlineRadio2" value="586f9204f8c715650b244842" checked={pais === '586f9204f8c715650b244842'} onChange={this.handleChange} />
-                            <label className="form-check-label" htmlFor="inlineRadio2"></label>
-                        </div>
-
-                    </div>
+              
 
                     <div className="text-center">
                         <button type="submit" className="btn btn-negro black btn-box-index">
                             { this.state.isLoading ? <FontAwesomeIcon icon="sync" size="lg" spin /> : '' }
                             &nbsp;&nbsp; Registrar
                         </button>
+                    </div>
+                     <div className="text-center roboto-condensed text-can-login-social">
+                        <p>o puedes ingresar con</p>
+                    </div>
+
+                    <div className="text-center mb-4">
+
+                        <a href={urlFacebook}>
+                            <img src={'../public'+logoFacebook} className="img-fluid icon-social mr-3" />
+                        </a>
+
+                        <a href={urlGoogle}>
+                            <img src={'../public'+logoGoogle} className="img-fluid icon-social mr-3" />
+                        </a>
+                        <a href={urlFacebook}>
+                            <img src={'../public'+logoTwitter} className="img-fluid icon-social mr-3" />
+                        </a>
+
+                        <a href={urlGoogle}>
+                            <img src={'../public'+logoInstagram} className="img-fluid icon-social" />
+                        </a>
+
                     </div>
 
                     <div className="text-center">
