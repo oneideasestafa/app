@@ -93,7 +93,7 @@ export default class Index extends Component {
 
                   
                       <div className="text-center roboto-condensed text-can-login-social">
-                        <p>o puedes ingresar con</p>
+                        <p style={{'color':'#dadada'}}>o puedes ingresar con</p>
                     </div>
 
                     <div className="text-center mb-4">

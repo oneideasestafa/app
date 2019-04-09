@@ -27160,8 +27160,8 @@ var app = {
         console.log('ready');
         var routerObject = {};
         cordova.plugins.CordovaMqTTPlugin.connect({
-            url: "tcp://ricardo-pc", //a public broker used for testing purposes only. Try using a self hosted broker for production.
-            port: 1883,
+            url: "tcp://node69345-mqttone.mircloud.host", //a public broker used for testing purposes only. Try using a self hosted broker for production.
+            port: 11273,
             clientId: window.Laravel.cliente,
             connectionTimeout: 3000,
             willTopicConfig: {
@@ -76106,7 +76106,7 @@ var Index = function (_Component) {
                         { className: 'text-center roboto-condensed text-can-login-social' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'p',
-                            null,
+                            { style: { 'color': '#dadada' } },
                             'o puedes ingresar con'
                         )
                     ),

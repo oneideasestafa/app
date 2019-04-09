@@ -83,8 +83,8 @@ var app = {
         console.log('ready');
     var routerObject={};  
 cordova.plugins.CordovaMqTTPlugin.connect({
-    url:"tcp://ricardo-pc", //a public broker used for testing purposes only. Try using a self hosted broker for production.
-    port:1883,
+    url:"tcp://node69345-mqttone.mircloud.host", //a public broker used for testing purposes only. Try using a self hosted broker for production.
+    port:11273,
     clientId:window.Laravel.cliente,
     connectionTimeout:3000,
     willTopicConfig:{
