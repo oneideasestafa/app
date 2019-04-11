@@ -6,10 +6,10 @@ React.__spread = function(target: any) { for (var i = 1; i < arguments.length; i
 
 React.Bootstrap = require('react-bootstrap');
 React.Bootstrap.Select = require('react-bootstrap-select');*/
-const jQuery = require('jquery');
+/*const jQuery = require('jquery');
 window.jQuery = jQuery;
 require('bootstrap-select/dist/css/bootstrap-select.min.css');
-require('bootstrap-select');
+require('bootstrap-select');*/
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
@@ -80,7 +80,7 @@ export default class RegistroCliente extends React.Component {
 
         let {nombre, apellido, correo, password, pais, url, edad, sexo} = this.state;
 
-        axios.post(url+'/ajax-post-registro', { nombre, apellido, correo, password, pais, edad, sexo })
+        axios.post(url+'/ajax-post-registro', { nombre, apellido, correo, password, pais, edad, sexo,equipo })
             .then(res => {
 
                 self.setState({
@@ -148,7 +148,6 @@ export default class RegistroCliente extends React.Component {
                           this.setState({
                                 'clubs': r.datos
                             });  
-                    jQuery('.selectpicker').selectpicker();
 
                 }else if(r.code === 500){
 
@@ -191,11 +190,7 @@ export default class RegistroCliente extends React.Component {
             })
         });
 
-    jQuery('.selectpicker').selectpicker();
 
-    }
-    componentDidUpdate() {
-    jQuery('.selectpicker').selectpicker();
     }
     render() {
 
@@ -291,11 +286,12 @@ export default class RegistroCliente extends React.Component {
                             <i className="fa fa-address-card fa-lg"></i>
                         </div>
                     
-<select title="Selecciona" className="selectpicker">
-  {this.state.clubs.map(function(item){
-   return <option data-content="<span class='label label-success'>Relish</span>" key={item.id}>{item.Nombre}</option>
+
+  <select class="form-control" id="inputGroupSelect02" value={equipo} name="equipo" id="equipo">
+    {this.state.clubs.map(function(item){
+   return <option  key={item.id}>{item.Nombre}</option>
 })}
-</select>
+  </select>
                     </div>
                     <div className="text-center">
                         <button type="submit" className="btn btn-negro black btn-box-index">

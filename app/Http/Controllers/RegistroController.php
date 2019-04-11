@@ -30,6 +30,7 @@ class RegistroController extends Controller
             'apellido'            => $input['apellido'],
             'sexo'            => $input['sexo'],
             'edad'            => $input['edad'],
+            'equipo'            => $input['equipo'],
             'correo'              => strtolower($input['correo']),
             'from'                => 'ONE',
             'password'            => bcrypt($input['password']),
@@ -50,6 +51,7 @@ class RegistroController extends Controller
         $registro->Apellido            = $data['apellido'];
         $registro->Sexo                = $data['sexo'];
         $registro->Edad                = $data['edad'];
+        $registro->Equipo              = $data['equipo'];
         $registro->Correo              = $data['correo'];
         $registro->Password            = $data['password'];
         $registro->TipoCuenta          = $data['from'];
