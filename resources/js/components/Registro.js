@@ -49,6 +49,7 @@ export default class RegistroCliente extends React.Component {
             pais: '',
             edad:'',
             sexo:'',
+            equipo:'',
             url: props.url,
             facebook: props.facebook,
             google: props.google,
@@ -78,7 +79,7 @@ export default class RegistroCliente extends React.Component {
             isLoading: true
         });
 
-        let {nombre, apellido, correo, password, pais, url, edad, sexo} = this.state;
+        let {nombre, apellido, correo, password, pais, url, edad, sexo,equipo} = this.state;
 
         axios.post(url+'/ajax-post-registro', { nombre, apellido, correo, password, pais, edad, sexo,equipo })
             .then(res => {
@@ -194,7 +195,7 @@ export default class RegistroCliente extends React.Component {
     }
     render() {
 
-        let {nombre, apellido, correo, password, pais, facebook, google,url,clubs,edad,sexo} = this.state;
+        let {nombre, apellido, correo, password, pais, facebook, google,url,clubs,edad,sexo,equipo} = this.state;
 
         let urlFacebook    = url + '/auth/facebook';
         let urlGoogle      = url + '/auth/google';

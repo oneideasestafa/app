@@ -76862,6 +76862,7 @@ var RegistroCliente = function (_React$Component) {
             pais: '',
             edad: '',
             sexo: '',
+            equipo: '',
             url: props.url,
             facebook: props.facebook,
             google: props.google,
@@ -76901,7 +76902,8 @@ var RegistroCliente = function (_React$Component) {
                 pais = _state.pais,
                 url = _state.url,
                 edad = _state.edad,
-                sexo = _state.sexo;
+                sexo = _state.sexo,
+                equipo = _state.equipo;
 
 
             __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(url + '/ajax-post-registro', { nombre: nombre, apellido: apellido, correo: correo, password: password, pais: pais, edad: edad, sexo: sexo, equipo: equipo }).then(function (res) {
@@ -77018,7 +77020,8 @@ var RegistroCliente = function (_React$Component) {
                 url = _state2.url,
                 clubs = _state2.clubs,
                 edad = _state2.edad,
-                sexo = _state2.sexo;
+                sexo = _state2.sexo,
+                equipo = _state2.equipo;
 
 
             var urlFacebook = url + '/auth/facebook';
