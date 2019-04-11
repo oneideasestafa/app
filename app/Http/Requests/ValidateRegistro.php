@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
@@ -30,8 +29,7 @@ class ValidateRegistro extends FormRequest
             'nombre'  => 'required',
             'apellido'=> 'required',
             'correo'  => 'required|email|unique:Clientes,Correo',
-            'password'    => 'required',
-            'pais' => 'required'
+            'password'    => 'required'
         ];
     }
 
@@ -43,8 +41,7 @@ class ValidateRegistro extends FormRequest
             'correo.required'    => 'El correo es requerido',
             'correo.email'    => 'Formato de correo invalido',
             'correo.unique' => 'El correo ya esta registrado, intente otro',
-            'password.required'  => 'El password es requerido',
-            'pais.required' => 'El país es requerido'
+            'password.required'  => 'El password es requerido'
         ];
     }
 

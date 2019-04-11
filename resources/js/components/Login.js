@@ -133,12 +133,9 @@ export default class Login extends Component {
                 <form method="POST" onSubmit={this.handleLogin} className="form-login">
 
                     <div className="">
-                        <img src={'../public'+logoOne} className="img-fluid logo-box-login"/>
+                        <img src={'../public'+logoOne} className="img-fluid logo-box-index" />
                     </div>
 
-                    <div className="text-center">
-                        <h2>Login</h2>
-                    </div>
 
                     <div className="input-group mb-4 mt-4">
                         <div className="input-group-prepend">
@@ -161,7 +158,7 @@ export default class Login extends Component {
                         </button>
                     </div>
                      <div className="text-center roboto-condensed text-can-login-social">
-                        <p>o puedes ingresar con</p>
+                        <p style={{'color':'#dadada'}}>o puedes ingresar con</p>
                     </div>
 
                     <div className="text-center mb-4">

@@ -56,6 +56,18 @@ if (token) {
 // });
 
 window.app = {pedidos:[],gpsintervalo:10,url:'',cache:true};
+
+if(localStorage&&localStorage.getItem('cache')){
+  window.app.cache=localStorage.getItem('cache') == 'false' ? false : true;
+}else{
+  window.app.cache=localStorage.setItem('cache','false');
+}
+window.app.isCordovaIos = function () {
+            return (navigator.userAgent.match(/(Ios)/)&&navigator.userAgent.match(/(Cordova)/));
+        };
+window.app.isCordova = function () {
+            return (navigator.userAgent.match(/(Cordova)/));
+        };
 var app = {
     datos:{},
     servicio:false,
