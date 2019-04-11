@@ -76916,6 +76916,7 @@ var RegistroCliente = function (_React$Component) {
                     pais: '',
                     sexo: '',
                     edad: '',
+                    equipo: '',
                     isLoading: false
                 });
 

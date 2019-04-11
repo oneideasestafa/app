@@ -28,6 +28,9 @@ class ValidateRegistro extends FormRequest
         return [
             'nombre'  => 'required',
             'apellido'=> 'required',
+            'sexo'=> 'required',
+            'edad'=> 'required',
+            'equipo'=> 'required',
             'correo'  => 'required|email|unique:Clientes,Correo',
             'password'    => 'required'
         ];
@@ -38,6 +41,9 @@ class ValidateRegistro extends FormRequest
         return [
             'nombre.required'    => 'El nombre es requerido',
             'apellido.required'  => 'El apellido es requerido',
+            'sexo.required'  => 'El sexo es requerido',
+            'edad.required'  => 'La fecha de nacimiento es requerido',
+            'equipo.required'  => 'El equipo es requerido',
             'correo.required'    => 'El correo es requerido',
             'correo.email'    => 'Formato de correo invalido',
             'correo.unique' => 'El correo ya esta registrado, intente otro',

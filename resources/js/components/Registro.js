@@ -92,6 +92,7 @@ export default class RegistroCliente extends React.Component {
                     pais: '',
                     sexo:'',
                     edad:'',
+                    equipo:'',
                     isLoading: false
                 });
 
