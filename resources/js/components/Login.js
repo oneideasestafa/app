@@ -126,6 +126,9 @@ export default class Login extends Component {
         let urlFacebook    = url + '/auth/facebook';
         let urlGoogle      = url + '/auth/google';
 
+        let urlTwitter    = url + '/auth/twitter';
+        let urlInstagram      = url + '/auth/instagram';
+
         return (
 
             <div className="abs-center roboto-condensed">
@@ -170,11 +173,11 @@ export default class Login extends Component {
                         <a href={urlGoogle}>
                             <img src={'../public'+logoGoogle} className="img-fluid icon-social mr-3" />
                         </a>
-                        <a href={urlFacebook}>
+                        <a href={urlTwitter}>
                             <img src={'../public'+logoTwitter} className="img-fluid icon-social mr-3" />
                         </a>
 
-                        <a href={urlGoogle}>
+                        <a href={urlInstagram}>
                             <img src={'../public'+logoInstagram} className="img-fluid icon-social" />
                         </a>
 

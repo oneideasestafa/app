@@ -63,6 +63,9 @@ export default class Index extends Component {
         let urlVisitante   = url + '/visitante';
         let urlFacebook    = url + '/auth/facebook';
         let urlGoogle      = url + '/auth/google';
+
+        let urlTwitter    = url + '/auth/twitter';
+        let urlInstagram      = url + '/auth/instagram';
         let urlGooglePlay  = this.state.urlGooglePlay;
         let urlAppleStore  = this.state.urlAppleStore;
 
@@ -105,11 +108,11 @@ export default class Index extends Component {
                         <a href={urlGoogle}>
                             <img src={'../public'+logoGoogle} className="img-fluid icon-social mr-3" />
                         </a>
-                        <a href={urlFacebook}>
+                        <a href={urlTwitter}>
                             <img src={'../public'+logoTwitter} className="img-fluid icon-social mr-3" />
                         </a>
 
-                        <a href={urlGoogle}>
+                        <a href={urlInstagram}>
                             <img src={'../public'+logoInstagram} className="img-fluid icon-social" />
                         </a>
 

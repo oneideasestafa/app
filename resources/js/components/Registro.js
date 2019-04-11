@@ -6,6 +6,10 @@ React.__spread = function(target: any) { for (var i = 1; i < arguments.length; i
 
 React.Bootstrap = require('react-bootstrap');
 React.Bootstrap.Select = require('react-bootstrap-select');*/
+const jQuery = require('jquery');
+window.jQuery = jQuery;
+require('bootstrap-select/dist/css/bootstrap-select.min.css');
+require('bootstrap-select');
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
@@ -49,7 +53,7 @@ export default class RegistroCliente extends React.Component {
             facebook: props.facebook,
             google: props.google,
             isLoading: false,
-            clubs:[{Nombre:'Seleccione...'}]
+            clubs:[{Nombre:'Seleccione...',id:0}]
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -144,7 +148,7 @@ export default class RegistroCliente extends React.Component {
                           this.setState({
                                 'clubs': r.datos
                             });  
-                    
+                    jQuery('.selectpicker').selectpicker();
 
                 }else if(r.code === 500){
 
@@ -187,16 +191,21 @@ export default class RegistroCliente extends React.Component {
             })
         });
 
+    jQuery('.selectpicker').selectpicker();
 
     }
-
-
+    componentDidUpdate() {
+    jQuery('.selectpicker').selectpicker();
+    }
     render() {
 
         let {nombre, apellido, correo, password, pais, facebook, google,url,clubs,edad,sexo} = this.state;
 
         let urlFacebook    = url + '/auth/facebook';
         let urlGoogle      = url + '/auth/google';
+
+        let urlTwitter    = url + '/auth/twitter';
+        let urlInstagram      = url + '/auth/instagram';
  
         return (
             <div className='box'>
@@ -281,12 +290,12 @@ export default class RegistroCliente extends React.Component {
                     <div className="input-group-prepend">
                             <i className="fa fa-address-card fa-lg"></i>
                         </div>
-                    <select title = "Seleccione...">
-{this.state.clubs.map(item =>{
-    <option>{item.Nombre}</option>
+                    
+<select title="Selecciona" className="selectpicker">
+  {this.state.clubs.map(function(item){
+   return <option data-content="<span class='label label-success'>Relish</span>" key={item.id}>{item.Nombre}</option>
 })}
 </select>
-
                     </div>
                     <div className="text-center">
                         <button type="submit" className="btn btn-negro black btn-box-index">
@@ -307,11 +316,11 @@ export default class RegistroCliente extends React.Component {
                         <a href={urlGoogle}>
                             <img src={'../public'+logoGoogle} className="img-fluid icon-social mr-3" />
                         </a>
-                        <a href={urlFacebook}>
+                        <a href={urlTwitter}>
                             <img src={'../public'+logoTwitter} className="img-fluid icon-social mr-3" />
                         </a>
 
-                        <a href={urlGoogle}>
+                        <a href={urlInstagram}>
                             <img src={'../public'+logoInstagram} className="img-fluid icon-social" />
                         </a>
 
