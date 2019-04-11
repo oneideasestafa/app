@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+/*
+React.createClass = require('create-react-class');
+React.__spread = function(target: any) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+React.Bootstrap = require('react-bootstrap');
+React.Bootstrap.Select = require('react-bootstrap-select');*/
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
@@ -7,6 +13,7 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import logoOne from '../../../public/images/logo-one.png';
+
 
 import logoFacebook from '../../../public/images/social/facebook-icon.svg';
 import logoGoogle from '../../../public/images/social/google-icon.svg';
@@ -19,7 +26,6 @@ import imgCL from '../../../public/images/countrys/es.png';
 
 import $ from 'jquery';
 //import Menu from "../Menu";
-
 library.add( faSync);
 
 const optionToast = {
@@ -27,7 +33,7 @@ const optionToast = {
     autoClose: 3000
 };
 
-export default class RegistroCliente extends Component {
+export default class RegistroCliente extends React.Component {
 
     constructor(props) {
         super(props);
@@ -37,10 +43,13 @@ export default class RegistroCliente extends Component {
             correo: '',
             password: '',
             pais: '',
+            edad:'',
+            sexo:'',
             url: props.url,
             facebook: props.facebook,
             google: props.google,
-            isLoading: false
+            isLoading: false,
+            clubs:[{Nombre:'Seleccione...'}]
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -109,6 +118,8 @@ export default class RegistroCliente extends Component {
     }
 
     clubs(e) {
+        console.log(e);
+        console.log(this.state);
         this.setState({
             [e.target.name]: e.target.value
         });
@@ -119,24 +130,18 @@ export default class RegistroCliente extends Component {
             isLoading: true
         });
 
-        let {nombre, apellido, correo, password, pais,url} = this.state;
-
+        var pais = e.target.value;
+        var url = this.state.url;
         axios.post(url+'/ajax-post-clubs', { pais })
             .then(res => {
 
-                self.setState({
-                    nombre: '',
-                    apellido: '',
-                    correo: '',
-                    password: '',
-                    pais: '',
-                    isLoading: false
-                });
 
                 let r = res.data;
 
                 if(r.code === 200){
-
+                          this.setState({
+                                'clubs': r.datos
+                            });  
                     toast.success(r.msj, optionToast);
 
                 }else if(r.code === 500){
@@ -186,11 +191,11 @@ export default class RegistroCliente extends Component {
 
     render() {
 
-        let {nombre, apellido, correo, password, pais, facebook, google,url} = this.state;
+        let {nombre, apellido, correo, password, pais, facebook, google,url,clubs,edad,sexo} = this.state;
 
         let urlFacebook    = url + '/auth/facebook';
         let urlGoogle      = url + '/auth/google';
-
+ 
         return (
             <div className='box'>
                 <ToastContainer position="top-center" />
@@ -217,6 +222,27 @@ export default class RegistroCliente extends Component {
                             <i className="fa fa-address-card fa-lg"></i>
                         </div>
                         <input type="text" id="apellido" name="apellido" value={apellido} onChange={this.handleChange} className="form-control" placeholder="Ingrese su apellido" />
+                    </div>
+                    <div className="input-group mb-4 mt-4">
+                        <div className="input-group-prepend">
+                            <i className="fa fa-address-card fa-lg"></i>
+                        </div>
+                        <input type="text" id="edad" name="edad" value={edad} onChange={this.handleChange} className="form-control" placeholder="Ingrese su edad" />
+                    </div>
+                    <div className="input-group mb-4 mt-4">
+                        <div className="input-group-prepend">
+                            <i className="fa fa-address-card fa-lg"></i>
+                        </div>
+                            <div className="form-check form-check-inline">
+                            <input className="form-check-input" onChange={this.handleChange} type="radio" name="sexo" id="inlineRadio1x" value="m" checked={sexo === 'm'}  />
+                            <label className="form-check-label" htmlFor="inlineRadio1x">Masculino</label>
+                        </div>
+
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" onChange={this.handleChange} type="radio" name="sexo" id="inlineRadio2x" value="f" checked={sexo === 'f'}  />
+                            <label className="form-check-label" htmlFor="inlineRadio2x">Femenino</label>
+                        </div>
+
                     </div>
 
                     <div className="input-group mb-4 mt-4">
@@ -249,7 +275,17 @@ export default class RegistroCliente extends Component {
                         </div>
 
                     </div>
+                    <div className="input-group mb-4 mt-4">
+                    <div className="input-group-prepend">
+                            <i className="fa fa-address-card fa-lg"></i>
+                        </div>
+                    <select title = "Seleccione...">
+{this.state.clubs.map(item =>{
+    <option>{item.Nombre}</option>
+})}
+</select>
 
+                    </div>
                     <div className="text-center">
                         <button type="submit" className="btn btn-negro black btn-box-index">
                             { this.state.isLoading ? <FontAwesomeIcon icon="sync" size="lg" spin /> : '' }

@@ -81,7 +81,7 @@ class RegistroController extends Controller
             'idpais'              => $input['pais']
         ];
 
-        $registro = Clubs::activo(true)->borrado(false)->where('Pais',new ObjectId($data['idpais']) )->get();
+        $registro = Clubs::where('Pais',new ObjectId($data['idpais']) )->get();
 
 
         //verifico si fue exitoso el insert en la bd

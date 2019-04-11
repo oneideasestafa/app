@@ -76804,6 +76804,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+/*
+React.createClass = require('create-react-class');
+React.__spread = function(target: any) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+React.Bootstrap = require('react-bootstrap');
+React.Bootstrap.Select = require('react-bootstrap-select');*/
 
 
 
@@ -76823,7 +76829,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 //import Menu from "../Menu";
-
 __WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__["b" /* library */].add(__WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["a" /* faSync */]);
 
 var optionToast = {
@@ -76831,8 +76836,8 @@ var optionToast = {
     autoClose: 3000
 };
 
-var RegistroCliente = function (_Component) {
-    _inherits(RegistroCliente, _Component);
+var RegistroCliente = function (_React$Component) {
+    _inherits(RegistroCliente, _React$Component);
 
     function RegistroCliente(props) {
         _classCallCheck(this, RegistroCliente);
@@ -76845,10 +76850,13 @@ var RegistroCliente = function (_Component) {
             correo: '',
             password: '',
             pais: '',
+            edad: '',
+            sexo: '',
             url: props.url,
             facebook: props.facebook,
             google: props.google,
-            isLoading: false
+            isLoading: false,
+            clubs: [{ Nombre: 'Seleccione...' }]
         };
 
         _this.handleChange = _this.handleChange.bind(_this);
@@ -76921,6 +76929,10 @@ var RegistroCliente = function (_Component) {
     }, {
         key: 'clubs',
         value: function clubs(e) {
+            var _this2 = this;
+
+            console.log(e);
+            console.log(this.state);
             this.setState(_defineProperty({}, e.target.name, e.target.value));
 
             var self = this;
@@ -76929,30 +76941,16 @@ var RegistroCliente = function (_Component) {
                 isLoading: true
             });
 
-            var _state2 = this.state,
-                nombre = _state2.nombre,
-                apellido = _state2.apellido,
-                correo = _state2.correo,
-                password = _state2.password,
-                pais = _state2.pais,
-                url = _state2.url;
-
-
+            var pais = e.target.value;
+            var url = this.state.url;
             __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(url + '/ajax-post-clubs', { pais: pais }).then(function (res) {
-
-                self.setState({
-                    nombre: '',
-                    apellido: '',
-                    correo: '',
-                    password: '',
-                    pais: '',
-                    isLoading: false
-                });
 
                 var r = res.data;
 
                 if (r.code === 200) {
-
+                    _this2.setState({
+                        'clubs': r.datos
+                    });
                     __WEBPACK_IMPORTED_MODULE_6_react_toastify__["toast"].success(r.msj, optionToast);
                 } else if (r.code === 500) {
 
@@ -76975,7 +76973,7 @@ var RegistroCliente = function (_Component) {
     }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
-            var _this2 = this;
+            var _this3 = this;
 
             __WEBPACK_IMPORTED_MODULE_15_jquery___default.a.getJSON('http://ipinfo.io', function (data) {
 
@@ -76988,7 +76986,7 @@ var RegistroCliente = function (_Component) {
                     p = '586f9204f8c715650b244842';
                 }
 
-                _this2.setState({
+                _this3.setState({
                     pais: p
                 });
             });
@@ -76996,15 +76994,18 @@ var RegistroCliente = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _state3 = this.state,
-                nombre = _state3.nombre,
-                apellido = _state3.apellido,
-                correo = _state3.correo,
-                password = _state3.password,
-                pais = _state3.pais,
-                facebook = _state3.facebook,
-                google = _state3.google,
-                url = _state3.url;
+            var _state2 = this.state,
+                nombre = _state2.nombre,
+                apellido = _state2.apellido,
+                correo = _state2.correo,
+                password = _state2.password,
+                pais = _state2.pais,
+                facebook = _state2.facebook,
+                google = _state2.google,
+                url = _state2.url,
+                clubs = _state2.clubs,
+                edad = _state2.edad,
+                sexo = _state2.sexo;
 
 
             var urlFacebook = url + '/auth/facebook';
@@ -77057,6 +77058,45 @@ var RegistroCliente = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
                             { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-address-card fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', id: 'edad', name: 'edad', value: edad, onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese su edad' })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-address-card fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'form-check form-check-inline' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-check-input', onChange: this.handleChange, type: 'radio', name: 'sexo', id: 'inlineRadio1x', value: 'm', checked: sexo === 'm' }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'label',
+                                { className: 'form-check-label', htmlFor: 'inlineRadio1x' },
+                                'Masculino'
+                            )
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'form-check form-check-inline' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-check-input', onChange: this.handleChange, type: 'radio', name: 'sexo', id: 'inlineRadio2x', value: 'f', checked: sexo === 'f' }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'label',
+                                { className: 'form-check-label', htmlFor: 'inlineRadio2x' },
+                                'Femenino'
+                            )
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-envelope fa-lg' })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', id: 'correo', name: 'correo', value: correo, onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese su correo' })
@@ -77102,6 +77142,26 @@ var RegistroCliente = function (_Component) {
                                 { className: 'form-check-label', htmlFor: 'inlineRadio2' },
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_14__public_images_countrys_es_png___default.a, className: 'img-country' })
                             )
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-address-card fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'select',
+                            { title: 'Seleccione...' },
+                            this.state.clubs.map(function (item) {
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'option',
+                                    null,
+                                    item.Nombre
+                                );
+                            })
                         )
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -77166,7 +77226,7 @@ var RegistroCliente = function (_Component) {
     }]);
 
     return RegistroCliente;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (RegistroCliente);
 
