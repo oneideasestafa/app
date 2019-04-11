@@ -76853,6 +76853,7 @@ var RegistroCliente = function (_Component) {
 
         _this.handleChange = _this.handleChange.bind(_this);
         _this.handleSubmit = _this.handleSubmit.bind(_this);
+        _this.clubs = _this.clubs.bind(_this);
 
         return _this;
     }
@@ -76918,6 +76919,61 @@ var RegistroCliente = function (_Component) {
             });
         }
     }, {
+        key: 'clubs',
+        value: function clubs(e) {
+            this.setState(_defineProperty({}, e.target.name, e.target.value));
+            e.preventDefault();
+
+            var self = this;
+
+            self.setState({
+                isLoading: true
+            });
+
+            var _state2 = this.state,
+                nombre = _state2.nombre,
+                apellido = _state2.apellido,
+                correo = _state2.correo,
+                password = _state2.password,
+                pais = _state2.pais,
+                url = _state2.url;
+
+
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(url + '/ajax-post-clubs', { pais: pais }).then(function (res) {
+
+                self.setState({
+                    nombre: '',
+                    apellido: '',
+                    correo: '',
+                    password: '',
+                    pais: '',
+                    isLoading: false
+                });
+
+                var r = res.data;
+
+                if (r.code === 200) {
+
+                    __WEBPACK_IMPORTED_MODULE_6_react_toastify__["toast"].success(r.msj, optionToast);
+                } else if (r.code === 500) {
+
+                    __WEBPACK_IMPORTED_MODULE_6_react_toastify__["toast"].error(r.msj, optionToast);
+                }
+            }).catch(function (error) {
+
+                if (error.response.status == 422) {
+
+                    self.setState({
+                        isLoading: false
+                    });
+
+                    console.log('errores: ', error.response.data);
+
+                    __WEBPACK_IMPORTED_MODULE_6_react_toastify__["toast"].error(error.response.data, optionToast);
+                }
+            });
+        }
+    }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
             var _this2 = this;
@@ -76941,15 +76997,15 @@ var RegistroCliente = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _state2 = this.state,
-                nombre = _state2.nombre,
-                apellido = _state2.apellido,
-                correo = _state2.correo,
-                password = _state2.password,
-                pais = _state2.pais,
-                facebook = _state2.facebook,
-                google = _state2.google,
-                url = _state2.url;
+            var _state3 = this.state,
+                nombre = _state3.nombre,
+                apellido = _state3.apellido,
+                correo = _state3.correo,
+                password = _state3.password,
+                pais = _state3.pais,
+                facebook = _state3.facebook,
+                google = _state3.google,
+                url = _state3.url;
 
 
             var urlFacebook = url + '/auth/facebook';
@@ -77031,7 +77087,7 @@ var RegistroCliente = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
                             { className: 'form-check form-check-inline' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-check-input', type: 'radio', name: 'pais', id: 'inlineRadio1', value: '586f91fff8c715650b244841', checked: pais === '586f91fff8c715650b244841', onChange: this.handleChange }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-check-input', onChange: this.clubs, type: 'radio', name: 'pais', id: 'inlineRadio1', value: '5caf334dff6eff0ae30e450b', checked: pais === '5caf334dff6eff0ae30e450b' }),
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'label',
                                 { className: 'form-check-label', htmlFor: 'inlineRadio1' },
@@ -77041,7 +77097,7 @@ var RegistroCliente = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
                             { className: 'form-check form-check-inline' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-check-input', type: 'radio', name: 'pais', id: 'inlineRadio2', value: '586f9204f8c715650b244842', checked: pais === '586f9204f8c715650b244842', onChange: this.handleChange }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-check-input', onChange: this.clubs, type: 'radio', name: 'pais', id: 'inlineRadio2', value: '5caf37adff6eff0ae30e450d', checked: pais === '5caf37adff6eff0ae30e450d' }),
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'label',
                                 { className: 'form-check-label', htmlFor: 'inlineRadio2' },

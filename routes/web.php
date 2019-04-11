@@ -33,6 +33,7 @@ Route::middleware(['guest'])->group(function(){
     //ruta de registro
     Route::get('/registro', 'RegistroController@index')->name('registro');
     Route::post('/ajax-post-registro', 'RegistroController@ajaxPostRegistro')->name('ajax-post-registro');
+    Route::post('/ajax-post-clubs', 'RegistroController@ajaxPostClubs')->name('ajax-post-clubs');
 
     //rutas de autenticacion con google y facebook
     Route::get('auth/{provider}', 'SocialAuthController@redirect');

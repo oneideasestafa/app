@@ -45,6 +45,7 @@ export default class RegistroCliente extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.clubs = this.clubs.bind(this);
 
     }
 
@@ -67,6 +68,61 @@ export default class RegistroCliente extends Component {
         let {nombre, apellido, correo, password, pais,url} = this.state;
 
         axios.post(url+'/ajax-post-registro', { nombre, apellido, correo, password, pais })
+            .then(res => {
+
+                self.setState({
+                    nombre: '',
+                    apellido: '',
+                    correo: '',
+                    password: '',
+                    pais: '',
+                    isLoading: false
+                });
+
+                let r = res.data;
+
+                if(r.code === 200){
+
+                    toast.success(r.msj, optionToast);
+
+                }else if(r.code === 500){
+
+                    toast.error(r.msj, optionToast);
+
+                }
+
+            })
+            .catch(function (error) {
+
+                if (error.response.status == 422){
+
+                    self.setState({
+                        isLoading: false
+                    });
+
+                    console.log('errores: ', error.response.data);
+
+                    toast.error(error.response.data, optionToast);
+                }
+
+            });
+    }
+
+    clubs(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+        e.preventDefault();
+
+        let self = this;
+
+        self.setState({
+            isLoading: true
+        });
+
+        let {nombre, apellido, correo, password, pais,url} = this.state;
+
+        axios.post(url+'/ajax-post-clubs', { pais })
             .then(res => {
 
                 self.setState({
@@ -184,12 +240,12 @@ export default class RegistroCliente extends Component {
                         </div>
 
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" name="pais" id="inlineRadio1" value="586f91fff8c715650b244841" checked={pais === '586f91fff8c715650b244841'} onChange={this.handleChange} />
+                            <input className="form-check-input" onChange={this.clubs} type="radio" name="pais" id="inlineRadio1" value="5caf334dff6eff0ae30e450b" checked={pais === '5caf334dff6eff0ae30e450b'}  />
                             <label className="form-check-label" htmlFor="inlineRadio1"><img src={'../public'+imgAR} className="img-country" /></label>
                         </div>
 
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" name="pais" id="inlineRadio2" value="586f9204f8c715650b244842" checked={pais === '586f9204f8c715650b244842'} onChange={this.handleChange} />
+                            <input className="form-check-input" onChange={this.clubs} type="radio" name="pais" id="inlineRadio2" value="5caf37adff6eff0ae30e450d" checked={pais === '5caf37adff6eff0ae30e450d'}  />
                             <label className="form-check-label" htmlFor="inlineRadio2"><img src={'../public'+imgCL} className="img-country" /></label>
                         </div>
 

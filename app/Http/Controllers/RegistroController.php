@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ValidateRegistro;
 use App\Models\MongoDB\Cliente;
+use App\Models\MongoDB\Clubs;
 use MongoDB\BSON\ObjectId;
 
 class RegistroController extends Controller
@@ -64,6 +65,27 @@ class RegistroController extends Controller
         //verifico si fue exitoso el insert en la bd
         if($registro->save()){
             return response()->json(['code' => 200, 'msj' => 'Registrado exitosamente']);
+        }else{
+           return response()->json(['code' => 500, 'msj' => 'Error al registrar. Consulte al administrador']);
+        }
+
+    }
+        //metodo para registrar cliente con clubs
+    public function ajaxPostClubs(ValidateRegistro $request){
+
+        $input = $request->all();
+
+        //capturo los datos y los acomodo en un arreglo
+        $data = [
+            'idpais'              => $input['pais']
+        ];
+
+        $registro = Clubs::activo(true)->borrado(false)->where('Pais',new ObjectId($data['idpais']) )->get();
+
+
+        //verifico si fue exitoso el insert en la bd
+        if($registro){
+            return response()->json(['code' => 200, 'msj' => 'Registrado exitosamente','datos'=>$registro]);
         }else{
            return response()->json(['code' => 500, 'msj' => 'Error al registrar. Consulte al administrador']);
         }
