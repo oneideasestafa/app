@@ -28,6 +28,8 @@ class RegistroController extends Controller
         $data = [
             'nombre'              => $input['nombre'],
             'apellido'            => $input['apellido'],
+            'sexo'            => $input['sexo'],
+            'edad'            => $input['edad'],
             'correo'              => strtolower($input['correo']),
             'from'                => 'ONE',
             'password'            => bcrypt($input['password']),
@@ -46,6 +48,8 @@ class RegistroController extends Controller
         $registro = new Cliente;
         $registro->Nombre              = $data['nombre'];
         $registro->Apellido            = $data['apellido'];
+        $registro->Sexo                = $data['sexo'];
+        $registro->Edad                = $data['edad'];
         $registro->Correo              = $data['correo'];
         $registro->Password            = $data['password'];
         $registro->TipoCuenta          = $data['from'];

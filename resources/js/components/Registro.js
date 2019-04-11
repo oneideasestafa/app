@@ -74,9 +74,9 @@ export default class RegistroCliente extends React.Component {
             isLoading: true
         });
 
-        let {nombre, apellido, correo, password, pais,url} = this.state;
+        let {nombre, apellido, correo, password, pais, url, edad, sexo} = this.state;
 
-        axios.post(url+'/ajax-post-registro', { nombre, apellido, correo, password, pais })
+        axios.post(url+'/ajax-post-registro', { nombre, apellido, correo, password, pais, edad, sexo })
             .then(res => {
 
                 self.setState({
@@ -227,13 +227,13 @@ export default class RegistroCliente extends React.Component {
                     </div>
                     <div className="input-group mb-4 mt-4">
                         <div className="input-group-prepend">
-                            <i className="fa fa-address-card fa-lg"></i>
+                            <i className="fas fa-user fa-lg"></i>
                         </div>
-                        <input type="number" id="edad" name="edad" value={edad} onChange={this.handleChange} className="form-control" placeholder="Ingrese su edad" />
+                        <input type="number" id="edad" name="edad" value={edad} onChange={this.handleChange} className="form-control" placeholder="Ingrese su Fecha de Nacimiento" />
                     </div>
                     <div className="input-group mb-4 mt-4">
                         <div className="input-group-prepend">
-                            <i className="fa fa-address-card fa-lg"></i>
+                            <i className="fas fa-genderless fa-lg"></i>
                         </div>
                             <div className="form-check form-check-inline">
                             <input className="form-check-input" onChange={this.handleChange} type="radio" name="sexo" id="inlineRadio1x" value="m" checked={sexo === 'm'}  />

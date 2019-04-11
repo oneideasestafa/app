@@ -76889,10 +76889,12 @@ var RegistroCliente = function (_React$Component) {
                 correo = _state.correo,
                 password = _state.password,
                 pais = _state.pais,
-                url = _state.url;
+                url = _state.url,
+                edad = _state.edad,
+                sexo = _state.sexo;
 
 
-            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(url + '/ajax-post-registro', { nombre: nombre, apellido: apellido, correo: correo, password: password, pais: pais }).then(function (res) {
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(url + '/ajax-post-registro', { nombre: nombre, apellido: apellido, correo: correo, password: password, pais: pais, edad: edad, sexo: sexo }).then(function (res) {
 
                 self.setState({
                     nombre: '',
@@ -77059,9 +77061,9 @@ var RegistroCliente = function (_React$Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
                             { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-address-card fa-lg' })
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-user fa-lg' })
                         ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'number', id: 'edad', name: 'edad', value: edad, onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese su edad' })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'number', id: 'edad', name: 'edad', value: edad, onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese su Fecha de Nacimiento' })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
@@ -77069,7 +77071,7 @@ var RegistroCliente = function (_React$Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
                             { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-address-card fa-lg' })
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-genderless fa-lg' })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
