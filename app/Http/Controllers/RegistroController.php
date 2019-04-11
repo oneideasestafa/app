@@ -8,6 +8,7 @@ use App\Http\Requests\ValidateRegistro;
 use App\Models\MongoDB\Cliente;
 use App\Models\MongoDB\Clubs;
 use MongoDB\BSON\ObjectId;
+use Illuminate\Http\Request;
 
 class RegistroController extends Controller
 {
@@ -71,7 +72,7 @@ class RegistroController extends Controller
 
     }
         //metodo para registrar cliente con clubs
-    public function ajaxPostClubs(ValidateRegistro $request){
+    public function ajaxPostClubs(Request $request){
 
         $input = $request->all();
 

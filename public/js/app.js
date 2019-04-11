@@ -76922,7 +76922,6 @@ var RegistroCliente = function (_Component) {
         key: 'clubs',
         value: function clubs(e) {
             this.setState(_defineProperty({}, e.target.name, e.target.value));
-            e.preventDefault();
 
             var self = this;
 
