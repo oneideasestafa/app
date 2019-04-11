@@ -202,7 +202,7 @@ export default class RegistroCliente extends Component {
                         </button>
                     </div>
                      <div className="text-center roboto-condensed text-can-login-social">
-                        <p style={{'color':'#dadada'}}>o puedes ingresar con</p>
+                        <p style={{'color':'#dadada'}}>o puedes registrarte con</p>
                     </div>
 
                     <div className="text-center mb-4">

@@ -77065,7 +77065,7 @@ var RegistroCliente = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'p',
                             { style: { 'color': '#dadada' } },
-                            'o puedes ingresar con'
+                            'o puedes registrarte con'
                         )
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
