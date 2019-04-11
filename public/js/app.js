@@ -76900,6 +76900,8 @@ var RegistroCliente = function (_React$Component) {
                     correo: '',
                     password: '',
                     pais: '',
+                    sexo: '',
+                    edad: '',
                     isLoading: false
                 });
 
@@ -76951,7 +76953,6 @@ var RegistroCliente = function (_React$Component) {
                     _this2.setState({
                         'clubs': r.datos
                     });
-                    __WEBPACK_IMPORTED_MODULE_6_react_toastify__["toast"].success(r.msj, optionToast);
                 } else if (r.code === 500) {
 
                     __WEBPACK_IMPORTED_MODULE_6_react_toastify__["toast"].error(r.msj, optionToast);
@@ -77060,7 +77061,7 @@ var RegistroCliente = function (_React$Component) {
                             { className: 'input-group-prepend' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-address-card fa-lg' })
                         ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', id: 'edad', name: 'edad', value: edad, onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese su edad' })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'number', id: 'edad', name: 'edad', value: edad, onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese su edad' })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',

@@ -85,6 +85,8 @@ export default class RegistroCliente extends React.Component {
                     correo: '',
                     password: '',
                     pais: '',
+                    sexo:'',
+                    edad:'',
                     isLoading: false
                 });
 
@@ -142,7 +144,7 @@ export default class RegistroCliente extends React.Component {
                           this.setState({
                                 'clubs': r.datos
                             });  
-                    toast.success(r.msj, optionToast);
+                    
 
                 }else if(r.code === 500){
 
@@ -227,7 +229,7 @@ export default class RegistroCliente extends React.Component {
                         <div className="input-group-prepend">
                             <i className="fa fa-address-card fa-lg"></i>
                         </div>
-                        <input type="text" id="edad" name="edad" value={edad} onChange={this.handleChange} className="form-control" placeholder="Ingrese su edad" />
+                        <input type="number" id="edad" name="edad" value={edad} onChange={this.handleChange} className="form-control" placeholder="Ingrese su edad" />
                     </div>
                     <div className="input-group mb-4 mt-4">
                         <div className="input-group-prepend">
