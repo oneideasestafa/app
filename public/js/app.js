@@ -27943,19 +27943,31 @@ window.app = {
     var today = new Date();
     var fin = window.app.animacionFinFLH.split(':');
     var inicio = window.app.animacionInicioFLH.split(':');
-    if (today.getHours() >= parseInt(fin[0])) {
-      if (today.getMinutes() >= parseInt(fin[1])) {
-        if (today.getSeconds() >= parseInt(fin[2])) {
+    if (today.getHours() >= parseInt(inicio[0]) && today.getHours() <= parseInt(fin[0])) {
+      if (today.getMinutes() >= parseInt(inicio[1])) {
+        if (today.getSeconds() >= parseInt(inicio[2])) {
+          // return true;//entra
+        } else {
           return false;
         }
+      } else {
+        return false;
       }
+    } else {
+      return false;
     }
-    if (today.getHours() < parseInt(inicio[0])) {
-      if (today.getMinutes() < parseInt(inicio[1])) {
-        if (today.getSeconds() < parseInt(inicio[2])) {
+    if (today.getHours() <= parseInt(fin[0])) {
+      if (today.getMinutes() < parseInt(fin[1])) {
+        if (today.getSeconds() < parseInt(fin[2])) {
+          //return true;
+        } else {
           return false;
         }
+      } else {
+        return false;
       }
+    } else {
+      return false;
     }
     if (window.app.animacionFLH == 1) {
       if (window.app.flash == undefined || window.app.flash == false) {
