@@ -27907,18 +27907,19 @@ window.app = {
     if (i >= window.app.animacion.length) {
       return false;
     }
+    var today = new Date();
+    var fin = window.app.animacionFin.split(':');
+    if (today.getHours() >= parseInt(fin[0]) && today.getMinutes() >= parseInt(fin[1]) && today.getSeconds() >= parseInt(fin[0])) {
+      return false;
+    }
     var efecto = animacion[i].split(".");
     console.log(efecto);
 
     document.body.style.backgroundColor = efecto[0];
     document.querySelector('.navbar-toggler-icon').style.color = efecto[0];
     document.body.style.backgroundImage = "none";
-    var today = new Date();
-    var fin = window.app.animacionFin.split(':');
-    if (today.getHours() >= fin[0] && today.getMinutes() >= fin[1] && today.getSeconds() >= fin[0]) {
-      return false;
-    }
-    if (i - 1 >= window.app.animacion.length) {
+
+    if (i + 1 >= window.app.animacion.length) {
       window.app.animacionActual = 0;
       setTimeout(window.app.tareaCOL, efecto[1] * 1000);
     } else {
