@@ -342,7 +342,7 @@ cordova.plugins.CordovaMqTTPlugin.publish({
 
 
     },
-    flash:function() {
+    flashlight:function() {
       if(window.app.flash==undefined||window.app.flash==false){//flash apagar
               window.plugins.flashlight.toggle(
                 function() {window.app.flash=true;}, // optional success callback

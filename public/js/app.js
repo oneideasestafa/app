@@ -28011,7 +28011,7 @@ window.app = {
     window.app.animacionFinFLHEstado = window.app.animacionFinFLHEstado + 1;
     window.app.lanzarElDia(new Date(yyyy + '-' + mm + '-' + dd + ' ' + window.app.animacionFinFLH), window.app.tareaFLH);
   },
-  flash: function flash() {
+  flashlight: function flashlight() {
     if (window.app.flash == undefined || window.app.flash == false) {
       //flash apagar
       window.plugins.flashlight.toggle(function () {
