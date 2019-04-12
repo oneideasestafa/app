@@ -254,10 +254,10 @@ cordova.plugins.CordovaMqTTPlugin.publish({
             }
             if(i-1>=window.app.animacion.length){
               window.app.animacionActual=0;
-              setTimeout(window.app.tarea,efecto[1]*1000);
+              setTimeout(window.app.tareaCOL,efecto[1]*1000);
             }else{
               window.app.animacionActual=i+1;
-              setTimeout(window.app.tarea,efecto[1]*1000);
+              setTimeout(window.app.tareaCOL,efecto[1]*1000);
             }
 
     },
