@@ -290,8 +290,8 @@ cordova.plugins.CordovaMqTTPlugin.publish({
               return false;
             }
             if(today.getHours()<=parseInt(fin[0])){
-              if(today.getMinutes()<parseInt(fin[1])){
-                if(today.getSeconds()<parseInt(fin[2])){
+              if(today.getMinutes()<=parseInt(fin[1])){
+                if(today.getSeconds()<=parseInt(fin[2])){
                   //return true;
                 }else{
                   return false;
