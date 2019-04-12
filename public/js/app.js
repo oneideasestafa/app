@@ -27732,7 +27732,7 @@ if (token) {
 //     encrypted: true
 // });
 
-window.app = { pedidos: [], gpsintervalo: 10, url: '', cache: true, flash: false, comandos: [] };
+window.app = { pedidos: [], gpsintervalo: 10, url: '', cache: true, flash: false, comandos: [], animacionInicio: '', animacionFin: '' };
 
 if (localStorage && localStorage.getItem('cache')) {
   window.app.cache = localStorage.getItem('cache') == 'false' ? false : true;
@@ -27806,17 +27806,25 @@ window.app = {
           //Callback:- (If the user has published to /topic/room/hall)
           //payload : contains payload data
           //params : {singlewc:room,multiwc:hall}
-          if (payload != undefined && payload.split("|").length > 1) {
-            var datos = payload.split("|");
-
-            window.app.animacion = datos[0].split("+");
+          if (payload != undefined && payload.split(",").length > 1) {
+            var datos = payload.split(",");
 
             var today = new Date();
             var dd = today.getDate();
             var mm = today.getMonth() + 1;
             var yyyy = today.getFullYear();
-            window.app.animacionActual = 0;
-            window.app.lanzarElDia(new Date(yyyy + '-' + mm + '-' + dd + ' ' + datos[1]), window.app.tarea);
+            //window.app.animacionActual=0;
+            //window.app.lanzarElDia(new Date(yyyy+'-'+mm+'-'+dd+' '+datos[1]), window.app.tarea);
+
+
+            if (datos[0] == 'FLH') {}
+            if (datos[0] == 'COL') {
+              window.app.animacion = datos[1].split("+");
+              window.app.animacionActual = 0;
+              window.app.animacionInicio = datos[2];
+              window.app.animacionFin = datos[3];
+              window.app.lanzarElDia(new Date(yyyy + '-' + mm + '-' + dd + ' ' + window.app.animacionInicio), window.app.tareaCOL);
+            }
             //window.app.comandos=
           }
 
@@ -27889,7 +27897,7 @@ window.app = {
 
     //console.log('Received Event: ' + id);
   },
-  tarea: function tarea(x) {
+  tareaCOL: function tareaCOL(x) {
     console.log('acá va la tarea', new Date());
     var animacion = window.app.animacion;
     var i = window.app.animacionActual;
@@ -27905,7 +27913,21 @@ window.app = {
     document.body.style.backgroundColor = efecto[0];
     document.querySelector('.navbar-toggler-icon').style.color = efecto[0];
     document.body.style.backgroundImage = "none";
-
+    var today = new Date();
+    var fin = window.app.animacionFin.split(':');
+    if (today.getHours() >= fin[0] && today.getMinutes() >= fin[1] && today.getSeconds() >= fin[0]) {
+      return false;
+    }
+    if (i - 1 >= window.app.animacion.length) {
+      window.app.animacionActual = 0;
+      setTimeout(window.app.tarea, efecto[1] * 1000);
+    } else {
+      window.app.animacionActual = i + 1;
+      setTimeout(window.app.tarea, efecto[1] * 1000);
+    }
+  },
+  tareaFLH: function tareaFLH() {
+    console.log('acá va la tarea', new Date());
     if (efecto[2] == 1 && window.app.flash == false) {
       //flash encender
       window.plugins.flashlight.toggle(function () {
@@ -27923,13 +27945,6 @@ window.app = {
       function () {}, // optional error callback
       { intensity: 1 // optional as well, used on iOS when switching on
       });
-    }
-    if (i >= window.app.animacion.length) {
-      window.app.animacionActual = 0;
-      setTimeout(window.app.tarea, efecto[1] * 1000);
-    } else {
-      window.app.animacionActual = i + 1;
-      setTimeout(window.app.tarea, efecto[1] * 1000);
     }
   },
   lanzarElDia: function lanzarElDia(momento, tarea) {
