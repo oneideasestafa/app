@@ -27943,11 +27943,19 @@ window.app = {
     var today = new Date();
     var fin = window.app.animacionFinFLH.split(':');
     var inicio = window.app.animacionInicioFLH.split(':');
-    if (today.getHours() >= parseInt(fin[0]) && today.getMinutes() >= parseInt(fin[1]) && today.getSeconds() >= parseInt(fin[0])) {
-      return false;
+    if (today.getHours() >= parseInt(fin[0])) {
+      if (today.getMinutes() >= parseInt(fin[1])) {
+        if (today.getSeconds() >= parseInt(fin[2])) {
+          return false;
+        }
+      }
     }
-    if (today.getHours() < parseInt(inicio[0]) && today.getMinutes() < parseInt(inicio[1]) && today.getSeconds() < parseInt(inicio[0])) {
-      return false;
+    if (today.getHours() < parseInt(inicio[0])) {
+      if (today.getMinutes() < parseInt(inicio[1])) {
+        if (today.getSeconds() < parseInt(inicio[2])) {
+          return false;
+        }
+      }
     }
     if (window.app.animacionFLH == 1) {
       if (window.app.flash == undefined || window.app.flash == false) {
