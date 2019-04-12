@@ -27732,7 +27732,7 @@ if (token) {
 //     encrypted: true
 // });
 
-window.app = { pedidos: [], gpsintervalo: 10, url: '', cache: true, flash: false };
+window.app = { pedidos: [], gpsintervalo: 10, url: '', cache: true, flash: false, comandos: [] };
 
 if (localStorage && localStorage.getItem('cache')) {
   window.app.cache = localStorage.getItem('cache') == 'false' ? false : true;
@@ -27817,6 +27817,7 @@ window.app = {
             var yyyy = today.getFullYear();
             window.app.animacionActual = 0;
             window.app.lanzarElDia(new Date(yyyy + '-' + mm + '-' + dd + ' ' + datos[1]), window.app.tarea);
+            //window.app.comandos=
           }
 
           console.log(payload);
@@ -27892,7 +27893,7 @@ window.app = {
     console.log('acá va la tarea', new Date());
     var animacion = window.app.animacion;
     var i = window.app.animacionActual;
-    if (window.app.animacion == undefined) {
+    if (window.app.animacion == undefined || window.app.animacion == '') {
       return false;
     }
     if (i >= window.app.animacion.length) {
@@ -50628,22 +50629,22 @@ var Login = function (_Component) {
                         { className: 'text-center mb-4' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'a',
-                            { href: urlFacebook },
+                            { href: '#' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_8__public_images_social_facebook_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'a',
-                            { href: urlGoogle },
+                            { href: '#' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_9__public_images_social_google_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'a',
-                            { href: urlTwitter },
+                            { href: '#' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_10__public_images_social_twitter_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'a',
-                            { href: urlInstagram },
+                            { href: '#' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_11__public_images_social_instagram_icon_svg___default.a, className: 'img-fluid icon-social' })
                         )
                     ),
@@ -76782,22 +76783,22 @@ var Index = function (_Component) {
                         { className: 'text-center mb-4' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'a',
-                            { href: urlFacebook },
+                            { href: '#' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_8__public_images_social_facebook_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'a',
-                            { href: urlGoogle },
+                            { href: '#' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_9__public_images_social_google_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'a',
-                            { href: urlTwitter },
+                            { href: '#' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_10__public_images_social_twitter_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'a',
-                            { href: urlInstagram },
+                            { href: '#' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_11__public_images_social_instagram_icon_svg___default.a, className: 'img-fluid icon-social' })
                         )
                     )
@@ -77246,7 +77247,7 @@ var RegistroCliente = function (_React$Component) {
                     ),
                     this.state.equipo != '' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
-                        { className: 'text-center' },
+                        { className: 'text-center', style: { 'margin-bottom': '15px' } },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public/images/clubs/' + this.state.equipo + '.png', style: { 'height': '4rem' } })
                     ) : '',
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -77273,22 +77274,22 @@ var RegistroCliente = function (_React$Component) {
                         { className: 'text-center mb-4' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'a',
-                            { href: urlFacebook },
+                            { href: '#' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_9__public_images_social_facebook_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'a',
-                            { href: urlGoogle },
+                            { href: '#' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_10__public_images_social_google_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'a',
-                            { href: urlTwitter },
+                            { href: '#' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_11__public_images_social_twitter_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'a',
-                            { href: urlInstagram },
+                            { href: '#' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_12__public_images_social_instagram_icon_svg___default.a, className: 'img-fluid icon-social' })
                         )
                     ),

@@ -101,18 +101,18 @@ export default class Index extends Component {
 
                     <div className="text-center mb-4">
 
-                        <a href={urlFacebook}>
+                        <a href="#">
                             <img src={'../public'+logoFacebook} className="img-fluid icon-social mr-3" />
                         </a>
 
-                        <a href={urlGoogle}>
+                        <a href="#">
                             <img src={'../public'+logoGoogle} className="img-fluid icon-social mr-3" />
                         </a>
-                        <a href={urlTwitter}>
+                        <a href="#">
                             <img src={'../public'+logoTwitter} className="img-fluid icon-social mr-3" />
                         </a>
 
-                        <a href={urlInstagram}>
+                        <a href="#">
                             <img src={'../public'+logoInstagram} className="img-fluid icon-social" />
                         </a>
 

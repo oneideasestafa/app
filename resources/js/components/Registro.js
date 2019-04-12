@@ -294,7 +294,7 @@ export default class RegistroCliente extends React.Component {
   </select>
                     </div>
                     { this.state.equipo!='' ?
-                        <div className="text-center">
+                        <div className="text-center" style={{'margin-bottom': '15px'}}>
                         <img src={'../public/images/clubs/'+this.state.equipo+'.png'} style={{'height': '4rem'}}/>
                     </div>
                     :''}
@@ -310,18 +310,18 @@ export default class RegistroCliente extends React.Component {
 
                     <div className="text-center mb-4">
 
-                        <a href={urlFacebook}>
+                        <a href="#">
                             <img src={'../public'+logoFacebook} className="img-fluid icon-social mr-3" />
                         </a>
 
-                        <a href={urlGoogle}>
+                        <a href="#">
                             <img src={'../public'+logoGoogle} className="img-fluid icon-social mr-3" />
                         </a>
-                        <a href={urlTwitter}>
+                        <a href="#">
                             <img src={'../public'+logoTwitter} className="img-fluid icon-social mr-3" />
                         </a>
 
-                        <a href={urlInstagram}>
+                        <a href="#">
                             <img src={'../public'+logoInstagram} className="img-fluid icon-social" />
                         </a>
 
