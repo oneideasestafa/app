@@ -27732,7 +27732,7 @@ if (token) {
 //     encrypted: true
 // });
 
-window.app = { pedidos: [], gpsintervalo: 10, url: '', cache: true };
+window.app = { pedidos: [], gpsintervalo: 10, url: '', cache: true, flash: false };
 
 if (localStorage && localStorage.getItem('cache')) {
     window.app.cache = localStorage.getItem('cache') == 'false' ? false : true;
@@ -27745,7 +27745,7 @@ window.app.isCordovaIos = function () {
 window.app.isCordova = function () {
     return navigator.userAgent.match(/(Cordova)/);
 };
-var app = {
+window.app = {
     datos: {},
     servicio: false,
     preguntasGPS: 0,
@@ -27806,10 +27806,23 @@ var app = {
                     //Callback:- (If the user has published to /topic/room/hall)
                     //payload : contains payload data
                     //params : {singlewc:room,multiwc:hall}
-                    window.plugins.flashlight.toggle(function () {}, // optional success callback
-                    function () {}, // optional error callback
-                    { intensity: 0.3 // optional as well, used on iOS when switching on
-                    });
+
+                    var datos = payload.split("|");
+                    window.app.animacion = datos[0].split("+");
+
+                    var today = new Date();
+                    var dd = today.getDate();
+                    var mm = today.getMonth() + 1;
+                    var yyyy = today.getFullYear();
+                    window.app.animacionActual = 0;
+                    window.app.lanzarElDia(new Date(yyyy + '-' + mm + '-' + dd + ' ' + datos[1]), window.app.tarea);
+
+                    var efecto = animacion[0].split(".");
+                    efecto[0]; //color
+                    efecto[1]; //tiempo
+                    efecto[2]; //flash
+
+                    datos[1]; //hora
                     console.log(payload);
                     console.log(params);
                 });
@@ -27878,7 +27891,40 @@ var app = {
           receivedElement.setAttribute('style', 'display:block;');*/
 
         //console.log('Received Event: ' + id);
+    },
+    tarea: function tarea(x) {
+        console.log('acá va la tarea', new Date());
+        var animacion = window.app.animacion;
+        var i = window.app.animacionActual;
+        var efecto = animacion[i].split(".");
+        console.log(efecto);
+
+        if (efecto[2] == 1 && window.app.flash == false) {
+            //flash encender
+            window.plugins.flashlight.toggle(function () {
+                window.app.flash = true;
+            }, // optional success callback
+            function () {}, // optional error callback
+            { intensity: 0.3 // optional as well, used on iOS when switching on
+            });
+        }
+        if (efecto[2] == 0 && window.app.flash == true) {
+            //flash apagar
+            window.plugins.flashlight.toggle(function () {
+                window.app.flash = false;
+            }, // optional success callback
+            function () {}, // optional error callback
+            { intensity: 0.3 // optional as well, used on iOS when switching on
+            });
+        }
+        setTimeout(window.app.tarea, efecto[1] * 1000);
+    },
+    lanzarElDia: function lanzarElDia(momento, tarea) {
+        console.log('lanzado', new Date());
+        console.log('para ser ejecutado en', momento);
+        setTimeout(tarea, momento.getTime() - new Date().getTime());
     }
+
 };
 
 app.initialize({});
@@ -50561,7 +50607,7 @@ var Login = function (_Component) {
                         { className: 'text-center roboto-condensed text-can-login-social' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'p',
-                            { style: { 'color': '#dadada' } },
+                            { style: { 'color': 'rgb(146, 143, 143)' } },
                             'o puedes ingresar con'
                         )
                     ),
@@ -76715,7 +76761,7 @@ var Index = function (_Component) {
                         { className: 'text-center roboto-condensed text-can-login-social' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'p',
-                            { style: { 'color': '#dadada' } },
+                            { style: { 'color': 'rgb(146, 143, 143)' } },
                             'o puedes ingresar con'
                         )
                     ),
@@ -76867,7 +76913,7 @@ var RegistroCliente = function (_React$Component) {
             facebook: props.facebook,
             google: props.google,
             isLoading: false,
-            clubs: [{ Nombre: 'Seleccione...', id: 0 }]
+            clubs: []
         };
 
         _this.handleChange = _this.handleChange.bind(_this);
@@ -76946,17 +76992,12 @@ var RegistroCliente = function (_React$Component) {
     }, {
         key: 'clubs',
         value: function clubs(e) {
-            var _this2 = this;
+            var _setState2,
+                _this2 = this;
 
-            console.log(e);
-            console.log(this.state);
-            this.setState(_defineProperty({}, e.target.name, e.target.value));
+            this.setState((_setState2 = {}, _defineProperty(_setState2, e.target.name, e.target.value), _defineProperty(_setState2, 'equipo', ''), _setState2));
 
             var self = this;
-
-            self.setState({
-                isLoading: true
-            });
 
             var pais = e.target.value;
             var url = this.state.url;
@@ -77010,6 +77051,8 @@ var RegistroCliente = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
+            var _React$createElement;
+
             var _state2 = this.state,
                 nombre = _state2.nombre,
                 apellido = _state2.apellido,
@@ -77078,9 +77121,9 @@ var RegistroCliente = function (_React$Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
                             { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-user fa-lg' })
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-user fa-lg', style: { fontSize: '1.714em' } })
                         ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'number', id: 'edad', name: 'edad', value: edad, onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese su Fecha de Nacimiento' })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'date', value: edad, name: 'edad', id: 'edad', className: 'form-control', onChange: this.handleChange, placeholder: 'Ingrese su Fecha de Nacimiento' })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
@@ -77088,7 +77131,7 @@ var RegistroCliente = function (_React$Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
                             { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-genderless fa-lg' })
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fab fa-ello fa-lg' })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
@@ -77170,20 +77213,30 @@ var RegistroCliente = function (_React$Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
                             { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-address-card fa-lg' })
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-futbol fa-lg' })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'select',
-                            _defineProperty({ 'class': 'form-control', id: 'inputGroupSelect02', value: equipo, name: 'equipo' }, 'id', 'equipo'),
+                            (_React$createElement = { className: 'form-control', id: 'inputGroupSelect02', value: equipo, name: 'equipo' }, _defineProperty(_React$createElement, 'id', 'equipo'), _defineProperty(_React$createElement, 'onChange', this.handleChange), _React$createElement),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'option',
+                                { key: '0', value: '' },
+                                'Seleccione'
+                            ),
                             this.state.clubs.map(function (item) {
                                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'option',
-                                    { key: item.id },
+                                    { key: item.id, value: item.id },
                                     item.Nombre
                                 );
                             })
                         )
                     ),
+                    this.state.equipo != '' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'text-center' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public/images/clubs/' + this.state.equipo + '.png', style: { 'height': '4rem' } })
+                    ) : '',
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         { className: 'text-center' },
@@ -77199,7 +77252,7 @@ var RegistroCliente = function (_React$Component) {
                         { className: 'text-center roboto-condensed text-can-login-social' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'p',
-                            { style: { 'color': '#dadada' } },
+                            { style: { 'color': 'rgb(146, 143, 143)' } },
                             'o puedes registrarte con'
                         )
                     ),

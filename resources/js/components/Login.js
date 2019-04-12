@@ -161,7 +161,7 @@ export default class Login extends Component {
                         </button>
                     </div>
                      <div className="text-center roboto-condensed text-can-login-social">
-                        <p style={{'color':'#dadada'}}>o puedes ingresar con</p>
+                        <p style={{'color':'rgb(146, 143, 143)'}}>o puedes ingresar con</p>
                     </div>
 
                     <div className="text-center mb-4">

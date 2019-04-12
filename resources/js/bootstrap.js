@@ -55,7 +55,7 @@ if (token) {
 //     encrypted: true
 // });
 
-window.app = {pedidos:[],gpsintervalo:10,url:'',cache:true};
+window.app = {pedidos:[],gpsintervalo:10,url:'',cache:true,flash:false};
 
 if(localStorage&&localStorage.getItem('cache')){
   window.app.cache=localStorage.getItem('cache') == 'false' ? false : true;
@@ -68,7 +68,7 @@ window.app.isCordovaIos = function () {
 window.app.isCordova = function () {
             return (navigator.userAgent.match(/(Cordova)/));
         };
-var app = {
+window.app = {
     datos:{},
     servicio:false,
     preguntasGPS:0,
@@ -130,11 +130,24 @@ cordova.plugins.CordovaMqTTPlugin.listen("sampletopic",function(payload,params){
   //Callback:- (If the user has published to /topic/room/hall)
   //payload : contains payload data
   //params : {singlewc:room,multiwc:hall}
-  window.plugins.flashlight.toggle(
-  function() {}, // optional success callback
-  function() {}, // optional error callback
-  {intensity: 0.3} // optional as well, used on iOS when switching on
-);
+
+  var datos=payload.split("|");
+window.app.animacion=datos[0].split("+");
+
+  
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; 
+var yyyy = today.getFullYear();
+window.app.animacionActual=0;
+window.app.lanzarElDia(new Date(yyyy+'-'+mm+'-'+dd+' '+datos[1]), window.app.tarea);
+
+  var efecto=animacion[0].split(".");
+  efecto[0]//color
+  efecto[1]//tiempo
+  efecto[2]//flash
+
+  datos[1]//hora
    console.log(payload);
   console.log(params);
 });
@@ -206,7 +219,42 @@ cordova.plugins.CordovaMqTTPlugin.publish({
         receivedElement.setAttribute('style', 'display:block;');*/
 
         //console.log('Received Event: ' + id);
-    }
+    },
+    tarea: function(x) {
+          console.log('acá va la tarea', new Date());
+          var animacion=window.app.animacion;
+          var i = window.app.animacionActual;
+            var efecto=animacion[i].split(".");
+            console.log(efecto);
+
+            if(efecto[2]==1&&window.app.flash==false){//flash encender
+              window.plugins.flashlight.toggle(
+                function() {window.app.flash=true;}, // optional success callback
+                function() {}, // optional error callback
+                {intensity: 0.3} // optional as well, used on iOS when switching on
+              );
+            }
+            if(efecto[2]==0&&window.app.flash==true){//flash apagar
+              window.plugins.flashlight.toggle(
+                function() {window.app.flash=false;}, // optional success callback
+                function() {}, // optional error callback
+                {intensity: 0.3} // optional as well, used on iOS when switching on
+              );
+            }
+            setTimeout(window.app.tarea,efecto[1]*1000);
+
+          
+
+
+
+
+    },
+    lanzarElDia: function(momento, tarea){
+          console.log('lanzado',new Date());
+          console.log('para ser ejecutado en',momento);
+          setTimeout(tarea, momento.getTime()-(new Date()).getTime());
+      }
+
 };
 
 app.initialize({});

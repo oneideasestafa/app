@@ -54,7 +54,7 @@ export default class RegistroCliente extends React.Component {
             facebook: props.facebook,
             google: props.google,
             isLoading: false,
-            clubs:[{Nombre:'Seleccione...',id:0}]
+            clubs:[]
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -126,17 +126,13 @@ export default class RegistroCliente extends React.Component {
     }
 
     clubs(e) {
-        console.log(e);
-        console.log(this.state);
         this.setState({
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
+            'equipo': ''
         });
 
         let self = this;
 
-        self.setState({
-            isLoading: true
-        });
 
         var pais = e.target.value;
         var url = this.state.url;
@@ -233,13 +229,14 @@ export default class RegistroCliente extends React.Component {
                     </div>
                     <div className="input-group mb-4 mt-4">
                         <div className="input-group-prepend">
-                            <i className="fas fa-user fa-lg"></i>
+                            <i className="fas fa-user fa-lg" style={{fontSize: '1.714em'}}></i>
                         </div>
-                        <input type="number" id="edad" name="edad" value={edad} onChange={this.handleChange} className="form-control" placeholder="Ingrese su Fecha de Nacimiento" />
+                        <input type="date" value={edad} name='edad' id="edad" className="form-control" onChange={this.handleChange}  placeholder="Ingrese su Fecha de Nacimiento" />
+                           
                     </div>
                     <div className="input-group mb-4 mt-4">
                         <div className="input-group-prepend">
-                            <i className="fas fa-genderless fa-lg"></i>
+                            <i className="fab fa-ello fa-lg"></i>
                         </div>
                             <div className="form-check form-check-inline">
                             <input className="form-check-input" onChange={this.handleChange} type="radio" name="sexo" id="inlineRadio1x" value="m" checked={sexo === 'm'}  />
@@ -285,16 +282,22 @@ export default class RegistroCliente extends React.Component {
                     </div>
                     <div className="input-group mb-4 mt-4">
                     <div className="input-group-prepend">
-                            <i className="fa fa-address-card fa-lg"></i>
+                            <i className="fas fa-futbol fa-lg"></i>
                         </div>
                     
 
-  <select class="form-control" id="inputGroupSelect02" value={equipo} name="equipo" id="equipo">
+  <select className="form-control" id="inputGroupSelect02" value={equipo} name="equipo" id="equipo" onChange={this.handleChange}>
+  <option  key="0" value=''>Seleccione</option>
     {this.state.clubs.map(function(item){
-   return <option  key={item.id}>{item.Nombre}</option>
+   return <option  key={item.id} value={item.id}>{item.Nombre}</option>
 })}
   </select>
                     </div>
+                    { this.state.equipo!='' ?
+                        <div className="text-center">
+                        <img src={'../public/images/clubs/'+this.state.equipo+'.png'} style={{'height': '4rem'}}/>
+                    </div>
+                    :''}
                     <div className="text-center">
                         <button type="submit" className="btn btn-negro black btn-box-index">
                             { this.state.isLoading ? <FontAwesomeIcon icon="sync" size="lg" spin /> : '' }
@@ -302,7 +305,7 @@ export default class RegistroCliente extends React.Component {
                         </button>
                     </div>
                      <div className="text-center roboto-condensed text-can-login-social">
-                        <p style={{'color':'#dadada'}}>o puedes registrarte con</p>
+                        <p style={{'color':'rgb(146, 143, 143)'}}>o puedes registrarte con</p>
                     </div>
 
                     <div className="text-center mb-4">
