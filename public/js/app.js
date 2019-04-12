@@ -27685,10 +27685,10 @@ window._ = __webpack_require__(45);
  */
 
 try {
-    window.Popper = __webpack_require__(24).default;
-    window.$ = window.jQuery = __webpack_require__(12);
+  window.Popper = __webpack_require__(24).default;
+  window.$ = window.jQuery = __webpack_require__(12);
 
-    __webpack_require__(47);
+  __webpack_require__(47);
 } catch (e) {}
 
 /**
@@ -27710,9 +27710,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
 /**
@@ -27735,195 +27735,205 @@ if (token) {
 window.app = { pedidos: [], gpsintervalo: 10, url: '', cache: true, flash: false };
 
 if (localStorage && localStorage.getItem('cache')) {
-    window.app.cache = localStorage.getItem('cache') == 'false' ? false : true;
+  window.app.cache = localStorage.getItem('cache') == 'false' ? false : true;
 } else {
-    window.app.cache = localStorage.setItem('cache', 'false');
+  window.app.cache = localStorage.setItem('cache', 'false');
 }
 window.app.isCordovaIos = function () {
-    return navigator.userAgent.match(/(Ios)/) && navigator.userAgent.match(/(Cordova)/);
+  return navigator.userAgent.match(/(Ios)/) && navigator.userAgent.match(/(Cordova)/);
 };
 window.app.isCordova = function () {
-    return navigator.userAgent.match(/(Cordova)/);
+  return navigator.userAgent.match(/(Cordova)/);
 };
 window.app = {
-    datos: {},
-    servicio: false,
-    preguntasGPS: 0,
-    // Application Constructor
-    initialize: function initialize(datos) {
-        this.datos = datos;
-        //  console.log('iniciar');
-        // console.log(this.datos);
-        this.bindEvents();
-    },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function bindEvents() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function onDeviceReady() {
+  datos: {},
+  servicio: false,
+  preguntasGPS: 0,
+  // Application Constructor
+  initialize: function initialize(datos) {
+    this.datos = datos;
+    //  console.log('iniciar');
+    // console.log(this.datos);
+    this.bindEvents();
+  },
+  // Bind Event Listeners
+  //
+  // Bind any events that are required on startup. Common events are:
+  // 'load', 'deviceready', 'offline', and 'online'.
+  bindEvents: function bindEvents() {
+    document.addEventListener('deviceready', this.onDeviceReady, false);
+  },
+  // deviceready Event Handler
+  //
+  // The scope of 'this' is the event. In order to call the 'receivedEvent'
+  // function, we must explicitly call 'app.receivedEvent(...);'
+  onDeviceReady: function onDeviceReady() {
 
-        console.log('ready');
-        var routerObject = {};
-        cordova.plugins.CordovaMqTTPlugin.connect({
-            url: "tcp://node69345-mqttone.mircloud.host", //a public broker used for testing purposes only. Try using a self hosted broker for production.
-            port: 11273,
-            clientId: window.Laravel.cliente,
-            connectionTimeout: 3000,
-            willTopicConfig: {
-                qos: 0, //default is 0
-                retain: true, //default is true
-                topic: "sampletopic",
-                payload: "test1"
-            },
-            username: null,
-            password: null,
-            keepAlive: 60,
-            isBinaryPayload: false, //setting this 'true' will make plugin treat all data as binary and emit ArrayBuffer instead of string on events
-            success: function success(s) {
-                console.log(s);
-                console.log("connect success");
-                //Simple subscribe
-                cordova.plugins.CordovaMqTTPlugin.subscribe({
-                    topic: "sampletopic",
-                    qos: 0,
-                    success: function success(s) {
-                        console.log(s);
-                    },
-                    error: function error(e) {
-                        console.log(s);
-                    }
-                });
-
-                cordova.plugins.CordovaMqTTPlugin.listen("sampletopic", function (payload, params) {
-                    console.log("testxd2");
-                    //Callback:- (If the user has published to /topic/room/hall)
-                    //payload : contains payload data
-                    //params : {singlewc:room,multiwc:hall}
-
-                    var datos = payload.split("|");
-                    window.app.animacion = datos[0].split("+");
-
-                    var today = new Date();
-                    var dd = today.getDate();
-                    var mm = today.getMonth() + 1;
-                    var yyyy = today.getFullYear();
-                    window.app.animacionActual = 0;
-                    window.app.lanzarElDia(new Date(yyyy + '-' + mm + '-' + dd + ' ' + datos[1]), window.app.tarea);
-
-                    var efecto = animacion[0].split(".");
-                    efecto[0]; //color
-                    efecto[1]; //tiempo
-                    efecto[2]; //flash
-
-                    datos[1]; //hora
-                    console.log(payload);
-                    console.log(params);
-                });
-            },
-            error: function error(e) {
-                console.log(e);
-                console.log("connect error");
-            },
-            onConnectionLost: function onConnectionLost(e) {
-                console.log(e);
-                console.log("disconnect");
-            },
-            routerConfig: {
-                publishMethod: "emit", //refer your custom router documentation to get the emitter/publishing function name. The parameter should be a string and not a function.
-                useDefaultRouter: true //Set false to use your own topic router implementation. Set true to use the stock topic router implemented in the plugin.
-            }
+    console.log('ready');
+    var routerObject = {};
+    cordova.plugins.CordovaMqTTPlugin.connect({
+      url: "tcp://node69345-mqttone.mircloud.host", //a public broker used for testing purposes only. Try using a self hosted broker for production.
+      port: 11273,
+      clientId: window.Laravel.cliente,
+      connectionTimeout: 3000,
+      willTopicConfig: {
+        qos: 0, //default is 0
+        retain: true, //default is true
+        topic: "sampletopic",
+        payload: "test1"
+      },
+      username: null,
+      password: null,
+      keepAlive: 60,
+      isBinaryPayload: false, //setting this 'true' will make plugin treat all data as binary and emit ArrayBuffer instead of string on events
+      success: function success(s) {
+        console.log(s);
+        console.log("connect success");
+        //Simple subscribe
+        cordova.plugins.CordovaMqTTPlugin.subscribe({
+          topic: "sampletopic",
+          qos: 0,
+          success: function success(s) {
+            console.log(s);
+          },
+          error: function error(e) {
+            console.log(s);
+          }
         });
-        /*
-        document.addEventListener("connected",function(e){
-         console.log(e.type)
-        },false)
-        
-        
-        
-        
-        */
 
-        /*
-        cordova.plugins.CordovaMqTTPlugin.publish({
-           topic:"sampletopic",
-           payload:"hello from the plugin",
-           qos:0,
-           retain:false,
-           success:function(s){
-         console.log(s);
-           },
-           error:function(e){
-         console.log(s);
-           }
-        })
-        //Declare this function in any scope to access the router function "on" to receive the payload for certain topic
-        */
-        /*
-         //Deprecated
-         document.addEventListener("sampletopic",function(e){
-          console.log(e.payload)
-         },false);
-        
-         //New way to listen to topics
-         cordova.plugins.CordovaMqTTPlugin.listen("/topic/+singlewc/#multiwc",function(payload,params){
+        cordova.plugins.CordovaMqTTPlugin.listen("sampletopic", function (payload, params) {
+          console.log("testxd2");
           //Callback:- (If the user has published to /topic/room/hall)
           //payload : contains payload data
           //params : {singlewc:room,multiwc:hall}
-           console.log(payload);
+
+          var datos = payload.split("|");
+          window.app.animacion = datos[0].split("+");
+
+          var today = new Date();
+          var dd = today.getDate();
+          var mm = today.getMonth() + 1;
+          var yyyy = today.getFullYear();
+          window.app.animacionActual = 0;
+          window.app.lanzarElDia(new Date(yyyy + '-' + mm + '-' + dd + ' ' + datos[1]), window.app.tarea);
+
+          var efecto = animacion[0].split(".");
+          efecto[0]; //color
+          efecto[1]; //tiempo
+          efecto[2]; //flash
+
+          datos[1]; //hora
+          console.log(payload);
           console.log(params);
-        })*/
-        ///later, to stop
-        //bgLocationServices.stop();
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function receivedEvent(id) {
-        /*  var parentElement = document.getElementById(id);
-          var listeningElement = parentElement.querySelector('.listening');
-          var receivedElement = parentElement.querySelector('.received');
-           listeningElement.setAttribute('style', 'display:none;');
-          receivedElement.setAttribute('style', 'display:block;');*/
+        });
+      },
+      error: function error(e) {
+        console.log(e);
+        console.log("connect error");
+      },
+      onConnectionLost: function onConnectionLost(e) {
+        console.log(e);
+        console.log("disconnect");
+      },
+      routerConfig: {
+        publishMethod: "emit", //refer your custom router documentation to get the emitter/publishing function name. The parameter should be a string and not a function.
+        useDefaultRouter: true //Set false to use your own topic router implementation. Set true to use the stock topic router implemented in the plugin.
+      }
+    });
+    /*
+    document.addEventListener("connected",function(e){
+     console.log(e.type)
+    },false)
+    
+    
+    
+    
+    */
 
-        //console.log('Received Event: ' + id);
-    },
-    tarea: function tarea(x) {
-        console.log('acá va la tarea', new Date());
-        var animacion = window.app.animacion;
-        var i = window.app.animacionActual;
-        var efecto = animacion[i].split(".");
-        console.log(efecto);
+    /*
+    cordova.plugins.CordovaMqTTPlugin.publish({
+       topic:"sampletopic",
+       payload:"hello from the plugin",
+       qos:0,
+       retain:false,
+       success:function(s){
+     console.log(s);
+       },
+       error:function(e){
+     console.log(s);
+       }
+    })
+    //Declare this function in any scope to access the router function "on" to receive the payload for certain topic
+    */
+    /*
+     //Deprecated
+     document.addEventListener("sampletopic",function(e){
+      console.log(e.payload)
+     },false);
+    
+     //New way to listen to topics
+     cordova.plugins.CordovaMqTTPlugin.listen("/topic/+singlewc/#multiwc",function(payload,params){
+      //Callback:- (If the user has published to /topic/room/hall)
+      //payload : contains payload data
+      //params : {singlewc:room,multiwc:hall}
+       console.log(payload);
+      console.log(params);
+    })*/
+    ///later, to stop
+    //bgLocationServices.stop();
+  },
+  // Update DOM on a Received Event
+  receivedEvent: function receivedEvent(id) {
+    /*  var parentElement = document.getElementById(id);
+      var listeningElement = parentElement.querySelector('.listening');
+      var receivedElement = parentElement.querySelector('.received');
+       listeningElement.setAttribute('style', 'display:none;');
+      receivedElement.setAttribute('style', 'display:block;');*/
 
-        if (efecto[2] == 1 && window.app.flash == false) {
-            //flash encender
-            window.plugins.flashlight.toggle(function () {
-                window.app.flash = true;
-            }, // optional success callback
-            function () {}, // optional error callback
-            { intensity: 0.3 // optional as well, used on iOS when switching on
-            });
-        }
-        if (efecto[2] == 0 && window.app.flash == true) {
-            //flash apagar
-            window.plugins.flashlight.toggle(function () {
-                window.app.flash = false;
-            }, // optional success callback
-            function () {}, // optional error callback
-            { intensity: 0.3 // optional as well, used on iOS when switching on
-            });
-        }
-        setTimeout(window.app.tarea, efecto[1] * 1000);
-    },
-    lanzarElDia: function lanzarElDia(momento, tarea) {
-        console.log('lanzado', new Date());
-        console.log('para ser ejecutado en', momento);
-        setTimeout(tarea, momento.getTime() - new Date().getTime());
+    //console.log('Received Event: ' + id);
+  },
+  tarea: function tarea(x) {
+    console.log('acá va la tarea', new Date());
+    var animacion = window.app.animacion;
+    var i = window.app.animacionActual;
+    var efecto = animacion[i].split(".");
+    console.log(efecto);
+
+    document.body.style.backgroundColor = efecto[0];
+    document.querySelector('.navbar-toggler-icon').style.color = "#fff";
+    document.body.style.backgroundImage = "none";
+
+    if (efecto[2] == 1 && window.app.flash == false) {
+      //flash encender
+      window.plugins.flashlight.toggle(function () {
+        window.app.flash = true;
+      }, // optional success callback
+      function () {}, // optional error callback
+      { intensity: 1 // optional as well, used on iOS when switching on
+      });
     }
+    if (efecto[2] == 0 && window.app.flash == true) {
+      //flash apagar
+      window.plugins.flashlight.toggle(function () {
+        window.app.flash = false;
+      }, // optional success callback
+      function () {}, // optional error callback
+      { intensity: 1 // optional as well, used on iOS when switching on
+      });
+    }
+    if (i >= window.app.animacion.length) {
+      window.app.animacionActual = 0;
+      setTimeout(window.app.tarea, efecto[1] * 1000);
+    } else {
+      window.app.animacionActual = i + 1;
+      setTimeout(window.app.tarea, efecto[1] * 1000);
+    }
+  },
+  lanzarElDia: function lanzarElDia(momento, tarea) {
+    console.log('lanzado', new Date());
+    console.log('para ser ejecutado en', momento);
+    setTimeout(tarea, momento.getTime() - new Date().getTime());
+  }
 
 };
 

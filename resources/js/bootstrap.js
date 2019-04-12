@@ -226,22 +226,33 @@ cordova.plugins.CordovaMqTTPlugin.publish({
           var i = window.app.animacionActual;
             var efecto=animacion[i].split(".");
             console.log(efecto);
+            
+            document.body.style.backgroundColor = efecto[0];
+            document.querySelector('.navbar-toggler-icon').style.color = "#fff";
+            document.body.style.backgroundImage = "none";
 
             if(efecto[2]==1&&window.app.flash==false){//flash encender
               window.plugins.flashlight.toggle(
                 function() {window.app.flash=true;}, // optional success callback
                 function() {}, // optional error callback
-                {intensity: 0.3} // optional as well, used on iOS when switching on
+                {intensity: 1} // optional as well, used on iOS when switching on
               );
             }
             if(efecto[2]==0&&window.app.flash==true){//flash apagar
               window.plugins.flashlight.toggle(
                 function() {window.app.flash=false;}, // optional success callback
                 function() {}, // optional error callback
-                {intensity: 0.3} // optional as well, used on iOS when switching on
+                {intensity: 1} // optional as well, used on iOS when switching on
               );
             }
-            setTimeout(window.app.tarea,efecto[1]*1000);
+            if(i>=window.app.animacion.length){
+              window.app.animacionActual=0;
+              setTimeout(window.app.tarea,efecto[1]*1000);
+            }else{
+              window.app.animacionActual=i+1;
+              setTimeout(window.app.tarea,efecto[1]*1000);
+            }
+            
 
           
 
