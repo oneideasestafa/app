@@ -27903,7 +27903,7 @@ window.app = {
     console.log(efecto);
 
     document.body.style.backgroundColor = efecto[0];
-    document.querySelector('.navbar-toggler-icon').style.color = "#fff";
+    document.querySelector('.navbar-toggler-icon').style.color = efecto[0];
     document.body.style.backgroundImage = "none";
 
     if (efecto[2] == 1 && window.app.flash == false) {
