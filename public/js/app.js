@@ -27732,7 +27732,9 @@ if (token) {
 //     encrypted: true
 // });
 
-window.app = { pedidos: [], gpsintervalo: 10, url: '', cache: true, flash: false, comandos: [], animacionInicio: '', animacionFin: '' };
+window.app = { pedidos: [], gpsintervalo: 10, url: '', cache: true, flash: false, comandos: [],
+  animacionInicio: '', animacionFin: '',
+  animacionInicioFLH: '', animacionFinFLH: '' };
 
 if (localStorage && localStorage.getItem('cache')) {
   window.app.cache = localStorage.getItem('cache') == 'false' ? false : true;
@@ -27817,7 +27819,12 @@ window.app = {
             //window.app.lanzarElDia(new Date(yyyy+'-'+mm+'-'+dd+' '+datos[1]), window.app.tarea);
 
 
-            if (datos[0] == 'FLH') {}
+            if (datos[0] == 'FLH') {
+              window.app.animacionFLH = datos[1];
+              window.app.animacionInicioFLH = datos[2];
+              window.app.animacionFinFLH = datos[3];
+              window.app.lanzarElDia(new Date(yyyy + '-' + mm + '-' + dd + ' ' + window.app.animacionInicioFLH), window.app.tareaFLH);
+            }
             if (datos[0] == 'COL') {
               window.app.animacion = datos[1].split("+");
               window.app.animacionActual = 0;
@@ -27929,23 +27936,28 @@ window.app = {
   },
   tareaFLH: function tareaFLH() {
     console.log('acá va la tarea', new Date());
-    if (efecto[2] == 1 && window.app.flash == false) {
-      //flash encender
-      window.plugins.flashlight.toggle(function () {
-        window.app.flash = true;
-      }, // optional success callback
-      function () {}, // optional error callback
-      { intensity: 1 // optional as well, used on iOS when switching on
-      });
+
+    if (window.app.animacionFLH == 1) {
+      if (window.app.flash == false) {
+        //flash encender
+        window.plugins.flashlight.toggle(function () {
+          window.app.flash = true;
+        }, // optional success callback
+        function () {}, // optional error callback
+        { intensity: 1 // optional as well, used on iOS when switching on
+        });
+      }
     }
-    if (efecto[2] == 0 && window.app.flash == true) {
-      //flash apagar
-      window.plugins.flashlight.toggle(function () {
-        window.app.flash = false;
-      }, // optional success callback
-      function () {}, // optional error callback
-      { intensity: 1 // optional as well, used on iOS when switching on
-      });
+    if (window.app.animacionFLH == 0) {
+      if (window.app.flash == true) {
+        //flash apagar
+        window.plugins.flashlight.toggle(function () {
+          window.app.flash = false;
+        }, // optional success callback
+        function () {}, // optional error callback
+        { intensity: 1 // optional as well, used on iOS when switching on
+        });
+      }
     }
   },
   lanzarElDia: function lanzarElDia(momento, tarea) {
