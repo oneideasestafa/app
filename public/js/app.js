@@ -27916,7 +27916,11 @@ window.app = {
     }
     var today = new Date();
     var fin = window.app.animacionFin.split(':');
+    var inicio = window.app.animacionInicio.split(':');
     if (today.getHours() >= parseInt(fin[0]) && today.getMinutes() >= parseInt(fin[1]) && today.getSeconds() >= parseInt(fin[0])) {
+      return false;
+    }
+    if (today.getHours() < parseInt(inicio[0]) && today.getMinutes() < parseInt(inicio[1]) && today.getSeconds() < parseInt(inicio[0])) {
       return false;
     }
     var efecto = animacion[i].split(".");
@@ -27936,7 +27940,15 @@ window.app = {
   },
   tareaFLH: function tareaFLH() {
     console.log('acá va la tarea', new Date());
-
+    var today = new Date();
+    var fin = window.app.animacionFinFLH.split(':');
+    var inicio = window.app.animacionInicioFLH.split(':');
+    if (today.getHours() >= parseInt(fin[0]) && today.getMinutes() >= parseInt(fin[1]) && today.getSeconds() >= parseInt(fin[0])) {
+      return false;
+    }
+    if (today.getHours() < parseInt(inicio[0]) && today.getMinutes() < parseInt(inicio[1]) && today.getSeconds() < parseInt(inicio[0])) {
+      return false;
+    }
     if (window.app.animacionFLH == 1) {
       if (window.app.flash == undefined || window.app.flash == false) {
         //flash encender
@@ -27946,6 +27958,7 @@ window.app = {
         function () {}, // optional error callback
         { intensity: 1 // optional as well, used on iOS when switching on
         });
+        window.app.animacionFLH = 0;
       }
     }
     if (window.app.animacionFLH == 0) {
@@ -27957,7 +27970,37 @@ window.app = {
         function () {}, // optional error callback
         { intensity: 1 // optional as well, used on iOS when switching on
         });
+        window.app.animacionFLH = 1;
+        window.app.intervaloFLH = undefined;
       }
+    }
+
+    if (window.app.animacionFLH == 2) {
+      window.app.intervaloFLH = setInterval(window.app.flash, 1 * 1000);
+      window.app.animacionFLH = 0;
+    }
+    today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+    window.app.lanzarElDia(new Date(yyyy + '-' + mm + '-' + dd + ' ' + window.app.animacionFinFLH), window.app.tareaFLH);
+  },
+  flash: function flash() {
+    if (window.app.flash == undefined || window.app.flash == false) {
+      //flash apagar
+      window.plugins.flashlight.toggle(function () {
+        window.app.flash = true;
+      }, // optional success callback
+      function () {}, // optional error callback
+      { intensity: 1 // optional as well, used on iOS when switching on
+      });
+    } else {
+      window.plugins.flashlight.toggle(function () {
+        window.app.flash = false;
+      }, // optional success callback
+      function () {}, // optional error callback
+      { intensity: 1 // optional as well, used on iOS when switching on
+      });
     }
   },
   lanzarElDia: function lanzarElDia(momento, tarea) {
