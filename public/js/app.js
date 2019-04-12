@@ -27938,7 +27938,7 @@ window.app = {
     console.log('acá va la tarea', new Date());
 
     if (window.app.animacionFLH == 1) {
-      if (window.app.flash == false) {
+      if (window.app.flash == undefined || window.app.flash == false) {
         //flash encender
         window.plugins.flashlight.toggle(function () {
           window.app.flash = true;
