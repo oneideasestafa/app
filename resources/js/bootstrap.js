@@ -130,8 +130,9 @@ cordova.plugins.CordovaMqTTPlugin.listen("sampletopic",function(payload,params){
   //Callback:- (If the user has published to /topic/room/hall)
   //payload : contains payload data
   //params : {singlewc:room,multiwc:hall}
-
+if(payload!=undefined&&payload.split("|").length>1){
   var datos=payload.split("|");
+
 window.app.animacion=datos[0].split("+");
 
   
@@ -141,13 +142,8 @@ var mm = today.getMonth()+1;
 var yyyy = today.getFullYear();
 window.app.animacionActual=0;
 window.app.lanzarElDia(new Date(yyyy+'-'+mm+'-'+dd+' '+datos[1]), window.app.tarea);
-
-  var efecto=animacion[0].split(".");
-  efecto[0]//color
-  efecto[1]//tiempo
-  efecto[2]//flash
-
-  datos[1]//hora
+}
+ 
    console.log(payload);
   console.log(params);
 });
@@ -224,6 +220,12 @@ cordova.plugins.CordovaMqTTPlugin.publish({
           console.log('acá va la tarea', new Date());
           var animacion=window.app.animacion;
           var i = window.app.animacionActual;
+          if(window.app.animacion==undefined){
+            return false;
+          }
+          if(i>=window.app.animacion.length){
+            return false;
+          }
             var efecto=animacion[i].split(".");
             console.log(efecto);
             
