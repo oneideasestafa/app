@@ -57,7 +57,8 @@ if (token) {
 
 window.app = {pedidos:[],gpsintervalo:10,url:'',cache:true,flash:false,comandos:[],
 animacionInicio:'',animacionFin:'',
-animacionInicioFLH:'',animacionFinFLH:''};
+animacionInicioFLH:'',animacionFinFLH:'',
+animacionFinFLHEstado:0};
 
 if(localStorage&&localStorage.getItem('cache')){
   window.app.cache=localStorage.getItem('cache') == 'false' ? false : true;
@@ -147,6 +148,7 @@ var yyyy = today.getFullYear();
 
 
 if(datos[0]=='FLH'){
+window.app.animacionFinFLHEstado=0;
 window.app.animacionFLH=datos[1];
 window.app.animacionInicioFLH=datos[2];
 window.app.animacionFinFLH=datos[3];
@@ -273,6 +275,9 @@ cordova.plugins.CordovaMqTTPlugin.publish({
     },
     tareaFLH: function() {
        console.log('acá va la tarea', new Date());
+       if(window.app.animacionFinFLHEstado>2){
+        return false;
+       }
        var today = new Date();
             var fin=window.app.animacionFinFLH.split(':');
             var inicio=window.app.animacionInicioFLH.split(':');
@@ -332,6 +337,7 @@ cordova.plugins.CordovaMqTTPlugin.publish({
         var dd = today.getDate();
         var mm = today.getMonth()+1; 
         var yyyy = today.getFullYear();
+        window.app.animacionFinFLHEstado=window.app.animacionFinFLHEstado+1;
         window.app.lanzarElDia(new Date(yyyy+'-'+mm+'-'+dd+' '+window.app.animacionFinFLH), window.app.tareaFLH);
 
 
