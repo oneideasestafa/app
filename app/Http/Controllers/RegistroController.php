@@ -31,6 +31,7 @@ class RegistroController extends Controller
             'sexo'            => $input['sexo'],
             'edad'            => $input['edad'],
             'equipo'            => $input['equipo'],
+            'telefono'            => $input['telefono'],
             'correo'              => strtolower($input['correo']),
             'from'                => 'ONE',
             'password'            => bcrypt($input['password']),
@@ -53,6 +54,7 @@ class RegistroController extends Controller
         $registro->Edad                = $data['edad'];
         $registro->Equipo              = $data['equipo'];
         $registro->Correo              = $data['correo'];
+        $registro->Telefono            = $data['telefono'];
         $registro->Password            = $data['password'];
         $registro->TipoCuenta          = $data['from'];
         $registro->ProviderID          = '';
@@ -88,11 +90,13 @@ class RegistroController extends Controller
         ];
 
         $registro = Clubs::where('Pais',new ObjectId($data['idpais']) )->get();
-
-
-        //verifico si fue exitoso el insert en la bd
+        $clubs = [];
         if($registro){
-            return response()->json(['code' => 200, 'msj' => 'Registrado exitosamente','datos'=>$registro]);
+
+            foreach ($registro as $club) {
+                $clubs[]=$club;
+            }
+            return response()->json(['code' => 200, 'msj' => 'Registrado exitosamente','datos'=>$clubs]);
         }else{
            return response()->json(['code' => 500, 'msj' => 'Error al registrar. Consulte al administrador']);
         }

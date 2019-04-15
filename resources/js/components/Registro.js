@@ -29,6 +29,9 @@ import imgCL from '../../../public/images/countrys/es.png';
 //import logoGoogle from '../../../../../public/images/social/google-icon.svg';
 
 import $ from 'jquery';
+
+import reactMobileDatePicker from 'react-mobile-datepicker';
+
 //import Menu from "../Menu";
 library.add( faSync);
 
@@ -36,7 +39,23 @@ const optionToast = {
     hideProgressBar: true,
     autoClose: 3000
 };
+const Datepicker = reactMobileDatePicker; 
+function convertDate(date, formate) {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    const second = date.getSeconds();
 
+    return formate
+         .replace(/Y+/, year)
+         .replace(/M+/, month)
+         .replace(/D+/, day)
+         .replace(/h+/, hour)
+         .replace(/m+/, minute)
+         .replace(/s+/, second);
+}
 export default class RegistroCliente extends React.Component {
 
     constructor(props) {
@@ -54,12 +73,19 @@ export default class RegistroCliente extends React.Component {
             facebook: props.facebook,
             google: props.google,
             isLoading: false,
-            clubs:[]
+            clubs:[],
+            time: new Date(),
+            isOpen: false,
+            theme: 'default',
+            telefono:''
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.clubs = this.clubs.bind(this);
+        this.handleToggle = this.handleToggle.bind(this);
+        this.handleThemeToggle = this.handleThemeToggle.bind(this);
+        this.handleSelect = this.handleSelect.bind(this);
 
     }
 
@@ -79,9 +105,9 @@ export default class RegistroCliente extends React.Component {
             isLoading: true
         });
 
-        let {nombre, apellido, correo, password, pais, url, edad, sexo,equipo} = this.state;
-
-        axios.post(url+'/ajax-post-registro', { nombre, apellido, correo, password, pais, edad, sexo,equipo })
+        let {nombre, apellido, correo, password, pais, url, edad, sexo,equipo,time,telefono} = this.state;
+        edad=time;
+        axios.post(url+'/ajax-post-registro', { nombre, apellido, correo, password, pais, edad, sexo,equipo , telefono})
             .then(res => {
 
                 self.setState({
@@ -93,6 +119,7 @@ export default class RegistroCliente extends React.Component {
                     sexo:'',
                     edad:'',
                     equipo:'',
+                    telefono:'',
                     isLoading: false
                 });
 
@@ -190,9 +217,21 @@ export default class RegistroCliente extends React.Component {
 
 
     }
+    handleToggle(isOpen) {
+            this.setState({ isOpen });
+        };
+
+        handleThemeToggle() {
+            var theme='android-dark';
+            this.setState({ theme, isOpen: true });
+        };
+
+        handleSelect(time){
+            this.setState({ time, isOpen: false, edad:time });
+        };
     render() {
 
-        let {nombre, apellido, correo, password, pais, facebook, google,url,clubs,edad,sexo,equipo} = this.state;
+        let {nombre, apellido, correo, password, pais, facebook, google,url,clubs,edad,sexo,equipo,telefono} = this.state;
 
         let urlFacebook    = url + '/auth/facebook';
         let urlGoogle      = url + '/auth/google';
@@ -229,10 +268,24 @@ export default class RegistroCliente extends React.Component {
                     </div>
                     <div className="input-group mb-4 mt-4">
                         <div className="input-group-prepend">
-                            <i className="fas fa-user fa-lg" style={{fontSize: '1.714em'}}></i>
+                            <i className="fas fa-calendar-alt fa-lg" style={{fontSize: '1.714em'}}></i>
                         </div>
-                        <input type="date" value={edad} name='edad' id="edad" className="form-control" onChange={this.handleChange}  placeholder="Ingrese su Fecha de Nacimiento" />
-                           
+                       <a
+                            className="select-btn sm" style={{'border': '1px solid #fff','padding-top': '0.5rem','padding-bottom': '0.5rem','width': '88%','color': '#dadada'}}
+                            onClick={this.handleThemeToggle}>
+                            {this.state.edad==''?'Ingrese su Fecha de Nacimiento':this.state.time.getDate()+'/'+this.state.time.getMonth()+'/'+this.state.time.getFullYear()}
+                        </a>   
+                        <Datepicker
+                        showCaption={true}
+                        showHeader={true}
+                        value={this.state.time}
+                        theme={this.state.theme}
+                        isOpen={this.state.isOpen}
+                        onSelect={this.handleSelect}
+                        onCancel={(e) => this.handleToggle(false)} 
+                        confirmText="Seleccionar"
+                        cancelText="Cancelar"
+                        />
                     </div>
                     <div className="input-group mb-4 mt-4">
                         <div className="input-group-prepend">
@@ -255,6 +308,13 @@ export default class RegistroCliente extends React.Component {
                             <i className="fa fa-envelope fa-lg"></i>
                         </div>
                         <input type="text" id="correo" name="correo" value={correo} onChange={this.handleChange} className="form-control" placeholder="Ingrese su correo" />
+                    </div>
+
+                    <div className="input-group mb-4 mt-4">
+                        <div className="input-group-prepend">
+                            <i className="fas fa-phone fa-lg"></i>
+                        </div>
+                        <input type="number" min="0" max="99999999999" maxLength="11" id="telefono" name="telefono" value={telefono} onChange={this.handleChange} className="form-control" placeholder="Ingrese su número de telefono" />
                     </div>
 
                     <div className="input-group mb-4 mt-4">

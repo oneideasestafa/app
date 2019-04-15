@@ -58,7 +58,9 @@ if (token) {
 window.app = {pedidos:[],gpsintervalo:10,url:'',cache:true,flash:false,comandos:[],
 animacionInicio:'',animacionFin:'',
 animacionInicioFLH:'',animacionFinFLH:'',
-animacionFinFLHEstado:0};
+animacionFinFLHEstado:0,
+animacionInicioVivo:false,
+animacionInicioVivoFLH:false};
 
 if(localStorage&&localStorage.getItem('cache')){
   window.app.cache=localStorage.getItem('cache') == 'false' ? false : true;
@@ -152,6 +154,10 @@ window.app.animacionFinFLHEstado=0;
 window.app.animacionFLH=datos[1];
 window.app.animacionInicioFLH=datos[2];
 window.app.animacionFinFLH=datos[3];
+if(window.app.animacionInicioFLH=='99:99:99'){
+  window.app.animacionInicioFLH=today.getHours()+':'+today.getMinutes()+':'+today.getSeconds();
+  window.app.animacionInicioVivoFLH=true;
+}
 window.app.lanzarElDia(new Date(yyyy+'-'+mm+'-'+dd+' '+window.app.animacionInicioFLH), window.app.tareaFLH);
 
 }
@@ -160,6 +166,10 @@ window.app.animacion=datos[1].split("+");
 window.app.animacionActual=0;
 window.app.animacionInicio=datos[2];
 window.app.animacionFin=datos[3];
+if(window.app.animacionInicio=='99:99:99'){
+  window.app.animacionInicio=today.getHours()+':'+today.getMinutes()+':'+today.getSeconds();
+  window.app.animacionInicioVivo=true;
+}
 window.app.lanzarElDia(new Date(yyyy+'-'+mm+'-'+dd+' '+window.app.animacionInicio), window.app.tareaCOL);
 
 }
@@ -249,14 +259,20 @@ cordova.plugins.CordovaMqTTPlugin.publish({
             return false;
           }
           var today = new Date();
+          if(!window.app.animacionInicioVivo){
+          //cargar fecha
             var fin=window.app.animacionFin.split(':');
             var inicio=window.app.animacionInicio.split(':');
+            //validar tiempo
             if(today.getHours()>=parseInt(fin[0])&&today.getMinutes()>=parseInt(fin[1])&&today.getSeconds()>=parseInt(fin[0])){
               return false;
             }
             if(today.getHours()<parseInt(inicio[0])&&today.getMinutes()<parseInt(inicio[1])&&today.getSeconds()<parseInt(inicio[0])){
               return false;
             }
+          }else{
+            window.app.animacionInicioVivo=false;
+          }  
             var efecto=animacion[i].split(".");
             console.log(efecto);
             
@@ -264,6 +280,7 @@ cordova.plugins.CordovaMqTTPlugin.publish({
             document.querySelector('.navbar-toggler-icon').style.color =  efecto[0];
             document.body.style.backgroundImage = "none";
             
+            //cargar el ciclo
             if(i+1>=window.app.animacion.length){
               window.app.animacionActual=0;
               setTimeout(window.app.tareaCOL,efecto[1]*1000);
@@ -279,8 +296,11 @@ cordova.plugins.CordovaMqTTPlugin.publish({
         return false;
        }
        var today = new Date();
+       if(!window.app.animacionInicioVivoFLH){
+            //carga de tiempo
             var fin=window.app.animacionFinFLH.split(':');
             var inicio=window.app.animacionInicioFLH.split(':');
+            //validacion de tiempo valido
             if(today.getHours()>=parseInt(inicio[0])&&today.getHours()<=parseInt(fin[0])){
               if(today.getMinutes()>=parseInt(inicio[1])){
                 if(today.getSeconds()>=parseInt(inicio[2])){
@@ -294,6 +314,7 @@ cordova.plugins.CordovaMqTTPlugin.publish({
             }else{
               return false;
             }
+            //validacion de tiempo valido
             if(today.getHours()<=parseInt(fin[0])){
               if(today.getMinutes()<=parseInt(fin[1])){
                 if(today.getSeconds()<=parseInt(fin[2])){
@@ -307,6 +328,10 @@ cordova.plugins.CordovaMqTTPlugin.publish({
             }else{
               return false;
             }
+
+      }else{
+            window.app.animacionInicioVivoFLH=false;
+          } 
        if(window.app.animacionFLH==1){
         if(window.app.flash==undefined||window.app.flash==false){//flash encender
               window.plugins.flashlight.toggle(
