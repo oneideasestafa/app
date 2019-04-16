@@ -97,6 +97,9 @@ window.app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
 
+    // Set the SNTP server and timeout
+    cordova.plugins.sntp.setServer("time1.google.com", 10000);
+
         console.log('ready');
     var routerObject={};  
 cordova.plugins.CordovaMqTTPlugin.connect({
@@ -158,7 +161,16 @@ if(window.app.animacionInicioFLH=='99:99:99'){
   window.app.animacionInicioFLH=today.getHours()+':'+today.getMinutes()+':'+today.getSeconds();
   window.app.animacionInicioVivoFLH=true;
 }
-window.app.lanzarElDia(new Date(yyyy+'-'+mm+'-'+dd+' '+window.app.animacionInicioFLH), window.app.tareaFLH);
+cordova.plugins.sntp.getClockOffset(
+    function(offset) {
+        console.log("System clock offset is:", offset);
+        window.app.lanzarElDia(new Date(yyyy+'-'+mm+'-'+dd+' '+window.app.animacionInicioFLH), window.app.tareaFLH);
+
+    },
+    function(errorMessage) {
+        console.log("I haz error:", errorMessage);
+    }
+);
 
 }
 if(datos[0]=='COL'){
@@ -170,7 +182,15 @@ if(window.app.animacionInicio=='99:99:99'){
   window.app.animacionInicio=today.getHours()+':'+today.getMinutes()+':'+today.getSeconds();
   window.app.animacionInicioVivo=true;
 }
-window.app.lanzarElDia(new Date(yyyy+'-'+mm+'-'+dd+' '+window.app.animacionInicio), window.app.tareaCOL);
+cordova.plugins.sntp.getClockOffset(
+    function(offset) {
+        console.log("System clock offset is:", offset);
+        window.app.lanzarElDia(new Date(yyyy+'-'+mm+'-'+dd+' '+window.app.animacionInicio), window.app.tareaCOL);
+    },
+    function(errorMessage) {
+        console.log("I haz error:", errorMessage);
+    }
+);
 
 }
 //window.app.comandos=
