@@ -27732,29 +27732,23 @@ if (token) {
 //     encrypted: true
 // });
 
-window.app = { pedidos: [], gpsintervalo: 10, url: '', cache: true, flash: false, comandos: [],
+window.app = {
+  datos: {},
+  servicio: false,
+  preguntasGPS: 0,
+  pedidos: [], gpsintervalo: 10, url: '', cache: true, flash: false, comandos: [],
   animacionInicio: '', animacionFin: '',
   animacionInicioFLH: '', animacionFinFLH: '',
   animacionFinFLHEstado: 0,
   animacionInicioVivo: false,
   animacionInicioVivoFLH: false,
-  gtm: ' GMT-0400' };
-
-if (localStorage && localStorage.getItem('cache')) {
-  window.app.cache = localStorage.getItem('cache') == 'false' ? false : true;
-} else {
-  window.app.cache = localStorage.setItem('cache', 'false');
-}
-window.app.isCordovaIos = function () {
-  return navigator.userAgent.match(/(Ios)/) && navigator.userAgent.match(/(Cordova)/);
-};
-window.app.isCordova = function () {
-  return navigator.userAgent.match(/(Cordova)/);
-};
-window.app = {
-  datos: {},
-  servicio: false,
-  preguntasGPS: 0,
+  gtm: ' GMT-0400',
+  isCordovaIos: function isCordovaIos() {
+    return navigator.userAgent.match(/(Ios)/) && navigator.userAgent.match(/(Cordova)/);
+  },
+  isCordova: function isCordova() {
+    return navigator.userAgent.match(/(Cordova)/);
+  },
   // Application Constructor
   initialize: function initialize(datos) {
     this.datos = datos;
@@ -27935,7 +27929,7 @@ window.app = {
     /*  var parentElement = document.getElementById(id);
       var listeningElement = parentElement.querySelector('.listening');
       var receivedElement = parentElement.querySelector('.received');
-       listeningElement.setAttribute('style', 'display:none;');
+        listeningElement.setAttribute('style', 'display:none;');
       receivedElement.setAttribute('style', 'display:block;');*/
 
     //console.log('Received Event: ' + id);
@@ -28085,6 +28079,11 @@ window.app = {
 
 };
 
+if (localStorage && localStorage.getItem('cache')) {
+  window.app.cache = localStorage.getItem('cache') == 'false' ? false : true;
+} else {
+  window.app.cache = localStorage.setItem('cache', 'false');
+}
 app.initialize({});
 
 /***/ }),
