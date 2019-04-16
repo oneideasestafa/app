@@ -27737,7 +27737,8 @@ window.app = { pedidos: [], gpsintervalo: 10, url: '', cache: true, flash: false
   animacionInicioFLH: '', animacionFinFLH: '',
   animacionFinFLHEstado: 0,
   animacionInicioVivo: false,
-  animacionInicioVivoFLH: false };
+  animacionInicioVivoFLH: false,
+  gtm: ' GMT-0400' };
 
 if (localStorage && localStorage.getItem('cache')) {
   window.app.cache = localStorage.getItem('cache') == 'false' ? false : true;
@@ -27836,7 +27837,12 @@ window.app = {
               }
               cordova.plugins.sntp.getClockOffset(function (offset) {
                 console.log("System clock offset is:", offset);
-                window.app.lanzarElDia(new Date(yyyy + '-' + mm + '-' + dd + ' ' + window.app.animacionInicioFLH), window.app.tareaFLH);
+                var diferenciaSegundos = offset / 1000;
+                var fecha = new Date(yyyy + '-' + mm + '-' + dd + ' ' + window.app.animacionInicioFLH + window.app.gtm);
+                if (diferenciaSegundos > 0 || diferenciaSegundos < 0) {
+                  fecha.setSeconds(diferenciaSegundos);
+                }
+                window.app.lanzarElDia(fecha, window.app.tareaFLH);
               }, function (errorMessage) {
                 console.log("I haz error:", errorMessage);
               });
@@ -27852,7 +27858,12 @@ window.app = {
               }
               cordova.plugins.sntp.getClockOffset(function (offset) {
                 console.log("System clock offset is:", offset);
-                window.app.lanzarElDia(new Date(yyyy + '-' + mm + '-' + dd + ' ' + window.app.animacionInicio), window.app.tareaCOL);
+                var diferenciaSegundos = offset / 1000;
+                var fecha = new Date(yyyy + '-' + mm + '-' + dd + ' ' + window.app.animacionInicio + window.app.gtm);
+                if (diferenciaSegundos > 0 || diferenciaSegundos < 0) {
+                  fecha.setSeconds(diferenciaSegundos);
+                }
+                window.app.lanzarElDia(fecha, window.app.tareaCOL);
               }, function (errorMessage) {
                 console.log("I haz error:", errorMessage);
               });
@@ -28046,7 +28057,7 @@ window.app = {
     var mm = today.getMonth() + 1;
     var yyyy = today.getFullYear();
     window.app.animacionFinFLHEstado = window.app.animacionFinFLHEstado + 1;
-    window.app.lanzarElDia(new Date(yyyy + '-' + mm + '-' + dd + ' ' + window.app.animacionFinFLH), window.app.tareaFLH);
+    window.app.lanzarElDia(new Date(yyyy + '-' + mm + '-' + dd + ' ' + window.app.animacionFinFLH + window.app.gtm), window.app.tareaFLH);
   },
   flashlight: function flashlight() {
     if (window.app.flash == undefined || window.app.flash == false) {
