@@ -74,7 +74,7 @@ window.app.isCordovaIos = function () {
 window.app.isCordova = function () {
             return (navigator.userAgent.match(/(Cordova)/));
         };
-window.app = {
+window.appcordova = {
     datos:{},
     servicio:false,
     preguntasGPS:0,
@@ -421,4 +421,4 @@ cordova.plugins.CordovaMqTTPlugin.publish({
 
 };
 
-app.initialize({});
+appcordova.initialize({});
