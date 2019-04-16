@@ -59,7 +59,7 @@ window.app = {
     datos:{},
     servicio:false,
     preguntasGPS:0,
-    pedidos:[],gpsintervalo:10,url:'',cache:true,flash:false,comandos:[],
+    pedidos:[],gpsintervalo:60,url:'',cache:true,flash:false,comandos:[],
     animacionInicio:'',animacionFin:'',
     animacionInicioFLH:'',animacionFinFLH:'',
     animacionFinFLHEstado:0,
@@ -90,6 +90,74 @@ window.app = {
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
+    enviarUbicacion:function (latitude,longitude) {
+           //url test http://ricardo-pc/OnePWA/public/ajax-set-traking
+           var fecha = new Date();
+      var datos={clientId:window.Laravel.telefono,location:{latitude:latitude,longitude:longitude},fecha:fecha };
+    		cordova.plugins.CordovaMqTTPlugin.publish({
+				   topic:"/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/Coordenadas",
+				   payload:JSON.stringify(datos),
+				   qos:0,
+				   retain:false,
+				   success:function(s){
+				 console.log(s);
+				   },
+				   error:function(e){
+				 console.log(s);
+				   }
+				});
+    },
+    coordenadas:function() {
+     setInterval(window.app.reloj,window.app.gpsintervalo*1000);
+    },
+    reloj:function() {
+                       if(window.app.isCordovaIos()){
+                           //console.log("GPS activado directo");
+                           
+                              navigator.geolocation.getCurrentPosition(function (position) {
+                                  window.app.enviarUbicacion(position.coords.longitude,position.coords.latitude);
+                              }, function (argument) {
+                                cordova.plugins.notification.local.schedule({
+                                    id:1,
+                                    title: 'ONE Show',
+                                    text: 'Debe activar el GPS para continuar',
+                                    icon: 'res://icon.png',
+                                    smallIcon: 'res://icon.png'
+                                });
+                              })
+                   }else{
+                    //window.location.href=url+"/10.322/-68.783";
+                    //return false; 
+                  navigator.geolocation.activator.askActivation(function(response) {
+                            //console.log("GPS activado");
+                           
+                              navigator.geolocation.getCurrentPosition(
+                                  function (position) {
+                                    window.app.enviarUbicacion(position.coords.longitude,position.coords.latitude);
+
+                              }, function (argument) {
+                                cordova.plugins.notification.local.schedule({
+                                    id:1,
+                                    title: 'ONE Show',
+                                    text: 'No se puede activar el GPS para continuar',
+                                    icon: 'res://icon.png',
+                                    smallIcon: 'res://icon.png'
+                                });
+                              });
+                            
+                         
+                        }, function(errorask) {
+                          console.log(errorask);
+                             cordova.plugins.notification.local.schedule({
+                                  id:1,
+                                  title: 'ONE Show',
+                                  text: 'No se puede activar el GPS para continuar',
+                                  icon: 'res://icon.png',
+                                  smallIcon: 'res://icon.png'
+                              });
+                            });
+                  }
+    },
     onDeviceReady: function() {
 
     // Set the SNTP server and timeout
@@ -116,94 +184,94 @@ cordova.plugins.CordovaMqTTPlugin.connect({
     	console.log(s);
         console.log("connect success");
         //Simple subscribe
-cordova.plugins.CordovaMqTTPlugin.subscribe({
-   topic:"sampletopic",
-   qos:0,
-  success:function(s){
- console.log(s);
-  },
-  error:function(e){
- console.log(s);
-  }
-});
+            cordova.plugins.CordovaMqTTPlugin.subscribe({
+               topic:"sampletopic",
+               qos:0,
+              success:function(s){
+             console.log(s);
+              },
+              error:function(e){
+             console.log(s);
+              }
+            });
 
 
-cordova.plugins.CordovaMqTTPlugin.listen("sampletopic",function(payload,params){
-	console.log("testxd2");
-  //Callback:- (If the user has published to /topic/room/hall)
-  //payload : contains payload data
-  //params : {singlewc:room,multiwc:hall}
-if(payload!=undefined&&payload.split(",").length>1){
-  var datos=payload.split(",");
+            cordova.plugins.CordovaMqTTPlugin.listen("sampletopic",function(payload,params){
+            	console.log("testxd2");
+              //Callback:- (If the user has published to /topic/room/hall)
+              //payload : contains payload data
+              //params : {singlewc:room,multiwc:hall}
+            if(payload!=undefined&&payload.split(",").length>1){
+              var datos=payload.split(",");
 
 
 
-  
-var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth()+1; 
-var yyyy = today.getFullYear();
-//window.app.animacionActual=0;
-//window.app.lanzarElDia(new Date(yyyy+'-'+mm+'-'+dd+' '+datos[1]), window.app.tarea);
+              
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; 
+            var yyyy = today.getFullYear();
+            //window.app.animacionActual=0;
+            //window.app.lanzarElDia(new Date(yyyy+'-'+mm+'-'+dd+' '+datos[1]), window.app.tarea);
 
 
-if(datos[0]=='FLH'){
-window.app.animacionFinFLHEstado=0;
-window.app.animacionFLH=datos[1];
-window.app.animacionInicioFLH=datos[2];
-window.app.animacionFinFLH=datos[3];
-if(window.app.animacionInicioFLH=='99:99:99'){
-  window.app.animacionInicioFLH=today.getHours()+':'+today.getMinutes()+':'+today.getSeconds();
-  window.app.animacionInicioVivoFLH=true;
-}
-cordova.plugins.sntp.getClockOffset(
-    function(offset) {
-        console.log("System clock offset is:", offset);
-        var diferenciaSegundos= offset/1000;
-        var fecha =new Date(yyyy+'-'+mm+'-'+dd+' '+window.app.animacionInicioFLH+window.app.gtm);
-        if(diferenciaSegundos>0||diferenciaSegundos<0){
-          fecha.setSeconds(diferenciaSegundos);
-        }
-        window.app.lanzarElDia(fecha, window.app.tareaFLH);
+            if(datos[0]=='FLH'){
+            window.app.animacionFinFLHEstado=0;
+            window.app.animacionFLH=datos[1];
+            window.app.animacionInicioFLH=datos[2];
+            window.app.animacionFinFLH=datos[3];
+            if(window.app.animacionInicioFLH=='99:99:99'){
+              window.app.animacionInicioFLH=today.getHours()+':'+today.getMinutes()+':'+today.getSeconds();
+              window.app.animacionInicioVivoFLH=true;
+            }
+            cordova.plugins.sntp.getClockOffset(
+                function(offset) {
+                    console.log("System clock offset is:", offset);
+                    var diferenciaSegundos= offset/1000;
+                    var fecha =new Date(yyyy+'-'+mm+'-'+dd+' '+window.app.animacionInicioFLH+window.app.gtm);
+                    if(diferenciaSegundos>0||diferenciaSegundos<0){
+                      fecha.setSeconds(diferenciaSegundos);
+                    }
+                    window.app.lanzarElDia(fecha, window.app.tareaFLH);
 
-    },
-    function(errorMessage) {
-        console.log("I haz error:", errorMessage);
-    }
-);
+                },
+                function(errorMessage) {
+                    console.log("I haz error:", errorMessage);
+                }
+            );
 
-}
-if(datos[0]=='COL'){
-window.app.animacion=datos[1].split("+");
-window.app.animacionActual=0;
-window.app.animacionInicio=datos[2];
-window.app.animacionFin=datos[3];
-if(window.app.animacionInicio=='99:99:99'){
-  window.app.animacionInicio=today.getHours()+':'+today.getMinutes()+':'+today.getSeconds();
-  window.app.animacionInicioVivo=true;
-}
-cordova.plugins.sntp.getClockOffset(
-    function(offset) {
-        console.log("System clock offset is:", offset);
-        var diferenciaSegundos= offset/1000;
-        var fecha =new Date(yyyy+'-'+mm+'-'+dd+' '+window.app.animacionInicio+window.app.gtm);
-        if(diferenciaSegundos>0||diferenciaSegundos<0){
-          fecha.setSeconds(diferenciaSegundos);
-        }
-        window.app.lanzarElDia(fecha, window.app.tareaCOL);
-    },
-    function(errorMessage) {
-        console.log("I haz error:", errorMessage);
-    }
-);
+            }
+            if(datos[0]=='COL'){
+            window.app.animacion=datos[1].split("+");
+            window.app.animacionActual=0;
+            window.app.animacionInicio=datos[2];
+            window.app.animacionFin=datos[3];
+            if(window.app.animacionInicio=='99:99:99'){
+              window.app.animacionInicio=today.getHours()+':'+today.getMinutes()+':'+today.getSeconds();
+              window.app.animacionInicioVivo=true;
+            }
+            cordova.plugins.sntp.getClockOffset(
+                function(offset) {
+                    console.log("System clock offset is:", offset);
+                    var diferenciaSegundos= offset/1000;
+                    var fecha =new Date(yyyy+'-'+mm+'-'+dd+' '+window.app.animacionInicio+window.app.gtm);
+                    if(diferenciaSegundos>0||diferenciaSegundos<0){
+                      fecha.setSeconds(diferenciaSegundos);
+                    }
+                    window.app.lanzarElDia(fecha, window.app.tareaCOL);
+                },
+                function(errorMessage) {
+                    console.log("I haz error:", errorMessage);
+                }
+            );
 
-}
-//window.app.comandos=
-}
- 
-   console.log(payload);
-  console.log(params);
-});
+            }
+            //window.app.comandos=
+            }
+             
+               console.log(payload);
+              console.log(params);
+            });
 
 
     },
