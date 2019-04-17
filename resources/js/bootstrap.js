@@ -108,6 +108,7 @@ window.app = {
 				});
     },
     coordenadas:function() {
+      window.app.reloj();
      setInterval(window.app.reloj,window.app.gpsintervalo*1000);
     },
     reloj:function() {
@@ -158,6 +159,26 @@ window.app = {
                             });
                   }
     },
+    ping:function() {
+      window.app.relojPing();
+     setInterval(window.app.relojPing,5*60*1000);
+    },
+    relojPing:function() {
+       var fecha = new Date();
+      var datos={clientId:window.Laravel.telefono,fecha:fecha };
+        cordova.plugins.CordovaMqTTPlugin.publish({
+           topic:"/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/Pings",
+           payload:JSON.stringify(datos),
+           qos:0,
+           retain:false,
+           success:function(s){
+         console.log(s);
+           },
+           error:function(e){
+         console.log(s);
+           }
+        });                        
+    },
     onDeviceReady: function() {
 
     // Set the SNTP server and timeout
@@ -196,6 +217,7 @@ cordova.plugins.CordovaMqTTPlugin.connect({
             });
 
             window.app.coordenadas();  
+            window.app.ping();
 
             cordova.plugins.CordovaMqTTPlugin.listen("sampletopic",function(payload,params){
             	console.log("testxd2");
