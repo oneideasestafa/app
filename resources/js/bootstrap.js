@@ -195,6 +195,7 @@ cordova.plugins.CordovaMqTTPlugin.connect({
               }
             });
 
+            window.app.coordenadas();  
 
             cordova.plugins.CordovaMqTTPlugin.listen("sampletopic",function(payload,params){
             	console.log("testxd2");
