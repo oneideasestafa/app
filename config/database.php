@@ -84,15 +84,17 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
         ],
-     'mongodb' => [
+        'mongodb' => [
             'driver'   => 'mongodb',
-            'host'     => env('MONGO_DB_HOST', 'node69109-oneshowdb.mircloud.host'),
-            'port'     => env('MONGO_DB_PORT', 11118),
-            'database' => env('MONGO_DB_DATABASE','oneshow'),
-            'username' => env('MONGO_DB_USERNAME'),
-            'password' => env('MONGO_DB_PASSWORD'),
-            'options'  => []
-        ]
+            'host'     => env('DB_HOST_MONGO', 'localhost'),
+            'port'     => env('DB_PORT_MONGO', 27017),
+            'database' => env('DB_DATABASE_MONGO', 'forge'),
+            'username' => env('DB_USERNAME_MONGO', ''),
+            'password' => env('DB_PASSWORD_MONGO', ''),
+            'options'  => [
+                'database' => env('DB_DATABASE_AUTHENTICATION_MONGO', 'admin') // sets the authentication database required by mongo 3
+            ]
+        ],
     
     ],
 

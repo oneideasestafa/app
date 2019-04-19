@@ -6,6 +6,8 @@ html, body {
     color:#fff;
 }
 
+input.upper { text-transform: uppercase; }
+
 
 .fab {
     font-family: 'Font Awesome 5 Brands', fa-brands-400;

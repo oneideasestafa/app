@@ -58,16 +58,11 @@ class SocialAuthController extends Controller
             $registro->ProviderID          = $user->id;
             $registro->Pais_id             = '';
             $registro->Telefono            = '';
-            $registro->Vehiculo            = '';
-            $registro->Direccion           = '';
+            $registro->Sexo                = '';
+            $registro->FechaNacimiento     = '';
+            $registro->Equipo              = '';
             $registro->Borrado             = false;
             $registro->Activo              = true;
-            $registro->MostrarFotoProducto = true;
-            $registro->NotificacionPromociones = false;
-            $registro->NotificacionDescuentos  = false;
-            $registro->NotificacionCupones     = false;
-            $registro->NotificacionMailPedidos = true;
-            $registro->NotificacionAppPedidos  = false;
             $registro->save();
 
             Auth::login($registro);

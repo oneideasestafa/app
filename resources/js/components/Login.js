@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import swal from "sweetalert2";
+import InputMask from 'react-input-mask';
 import logoOne from '../../../public/images/logo-one.png';
 
 import logoFacebook from '../../../public/images/social/facebook-icon.svg';
@@ -21,11 +22,16 @@ export default class Login extends Component {
             url: props.url,
             correo: '',
             pass: '',
+            eventos: JSON.parse(props.eventos),
+            evento: '',
+            idevento: '',
             isLoading: false
         };
-        console.log(props);
+
         this.handleLogin = this.handleLogin.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleChangeIDE = this.handleChangeIDE.bind(this);
+
 
     }
 
@@ -33,6 +39,14 @@ export default class Login extends Component {
         this.setState({
             [e.target.name]: e.target.value
         });
+    }
+
+    handleChangeIDE(e){
+
+        this.setState({
+            idevento: e.target.value.toUpperCase()
+        });
+
     }
 
     handleLogin(e){
@@ -48,10 +62,12 @@ export default class Login extends Component {
         let urlInicioRepartidor = this.state.url+'/repartidor';
         let correo = this.state.correo;
         let pass = this.state.pass;
+        let evento = this.state.evento;
+        let idevento = this.state.idevento;
 
         e.preventDefault();
 
-        axios.post(this.state.url+'/ajax-post-login', {correo, pass})
+        axios.post(this.state.url+'/ajax-post-login', {correo, pass, evento, idevento})
             .then(res => {
 
                 let r = res.data;
@@ -61,6 +77,8 @@ export default class Login extends Component {
                     self.setState({
                         correo: '',
                         pass: '',
+                        evento: '',
+                        idevento: '',
                         isLoading: false
                     });
 
@@ -75,8 +93,8 @@ export default class Login extends Component {
 
                 }else if(r.code == undefined){
 
-                        window.location.href = window.app.url+'/logisticas';
-                    
+                        //window.location.href = window.app.url+'/logisticas';
+
 
                 }else if(r.code === 600){
 
@@ -118,6 +136,8 @@ export default class Login extends Component {
 
         let correo = this.state.correo;
         let pass = this.state.pass;
+        let evento = this.state.evento;
+        let idevento = this.state.idevento;
         let url = this.state.url;
 
         let urlRecuperar    = url + '/recovery-password';
@@ -153,6 +173,38 @@ export default class Login extends Component {
                         </div>
                         <input type="password" id="pass" name="pass" value={pass} onChange={this.handleChange} className="form-control" placeholder="Ingrese su contraseña" />
                     </div>
+
+
+                    <div className="input-group mb-4 mt-4">
+                        <div className="input-group-prepend">
+                            <i className="fas fa-calendar-week fa-lg"></i>
+                        </div>
+
+                        <select className="form-control" id="inputGroupSelect02" value={evento} name="evento" id="evento" onChange={this.handleChange}>
+                            <option  key="0" value=''>Seleccione Evento</option>
+                            <option  key="100" value='idevento'>ID Evento</option>
+                            {
+                                this.state.eventos.map(function(item){
+                                    return <option  key={item._id} value={item._id}>{item.Nombre}</option>
+                                })
+                            }
+                        </select>
+                    </div>
+
+                    { evento == 'idevento' ?
+
+                        <div className="input-group mb-4 mt-4">
+                            <div className="input-group-prepend">
+                                <i className="fa fa-lock fa-lg"></i>
+                            </div>
+
+                            <InputMask mask="******" maskChar={null} value={idevento} onChange={this.handleChangeIDE} className="form-control" placeholder="Ingrese el codigo del evento" />;
+
+                        </div>
+
+                        : ''
+                    }
+
 
                     <div className="text-center mt-4">
                         <button type="submit" className="btn btn-negro btn-box-index">

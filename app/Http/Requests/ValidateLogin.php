@@ -24,12 +24,23 @@ class ValidateLogin extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
-        return [
+
+        if( $this->input('evento') == 'idevento' ){
+            $idevento = 'required';
+        }else{
+            $idevento = 'nullable';
+        }
+
+        $rules = [
             'correo'  => 'required',
             'pass'    => 'required',
+            'evento'  => 'required',
+            'idevento'=> $idevento
         ];
+
+        return $rules;
     }
 
     public function messages()
@@ -38,6 +49,8 @@ class ValidateLogin extends FormRequest
             'correo.required'    => 'El correo es requerido',
             //'correo.email'       => 'Formato de correo inválido',
             'pass.required'      => 'El password es requerido',
+            'evento.required'    => 'El evento es requerido',
+            'idevento.required'  => 'Debe ingresar el codigo del evento'
         ];
     }
 

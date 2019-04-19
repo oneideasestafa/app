@@ -9,6 +9,7 @@ use App\Models\MongoDB\Cliente;
 use App\Models\MongoDB\Clubs;
 use MongoDB\BSON\ObjectId;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class RegistroController extends Controller
 {
@@ -24,26 +25,22 @@ class RegistroController extends Controller
 
         $input = $request->all();
 
+        $fnac = Carbon::parse($input['edad'])->format('d/m/Y');
+
         //capturo los datos y los acomodo en un arreglo
         $data = [
             'nombre'              => $input['nombre'],
             'apellido'            => $input['apellido'],
-            'sexo'            => $input['sexo'],
-            'edad'            => $input['edad'],
-            'equipo'            => $input['equipo'],
+            'sexo'                => $input['sexo'],
+            'edad'                => $fnac,
+            'equipo'              => $input['equipo'],
             'telefono'            => $input['telefono'],
             'correo'              => strtolower($input['correo']),
             'from'                => 'ONE',
             'password'            => bcrypt($input['password']),
             'pais'                => new ObjectId($input['pais']),
             'borrado'             => false,
-            'activo'              => true,
-            'fotoproducto'        => true,
-            'promociones'         => false,
-            'descuentos'          => false,
-            'cupones'             => false,
-            'mail'                => true,
-            'app'                 => false
+            'activo'              => true
         ];
 
         //procedo a guardarlos en la bd
@@ -51,7 +48,7 @@ class RegistroController extends Controller
         $registro->Nombre              = $data['nombre'];
         $registro->Apellido            = $data['apellido'];
         $registro->Sexo                = $data['sexo'];
-        $registro->Edad                = $data['edad'];
+        $registro->FechaNacimiento     = $data['edad'];
         $registro->Equipo              = $data['equipo'];
         $registro->Correo              = $data['correo'];
         $registro->Telefono            = $data['telefono'];
@@ -59,17 +56,8 @@ class RegistroController extends Controller
         $registro->TipoCuenta          = $data['from'];
         $registro->ProviderID          = '';
         $registro->Pais_id             = $data['pais'];
-        $registro->Telefono            = '';
-        $registro->Vehiculo            = '';
-        $registro->Direccion           = '';
         $registro->Borrado             = $data['borrado'];
         $registro->Activo              = $data['activo'];
-        $registro->MostrarFotoProducto = $data['fotoproducto'];
-        $registro->NotificacionPromociones          = $data['promociones'];
-        $registro->NotificacionDescuentos           = $data['descuentos'];
-        $registro->NotificacionCupones              = $data['cupones'];
-        $registro->NotificacionMailPedidos          = $data['mail'];
-        $registro->NotificacionAppPedidos           = $data['app'];
 
         //verifico si fue exitoso el insert en la bd
         if($registro->save()){

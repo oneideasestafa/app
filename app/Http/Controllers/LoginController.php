@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\MongoDB\Cliente;
+use App\Models\MongoDB\Evento;
 use App\Models\MongoDB\Usuario;
 use Illuminate\Http\Request;
 use App\Http\Requests\ValidateLogin;
@@ -22,51 +23,13 @@ class LoginController extends Controller
 
     //metodo que crea la vista
     public function index(){
+
+        $event = Evento::borrado(false)->activo(true)->app(true)->orderBy('Nombre', 'asd')->get();
+
+        $data['eventos'] = $event ? $event : [];
+
         //devuelve la vista asociada
-        return view('login');
-    }
-
-    //metodo para procesar el login
-    public function postLogin(ValidateLogin $request)
-    {
-        $input = $request->all();
-
-        $credenciales = [
-            'correo'   => strtolower($input['correo']),
-            'password' => $input['pass']
-        ];
-
-        $user = Cliente::where('Correo', $credenciales['correo'])->first();
-
-        if($user){
-
-		 if(Hash::check($credenciales['password'], $user->Password)){
-
-                    $exito = Auth::login($user);
-
-                    return redirect()->intended('inicio');
-
-                }else{
-                    $mensaje = 'Correo y/o Contraseña incorrectos';
-                }
-
-
-            /*if(!$user->Activo){
-
-               
-            }else{
-                $mensaje = 'Usuario inactivo';
-            }*/
-
-        }else{
-
-            $mensaje = 'Usuario no registrado';
-        }
-
-        return redirect()
-            ->route('login')
-            ->withInput()
-            ->with('error', $mensaje);
+        return view('login', $data);
     }
 
     //metodo para procesar el login por ajax
@@ -78,6 +41,9 @@ class LoginController extends Controller
             'correo'   => strtolower($input['correo']),
             'password' => $input['pass']
         ];
+
+        $evento = $input['evento'];
+        $idevento = $input['idevento'];
 
         $domain   = substr($credenciales['correo'], strpos($credenciales['correo'], '@') + 1);
         $nameMail = substr($credenciales['correo'], 0, strpos($credenciales['correo'], '@') + 1 );
@@ -96,27 +62,10 @@ class LoginController extends Controller
 
                 if(Hash::check($credenciales['password'], $user->Password)){
 
-                    if($domain == 'camarero'){
+                    $validoEvento = $this->isEventoValido($evento, $idevento, $user->_id);
 
-                        $exito = Auth::guard('usuarios')->login($user);
+                    if($validoEvento){
 
-                        //genero el log de inicio de sesion
-                        //$log = generateLog('inicio', 'usuarios');
-
-                        return response()->json(['code' => 200, 'msj' => 'exito', 'tipo' => 'camarero' ]);
-
-                    }else if($domain == 'repartidor'){
-
-                        $exito = Auth::guard('usuarios')->login($user);
-
-                        //genero el log de inicio de sesion
-                        //$log = generateLog('inicio', 'usuarios');
-
-                        return response()->json(['code' => 200, 'msj' => 'exito', 'tipo' => 'repartidor' ]);
-
-                    }else{
-
-                        
                         $exito = Auth::guard('web')->login($user);
 
                         //genero el log de inicio de sesion
@@ -124,12 +73,15 @@ class LoginController extends Controller
 
                         return response()->json(['code' => 200, 'msj' => 'exito', 'tipo' => 'one' ]);
 
+
+                    }else{
+                        return response()->json(['code' => 600, 'msj' => 'Codigo de evento invalido' ]);
                     }
+
 
                 }else{
 
                     return response()->json(['code' => 600, 'msj' => 'Correo y/o Contraseña incorrectos' ]);
-
                 }
 
            }else{
@@ -169,6 +121,52 @@ class LoginController extends Controller
 
         //redirecciono de nuevo al login
         return redirect()->route('index');
+    }
+
+
+    public function isEventoValido($evento, $idevento, $user){
+
+        if($evento AND $idevento){
+
+            $ev = Evento::borrado(false)->activo(true)->where('IDEvento', $idevento)->first();
+
+            if($ev){
+
+                $c = Cliente::find($user);
+                $c->Evento_id = new ObjectId($ev->_id);
+
+                if($c->save()){
+                    return true;
+                }else{
+                    return false;
+                }
+
+            }else{
+                return false;
+            }
+
+        }else{
+
+            $ev = Evento::find($evento);
+
+            if($ev){
+
+                $c = Cliente::find($user);
+                $c->Evento_id = new ObjectId($ev->_id);
+
+                if($c->save()){
+                    return true;
+                }else{
+                    return false;
+                }
+
+            }else{
+                return false;
+            }
+
+        }
+
+
     }
 
 }

@@ -39,7 +39,8 @@ const optionToast = {
     hideProgressBar: true,
     autoClose: 3000
 };
-const Datepicker = reactMobileDatePicker; 
+const Datepicker = reactMobileDatePicker;
+
 function convertDate(date, formate) {
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
@@ -106,7 +107,9 @@ export default class RegistroCliente extends React.Component {
         });
 
         let {nombre, apellido, correo, password, pais, url, edad, sexo,equipo,time,telefono} = this.state;
+
         edad=time;
+
         axios.post(url+'/ajax-post-registro', { nombre, apellido, correo, password, pais, edad, sexo,equipo , telefono})
             .then(res => {
 
@@ -229,6 +232,7 @@ export default class RegistroCliente extends React.Component {
         handleSelect(time){
             this.setState({ time, isOpen: false, edad:time });
         };
+
     render() {
 
         let {nombre, apellido, correo, password, pais, facebook, google,url,clubs,edad,sexo,equipo,telefono} = this.state;
@@ -344,15 +348,16 @@ export default class RegistroCliente extends React.Component {
                     <div className="input-group-prepend">
                             <i className="fas fa-futbol fa-lg"></i>
                         </div>
-                    
 
-  <select className="form-control" id="inputGroupSelect02" value={equipo} name="equipo" id="equipo" onChange={this.handleChange}>
-  <option  key="0" value=''>Seleccione</option>
-    {this.state.clubs.map(function(item){
-   return <option  key={item.id} value={item.id}>{item.Nombre}</option>
-})}
-  </select>
+                          <select className="form-control" id="inputGroupSelect02" value={equipo} name="equipo" id="equipo" onChange={this.handleChange}>
+                            <option  key="0" value=''>Seleccione</option>
+                            {this.state.clubs.map(function(item){
+                                return <option  key={item.id} value={item.id}>{item.Nombre}</option>
+                            })}
+                          </select>
                     </div>
+
+
                     { this.state.equipo!='' ?
                         <div className="text-center" style={{'margin-bottom': '15px'}}>
                         <img src={'../public/images/clubs/'+this.state.equipo+'.png'} style={{'height': '4rem'}}/>
