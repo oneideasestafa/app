@@ -77939,11 +77939,22 @@ var Menu = function (_Component) {
         _this.llamarCamarero = _this.llamarCamarero.bind(_this);
         _this.solicitarCuentaCamarero = _this.solicitarCuentaCamarero.bind(_this);
         _this.getData = _this.getData.bind(_this);
+        _this.getDetener = _this.getDetener.bind(_this);
 
         return _this;
     }
 
     _createClass(Menu, [{
+        key: 'getDetener',
+        value: function getDetener() {
+
+            __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                title: '<i class="fa fa-exclamation-triangle"></i>',
+                text: 'Se ha detenido los procesos interno de la aplicación',
+                confirmButtonColor: '#343a40'
+            });
+        }
+    }, {
         key: 'llamarCamarero',
         value: function llamarCamarero() {
 
@@ -78112,7 +78123,6 @@ var Menu = function (_Component) {
                     '\xA0\xA0 Contrase\xF1a'
                 )
             );
-            console.log('test');
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'ul',
                 { className: 'navdrawer-nav roboto-condensed' },
@@ -78147,6 +78157,17 @@ var Menu = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', {
                             className: 'fab fa-weixin fa-lg' }),
                         '\xA0\xA0 Notificaciones'
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'li',
+                    { className: 'nav-item' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'a',
+                        { className: 'nav-link', href: '#', onClick: this.getDetener },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', {
+                            className: 'fas fa-power-off fa-lg' }),
+                        '\xA0\xA0 Detener'
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(

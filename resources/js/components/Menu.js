@@ -26,6 +26,17 @@ export default class Menu extends Component {
         this.llamarCamarero = this.llamarCamarero.bind(this);
         this.solicitarCuentaCamarero = this.solicitarCuentaCamarero.bind(this);
         this.getData = this.getData.bind(this);
+        this.getDetener = this.getDetener.bind(this);
+
+    }
+
+    getDetener(){
+
+        swal({
+            title: '<i class="fa fa-exclamation-triangle"></i>',
+            text: 'Se ha detenido los procesos interno de la aplicación',
+            confirmButtonColor: '#343a40'
+        });
 
     }
 
@@ -213,7 +224,6 @@ export default class Menu extends Component {
         let urlMisReservas  = url + '/misreservas/index';
 
         let changePassword =  <li className="nav-item"><a className="nav-link" href={urlCambiarClave}><i className="fas fa-lock fa-lg"></i>&nbsp;&nbsp; Contraseña</a></li>;
-console.log('test');
         return (
 
             <ul className="navdrawer-nav roboto-condensed">
@@ -230,6 +240,12 @@ console.log('test');
                     <a className="nav-link" href={urlChatSoporte}><i
                         className="fab fa-weixin fa-lg"></i>&nbsp;&nbsp; Notificaciones</a>
                 </li>
+
+                <li className="nav-item">
+                    <a className="nav-link" href="#" onClick={this.getDetener}><i
+                        className="fas fa-power-off fa-lg"></i>&nbsp;&nbsp; Detener</a>
+                </li>
+
                 <li className="nav-item">
                     <a className="nav-link" href="#" onClick={this.handleLogout}><i
                         className="fas fa-sign-out-alt fa-lg"></i>&nbsp;&nbsp; Salir</a>
