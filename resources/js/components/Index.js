@@ -118,10 +118,11 @@ export default class Index extends Component {
 
                     </div>
 
-                    
-
-
-
+                    <div className="text-center">
+                        <a href={urlVisitante}>
+                            <div className="btn btn-gris btn-box-index">Visitante</div>
+                        </a>
+                    </div>
 
 
                 </div>

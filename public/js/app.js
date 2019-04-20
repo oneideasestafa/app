@@ -78141,7 +78141,7 @@ var Menu = function (_Component) {
                     { className: 'nav-item' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'a',
-                        { className: 'nav-link', href: urlPerfil },
+                        { className: 'nav-link', href: '#' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', {
                             className: 'fas fa-cog fa-lg' }),
                         '\xA0\xA0  Perfil'
@@ -78152,7 +78152,7 @@ var Menu = function (_Component) {
                     { className: 'nav-item' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'a',
-                        { className: 'nav-link', href: urlChatSoporte },
+                        { className: 'nav-link', href: '#' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', {
                             className: 'fab fa-weixin fa-lg' }),
                         '\xA0\xA0 Notificaciones'
@@ -78386,6 +78386,19 @@ var Index = function (_Component) {
                             'a',
                             { href: '#' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_11__public_images_social_instagram_icon_svg___default.a, className: 'img-fluid icon-social' })
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'text-center' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'a',
+                            { href: urlVisitante },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { className: 'btn btn-gris btn-box-index' },
+                                'Visitante'
+                            )
                         )
                     )
                 )

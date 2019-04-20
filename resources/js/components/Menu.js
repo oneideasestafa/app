@@ -233,11 +233,11 @@ export default class Menu extends Component {
                         className="fas fa-home fa-lg"></i>&nbsp;&nbsp; Show</a>
                 </li>
                  <li className="nav-item">
-                    <a className="nav-link" href={urlPerfil}><i
+                    <a className="nav-link" href="#"><i
                         className="fas fa-cog fa-lg"></i>&nbsp;&nbsp;  Perfil</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href={urlChatSoporte}><i
+                    <a className="nav-link" href="#"><i
                         className="fab fa-weixin fa-lg"></i>&nbsp;&nbsp; Notificaciones</a>
                 </li>
 
