@@ -7,7 +7,6 @@ import axios from 'axios';
 import swal from "sweetalert2";
 import InputMask from 'react-input-mask';
 import logoOne from '../../../public/images/logo-one.png';
-
 import logoFacebook from '../../../public/images/social/facebook-icon.svg';
 import logoGoogle from '../../../public/images/social/google-icon.svg';
 import logoTwitter from '../../../public/images/social/twitter-icon.svg';

@@ -23474,13 +23474,13 @@ module.exports = "/images/logo-one.png?701531bc52c97a7ebba0d2c5dbb5fafa";
 /* 17 */
 /***/ (function(module, exports) {
 
-module.exports = "/images/facebook-icon.svg?6fddeffdbc020c13059e29362ead4b3e";
+module.exports = "/images/facebook-icon.svg?89f104cc3b74b6edf9b24e7223c01ba5";
 
 /***/ }),
 /* 18 */
 /***/ (function(module, exports) {
 
-module.exports = "/images/google-icon.svg?14137f89247c1ab0eb29e8b75ef6e9d6";
+module.exports = "/images/google-icon.svg?1ba97428b0f6377ade94c49ead9f64a5";
 
 /***/ }),
 /* 19 */
@@ -50678,7 +50678,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 
 
 
