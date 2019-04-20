@@ -75,8 +75,12 @@ export default class RegistroCliente extends React.Component {
             google: props.google,
             isLoading: false,
             clubs:[],
+            estadosciviles: JSON.parse(props.estadosciviles),
+            civil: '',
             time: new Date(),
             isOpen: false,
+            fileName: 'Subir Foto (Opcional)',
+            foto: [],
             theme: 'default',
             telefono:''
         };
@@ -91,9 +95,35 @@ export default class RegistroCliente extends React.Component {
     }
 
     handleChange(e) {
-        this.setState({
-            [e.target.name]: e.target.value
-        });
+
+        if(e.target.name == 'fileFoto'){
+
+            if(e.target.files.length > 0) {
+
+                console.log(e.target.files[0]);
+
+                let reader = new FileReader();
+
+                reader.onload = (e) => {
+                    this.setState({
+                        foto: e.target.result
+                    })
+                };
+
+                reader.readAsDataURL(e.target.files[0]);
+
+                this.setState({ fileName: e.target.files[0].name });
+            }
+
+        }else{
+
+            this.setState({
+                [e.target.name]: e.target.value
+            });
+        }
+
+
+
     }
 
     handleSubmit(e) {
@@ -106,11 +136,11 @@ export default class RegistroCliente extends React.Component {
             isLoading: true
         });
 
-        let {nombre, apellido, correo, password, pais, url, edad, sexo,equipo,time,telefono} = this.state;
+        let {nombre, apellido, correo, password, pais, civil, url, edad, sexo,equipo,time,telefono, foto} = this.state;
 
         edad=time;
 
-        axios.post(url+'/ajax-post-registro', { nombre, apellido, correo, password, pais, edad, sexo,equipo , telefono})
+        axios.post(url+'/ajax-post-registro', { nombre, apellido, correo, password, pais, edad, sexo,equipo , telefono, civil, foto})
             .then(res => {
 
                 self.setState({
@@ -122,6 +152,9 @@ export default class RegistroCliente extends React.Component {
                     sexo:'',
                     edad:'',
                     equipo:'',
+                    civil: '',
+                    foto: [],
+                    fileName: 'Subir Foto (Opcional)',
                     telefono:'',
                     isLoading: false
                 });
@@ -235,7 +268,7 @@ export default class RegistroCliente extends React.Component {
 
     render() {
 
-        let {nombre, apellido, correo, password, pais, facebook, google,url,clubs,edad,sexo,equipo,telefono} = this.state;
+        let {nombre, apellido, correo, password, pais, civil, facebook, google,url,clubs,edad,sexo,equipo,telefono} = this.state;
 
         let urlFacebook    = url + '/auth/facebook';
         let urlGoogle      = url + '/auth/google';
@@ -318,7 +351,31 @@ export default class RegistroCliente extends React.Component {
                         <div className="input-group-prepend">
                             <i className="fas fa-phone fa-lg"></i>
                         </div>
-                        <input type="number" min="0" max="99999999999" maxLength="11" id="telefono" name="telefono" value={telefono} onChange={this.handleChange} className="form-control" placeholder="Ingrese su número de telefono" />
+                        <input type="number" min="0" max="99999999999" maxLength="11" id="telefono" name="telefono" value={telefono} onChange={this.handleChange} className="form-control" placeholder="Ingrese su telefono (Opcional)" />
+                    </div>
+
+                    <div className="input-group mb-4 mt-4">
+                        <div className="input-group-prepend mr-4">
+                            <i className="fas fa-male fa-lg"></i>
+                        </div>
+                        <select className="form-control" value={civil} name="civil" id="civil" onChange={this.handleChange}>
+                            <option  key="0" value=''>Ingrese Estado Civil (Opcional)</option>
+                            {this.state.estadosciviles.map(function(item){
+                                return <option  key={item._id} value={item._id}>{item.Nombre}</option>
+                            })}
+                        </select>
+                    </div>
+
+                    <div className="input-group mb-4 mt-4">
+                        <div className="input-group-prepend mr-3">
+                            <i className="far fa-image fa-lg"></i>
+                        </div>
+
+                        <div className="custom-file">
+                            <input type="file" name="fileFoto" onChange={(e) => this.handleChange(e)} className="custom-file-input" id="customFileLang" />
+                                <label className="custom-file-label" htmlFor="customFileLang">{this.state.fileName}</label>
+                        </div>
+
                     </div>
 
                     <div className="input-group mb-4 mt-4">

@@ -26,12 +26,12 @@ class ValidateRegistro extends FormRequest
     public function rules()
     {
         return [
-            'nombre'  => 'required',
-            'apellido'=> 'required',
-            'sexo'=> 'required',
-            'edad'=> 'required',
-            'equipo'=> 'required',
-            'correo'  => 'required|email|unique:Clientes,Correo',
+            'nombre'      => 'required',
+            'apellido'    => 'required',
+            'sexo'        => 'required',
+            'edad'        => 'required',
+            'equipo'      => 'required',
+            'correo'      => 'required|email|unique:Clientes,Correo',
             'password'    => 'required'
         ];
     }

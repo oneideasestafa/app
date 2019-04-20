@@ -78543,8 +78543,12 @@ var RegistroCliente = function (_React$Component) {
             google: props.google,
             isLoading: false,
             clubs: [],
+            estadosciviles: JSON.parse(props.estadosciviles),
+            civil: '',
             time: new Date(),
             isOpen: false,
+            fileName: 'Subir Foto (Opcional)',
+            foto: [],
             theme: 'default',
             telefono: ''
         };
@@ -78562,7 +78566,30 @@ var RegistroCliente = function (_React$Component) {
     _createClass(RegistroCliente, [{
         key: 'handleChange',
         value: function handleChange(e) {
-            this.setState(_defineProperty({}, e.target.name, e.target.value));
+            var _this2 = this;
+
+            if (e.target.name == 'fileFoto') {
+
+                if (e.target.files.length > 0) {
+
+                    console.log(e.target.files[0]);
+
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        _this2.setState({
+                            foto: e.target.result
+                        });
+                    };
+
+                    reader.readAsDataURL(e.target.files[0]);
+
+                    this.setState({ fileName: e.target.files[0].name });
+                }
+            } else {
+
+                this.setState(_defineProperty({}, e.target.name, e.target.value));
+            }
         }
     }, {
         key: 'handleSubmit',
@@ -78582,17 +78609,19 @@ var RegistroCliente = function (_React$Component) {
                 correo = _state.correo,
                 password = _state.password,
                 pais = _state.pais,
+                civil = _state.civil,
                 url = _state.url,
                 edad = _state.edad,
                 sexo = _state.sexo,
                 equipo = _state.equipo,
                 time = _state.time,
-                telefono = _state.telefono;
+                telefono = _state.telefono,
+                foto = _state.foto;
 
 
             edad = time;
 
-            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(url + '/ajax-post-registro', { nombre: nombre, apellido: apellido, correo: correo, password: password, pais: pais, edad: edad, sexo: sexo, equipo: equipo, telefono: telefono }).then(function (res) {
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(url + '/ajax-post-registro', { nombre: nombre, apellido: apellido, correo: correo, password: password, pais: pais, edad: edad, sexo: sexo, equipo: equipo, telefono: telefono, civil: civil, foto: foto }).then(function (res) {
 
                 self.setState({
                     nombre: '',
@@ -78603,6 +78632,9 @@ var RegistroCliente = function (_React$Component) {
                     sexo: '',
                     edad: '',
                     equipo: '',
+                    civil: '',
+                    foto: [],
+                    fileName: 'Subir Foto (Opcional)',
                     telefono: '',
                     isLoading: false
                 });
@@ -78634,7 +78666,7 @@ var RegistroCliente = function (_React$Component) {
         key: 'clubs',
         value: function clubs(e) {
             var _setState2,
-                _this2 = this;
+                _this3 = this;
 
             this.setState((_setState2 = {}, _defineProperty(_setState2, e.target.name, e.target.value), _defineProperty(_setState2, 'equipo', ''), _setState2));
 
@@ -78647,7 +78679,7 @@ var RegistroCliente = function (_React$Component) {
                 var r = res.data;
 
                 if (r.code === 200) {
-                    _this2.setState({
+                    _this3.setState({
                         'clubs': r.datos
                     });
                 } else if (r.code === 500) {
@@ -78671,7 +78703,7 @@ var RegistroCliente = function (_React$Component) {
     }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
-            var _this3 = this;
+            var _this4 = this;
 
             __WEBPACK_IMPORTED_MODULE_15_jquery___default.a.getJSON('http://ipinfo.io', function (data) {
 
@@ -78684,7 +78716,7 @@ var RegistroCliente = function (_React$Component) {
                     p = '586f9204f8c715650b244842';
                 }
 
-                _this3.setState({
+                _this4.setState({
                     pais: p
                 });
             });
@@ -78708,7 +78740,7 @@ var RegistroCliente = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this4 = this,
+            var _this5 = this,
                 _React$createElement;
 
             var _state2 = this.state,
@@ -78717,6 +78749,7 @@ var RegistroCliente = function (_React$Component) {
                 correo = _state2.correo,
                 password = _state2.password,
                 pais = _state2.pais,
+                civil = _state2.civil,
                 facebook = _state2.facebook,
                 google = _state2.google,
                 url = _state2.url,
@@ -78797,7 +78830,7 @@ var RegistroCliente = function (_React$Component) {
                             isOpen: this.state.isOpen,
                             onSelect: this.handleSelect,
                             onCancel: function onCancel(e) {
-                                return _this4.handleToggle(false);
+                                return _this5.handleToggle(false);
                             },
                             confirmText: 'Seleccionar',
                             cancelText: 'Cancelar'
@@ -78850,7 +78883,53 @@ var RegistroCliente = function (_React$Component) {
                             { className: 'input-group-prepend' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-phone fa-lg' })
                         ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'number', min: '0', max: '99999999999', maxLength: '11', id: 'telefono', name: 'telefono', value: telefono, onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese su n\xFAmero de telefono' })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'number', min: '0', max: '99999999999', maxLength: '11', id: 'telefono', name: 'telefono', value: telefono, onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese su telefono (Opcional)' })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend mr-4' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-male fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'select',
+                            { className: 'form-control', value: civil, name: 'civil', id: 'civil', onChange: this.handleChange },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'option',
+                                { key: '0', value: '' },
+                                'Ingrese Estado Civil (Opcional)'
+                            ),
+                            this.state.estadosciviles.map(function (item) {
+                                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'option',
+                                    { key: item._id, value: item._id },
+                                    item.Nombre
+                                );
+                            })
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend mr-3' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'far fa-image fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'custom-file' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'file', name: 'fileFoto', onChange: function onChange(e) {
+                                    return _this5.handleChange(e);
+                                }, className: 'custom-file-input', id: 'customFileLang' }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'label',
+                                { className: 'custom-file-label', htmlFor: 'customFileLang' },
+                                this.state.fileName
+                            )
+                        )
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
