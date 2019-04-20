@@ -27,8 +27,8 @@ Route::middleware(['guest'])->group(function(){
 
     //ruta del login
     Route::get('/login', 'LoginController@index')->name('login');
-    //Route::post('/post-login', 'LoginController@postLogin')->name('post-login');
     Route::post('/ajax-post-login', 'LoginController@ajaxPostLogin');
+    Route::post('/ajax-post-check-ubicacion-evento', 'LoginController@ajaxEventoCheckUbicacion');
 
     //ruta de registro
     Route::get('/registro', 'RegistroController@index')->name('registro');

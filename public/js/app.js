@@ -50709,12 +50709,18 @@ var Login = function (_Component) {
             eventos: JSON.parse(props.eventos),
             evento: '',
             idevento: '',
+            sector: '',
+            fila: '',
+            asiento: '',
+            eventoUbicacionManual: false,
+            manual: '',
+            ideventobad: false,
             isLoading: false
         };
 
         _this.handleLogin = _this.handleLogin.bind(_this);
         _this.handleChange = _this.handleChange.bind(_this);
-        _this.handleChangeIDE = _this.handleChangeIDE.bind(_this);
+        _this.handleUbicacion = _this.handleUbicacion.bind(_this);
 
         return _this;
     }
@@ -50722,14 +50728,100 @@ var Login = function (_Component) {
     _createClass(Login, [{
         key: 'handleChange',
         value: function handleChange(e) {
-            this.setState(_defineProperty({}, e.target.name, e.target.value));
+
+            var name = e.target.name;
+
+            if (name == 'evento') {
+
+                if (e.target.value == '') {
+                    var _setState;
+
+                    this.setState((_setState = {}, _defineProperty(_setState, e.target.name, e.target.value), _defineProperty(_setState, 'manual', false), _defineProperty(_setState, 'eventoUbicacionManual', false), _defineProperty(_setState, 'idevento', ''), _setState));
+                } else if (e.target.value == 'idevento') {
+                    var _setState2;
+
+                    this.setState((_setState2 = {}, _defineProperty(_setState2, e.target.name, e.target.value), _defineProperty(_setState2, 'manual', false), _defineProperty(_setState2, 'eventoUbicacionManual', false), _setState2));
+                } else {
+                    var _setState3;
+
+                    this.handleUbicacion(e.target.value, null);
+
+                    this.setState((_setState3 = {}, _defineProperty(_setState3, e.target.name, e.target.value), _defineProperty(_setState3, 'idevento', ''), _setState3));
+                }
+            } else if (name == 'idevento') {
+
+                var data = e.target.value.toUpperCase();
+
+                if (data.length == 6) {
+                    this.handleUbicacion(null, data);
+
+                    this.setState(_defineProperty({}, e.target.name, data));
+                } else {
+                    var _setState5;
+
+                    this.setState((_setState5 = {}, _defineProperty(_setState5, e.target.name, data), _defineProperty(_setState5, 'ideventobad', true), _setState5));
+                }
+            } else if (name == 'fila' || name == 'sector' || name == 'asiento') {
+
+                this.setState(_defineProperty({}, e.target.name, e.target.value.toUpperCase()));
+            } else {
+
+                this.setState(_defineProperty({}, e.target.name, e.target.value));
+            }
         }
     }, {
-        key: 'handleChangeIDE',
-        value: function handleChangeIDE(e) {
+        key: 'handleUbicacion',
+        value: function handleUbicacion(event, idevent) {
 
-            this.setState({
-                idevento: e.target.value.toUpperCase()
+            var self = this;
+
+            var evento = event;
+            var idevento = idevent;
+
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(this.state.url + '/ajax-post-check-ubicacion-evento', { evento: evento, idevento: idevento }).then(function (res) {
+
+                var r = res.data;
+
+                if (r.code === 200) {
+
+                    if (r.ubicacion === false) {
+
+                        self.setState({
+                            eventoUbicacionManual: false,
+                            manual: false,
+                            ideventobad: false
+                        });
+                    } else {
+                        self.setState({
+                            eventoUbicacionManual: true,
+                            manual: true,
+                            ideventobad: false
+                        });
+                    }
+                } else if (r.code === 600) {
+
+                    __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                        title: '<i class="fas fa-exclamation-circle"></i>',
+                        text: r.msj,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    });
+                } else if (r.code === 700) {
+
+                    self.setState({
+                        ideventobad: true
+                    });
+
+                    __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                        title: '<i class="fas fa-exclamation-circle"></i>',
+                        text: r.msj,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    });
+                }
+            }).catch(function (error) {
+
+                console.log(error);
             });
         }
     }, {
@@ -50743,71 +50835,94 @@ var Login = function (_Component) {
             });
 
             var urlInicio = this.state.url + '/inicio';
-            var urlInicioCamarero = this.state.url + '/camarero';
-            var urlInicioRepartidor = this.state.url + '/repartidor';
-            var correo = this.state.correo;
-            var pass = this.state.pass;
-            var evento = this.state.evento;
-            var idevento = this.state.idevento;
+            var _state = this.state,
+                correo = _state.correo,
+                pass = _state.pass,
+                evento = _state.evento,
+                idevento = _state.idevento,
+                sector = _state.sector,
+                fila = _state.fila,
+                asiento = _state.asiento,
+                eventoUbicacionManual = _state.eventoUbicacionManual,
+                manual = _state.manual,
+                ideventobad = _state.ideventobad;
+
 
             e.preventDefault();
 
-            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(this.state.url + '/ajax-post-login', { correo: correo, pass: pass, evento: evento, idevento: idevento }).then(function (res) {
+            if (ideventobad == true) {
 
-                var r = res.data;
+                self.setState({
+                    isLoading: false
+                });
 
-                if (r.code === 200) {
+                __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                    title: '<i class="fas fa-exclamation-circle"></i>',
+                    text: 'El codigo del evento es invalido',
+                    confirmButtonColor: '#343a40',
+                    confirmButtonText: 'Ok'
+                });
+            } else {
 
-                    self.setState({
-                        correo: '',
-                        pass: '',
-                        evento: '',
-                        idevento: '',
-                        isLoading: false
-                    });
+                __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(this.state.url + '/ajax-post-login', { correo: correo, pass: pass, evento: evento, idevento: idevento, sector: sector, fila: fila, asiento: asiento, manual: manual, ideventobad: ideventobad, eventoUbicacionManual: eventoUbicacionManual }).then(function (res) {
 
-                    if (r.tipo == 'one') {
-                        localStorage.setItem('cache', 'true');
-                        window.location.href = urlInicio;
-                    } else if (r.tipo == 'camarero') {
-                        window.location.href = urlInicioCamarero;
-                    } else if (r.tipo == 'repartidor') {
-                        window.location.href = urlInicioRepartidor;
+                    var r = res.data;
+
+                    if (r.code === 200) {
+
+                        self.setState({
+                            correo: '',
+                            pass: '',
+                            evento: '',
+                            idevento: '',
+                            sector: '',
+                            fila: '',
+                            asiento: '',
+                            eventoUbicacionManual: false,
+                            manual: '',
+                            ideventobad: false,
+                            isLoading: false
+                        });
+
+                        if (r.tipo == 'one') {
+                            localStorage.setItem('cache', 'true');
+                            window.location.href = urlInicio;
+                        }
+                    } else if (r.code == undefined) {
+
+                        //window.location.href = window.app.url+'/logisticas';
+
+
+                    } else if (r.code === 600) {
+
+                        self.setState({
+                            isLoading: false
+                        });
+
+                        __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                            title: '<i class="fas fa-exclamation-circle"></i>',
+                            text: r.msj,
+                            confirmButtonColor: '#343a40',
+                            confirmButtonText: 'Ok'
+                        });
                     }
-                } else if (r.code == undefined) {
+                }).catch(function (error) {
 
-                    //window.location.href = window.app.url+'/logisticas';
+                    if (error.response.status == 422) {
 
+                        self.setState({
+                            isLoading: false
+                        });
 
-                } else if (r.code === 600) {
-
-                    self.setState({
-                        isLoading: false
-                    });
-
-                    __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
-                        title: '<i class="fas fa-exclamation-circle"></i>',
-                        text: r.msj,
-                        confirmButtonColor: '#343a40',
-                        confirmButtonText: 'Ok'
-                    });
-                }
-            }).catch(function (error) {
-
-                if (error.response.status == 422) {
-
-                    self.setState({
-                        isLoading: false
-                    });
-
-                    __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
-                        title: '<i class="fas fa-exclamation-circle"></i>',
-                        text: error.response.data,
-                        confirmButtonColor: '#343a40',
-                        confirmButtonText: 'Ok'
-                    });
-                }
-            });
+                        __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                            title: '<i class="fas fa-exclamation-circle"></i>',
+                            text: error.response.data,
+                            confirmButtonColor: '#343a40',
+                            confirmButtonText: 'Ok'
+                        });
+                    }
+                });
+            }
         }
     }, {
         key: 'render',
@@ -50819,6 +50934,13 @@ var Login = function (_Component) {
             var evento = this.state.evento;
             var idevento = this.state.idevento;
             var url = this.state.url;
+
+            var _state2 = this.state,
+                fila = _state2.fila,
+                asiento = _state2.asiento,
+                sector = _state2.sector,
+                eventoUbicacionManual = _state2.eventoUbicacionManual;
+
 
             var urlRecuperar = url + '/recovery-password';
             var urlIndex = url + '/';
@@ -50898,8 +51020,45 @@ var Login = function (_Component) {
                             { className: 'input-group-prepend' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-lock fa-lg' })
                         ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_input_mask___default.a, { mask: '******', maskChar: null, value: idevento, onChange: this.handleChangeIDE, className: 'form-control', placeholder: 'Ingrese el codigo del evento' }),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_input_mask___default.a, { mask: '******', maskChar: null, value: idevento, name: 'idevento', onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese el codigo del evento' }),
                         ';'
+                    ) : '',
+                    eventoUbicacionManual == true ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group mb-4 mt-4' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { className: 'input-group-prepend' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-clipboard fa-lg' })
+                            ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_input_mask___default.a, { mask: '********', maskChar: null, value: sector, name: 'sector', onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese el sector' }),
+                            ';'
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group mb-4 mt-4' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { className: 'input-group-prepend' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-ellipsis-h fa-lg' })
+                            ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_input_mask___default.a, { mask: '********', maskChar: null, value: fila, name: 'fila', onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese la fila' }),
+                            ';'
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group mb-4 mt-4' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { className: 'input-group-prepend' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-chair fa-lg' })
+                            ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_input_mask___default.a, { mask: '********', maskChar: null, value: asiento, name: 'asiento', onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese el asiento' }),
+                            ';'
+                        )
                     ) : '',
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',

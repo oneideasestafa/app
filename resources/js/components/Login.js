@@ -24,81 +24,136 @@ export default class Login extends Component {
             eventos: JSON.parse(props.eventos),
             evento: '',
             idevento: '',
+            sector: '',
+            fila: '',
+            asiento: '',
+            eventoUbicacionManual: false,
+            manual: '',
+            ideventobad: false,
             isLoading: false
         };
 
         this.handleLogin = this.handleLogin.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.handleChangeIDE = this.handleChangeIDE.bind(this);
-
+        this.handleUbicacion = this.handleUbicacion.bind(this);
 
     }
 
     handleChange(e) {
-        this.setState({
-            [e.target.name]: e.target.value
-        });
+
+        let name = e.target.name;
+
+        if(name == 'evento'){
+
+            if(e.target.value == ''){
+
+                this.setState({
+                    [e.target.name]: e.target.value,
+                    manual: false,
+                    eventoUbicacionManual: false,
+                    idevento: ''
+
+                });
+
+            }else if(e.target.value == 'idevento'){
+
+                this.setState({
+                    [e.target.name]: e.target.value,
+                    manual: false,
+                    eventoUbicacionManual: false
+                });
+
+            }else{
+
+                this.handleUbicacion(e.target.value, null);
+
+                this.setState({
+                    [e.target.name]: e.target.value,
+                    idevento: ''
+                });
+
+            }
+
+
+        }else if(name == 'idevento'){
+
+            let data = e.target.value.toUpperCase();
+
+            if(data.length == 6){
+                this.handleUbicacion(null, data);
+
+                this.setState({
+                    [e.target.name]: data
+                });
+
+            }else{
+
+                this.setState({
+                    [e.target.name]: data,
+                    ideventobad: true
+                });
+            }
+
+        }else if(name == 'fila' || name == 'sector' || name == 'asiento'){
+
+            this.setState({
+                [e.target.name]: e.target.value.toUpperCase()
+            });
+
+        }else{
+
+            this.setState({
+                [e.target.name]: e.target.value
+            });
+
+        }
+
     }
 
-    handleChangeIDE(e){
-
-        this.setState({
-            idevento: e.target.value.toUpperCase()
-        });
-
-    }
-
-    handleLogin(e){
+    handleUbicacion(event, idevent){
 
         let self = this;
 
-        self.setState({
-            isLoading: true
-        });
+        let evento = event;
+        let idevento = idevent;
 
-        let urlInicio = this.state.url+'/inicio';
-        let urlInicioCamarero = this.state.url+'/camarero';
-        let urlInicioRepartidor = this.state.url+'/repartidor';
-        let correo = this.state.correo;
-        let pass = this.state.pass;
-        let evento = this.state.evento;
-        let idevento = this.state.idevento;
-
-        e.preventDefault();
-
-        axios.post(this.state.url+'/ajax-post-login', {correo, pass, evento, idevento})
+        axios.post(this.state.url+'/ajax-post-check-ubicacion-evento', {evento, idevento})
             .then(res => {
 
                 let r = res.data;
 
                 if(r.code === 200){
 
-                    self.setState({
-                        correo: '',
-                        pass: '',
-                        evento: '',
-                        idevento: '',
-                        isLoading: false
-                    });
+                    if(r.ubicacion === false){
 
-                    if(r.tipo == 'one'){
-                        localStorage.setItem('cache','true');
-                        window.location.href = urlInicio;
-                    }else if(r.tipo == 'camarero'){
-                        window.location.href = urlInicioCamarero;
-                    }else if(r.tipo == 'repartidor'){
-                        window.location.href = urlInicioRepartidor;
+                        self.setState({
+                            eventoUbicacionManual: false,
+                            manual: false,
+                            ideventobad: false
+                        });
+
+                    }else{
+                        self.setState({
+                            eventoUbicacionManual: true,
+                            manual: true,
+                            ideventobad: false
+                        });
+
                     }
-
-                }else if(r.code == undefined){
-
-                        //window.location.href = window.app.url+'/logisticas';
-
 
                 }else if(r.code === 600){
 
+                    swal({
+                        title: '<i class="fas fa-exclamation-circle"></i>',
+                        text: r.msj,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    });
+
+                }else if(r.code === 700){
+
                     self.setState({
-                        isLoading: false
+                        ideventobad: true
                     });
 
                     swal({
@@ -113,22 +168,108 @@ export default class Login extends Component {
             })
             .catch(function (error) {
 
-                if (error.response.status == 422){
-
-                    self.setState({
-                        isLoading: false
-                    });
-
-                    swal({
-                        title: '<i class="fas fa-exclamation-circle"></i>',
-                        text: error.response.data,
-                        confirmButtonColor: '#343a40',
-                        confirmButtonText: 'Ok'
-                    });
-
-                }
+                console.log(error);
 
             });
+    }
+
+
+    handleLogin(e){
+
+        let self = this;
+
+        self.setState({
+            isLoading: true
+        });
+
+        let urlInicio = this.state.url+'/inicio';
+        let {correo, pass, evento, idevento, sector, fila, asiento, eventoUbicacionManual, manual, ideventobad} = this.state;
+
+        e.preventDefault();
+
+        if(ideventobad == true){
+
+            self.setState({
+                isLoading: false
+            });
+
+            swal({
+                title: '<i class="fas fa-exclamation-circle"></i>',
+                text: 'El codigo del evento es invalido',
+                confirmButtonColor: '#343a40',
+                confirmButtonText: 'Ok'
+            });
+
+        }else{
+
+            axios.post(this.state.url+'/ajax-post-login', {correo, pass, evento, idevento, sector, fila, asiento, manual, ideventobad, eventoUbicacionManual})
+                .then(res => {
+
+                    let r = res.data;
+
+                    if(r.code === 200){
+
+                        self.setState({
+                            correo: '',
+                            pass: '',
+                            evento: '',
+                            idevento: '',
+                            sector: '',
+                            fila: '',
+                            asiento: '',
+                            eventoUbicacionManual: false,
+                            manual: '',
+                            ideventobad: false,
+                            isLoading: false
+                        });
+
+                        if(r.tipo == 'one'){
+                            localStorage.setItem('cache','true');
+                            window.location.href = urlInicio;
+                        }
+
+                    }else if(r.code == undefined){
+
+                        //window.location.href = window.app.url+'/logisticas';
+
+
+                    }else if(r.code === 600){
+
+                        self.setState({
+                            isLoading: false
+                        });
+
+                        swal({
+                            title: '<i class="fas fa-exclamation-circle"></i>',
+                            text: r.msj,
+                            confirmButtonColor: '#343a40',
+                            confirmButtonText: 'Ok'
+                        });
+
+                    }
+
+                })
+                .catch(function (error) {
+
+                    if (error.response.status == 422){
+
+                        self.setState({
+                            isLoading: false
+                        });
+
+                        swal({
+                            title: '<i class="fas fa-exclamation-circle"></i>',
+                            text: error.response.data,
+                            confirmButtonColor: '#343a40',
+                            confirmButtonText: 'Ok'
+                        });
+
+                    }
+
+                });
+
+        }
+
     }
 
     render() {
@@ -138,6 +279,8 @@ export default class Login extends Component {
         let evento = this.state.evento;
         let idevento = this.state.idevento;
         let url = this.state.url;
+
+        let {fila, asiento, sector, eventoUbicacionManual} = this.state;
 
         let urlRecuperar    = url + '/recovery-password';
         let urlIndex        = url + '/';
@@ -157,7 +300,6 @@ export default class Login extends Component {
                     <div className="">
                         <img src={'../public'+logoOne} className="img-fluid logo-box-index" />
                     </div>
-
 
                     <div className="input-group mb-4 mt-4">
                         <div className="input-group-prepend">
@@ -197,12 +339,43 @@ export default class Login extends Component {
                                 <i className="fa fa-lock fa-lg"></i>
                             </div>
 
-                            <InputMask mask="******" maskChar={null} value={idevento} onChange={this.handleChangeIDE} className="form-control" placeholder="Ingrese el codigo del evento" />;
+                            <InputMask mask="******" maskChar={null} value={idevento} name="idevento" onChange={this.handleChange} className="form-control" placeholder="Ingrese el codigo del evento" />;
 
                         </div>
 
                         : ''
                     }
+
+                    { eventoUbicacionManual == true ?
+
+                        <div>
+
+                            <div className="input-group mb-4 mt-4">
+                                <div className="input-group-prepend">
+                                    <i className="fa fa-clipboard fa-lg"></i>
+                                </div>
+                                <InputMask mask="********" maskChar={null} value={sector} name="sector" onChange={this.handleChange} className="form-control" placeholder="Ingrese el sector" />;
+                            </div>
+
+                            <div className="input-group mb-4 mt-4">
+                                <div className="input-group-prepend">
+                                    <i className="fa fa-ellipsis-h fa-lg"></i>
+                                </div>
+                                <InputMask mask="********" maskChar={null} value={fila} name="fila" onChange={this.handleChange} className="form-control" placeholder="Ingrese la fila" />;
+                            </div>
+
+                            <div className="input-group mb-4 mt-4">
+                                <div className="input-group-prepend">
+                                    <i className="fa fa-chair fa-lg"></i>
+                                </div>
+                                <InputMask mask="********" maskChar={null} value={asiento} name="asiento" onChange={this.handleChange} className="form-control" placeholder="Ingrese el asiento" />;
+                            </div>
+
+                        </div>
+
+                        : ''
+                    }
+
 
 
                     <div className="text-center mt-4">
