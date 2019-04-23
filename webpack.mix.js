@@ -12,7 +12,7 @@ const mix = require('laravel-mix');
  */
 
 //compilar archivos de react
-mix.react('resources/js/app.js', 'public/js/app.js');;
+mix.react('resources/js/app.js', 'public/js/app.js');
 
 //compilar los archivos css
 mix.styles([

@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\MongoDB\AsistenteEvento;
 use App\Models\MongoDB\Cliente;
+use App\Models\MongoDB\Evento;
 use App\Models\MongoDB\Usuario;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests\ValidateLogin;
 use Illuminate\Support\Facades\Auth;
@@ -22,51 +25,9 @@ class LoginController extends Controller
 
     //metodo que crea la vista
     public function index(){
+
         //devuelve la vista asociada
         return view('login');
-    }
-
-    //metodo para procesar el login
-    public function postLogin(ValidateLogin $request)
-    {
-        $input = $request->all();
-
-        $credenciales = [
-            'correo'   => strtolower($input['correo']),
-            'password' => $input['pass']
-        ];
-
-        $user = Cliente::where('Correo', $credenciales['correo'])->first();
-
-        if($user){
-
-		 if(Hash::check($credenciales['password'], $user->Password)){
-
-                    $exito = Auth::login($user);
-
-                    return redirect()->intended('inicio');
-
-                }else{
-                    $mensaje = 'Correo y/o Contraseña incorrectos';
-                }
-
-
-            /*if(!$user->Activo){
-
-               
-            }else{
-                $mensaje = 'Usuario inactivo';
-            }*/
-
-        }else{
-
-            $mensaje = 'Usuario no registrado';
-        }
-
-        return redirect()
-            ->route('login')
-            ->withInput()
-            ->with('error', $mensaje);
     }
 
     //metodo para procesar el login por ajax
@@ -96,27 +57,10 @@ class LoginController extends Controller
 
                 if(Hash::check($credenciales['password'], $user->Password)){
 
-                    if($domain == 'camarero'){
+                    $user->QuestionEvent = true;
 
-                        $exito = Auth::guard('usuarios')->login($user);
+                    if($user->save()){
 
-                        //genero el log de inicio de sesion
-                        //$log = generateLog('inicio', 'usuarios');
-
-                        return response()->json(['code' => 200, 'msj' => 'exito', 'tipo' => 'camarero' ]);
-
-                    }else if($domain == 'repartidor'){
-
-                        $exito = Auth::guard('usuarios')->login($user);
-
-                        //genero el log de inicio de sesion
-                        //$log = generateLog('inicio', 'usuarios');
-
-                        return response()->json(['code' => 200, 'msj' => 'exito', 'tipo' => 'repartidor' ]);
-
-                    }else{
-
-                        
                         $exito = Auth::guard('web')->login($user);
 
                         //genero el log de inicio de sesion
@@ -124,12 +68,15 @@ class LoginController extends Controller
 
                         return response()->json(['code' => 200, 'msj' => 'exito', 'tipo' => 'one' ]);
 
+                    }else{
+                        return response()->json(['code' => 600, 'msj' => 'Error al iniciar sesión. Consulte al administrador' ]);
+
                     }
+
 
                 }else{
 
                     return response()->json(['code' => 600, 'msj' => 'Correo y/o Contraseña incorrectos' ]);
-
                 }
 
            }else{
@@ -149,18 +96,6 @@ class LoginController extends Controller
 
         $cuenta = $this->auth->user()->TipoCuenta;
 
-        if($cuenta == 'Visitante'){
-
-            $user = $this->auth->user()->_id;
-
-            removeUserVisitante($user);
-        }
-
-        $request->session()->forget('cart');
-        $request->session()->forget('empresa');
-        $request->session()->forget('confirmacion');
-        $request->session()->forget('pedido');
-
         //genero log de cierre de sesion
         //$log = generateLog('cierre', 'web');
 
@@ -170,5 +105,6 @@ class LoginController extends Controller
         //redirecciono de nuevo al login
         return redirect()->route('index');
     }
+
 
 }

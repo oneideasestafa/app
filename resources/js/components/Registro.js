@@ -1,24 +1,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-/*
-React.createClass = require('create-react-class');
-React.__spread = function(target: any) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-React.Bootstrap = require('react-bootstrap');
-React.Bootstrap.Select = require('react-bootstrap-select');*/
-/*const jQuery = require('jquery');
-window.jQuery = jQuery;
-require('bootstrap-select/dist/css/bootstrap-select.min.css');
-require('bootstrap-select');*/
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';
+import swal from "sweetalert2";
 import 'react-toastify/dist/ReactToastify.css';
 import logoOne from '../../../public/images/logo-one.png';
-
-
 import logoFacebook from '../../../public/images/social/facebook-icon.svg';
 import logoGoogle from '../../../public/images/social/google-icon.svg';
 import logoTwitter from '../../../public/images/social/twitter-icon.svg';
@@ -29,17 +17,17 @@ import imgCL from '../../../public/images/countrys/es.png';
 //import logoGoogle from '../../../../../public/images/social/google-icon.svg';
 
 import $ from 'jquery';
-
 import reactMobileDatePicker from 'react-mobile-datepicker';
+import iconCivil from '../../../public/images/EstadoCivil01.png';
 
-//import Menu from "../Menu";
 library.add( faSync);
 
 const optionToast = {
     hideProgressBar: true,
     autoClose: 3000
 };
-const Datepicker = reactMobileDatePicker; 
+const Datepicker = reactMobileDatePicker;
+
 function convertDate(date, formate) {
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
@@ -74,8 +62,12 @@ export default class RegistroCliente extends React.Component {
             google: props.google,
             isLoading: false,
             clubs:[],
+            estadosciviles: JSON.parse(props.estadosciviles),
+            civil: '',
             time: new Date(),
             isOpen: false,
+            fileName: 'Subir Foto (Opcional)',
+            foto: '',
             theme: 'default',
             telefono:''
         };
@@ -90,9 +82,35 @@ export default class RegistroCliente extends React.Component {
     }
 
     handleChange(e) {
-        this.setState({
-            [e.target.name]: e.target.value
-        });
+
+        if(e.target.name == 'fileFoto'){
+
+            if(e.target.files.length > 0) {
+
+                console.log(e.target.files[0]);
+
+                let reader = new FileReader();
+
+                reader.onload = (e) => {
+                    this.setState({
+                        foto: e.target.result
+                    })
+                };
+
+                reader.readAsDataURL(e.target.files[0]);
+
+                this.setState({ fileName: e.target.files[0].name });
+            }
+
+        }else{
+
+            this.setState({
+                [e.target.name]: e.target.value
+            });
+        }
+
+
+
     }
 
     handleSubmit(e) {
@@ -105,9 +123,11 @@ export default class RegistroCliente extends React.Component {
             isLoading: true
         });
 
-        let {nombre, apellido, correo, password, pais, url, edad, sexo,equipo,time,telefono} = this.state;
+        let {nombre, apellido, correo, password, pais, civil, url, edad, sexo,equipo,time,telefono, foto} = this.state;
+
         edad=time;
-        axios.post(url+'/ajax-post-registro', { nombre, apellido, correo, password, pais, edad, sexo,equipo , telefono})
+
+        axios.post(url+'/ajax-post-registro', { nombre, apellido, correo, password, pais, edad, sexo,equipo , telefono, civil, foto})
             .then(res => {
 
                 self.setState({
@@ -119,6 +139,9 @@ export default class RegistroCliente extends React.Component {
                     sexo:'',
                     edad:'',
                     equipo:'',
+                    civil: '',
+                    foto: '',
+                    fileName: 'Subir Foto (Opcional)',
                     telefono:'',
                     isLoading: false
                 });
@@ -127,12 +150,29 @@ export default class RegistroCliente extends React.Component {
 
                 if(r.code === 200){
 
-                    toast.success(r.msj, optionToast);
+                    swal.fire({
+                        title: '<i class="fa fa-check-circle"></i>',
+                        text: r.msj,
+                        showCancelButton: false,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok',
+                    }).then((result) => {
+                        if (result.value) {
+
+                            window.location.href= url + '/login';
+
+                        }
+                    });
+
 
                 }else if(r.code === 500){
 
-                    toast.error(r.msj, optionToast);
-
+                    swal({
+                        title: '<i class="fas fa-exclamation-circle"></i>',
+                        text: r.msj,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    });
                 }
 
             })
@@ -146,13 +186,19 @@ export default class RegistroCliente extends React.Component {
 
                     console.log('errores: ', error.response.data);
 
-                    toast.error(error.response.data, optionToast);
+                    swal({
+                        title: '<i class="fas fa-exclamation-circle"></i>',
+                        text: error.response.data,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    });
                 }
 
             });
     }
 
     clubs(e) {
+
         this.setState({
             [e.target.name]: e.target.value,
             'equipo': ''
@@ -176,8 +222,12 @@ export default class RegistroCliente extends React.Component {
 
                 }else if(r.code === 500){
 
-                    toast.error(r.msj, optionToast);
-
+                    swal({
+                        title: '<i class="fas fa-exclamation-circle"></i>',
+                        text: r.msj,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    });
                 }
 
             })
@@ -191,7 +241,6 @@ export default class RegistroCliente extends React.Component {
 
                     console.log('errores: ', error.response.data);
 
-                    toast.error(error.response.data, optionToast);
                 }
 
             });
@@ -199,24 +248,8 @@ export default class RegistroCliente extends React.Component {
 
     componentDidMount(){
 
-        $.getJSON('http://ipinfo.io', (data) =>{
-
-            let country = data.country;
-            let p = '';
-
-            if(country == 'AR'){
-                p = '586f91fff8c715650b244841';
-            }else if(country == 'CL'){
-                p = '586f9204f8c715650b244842';
-            }
-
-            this.setState({
-                pais: p
-            })
-        });
-
-
     }
+
     handleToggle(isOpen) {
             this.setState({ isOpen });
         };
@@ -229,9 +262,10 @@ export default class RegistroCliente extends React.Component {
         handleSelect(time){
             this.setState({ time, isOpen: false, edad:time });
         };
+
     render() {
 
-        let {nombre, apellido, correo, password, pais, facebook, google,url,clubs,edad,sexo,equipo,telefono} = this.state;
+        let {nombre, apellido, correo, password, pais, civil, facebook, google,url,clubs,edad,sexo,equipo,telefono} = this.state;
 
         let urlFacebook    = url + '/auth/facebook';
         let urlGoogle      = url + '/auth/google';
@@ -241,7 +275,6 @@ export default class RegistroCliente extends React.Component {
  
         return (
             <div className='box'>
-                <ToastContainer position="top-center" />
 
                 <div className="">
                     <img src={'../public'+logoOne} className="img-fluid logo-box-registro" />
@@ -285,6 +318,7 @@ export default class RegistroCliente extends React.Component {
                         onCancel={(e) => this.handleToggle(false)} 
                         confirmText="Seleccionar"
                         cancelText="Cancelar"
+                        max={new Date()}
                         />
                     </div>
                     <div className="input-group mb-4 mt-4">
@@ -314,11 +348,35 @@ export default class RegistroCliente extends React.Component {
                         <div className="input-group-prepend">
                             <i className="fas fa-phone fa-lg"></i>
                         </div>
-                        <input type="number" min="0" max="99999999999" maxLength="11" id="telefono" name="telefono" value={telefono} onChange={this.handleChange} className="form-control" placeholder="Ingrese su número de telefono" />
+                        <input type="number" min="0" max="99999999999" maxLength="11" id="telefono" name="telefono" value={telefono} onChange={this.handleChange} className="form-control" placeholder="Ingrese su telefono (Opcional)" />
                     </div>
 
                     <div className="input-group mb-4 mt-4">
-                        <div className="input-group-prepend">
+                        <div className="input-group-prepend input-civil">
+                            <img src={'../public'+iconCivil} className="icon-civil" />
+                        </div>
+                        <select className="form-control" value={civil} name="civil" id="civil" onChange={this.handleChange}>
+                            <option  key="0" value=''>Ingrese Estado Civil (Opcional)</option>
+                            {this.state.estadosciviles.map(function(item){
+                                return <option  key={item._id} value={item._id}>{item.Nombre}</option>
+                            })}
+                        </select>
+                    </div>
+
+                    <div className="input-group mb-4 mt-4">
+                        <div className="input-group-prepend mr-4">
+                            <i className="fas fa-portrait fa-lg"></i>
+                        </div>
+
+                        <div className="custom-file">
+                            <input type="file" name="fileFoto" onChange={(e) => this.handleChange(e)} className="custom-file-input" id="customFileLang" />
+                                <label className="custom-file-label" htmlFor="customFileLang">{this.state.fileName}</label>
+                        </div>
+
+                    </div>
+
+                    <div className="input-group mb-4 mt-4">
+                        <div className="input-group-prepend mr-3">
                             <i className="fa fa-key fa-lg"></i>
                         </div>
                         <input type="password" id="password" name="password" value={password} onChange={this.handleChange} className="form-control" placeholder="Ingrese su password" />
@@ -344,15 +402,20 @@ export default class RegistroCliente extends React.Component {
                     <div className="input-group-prepend">
                             <i className="fas fa-futbol fa-lg"></i>
                         </div>
-                    
 
-  <select className="form-control" id="inputGroupSelect02" value={equipo} name="equipo" id="equipo" onChange={this.handleChange}>
-  <option  key="0" value=''>Seleccione</option>
-    {this.state.clubs.map(function(item){
-   return <option  key={item.id} value={item.id}>{item.Nombre}</option>
-})}
-  </select>
+                          <select className="form-control" id="inputGroupSelect02" value={equipo} name="equipo" id="equipo" onChange={this.handleChange}>
+                            <option  key="-1" value=''>Seleccione</option>
+                              { this.state.clubs.length > 0 ?
+                                  <option  key="0" value='1000'>Ninguno</option>
+                                  : ''
+                              }
+                            {this.state.clubs.map(function(item){
+                                return <option  key={item.id} value={item.id}>{item.Nombre}</option>
+                            })}
+                          </select>
                     </div>
+
+
                     { this.state.equipo!='' ?
                         <div className="text-center" style={{'margin-bottom': '15px'}}>
                         <img src={'../public/images/clubs/'+this.state.equipo+'.png'} style={{'height': '4rem'}}/>

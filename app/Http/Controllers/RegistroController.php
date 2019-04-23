@@ -7,16 +7,22 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ValidateRegistro;
 use App\Models\MongoDB\Cliente;
 use App\Models\MongoDB\Clubs;
+use App\Models\MongoDB\EstadoCivil;
 use MongoDB\BSON\ObjectId;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Image, Storage, File;
 
 class RegistroController extends Controller
 {
 
     //metodo que crea la vista
     public function index(){
+
+        $data['civiles'] = EstadoCivil::borrado(false)->activo(true)->orderBy('Nombre', 'asc')->get();
+
         //devuelve la vista asociada
-        return view('registro');
+        return view('registro', $data);
     }
 
     //metodo para registrar cliente
@@ -24,26 +30,46 @@ class RegistroController extends Controller
 
         $input = $request->all();
 
+        $fnac = Carbon::parse($input['edad'])->format('d/m/Y');
+
+        //guardo la imagen en una variable
+        $image = $input['foto'];
+        $base64 = '';
+
+        if($image != ''){
+
+            //obtengo la extension
+            $type = explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+            //creo un nombre temporal
+            $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+            //ruta imagen temporal
+            $pathImgTemporal = public_path('images/'.$name);
+            //proceso la imagen a 200x200
+            $img = Image::make($image)->fit(200,200)->save($pathImgTemporal);
+            //obtengo la data de la imagen
+            $data = file_get_contents($pathImgTemporal);
+            //convierto a base64
+            $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+            //elimino imagen temporal
+            File::delete($pathImgTemporal);
+        }
+
         //capturo los datos y los acomodo en un arreglo
         $data = [
             'nombre'              => $input['nombre'],
             'apellido'            => $input['apellido'],
-            'sexo'            => $input['sexo'],
-            'edad'            => $input['edad'],
-            'equipo'            => $input['equipo'],
+            'sexo'                => $input['sexo'],
+            'edad'                => $fnac,
+            'equipo'              => $input['equipo'],
             'telefono'            => $input['telefono'],
             'correo'              => strtolower($input['correo']),
             'from'                => 'ONE',
             'password'            => bcrypt($input['password']),
             'pais'                => new ObjectId($input['pais']),
+            'civil'               => $input['civil'] == '' ? '' : new ObjectId($input['civil']),
+            'foto'                => $base64,
             'borrado'             => false,
-            'activo'              => true,
-            'fotoproducto'        => true,
-            'promociones'         => false,
-            'descuentos'          => false,
-            'cupones'             => false,
-            'mail'                => true,
-            'app'                 => false
+            'activo'              => true
         ];
 
         //procedo a guardarlos en la bd
@@ -51,7 +77,7 @@ class RegistroController extends Controller
         $registro->Nombre              = $data['nombre'];
         $registro->Apellido            = $data['apellido'];
         $registro->Sexo                = $data['sexo'];
-        $registro->Edad                = $data['edad'];
+        $registro->FechaNacimiento     = $data['edad'];
         $registro->Equipo              = $data['equipo'];
         $registro->Correo              = $data['correo'];
         $registro->Telefono            = $data['telefono'];
@@ -59,17 +85,10 @@ class RegistroController extends Controller
         $registro->TipoCuenta          = $data['from'];
         $registro->ProviderID          = '';
         $registro->Pais_id             = $data['pais'];
-        $registro->Telefono            = '';
-        $registro->Vehiculo            = '';
-        $registro->Direccion           = '';
+        $registro->EstadoCivil_id      = $data['civil'];
+        $registro->Foto                = $data['foto'];
         $registro->Borrado             = $data['borrado'];
         $registro->Activo              = $data['activo'];
-        $registro->MostrarFotoProducto = $data['fotoproducto'];
-        $registro->NotificacionPromociones          = $data['promociones'];
-        $registro->NotificacionDescuentos           = $data['descuentos'];
-        $registro->NotificacionCupones              = $data['cupones'];
-        $registro->NotificacionMailPedidos          = $data['mail'];
-        $registro->NotificacionAppPedidos           = $data['app'];
 
         //verifico si fue exitoso el insert en la bd
         if($registro->save()){
@@ -89,13 +108,14 @@ class RegistroController extends Controller
             'idpais'              => $input['pais']
         ];
 
-        $registro = Clubs::where('Pais',new ObjectId($data['idpais']) )->get();
+        $registro = Clubs::borrado(false)->activo(true)->where('Pais',new ObjectId($data['idpais']) )->orderBy('Nombre', 'asc')->get();
         $clubs = [];
         if($registro){
 
             foreach ($registro as $club) {
                 $clubs[]=$club;
             }
+
             return response()->json(['code' => 200, 'msj' => 'Registrado exitosamente','datos'=>$clubs]);
         }else{
            return response()->json(['code' => 500, 'msj' => 'Error al registrar. Consulte al administrador']);

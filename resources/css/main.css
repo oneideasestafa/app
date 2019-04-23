@@ -6,6 +6,8 @@ html, body {
     color:#fff;
 }
 
+input.upper { text-transform: uppercase; }
+
 
 .fab {
     font-family: 'Font Awesome 5 Brands', fa-brands-400;
@@ -195,6 +197,7 @@ header a:active, a:focus, a:hover {
 .btn-gris {
     background-color: #6c757d;
     color: #fff;
+    font-weight: bold;
 }
 
 .btn-gris:hover{
@@ -204,6 +207,22 @@ header a:active, a:focus, a:hover {
 
 .btn-gris:focus{
     background-color: #6c757d;
+    color: #fff;
+}
+
+.btn-blue {
+    background-color: #0D47A1;
+    color: #fff;
+    font-weight: bold;
+}
+
+.btn-blue:hover{
+    background-color: #0D47A1;
+    color: #fff;
+}
+
+.btn-blue:focus{
+    background-color: #0D47A1;
     color: #fff;
 }
 
@@ -2726,4 +2745,37 @@ input:focus {
 
 .custom-select, .form-control, .form-control-file{
     color:#dadada !important;
+}
+
+
+.custom-file-input:focus~.custom-file-label, .custom-file-input:hover~.custom-file-label {
+    border-bottom-color: #ffffff;
+    box-shadow: inset 0 -2px 0 -1px #ffffff;
+}
+
+.custom-file-label {
+    border: 1px solid #ffffff;
+    color: #dadada !important;
+    font-size: 1rem;
+    height: 2.25rem;
+    left: 0;
+    line-height: 1.5;
+    overflow: hidden;
+    padding: .375rem 2.25rem calc(.375rem - 1px) 0;
+    position: absolute;
+    right: 0;
+    text-overflow: ellipsis;
+    top: 0;
+    transition-duration: .3s;
+    transition-property: border-color,box-shadow;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    white-space: nowrap;
+}
+
+.input-civil{
+    width: 20px;
+}
+
+.icon-civil{
+    width: 50px;
 }

@@ -6,7 +6,6 @@ import { faSync } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import swal from "sweetalert2";
 import logoOne from '../../../public/images/logo-one.png';
-
 import logoFacebook from '../../../public/images/social/facebook-icon.svg';
 import logoGoogle from '../../../public/images/social/google-icon.svg';
 import logoTwitter from '../../../public/images/social/twitter-icon.svg';
@@ -23,16 +22,18 @@ export default class Login extends Component {
             pass: '',
             isLoading: false
         };
-        console.log(props);
+
         this.handleLogin = this.handleLogin.bind(this);
         this.handleChange = this.handleChange.bind(this);
 
     }
 
     handleChange(e) {
+
         this.setState({
             [e.target.name]: e.target.value
         });
+
     }
 
     handleLogin(e){
@@ -43,11 +44,8 @@ export default class Login extends Component {
             isLoading: true
         });
 
-        let urlInicio = this.state.url+'/inicio';
-        let urlInicioCamarero = this.state.url+'/camarero';
-        let urlInicioRepartidor = this.state.url+'/repartidor';
-        let correo = this.state.correo;
-        let pass = this.state.pass;
+        let urlInicio = this.state.url+'/question-event';
+        let {correo, pass} = this.state;
 
         e.preventDefault();
 
@@ -65,18 +63,14 @@ export default class Login extends Component {
                     });
 
                     if(r.tipo == 'one'){
-                        localStorage.setItem('cache','true');
+                        //localStorage.setItem('cache','true');
                         window.location.href = urlInicio;
-                    }else if(r.tipo == 'camarero'){
-                        window.location.href = urlInicioCamarero;
-                    }else if(r.tipo == 'repartidor'){
-                        window.location.href = urlInicioRepartidor;
                     }
 
                 }else if(r.code == undefined){
 
-                        window.location.href = window.app.url+'/logisticas';
-                    
+                    //window.location.href = window.app.url+'/logisticas';
+
 
                 }else if(r.code === 600){
 
@@ -112,6 +106,7 @@ export default class Login extends Component {
                 }
 
             });
+
     }
 
     render() {
@@ -139,7 +134,6 @@ export default class Login extends Component {
                         <img src={'../public'+logoOne} className="img-fluid logo-box-index" />
                     </div>
 
-
                     <div className="input-group mb-4 mt-4">
                         <div className="input-group-prepend">
                             <i className="fa fa-envelope fa-lg"></i>
@@ -154,12 +148,14 @@ export default class Login extends Component {
                         <input type="password" id="pass" name="pass" value={pass} onChange={this.handleChange} className="form-control" placeholder="Ingrese su contraseña" />
                     </div>
 
+
                     <div className="text-center mt-4">
                         <button type="submit" className="btn btn-negro btn-box-index">
                             { this.state.isLoading ? <FontAwesomeIcon icon="sync" size="lg" spin /> : '' }
                             &nbsp;&nbsp; Ingresar
                         </button>
                     </div>
+
                      <div className="text-center roboto-condensed text-can-login-social">
                         <p style={{'color':'rgb(146, 143, 143)'}}>o puedes ingresar con</p>
                     </div>
