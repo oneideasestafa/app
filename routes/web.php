@@ -11,12 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-//Route::get('/login','LoginController@index');
-//Route::post('/post-login','LoginController@postLogin');
-
 
 Route::middleware(['guest'])->group(function(){
 
@@ -28,7 +22,6 @@ Route::middleware(['guest'])->group(function(){
     //ruta del login
     Route::get('/login', 'LoginController@index')->name('login');
     Route::post('/ajax-post-login', 'LoginController@ajaxPostLogin');
-    Route::post('/ajax-post-check-ubicacion-evento', 'LoginController@ajaxEventoCheckUbicacion');
 
     //ruta de registro
     Route::get('/registro', 'RegistroController@index')->name('registro');
@@ -48,13 +41,23 @@ Route::middleware(['guest'])->group(function(){
     //ruta visitante
     Route::get('/demo', 'DemoController@login')->name('login-demo');
 
-
 });
 
 //'prevent-back-history'
-Route::middleware(['auth:web,usuarios', 'role:cliente'])->group(function(){
+Route::middleware(['auth', 'prevent-back-history'])->group(function(){
 
     //ruta de logout
     Route::get('/logout', 'LoginController@logout')->name('logout');
-    Route::get('/inicio', 'IndexController@inicio')->name('inicio');
+
+    Route::get('/question-event', 'QuestionEventController@index')->name('question-event');
+    Route::post('/ajax-continuar', 'QuestionEventController@ajaxContinuar')->name('ajax-continuar');
+    Route::post('/ajax-post-check-ubicacion-evento', 'QuestionEventController@ajaxEventoCheckUbicacion');
+
+
+    Route::middleware(['check-question-event'])->group(function(){
+
+        Route::get('/inicio', 'IndexController@inicio')->name('inicio');
+
+    });
+
 });

@@ -45,4 +45,9 @@ class Cliente extends Model implements AuthenticatableContract, AuthorizableCont
         return $query->where('TipoCuenta', $flag);
     }
 
+    //verifica si debo invicar el formulario de evento despues del login
+    public function isQuestionEvent(){
+        return $this->QuestionEvent;
+    }
+
 }

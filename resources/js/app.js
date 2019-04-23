@@ -126,6 +126,7 @@ require('./components/Inicio');
 require('./components/Menu');
 require('./components/Index');
 require('./components/Registro');
+require('./components/QuestionEvent');
 
 
-require('./cache');
+//require('./cache');

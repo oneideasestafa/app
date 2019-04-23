@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div id="login" data-url="{{ url('/') }}" data-eventos="{{ json_encode($eventos) }}"></div>
+    <div id="login" data-url="{{ url('/') }}"></div>
 
 @endsection
 

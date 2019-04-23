@@ -26,12 +26,8 @@ class LoginController extends Controller
     //metodo que crea la vista
     public function index(){
 
-        $event = Evento::borrado(false)->activo(true)->app(true)->orderBy('Nombre', 'asd')->get();
-
-        $data['eventos'] = $event ? $event : [];
-
         //devuelve la vista asociada
-        return view('login', $data);
+        return view('login');
     }
 
     //metodo para procesar el login por ajax
@@ -41,17 +37,8 @@ class LoginController extends Controller
 
         $credenciales = [
             'correo'   => strtolower($input['correo']),
-            'password' => $input['pass'],
-            'evento'   => $input['evento'],
-            'idevento' => $input['idevento'],
-            'sector'   => $input['sector'],
-            'fila'     => $input['fila'],
-            'asiento'  => $input['asiento'],
-            'manual'   => $input['manual']
+            'password' => $input['pass']
         ];
-
-        $evento = $input['evento'];
-        $idevento = $input['idevento'];
 
         $domain   = substr($credenciales['correo'], strpos($credenciales['correo'], '@') + 1);
         $nameMail = substr($credenciales['correo'], 0, strpos($credenciales['correo'], '@') + 1 );
@@ -70,9 +57,9 @@ class LoginController extends Controller
 
                 if(Hash::check($credenciales['password'], $user->Password)){
 
-                    $validoEvento = $this->isEventoValido($evento, $idevento, $user->_id, $credenciales);
+                    $user->QuestionEvent = true;
 
-                    if($validoEvento){
+                    if($user->save()){
 
                         $exito = Auth::guard('web')->login($user);
 
@@ -81,9 +68,9 @@ class LoginController extends Controller
 
                         return response()->json(['code' => 200, 'msj' => 'exito', 'tipo' => 'one' ]);
 
-
                     }else{
-                        return response()->json(['code' => 600, 'msj' => 'Codigo de evento invalido' ]);
+                        return response()->json(['code' => 600, 'msj' => 'Error al iniciar sesión. Consulte al administrador' ]);
+
                     }
 
 
@@ -119,148 +106,5 @@ class LoginController extends Controller
         return redirect()->route('index');
     }
 
-
-    public function isEventoValido($evento, $idevento, $user, $data){
-
-        if($evento AND $idevento){
-
-            $ev = Evento::borrado(false)->activo(true)->where('IDEvento', $idevento)->first();
-
-            if($ev){
-
-                $c = Cliente::find($user);
-                $c->Evento_id = new ObjectId($ev->_id);
-
-                if($c->save()){
-
-                    $this->saveAsistenteEvento($user, $data);
-
-                    return true;
-                }else{
-                    return false;
-                }
-
-            }else{
-                return false;
-            }
-
-        }else{
-
-            $ev = Evento::find($evento);
-
-            if($ev){
-
-                $c = Cliente::find($user);
-                $c->Evento_id = new ObjectId($ev->_id);
-
-                if($c->save()){
-
-                    $this->saveAsistenteEvento($user, $data);
-
-                    return true;
-                }else{
-                    return false;
-                }
-
-            }else{
-                return false;
-            }
-
-        }
-
-
-    }
-
-    //metodo para revisar si el evento tiene ubicacion
-    public function ajaxEventoCheckUbicacion(Request $request)
-    {
-        $input = $request->all();
-
-        $evento = $input['evento'];
-        $idevento = $input['idevento'];
-
-        if($idevento){
-
-            $ev = Evento::borrado(false)->activo(true)->where('IDEvento', $idevento)->first();
-
-            if($ev){
-
-                if($ev->Ubicacion == 'GPS'){
-
-                    return response()->json(['code' => 200, 'msj' => 'Evento es de tipo GPS', 'ubicacion' => false ]);
-
-                }else if($ev->Ubicacion == 'MANUAL'){
-
-                    return response()->json(['code' => 200, 'msj' => 'Evento es de tipo MANUAL', 'ubicacion' => true ]);
-
-                }
-
-            }else{
-
-                return response()->json(['code' => 700, 'msj' => 'Codigo de evento invalido', 'ubicacion' => false ]);
-            }
-
-        }else{
-
-            $ev = Evento::find($evento);
-
-            if($ev){
-
-                if($ev->Ubicacion == 'GPS'){
-
-                    return response()->json(['code' => 200, 'msj' => 'Evento es de tipo GPS', 'ubicacion' => false ]);
-
-                }else if($ev->Ubicacion == 'MANUAL'){
-
-                    return response()->json(['code' => 200, 'msj' => 'Evento es de tipo MANUAL', 'ubicacion' => true ]);
-
-                }
-
-            }else{
-
-                return response()->json(['code' => 600, 'msj' => 'Error al consultar Evento. Consulte al administrador', 'ubicacion' => false ]);
-            }
-
-        }
-
-    }
-
-    public function saveAsistenteEvento($cliente, $data){
-
-        $ubicacion = 'GPS';
-
-        if($data['manual'] == true){
-            $ubicacion = 'MANUAL';
-        }
-
-        if($data['evento'] AND $data['idevento']){
-
-            $ev = Evento::borrado(false)->activo(true)->where('IDEvento', $data['idevento'])->first();
-
-            $evento = $ev->_id;
-
-        }else{
-            $evento = $data['evento'];
-        }
-
-        $registro = new AsistenteEvento;
-        $registro->Evento_id = new ObjectId($evento);
-        $registro->Cliente_id = new ObjectId($cliente);
-        $registro->Latitud = '';
-        $registro->Longitud = '';
-        $registro->Sector = $data['sector'];
-        $registro->Fila = $data['fila'];
-        $registro->Asiento = $data['asiento'];
-        $registro->Fecha = Carbon::now();
-        $registro->Ubicacion = $ubicacion;
-        $registro->Activo = true;
-        $registro->Borrado = false;
-
-        if($registro->save()){
-            return true;
-        }else{
-            return false;
-        }
-    }
 
 }

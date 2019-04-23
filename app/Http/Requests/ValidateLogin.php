@@ -27,36 +27,9 @@ class ValidateLogin extends FormRequest
     public function rules(Request $request)
     {
 
-        if( $this->input('evento') == 'idevento' ){
-            $idevento = 'required';
-        }else{
-            $idevento = 'nullable';
-        }
-
-        $sector  = 'nullable';
-        $fila    = 'nullable';
-        $asiento = 'nullable';
-
-        if( $this->input('manual') == '' ){
-            $manual = 'required';
-        }else if($this->input('manual') == false){
-            $manual = 'required';
-        }else if($this->input('manual') == true){
-            $manual = 'required';
-            $sector  = 'required';
-            $fila    = 'required';
-            $asiento = 'required';
-        }
-
         $rules = [
             'correo'  => 'required',
-            'pass'    => 'required',
-            'evento'  => 'required',
-            'idevento'=> $idevento,
-            'manual'  => $manual,
-            'sector'  => $sector,
-            'fila'    => $fila,
-            'asiento' => $asiento
+            'pass'    => 'required'
 
         ];
 
@@ -68,13 +41,7 @@ class ValidateLogin extends FormRequest
         return [
             'correo.required'    => 'El correo es requerido',
             //'correo.email'       => 'Formato de correo inválido',
-            'pass.required'      => 'El password es requerido',
-            'evento.required'    => 'El evento es requerido',
-            'idevento.required'  => 'Debe ingresar el codigo del evento',
-            'manual.required'    => 'El codigo de evento es invalido. Intente con otro',
-            'sector.required'    => 'El sector es requerido',
-            'fila.required'      => 'La fila es requerida',
-            'asiento.required'   => 'El asiento es requerido'
+            'pass.required'      => 'El password es requerido'
         ];
     }
 
