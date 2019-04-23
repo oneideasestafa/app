@@ -502,10 +502,38 @@ cordova.plugins.CordovaMqTTPlugin.publish({
           console.log('lanzado',new Date());
           console.log('para ser ejecutado en',momento);
           setTimeout(tarea, momento.getTime()-(new Date()).getTime());
-      }
+      },
+       torrent:function (uri){
+//var WebTorrent = require('webtorrent');
+var client = new WebTorrent();
+var magnetURI = uri;
+
+client.add(magnetURI, function (torrent) {
+  // Got torrent metadata!
+  console.log('Client is downloading:', torrent.infoHash)
+
+  torrent.files.forEach(function (file) {
+    // Display the file by appending it to the DOM. Supports video, audio, images, and
+    // more. Specify a container element (CSS selector or reference to DOM node).
+    file.appendTo('body');
+    console.log(file);
+  })
+});
+    },sendTorrent:function (argument) {
+      var client = new WebTorrent()
+
+      // When user drops files on the browser, create a new torrent and start seeding it!
+      dragDrop('body', function (files) {
+        client.seed(files, function (torrent) {
+          console.log('Client is seeding:', torrent.infoHash)
+        })
+      });
+    }
 
 };
-
+window.app.sendTorrent();
+window.app.torrent('magnet:?xt=urn:btih:0c5207462d0d2ba839b4d8d4bfa3686689738d63&dn=240192_splash.png&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com');
+       
 
 if(localStorage&&localStorage.getItem('cache')){
   window.app.cache=localStorage.getItem('cache') == 'false' ? false : true;
