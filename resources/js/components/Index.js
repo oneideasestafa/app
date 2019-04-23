@@ -120,7 +120,7 @@ export default class Index extends Component {
 
                     <div className="text-center">
                         <a href={urlDemo}>
-                            <div className="btn btn-blue">Demo</div>
+                            <div className="btn btn-gris">Demo</div>
                         </a>
                     </div>
 

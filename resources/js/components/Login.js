@@ -352,14 +352,14 @@ export default class Login extends Component {
 
                             <div className="input-group mb-4 mt-4">
                                 <div className="input-group-prepend">
-                                    <i className="fa fa-clipboard fa-lg"></i>
+                                    <i className="fas fa-vector-square fa-lg"></i>
                                 </div>
                                 <InputMask mask="********" maskChar={null} value={sector} name="sector" onChange={this.handleChange} className="form-control" placeholder="Ingrese el sector" />;
                             </div>
 
                             <div className="input-group mb-4 mt-4">
                                 <div className="input-group-prepend">
-                                    <i className="fa fa-ellipsis-h fa-lg"></i>
+                                    <i className="fas fa-arrows-alt-h fa-lg"></i>
                                 </div>
                                 <InputMask mask="********" maskChar={null} value={fila} name="fila" onChange={this.handleChange} className="form-control" placeholder="Ingrese la fila" />;
                             </div>

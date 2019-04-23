@@ -197,6 +197,7 @@ header a:active, a:focus, a:hover {
 .btn-gris {
     background-color: #6c757d;
     color: #fff;
+    font-weight: bold;
 }
 
 .btn-gris:hover{

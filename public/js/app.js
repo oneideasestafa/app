@@ -50534,7 +50534,7 @@ var Login = function (_Component) {
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'div',
                                 { className: 'input-group-prepend' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-clipboard fa-lg' })
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-vector-square fa-lg' })
                             ),
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_input_mask___default.a, { mask: '********', maskChar: null, value: sector, name: 'sector', onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese el sector' }),
                             ';'
@@ -50545,7 +50545,7 @@ var Login = function (_Component) {
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'div',
                                 { className: 'input-group-prepend' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-ellipsis-h fa-lg' })
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-arrows-alt-h fa-lg' })
                             ),
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_input_mask___default.a, { mask: '********', maskChar: null, value: fila, name: 'fila', onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese la fila' }),
                             ';'
@@ -78082,7 +78082,7 @@ var Index = function (_Component) {
                             { href: urlDemo },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'div',
-                                { className: 'btn btn-blue' },
+                                { className: 'btn btn-gris' },
                                 'Demo'
                             )
                         )
