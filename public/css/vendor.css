@@ -217,6 +217,22 @@ header a:active, a:focus, a:hover {
     color: #fff;
 }
 
+.btn-blue {
+    background-color: #0D47A1;
+    color: #fff;
+    font-weight: bold;
+}
+
+.btn-blue:hover{
+    background-color: #0D47A1;
+    color: #fff;
+}
+
+.btn-blue:focus{
+    background-color: #0D47A1;
+    color: #fff;
+}
+
 .btn-facebook {
     background-color: #0D47A1;
     color: #fff;
@@ -2761,4 +2777,12 @@ input:focus {
     transition-property: border-color,box-shadow;
     transition-timing-function: cubic-bezier(.4,0,.2,1);
     white-space: nowrap;
+}
+
+.input-civil{
+    width: 20px;
+}
+
+.icon-civil{
+    width: 50px;
 }

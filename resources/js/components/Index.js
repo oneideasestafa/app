@@ -60,7 +60,7 @@ export default class Index extends Component {
 
         let urlIngresar    = url + '/login';
         let urlRegistrar   = url + '/registro';
-        let urlVisitante   = url + '/visitante';
+        let urlDemo        = url + '/demo';
         let urlFacebook    = url + '/auth/facebook';
         let urlGoogle      = url + '/auth/google';
 
@@ -119,8 +119,8 @@ export default class Index extends Component {
                     </div>
 
                     <div className="text-center">
-                        <a href={urlVisitante}>
-                            <div className="btn btn-gris btn-box-index">Visitante</div>
+                        <a href={urlDemo}>
+                            <div className="btn btn-blue">Demo</div>
                         </a>
                     </div>
 

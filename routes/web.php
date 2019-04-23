@@ -46,7 +46,7 @@ Route::middleware(['guest'])->group(function(){
     Route::post('/reset-password/{token}', 'RecoveryPasswordController@resetPassword')->name('reset-password');
 
     //ruta visitante
-    Route::get('/visitante', 'VisitanteController@login')->name('login-visitante');
+    Route::get('/demo', 'DemoController@login')->name('login-demo');
 
 
 });

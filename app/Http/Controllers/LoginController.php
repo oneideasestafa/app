@@ -109,18 +109,6 @@ class LoginController extends Controller
 
         $cuenta = $this->auth->user()->TipoCuenta;
 
-        if($cuenta == 'Visitante'){
-
-            $user = $this->auth->user()->_id;
-
-            removeUserVisitante($user);
-        }
-
-        $request->session()->forget('cart');
-        $request->session()->forget('empresa');
-        $request->session()->forget('confirmacion');
-        $request->session()->forget('pedido');
-
         //genero log de cierre de sesion
         //$log = generateLog('cierre', 'web');
 

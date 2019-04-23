@@ -106,13 +106,14 @@ class RegistroController extends Controller
             'idpais'              => $input['pais']
         ];
 
-        $registro = Clubs::where('Pais',new ObjectId($data['idpais']) )->get();
+        $registro = Clubs::borrado(false)->activo(true)->where('Pais',new ObjectId($data['idpais']) )->orderBy('Nombre', 'asc')->get();
         $clubs = [];
         if($registro){
 
             foreach ($registro as $club) {
                 $clubs[]=$club;
             }
+
             return response()->json(['code' => 200, 'msj' => 'Registrado exitosamente','datos'=>$clubs]);
         }else{
            return response()->json(['code' => 500, 'msj' => 'Error al registrar. Consulte al administrador']);

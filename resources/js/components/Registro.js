@@ -1,24 +1,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-/*
-React.createClass = require('create-react-class');
-React.__spread = function(target: any) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-React.Bootstrap = require('react-bootstrap');
-React.Bootstrap.Select = require('react-bootstrap-select');*/
-/*const jQuery = require('jquery');
-window.jQuery = jQuery;
-require('bootstrap-select/dist/css/bootstrap-select.min.css');
-require('bootstrap-select');*/
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';
+import swal from "sweetalert2";
 import 'react-toastify/dist/ReactToastify.css';
 import logoOne from '../../../public/images/logo-one.png';
-
-
 import logoFacebook from '../../../public/images/social/facebook-icon.svg';
 import logoGoogle from '../../../public/images/social/google-icon.svg';
 import logoTwitter from '../../../public/images/social/twitter-icon.svg';
@@ -29,10 +17,9 @@ import imgCL from '../../../public/images/countrys/es.png';
 //import logoGoogle from '../../../../../public/images/social/google-icon.svg';
 
 import $ from 'jquery';
-
 import reactMobileDatePicker from 'react-mobile-datepicker';
+import iconCivil from '../../../public/images/EstadoCivil01.png';
 
-//import Menu from "../Menu";
 library.add( faSync);
 
 const optionToast = {
@@ -163,12 +150,22 @@ export default class RegistroCliente extends React.Component {
 
                 if(r.code === 200){
 
-                    toast.success(r.msj, optionToast);
+                    swal({
+                        title: '<i class="fa fa-check-circle"></i>',
+                        text: r.msj,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    });
+
 
                 }else if(r.code === 500){
 
-                    toast.error(r.msj, optionToast);
-
+                    swal({
+                        title: '<i class="fas fa-exclamation-circle"></i>',
+                        text: r.msj,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    });
                 }
 
             })
@@ -182,13 +179,19 @@ export default class RegistroCliente extends React.Component {
 
                     console.log('errores: ', error.response.data);
 
-                    toast.error(error.response.data, optionToast);
+                    swal({
+                        title: '<i class="fas fa-exclamation-circle"></i>',
+                        text: error.response.data,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    });
                 }
 
             });
     }
 
     clubs(e) {
+
         this.setState({
             [e.target.name]: e.target.value,
             'equipo': ''
@@ -212,8 +215,12 @@ export default class RegistroCliente extends React.Component {
 
                 }else if(r.code === 500){
 
-                    toast.error(r.msj, optionToast);
-
+                    swal({
+                        title: '<i class="fas fa-exclamation-circle"></i>',
+                        text: r.msj,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    });
                 }
 
             })
@@ -227,7 +234,6 @@ export default class RegistroCliente extends React.Component {
 
                     console.log('errores: ', error.response.data);
 
-                    toast.error(error.response.data, optionToast);
                 }
 
             });
@@ -235,24 +241,8 @@ export default class RegistroCliente extends React.Component {
 
     componentDidMount(){
 
-        $.getJSON('http://ipinfo.io', (data) =>{
-
-            let country = data.country;
-            let p = '';
-
-            if(country == 'AR'){
-                p = '586f91fff8c715650b244841';
-            }else if(country == 'CL'){
-                p = '586f9204f8c715650b244842';
-            }
-
-            this.setState({
-                pais: p
-            })
-        });
-
-
     }
+
     handleToggle(isOpen) {
             this.setState({ isOpen });
         };
@@ -278,7 +268,6 @@ export default class RegistroCliente extends React.Component {
  
         return (
             <div className='box'>
-                <ToastContainer position="top-center" />
 
                 <div className="">
                     <img src={'../public'+logoOne} className="img-fluid logo-box-registro" />
@@ -322,6 +311,7 @@ export default class RegistroCliente extends React.Component {
                         onCancel={(e) => this.handleToggle(false)} 
                         confirmText="Seleccionar"
                         cancelText="Cancelar"
+                        max={new Date()}
                         />
                     </div>
                     <div className="input-group mb-4 mt-4">
@@ -355,8 +345,8 @@ export default class RegistroCliente extends React.Component {
                     </div>
 
                     <div className="input-group mb-4 mt-4">
-                        <div className="input-group-prepend mr-4">
-                            <i className="fas fa-male fa-lg"></i>
+                        <div className="input-group-prepend input-civil">
+                            <img src={iconCivil} className="icon-civil" />
                         </div>
                         <select className="form-control" value={civil} name="civil" id="civil" onChange={this.handleChange}>
                             <option  key="0" value=''>Ingrese Estado Civil (Opcional)</option>
@@ -367,8 +357,8 @@ export default class RegistroCliente extends React.Component {
                     </div>
 
                     <div className="input-group mb-4 mt-4">
-                        <div className="input-group-prepend mr-3">
-                            <i className="far fa-image fa-lg"></i>
+                        <div className="input-group-prepend mr-4">
+                            <i className="fas fa-portrait fa-lg"></i>
                         </div>
 
                         <div className="custom-file">
@@ -379,7 +369,7 @@ export default class RegistroCliente extends React.Component {
                     </div>
 
                     <div className="input-group mb-4 mt-4">
-                        <div className="input-group-prepend">
+                        <div className="input-group-prepend mr-3">
                             <i className="fa fa-key fa-lg"></i>
                         </div>
                         <input type="password" id="password" name="password" value={password} onChange={this.handleChange} className="form-control" placeholder="Ingrese su password" />
@@ -407,7 +397,11 @@ export default class RegistroCliente extends React.Component {
                         </div>
 
                           <select className="form-control" id="inputGroupSelect02" value={equipo} name="equipo" id="equipo" onChange={this.handleChange}>
-                            <option  key="0" value=''>Seleccione</option>
+                            <option  key="-1" value=''>Seleccione</option>
+                              { this.state.clubs.length > 0 ?
+                                  <option  key="0" value='1000'>Ninguno</option>
+                                  : ''
+                              }
                             {this.state.clubs.map(function(item){
                                 return <option  key={item.id} value={item.id}>{item.Nombre}</option>
                             })}

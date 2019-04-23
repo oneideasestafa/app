@@ -10,27 +10,27 @@ use Faker\Factory as Faker;
 use MongoDB\BSON\ObjectId;
 use Illuminate\Support\Str;
 
-//controlador encargado de los visitantes
+//controlador encargado de la demo
 
-class VisitanteController extends Controller
+class DemoController extends Controller
 {
 
     //metodo para procesar el login
     public function login(Request $request)
     {
 
-        $faker = Faker::create();
+        /*$faker = Faker::create();
 
         //capturo los datos y los acomodo en un arreglo
         $data = [
-            'nombre'              => 'Visitante ONE Show',
-            'apellido'            => 'Visitante ONE Show',
+            'nombre'              => 'Demo ONE Show',
+            'apellido'            => 'Demo ONE Show',
             'sexo'                => 'm',
             'fn'                  => Carbon::now()->format('d/m/Y'),
-            'equipo'              => '105',
+            'equipo'              => '1000',
             'correo'              => strtolower($faker->email),
             'telefono'            => '',
-            'password'            => bcrypt(Str::random(20)),
+            'password'            => bcrypt('@demooneshow123@'),
             'from'                => 'Visitante',
             'pais'                => new ObjectId('5caf334dff6eff0ae30e450b'),
             'borrado'             => false,
@@ -61,36 +61,36 @@ class VisitanteController extends Controller
         //verifico si fue exitoso el insert en la bd
         if($registro->save()){
 
-            $credenciales = [
-                'correo'   => $data['correo'],
-                'password' => $data['password']
-            ];
+        }*/
 
-            $user = Cliente::where('Correo', $credenciales['correo'])->first();
+        $credenciales = [
+            'correo'   => 'demoonesho@demooneshow.com',
+            'password' => '@demooneshow123@'
+        ];
 
-            if($user){
+        $user = Cliente::where('Correo', $credenciales['correo'])->first();
 
-                if($credenciales['password'] == $user->Password){
+        if($user){
 
-                    $exito = Auth::login($user);
+            if(Hash::check($credenciales['password'], $user->Password)){
 
-                    return redirect()->intended('inicio');
+                $exito = Auth::login($user);
 
-                }else{
-                    $mensaje = 'Correo y/o Contraseña incorrectos';
-                }
+                return redirect()->intended('inicio');
 
             }else{
-
-                $mensaje = 'Usuario no registrado';
+                $mensaje = 'Correo y/o Contraseña incorrectos';
             }
 
-            return redirect()
-                ->route('index')
-                ->withInput()
-                ->with('error', $mensaje);
+        }else{
 
+            $mensaje = 'Usuario no registrado';
         }
+
+        return redirect()
+            ->route('index')
+            ->withInput()
+            ->with('error', $mensaje);
 
     }
 
