@@ -78224,7 +78224,7 @@ var RegistroCliente = function (_React$Component) {
             time: new Date(),
             isOpen: false,
             fileName: 'Subir Foto (Opcional)',
-            foto: [],
+            foto: '',
             theme: 'default',
             telefono: ''
         };
@@ -78309,7 +78309,7 @@ var RegistroCliente = function (_React$Component) {
                     edad: '',
                     equipo: '',
                     civil: '',
-                    foto: [],
+                    foto: '',
                     fileName: 'Subir Foto (Opcional)',
                     telefono: '',
                     isLoading: false
@@ -78319,11 +78319,17 @@ var RegistroCliente = function (_React$Component) {
 
                 if (r.code === 200) {
 
-                    __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                    __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default.a.fire({
                         title: '<i class="fa fa-check-circle"></i>',
                         text: r.msj,
+                        showCancelButton: false,
                         confirmButtonColor: '#343a40',
                         confirmButtonText: 'Ok'
+                    }).then(function (result) {
+                        if (result.value) {
+
+                            window.location.href = url + '/login';
+                        }
                     });
                 } else if (r.code === 500) {
 
@@ -78567,7 +78573,7 @@ var RegistroCliente = function (_React$Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
                             { className: 'input-group-prepend input-civil' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_17__public_images_EstadoCivil01_png___default.a, className: 'icon-civil' })
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_17__public_images_EstadoCivil01_png___default.a, className: 'icon-civil' })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'select',

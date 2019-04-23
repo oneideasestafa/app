@@ -67,7 +67,7 @@ export default class RegistroCliente extends React.Component {
             time: new Date(),
             isOpen: false,
             fileName: 'Subir Foto (Opcional)',
-            foto: [],
+            foto: '',
             theme: 'default',
             telefono:''
         };
@@ -140,7 +140,7 @@ export default class RegistroCliente extends React.Component {
                     edad:'',
                     equipo:'',
                     civil: '',
-                    foto: [],
+                    foto: '',
                     fileName: 'Subir Foto (Opcional)',
                     telefono:'',
                     isLoading: false
@@ -150,11 +150,18 @@ export default class RegistroCliente extends React.Component {
 
                 if(r.code === 200){
 
-                    swal({
+                    swal.fire({
                         title: '<i class="fa fa-check-circle"></i>',
                         text: r.msj,
+                        showCancelButton: false,
                         confirmButtonColor: '#343a40',
-                        confirmButtonText: 'Ok'
+                        confirmButtonText: 'Ok',
+                    }).then((result) => {
+                        if (result.value) {
+
+                            window.location.href= url + '/login';
+
+                        }
                     });
 
 
@@ -346,7 +353,7 @@ export default class RegistroCliente extends React.Component {
 
                     <div className="input-group mb-4 mt-4">
                         <div className="input-group-prepend input-civil">
-                            <img src={iconCivil} className="icon-civil" />
+                            <img src={'../public'+iconCivil} className="icon-civil" />
                         </div>
                         <select className="form-control" value={civil} name="civil" id="civil" onChange={this.handleChange}>
                             <option  key="0" value=''>Ingrese Estado Civil (Opcional)</option>

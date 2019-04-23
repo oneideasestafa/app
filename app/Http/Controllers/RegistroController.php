@@ -34,23 +34,25 @@ class RegistroController extends Controller
 
         //guardo la imagen en una variable
         $image = $input['foto'];
+        $base64 = '';
 
-        //obtengo la extension
-        $type = explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-        //creo un nombre temporal
-        $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-        //ruta imagen temporal
-        $pathImgTemporal = public_path('images/'.$name);
-        //proceso la imagen a 200x200
-        $img = Image::make($image)->fit(200,200)->save($pathImgTemporal);
-        //obtengo la data de la imagen
-        $data = file_get_contents($pathImgTemporal);
-        //convierto a base64
-        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-        //elimino imagen temporal
-        File::delete($pathImgTemporal);
+        if($image != ''){
 
-
+            //obtengo la extension
+            $type = explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+            //creo un nombre temporal
+            $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+            //ruta imagen temporal
+            $pathImgTemporal = public_path('images/'.$name);
+            //proceso la imagen a 200x200
+            $img = Image::make($image)->fit(200,200)->save($pathImgTemporal);
+            //obtengo la data de la imagen
+            $data = file_get_contents($pathImgTemporal);
+            //convierto a base64
+            $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+            //elimino imagen temporal
+            File::delete($pathImgTemporal);
+        }
 
         //capturo los datos y los acomodo en un arreglo
         $data = [
