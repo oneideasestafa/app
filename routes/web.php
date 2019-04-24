@@ -58,6 +58,16 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function(){
 
         Route::get('/inicio', 'IndexController@inicio')->name('inicio');
 
+        //ruta perfil
+        Route::get('/cliente/perfil', 'PerfilController@index')->name('perfil');
+        Route::post('/ajax-get-perfil', 'PerfilController@ajaxGetPerfil')->name('ajax-get-perfil');
+        Route::post('/ajax-post-perfil', 'PerfilController@ajaxPostPerfil')->name('ajax-post-perfil');
+        Route::post('/ajax-post-clubs-perfil', 'PerfilController@ajaxPostClubs')->name('ajax-post-clubs-perfil');
+
+        //ruta cambiar clave
+        Route::get('/cliente/cambiar/password', 'CambiarClaveController@index')->name('cambiar-clave');
+        Route::post('/ajax-post-cambiar-clave', 'CambiarClaveController@ajaxPostCambiarClave')->name('ajax-post-cambiar-clave');
+
     });
 
 });

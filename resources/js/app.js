@@ -127,6 +127,8 @@ require('./components/Menu');
 require('./components/Index');
 require('./components/Registro');
 require('./components/QuestionEvent');
+require('./components/CambiarClave');
+require('./components/Perfil/CambiarDatos');
 
 
 //require('./cache');

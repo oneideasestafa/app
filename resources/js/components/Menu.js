@@ -22,10 +22,6 @@ export default class Menu extends Component {
         };
 
         this.handleLogout = this.handleLogout.bind(this);
-        this.handleCheckClick = this.handleCheckClick.bind(this);
-        this.llamarCamarero = this.llamarCamarero.bind(this);
-        this.solicitarCuentaCamarero = this.solicitarCuentaCamarero.bind(this);
-        this.getData = this.getData.bind(this);
         this.getDetener = this.getDetener.bind(this);
 
     }
@@ -40,156 +36,6 @@ export default class Menu extends Component {
 
     }
 
-    llamarCamarero(){
-
-        swal({
-            title: '<i class="fas fa-info-circle"></i>',
-            text: "¿Esta seguro que desea llamar al camarero",
-            showCancelButton: true,
-            confirmButtonColor: '#343a40',
-            cancelButtonColor: '#343a40',
-            cancelButtonText: 'No',
-            confirmButtonText: 'Si'
-        }).then((result) => {
-            if (result.value) {
-
-                axios.post('/ajax-post-camarero-llamar')
-                    .then(res => {
-                        if(res){
-
-                            let r = res.data;
-
-                            if(r.code === 200){
-
-                                swal({
-                                    title: '<i class="fa fa-check-circle"></i>',
-                                    text: r.msj,
-                                    confirmButtonColor: '#343a40'
-                                });
-
-                            }else if(r.code === 500){
-
-                                swal({
-                                    title: '<i class="fa fa-exclamation-triangle"></i>',
-                                    text: r.msj,
-                                    confirmButtonColor: '#343a40'
-                                });
-
-                            }
-
-                        }
-                    })
-                    .catch(function (error) {
-
-                    });
-
-            }
-        });
-
-    }
-
-    solicitarCuentaCamarero(){
-
-        swal({
-            title: '<i class="fas fa-info-circle"></i>',
-            text: "¿Esta seguro que desea solicitar la cuenta al camarero",
-            showCancelButton: true,
-            confirmButtonColor: '#343a40',
-            cancelButtonColor: '#343a40',
-            cancelButtonText: 'No',
-            confirmButtonText: 'Si'
-        }).then((result) => {
-            if (result.value) {
-
-                axios.post('/ajax-post-camarero-solicitar-cuenta')
-                    .then(res => {
-                        if(res){
-
-                            let r = res.data;
-
-                            if(r.code === 200){
-
-                                swal({
-                                    title: '<i class="fa fa-check-circle"></i>',
-                                    text: r.msj,
-                                    confirmButtonColor: '#343a40'
-                                });
-
-                            }else if(r.code === 500){
-
-                                swal({
-                                    title: '<i class="fa fa-exclamation-triangle"></i>',
-                                    text: r.msj,
-                                    confirmButtonColor: '#343a40'
-                                });
-
-                            }
-
-                        }
-                    })
-                    .catch(function (error) {
-
-                    });
-
-            }
-        });
-
-    }
-
-    getData(){
-
-        let self = this;
-
-        axios.post('/ajax-post-comensal-menu-check-camarero')
-            .then(res => {
-                if(res){
-
-                    let r = res.data;
-
-                    if(r.code === 200){
-
-                        self.setState({
-                            checkcamareromesa: r.checkcamareromesa,
-                            codigoComensal: r.codigoComensal
-                        });
-
-                    }
-
-                    setTimeout(this.getData, 2000);
-
-                }
-            })
-            .catch(function (error) {
-
-            });
-
-    }
-
-    handleCheckClick(e){
-
-        this.setState({ fotoproducto: !this.state.fotoproducto });
-
-        let fotoproducto = this.state.fotoproducto;
-
-        axios.post('/ajax/check/fotoproducto', { fotoproducto })
-            .then(res => {
-
-                let r = res.data;
-
-                if(r.code === 200){
-
-                }else{
-                    console.log('error al actualizar el mostrar foto en producto');
-                }
-
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-
-
-    }
-
     handleLogout(e){
 
         let urlLogout = this.state.url+'/logout';
@@ -199,31 +45,18 @@ export default class Menu extends Component {
 
     }
 
-    componentDidMount(){
-        this.getData();
-    }
-
     render() {
 
         let tipoCuenta = this.state.tipocuenta;
         let url = this.state.url;
-        let fotoproducto = this.state.fotoproducto;
-        let pais = this.state.pais;
-        let checkcamarero = this.state.checkcamareromesa;
-        let reserva = false;
 
         let urlInicio       = url + '/';
-        let urlMisPedidos   = url + '/mispedidos/index';
         let urlPerfil       = url + '/cliente/perfil';
-        let urlDireccion    = url + '/direccion/index';
-        let urlVehiculo     = url + '/vehiculo/index';
-        let urlTarjetas     = url + '/tarjetas/index';
-        let urlFavoritos    = url + '/cliente/favoritos';
         let urlCambiarClave = url + '/cliente/cambiar/password';
         let urlChatSoporte  = url + '/chat/soporte';
-        let urlMisReservas  = url + '/misreservas/index';
 
         let changePassword =  <li className="nav-item"><a className="nav-link" href={urlCambiarClave}><i className="fas fa-lock fa-lg"></i>&nbsp;&nbsp; Contraseña</a></li>;
+
         return (
 
             <ul className="navdrawer-nav roboto-condensed">
@@ -233,7 +66,7 @@ export default class Menu extends Component {
                         className="fas fa-home fa-lg"></i>&nbsp;&nbsp; Show</a>
                 </li>
                  <li className="nav-item">
-                    <a className="nav-link" href="#"><i
+                    <a className="nav-link" href={urlPerfil}><i
                         className="fas fa-cog fa-lg"></i>&nbsp;&nbsp;  Perfil</a>
                 </li>
                 <li className="nav-item">
@@ -245,6 +78,8 @@ export default class Menu extends Component {
                     <a className="nav-link" href="#" onClick={this.getDetener}><i
                         className="fas fa-power-off fa-lg"></i>&nbsp;&nbsp; Detener</a>
                 </li>
+
+                { changePassword }
 
                 <li className="nav-item">
                     <a className="nav-link" href="#" onClick={this.handleLogout}><i

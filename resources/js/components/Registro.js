@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import swal from "sweetalert2";
-import 'react-toastify/dist/ReactToastify.css';
 import logoOne from '../../../public/images/logo-one.png';
 import logoFacebook from '../../../public/images/social/facebook-icon.svg';
 import logoGoogle from '../../../public/images/social/google-icon.svg';
@@ -22,10 +21,7 @@ import iconCivil from '../../../public/images/EstadoCivil01.png';
 
 library.add( faSync);
 
-const optionToast = {
-    hideProgressBar: true,
-    autoClose: 3000
-};
+
 const Datepicker = reactMobileDatePicker;
 
 const dateConfig = {
@@ -420,7 +416,7 @@ export default class RegistroCliente extends React.Component {
 
                     </div>
                     <div className="input-group mb-4 mt-4">
-                    <div className="input-group-prepend">
+                        <div className="input-group-prepend">
                             <i className="fas fa-futbol fa-lg"></i>
                         </div>
 
