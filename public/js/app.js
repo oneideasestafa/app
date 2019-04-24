@@ -94971,7 +94971,7 @@ var QuestionEvent = function (_Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         { className: '' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_8__public_images_logo_one_png___default.a, className: 'img-fluid logo-box-registro' })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_8__public_images_logo_one_png___default.a, className: 'img-fluid logo-box-registro mb-4' })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
@@ -94981,12 +94981,6 @@ var QuestionEvent = function (_Component) {
                             null,
                             'Ubicaci\xF3n'
                         )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'alert alert-warning', role: 'alert' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-info-circle' }),
-                        '\xA0Por favor! seleccione y complete los campos del evento a ingresar'
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
@@ -96407,12 +96401,13 @@ __WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__["b" /* library *
 var CambiarClave = function (_Component) {
     _inherits(CambiarClave, _Component);
 
-    function CambiarClave() {
+    function CambiarClave(props) {
         _classCallCheck(this, CambiarClave);
 
-        var _this = _possibleConstructorReturn(this, (CambiarClave.__proto__ || Object.getPrototypeOf(CambiarClave)).call(this));
+        var _this = _possibleConstructorReturn(this, (CambiarClave.__proto__ || Object.getPrototypeOf(CambiarClave)).call(this, props));
 
         _this.state = {
+            url: props.url,
             oldpassword: '',
             newpassword: '',
             repeatpassword: '',
@@ -96445,10 +96440,11 @@ var CambiarClave = function (_Component) {
             var _state = this.state,
                 oldpassword = _state.oldpassword,
                 newpassword = _state.newpassword,
-                repeatpassword = _state.repeatpassword;
+                repeatpassword = _state.repeatpassword,
+                url = _state.url;
 
 
-            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/ajax-post-cambiar-clave', { oldpassword: oldpassword, newpassword: newpassword, repeatpassword: repeatpassword }).then(function (res) {
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(url + '/ajax-post-cambiar-clave', { oldpassword: oldpassword, newpassword: newpassword, repeatpassword: repeatpassword }).then(function (res) {
 
                 self.setState({
                     isLoading: false
@@ -96571,7 +96567,12 @@ var CambiarClave = function (_Component) {
 
 
 if (document.getElementById('cambiar-clave')) {
-    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(CambiarClave, null), document.getElementById('cambiar-clave'));
+
+    var element = document.getElementById('cambiar-clave');
+
+    var props = Object.assign({}, element.dataset);
+
+    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(CambiarClave, props), element);
 }
 
 /***/ }),
@@ -96652,12 +96653,13 @@ var dateConfig = {
 var CambiarDatos = function (_Component) {
     _inherits(CambiarDatos, _Component);
 
-    function CambiarDatos() {
+    function CambiarDatos(props) {
         _classCallCheck(this, CambiarDatos);
 
-        var _this = _possibleConstructorReturn(this, (CambiarDatos.__proto__ || Object.getPrototypeOf(CambiarDatos)).call(this));
+        var _this = _possibleConstructorReturn(this, (CambiarDatos.__proto__ || Object.getPrototypeOf(CambiarDatos)).call(this, props));
 
         _this.state = {
+            url: props.url,
             nombre: '',
             apellido: '',
             sexo: '',
@@ -96725,8 +96727,9 @@ var CambiarDatos = function (_Component) {
             var self = this;
 
             var pais = e.target.value;
+            var url = self.state.url;
 
-            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/ajax-post-clubs-perfil', { pais: pais }).then(function (res) {
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(url + '/ajax-post-clubs-perfil', { pais: pais }).then(function (res) {
 
                 var r = res.data;
 
@@ -96760,7 +96763,11 @@ var CambiarDatos = function (_Component) {
         value: function clubs2(pais) {
             var _this3 = this;
 
-            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/ajax-post-clubs-perfil', { pais: pais }).then(function (res) {
+            var self = this;
+
+            var url = self.state.url;
+
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(url + '/ajax-post-clubs-perfil', { pais: pais }).then(function (res) {
 
                 var r = res.data;
 
@@ -96826,10 +96833,11 @@ var CambiarDatos = function (_Component) {
                 sexo = _state.sexo,
                 civil = _state.civil,
                 nombre = _state.nombre,
-                apellido = _state.apellido;
+                apellido = _state.apellido,
+                url = _state.url;
 
 
-            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/public/ajax-post-perfil', { pais: pais, telefono: telefono, fechan: fechan, equipo: equipo, sexo: sexo, civil: civil, nombre: nombre, apellido: apellido }).then(function (res) {
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(url + '/ajax-post-perfil', { pais: pais, telefono: telefono, fechan: fechan, equipo: equipo, sexo: sexo, civil: civil, nombre: nombre, apellido: apellido }).then(function (res) {
 
                 self.setState({
                     isLoading: false
@@ -96879,7 +96887,10 @@ var CambiarDatos = function (_Component) {
             var _this5 = this;
 
             var self = this;
-            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/public/ajax-get-perfil', {}).then(function (res) {
+
+            var url = self.state.url;
+
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(url + '/ajax-get-perfil', {}).then(function (res) {
                 if (res) {
 
                     var r = res.data;
@@ -97058,7 +97069,7 @@ var CambiarDatos = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
                             { className: 'input-group-prepend input-civil' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_11__public_images_EstadoCivil01_png___default.a, className: 'icon-civil' })
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../../public' + __WEBPACK_IMPORTED_MODULE_11__public_images_EstadoCivil01_png___default.a, className: 'icon-civil' })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'select',
@@ -97106,7 +97117,7 @@ var CambiarDatos = function (_Component) {
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'label',
                                 { className: 'form-check-label', htmlFor: 'inlineRadio1' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_8__public_images_countrys_ar_png___default.a, className: 'img-country' })
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../../public' + __WEBPACK_IMPORTED_MODULE_8__public_images_countrys_ar_png___default.a, className: 'img-country' })
                             )
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -97116,7 +97127,7 @@ var CambiarDatos = function (_Component) {
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'label',
                                 { className: 'form-check-label', htmlFor: 'inlineRadio2' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_9__public_images_countrys_es_png___default.a, className: 'img-country' })
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../../public' + __WEBPACK_IMPORTED_MODULE_9__public_images_countrys_es_png___default.a, className: 'img-country' })
                             )
                         )
                     ),
@@ -97153,7 +97164,7 @@ var CambiarDatos = function (_Component) {
                     this.state.equipo != '' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         { className: 'text-center', style: { 'margin-bottom': '15px' } },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public/images/clubs/' + this.state.equipo + '.png', style: { 'height': '4rem' } })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../../public/images/clubs/' + this.state.equipo + '.png', style: { 'height': '4rem' } })
                     ) : '',
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
@@ -97177,7 +97188,12 @@ var CambiarDatos = function (_Component) {
 
 
 if (document.getElementById('cambiar-datos-perfil')) {
-    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(CambiarDatos, null), document.getElementById('cambiar-datos-perfil'));
+
+    var element = document.getElementById('cambiar-datos-perfil');
+
+    var props = Object.assign({}, element.dataset);
+
+    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(CambiarDatos, props), element);
 }
 
 /***/ }),

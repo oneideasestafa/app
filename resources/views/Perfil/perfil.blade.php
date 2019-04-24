@@ -9,7 +9,7 @@
 
     <div class="centrado-absoluto" style="min-height: 60vh">
 
-        <div id="cambiar-datos-perfil"></div>
+        <div id="cambiar-datos-perfil" data-url="{{ url('/') }}"></div>
 
     </div>
 

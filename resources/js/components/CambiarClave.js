@@ -10,9 +10,10 @@ library.add( faSync);
 
 export default class CambiarClave extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
+            url: props.url,
             oldpassword: '',
             newpassword: '',
             repeatpassword: '',
@@ -40,9 +41,9 @@ export default class CambiarClave extends Component {
             isLoading: true
         });
 
-        let {oldpassword, newpassword, repeatpassword} = this.state;
+        let {oldpassword, newpassword, repeatpassword, url} = this.state;
 
-        axios.post('/ajax-post-cambiar-clave', { oldpassword, newpassword, repeatpassword })
+        axios.post(url + '/ajax-post-cambiar-clave', { oldpassword, newpassword, repeatpassword })
             .then(res => {
 
                 self.setState({
@@ -149,5 +150,11 @@ export default class CambiarClave extends Component {
 }
 
 if (document.getElementById('cambiar-clave')) {
-    ReactDOM.render(<CambiarClave />, document.getElementById('cambiar-clave'));
+
+    const element = document.getElementById('cambiar-clave');
+
+    const props = Object.assign({}, element.dataset);
+
+    ReactDOM.render(<CambiarClave {...props} />, element);
+
 }

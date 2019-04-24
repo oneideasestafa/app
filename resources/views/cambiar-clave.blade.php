@@ -8,7 +8,7 @@
 
     <div class="centrado-absoluto" style="min-height: 55vh">
 
-        <div id="cambiar-clave"></div>
+        <div id="cambiar-clave" data-url="{{ url('/') }}"></div>
 
     </div>
 

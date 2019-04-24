@@ -274,15 +274,11 @@ export default class QuestionEvent extends Component {
                 <form method="POST" onSubmit={this.handleContinuar} className="form-loginy">
 
                     <div className="">
-                        <img src={'../public'+logoOne} className="img-fluid logo-box-registro" />
+                        <img src={'../public'+logoOne} className="img-fluid logo-box-registro mb-4" />
                     </div>
 
                     <div className="text-center">
                         <h2>Ubicación</h2>
-                    </div>
-
-                    <div className="alert alert-warning" role="alert">
-                        <i className="fas fa-info-circle"></i>&nbsp;Por favor! seleccione y complete los campos del evento a ingresar
                     </div>
 
                     <div className="input-group mb-4 mt-4">

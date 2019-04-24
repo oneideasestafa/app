@@ -39,9 +39,10 @@ const dateConfig = {
 
 export default class CambiarDatos extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
+            url: props.url,
             nombre: '',
             apellido: '',
             sexo: '',
@@ -112,8 +113,9 @@ export default class CambiarDatos extends Component {
         let self = this;
 
         let pais = e.target.value;
+        let url = self.state.url;
 
-        axios.post('/ajax-post-clubs-perfil', { pais })
+        axios.post(url + '/ajax-post-clubs-perfil', { pais })
             .then(res => {
 
 
@@ -152,7 +154,11 @@ export default class CambiarDatos extends Component {
 
     clubs2(pais) {
 
-        axios.post('/ajax-post-clubs-perfil', { pais })
+        let self = this;
+
+        let url = self.state.url;
+
+        axios.post(url + '/ajax-post-clubs-perfil', { pais })
             .then(res => {
 
                 let r = res.data;
@@ -212,9 +218,9 @@ export default class CambiarDatos extends Component {
             isLoading: true
         });
 
-        let {pais, telefono, fechan, equipo, sexo, civil, nombre, apellido} = this.state;
+        let {pais, telefono, fechan, equipo, sexo, civil, nombre, apellido, url} = this.state;
 
-        axios.post('/public/ajax-post-perfil', { pais, telefono, fechan, equipo, sexo, civil, nombre, apellido})
+        axios.post(url + '/ajax-post-perfil', { pais, telefono, fechan, equipo, sexo, civil, nombre, apellido})
             .then(res => {
 
                 self.setState({
@@ -270,7 +276,10 @@ export default class CambiarDatos extends Component {
     getPerfil(){
 
         var self = this;
-        axios.post('/public/ajax-get-perfil', {
+
+        let url = self.state.url;
+
+        axios.post(url + '/ajax-get-perfil', {
         })
             .then(res => {
                 if(res){
@@ -405,7 +414,7 @@ export default class CambiarDatos extends Component {
 
                     <div className="input-group mb-4 mt-4">
                         <div className="input-group-prepend input-civil">
-                            <img src={'../public'+iconCivil} className="icon-civil" />
+                            <img src={'../../public'+iconCivil} className="icon-civil" />
                         </div>
                         <select className="form-control" value={civil} name="civil" id="civil" onChange={this.handleChange}>
                             <option  key="0" value=''>Ingrese Estado Civil (Opcional)</option>
@@ -430,12 +439,12 @@ export default class CambiarDatos extends Component {
 
                         <div className="form-check form-check-inline">
                             <input className="form-check-input" onChange={this.clubs} type="radio" name="pais" id="inlineRadio1" value="5caf334dff6eff0ae30e450b" checked={pais === '5caf334dff6eff0ae30e450b'}  />
-                            <label className="form-check-label" htmlFor="inlineRadio1"><img src={'../public'+imgAR} className="img-country" /></label>
+                            <label className="form-check-label" htmlFor="inlineRadio1"><img src={'../../public'+imgAR} className="img-country" /></label>
                         </div>
 
                         <div className="form-check form-check-inline">
                             <input className="form-check-input" onChange={this.clubs} type="radio" name="pais" id="inlineRadio2" value="5caf37adff6eff0ae30e450d" checked={pais === '5caf37adff6eff0ae30e450d'}  />
-                            <label className="form-check-label" htmlFor="inlineRadio2"><img src={'../public'+imgCL} className="img-country" /></label>
+                            <label className="form-check-label" htmlFor="inlineRadio2"><img src={'../../public'+imgCL} className="img-country" /></label>
                         </div>
 
                     </div>
@@ -459,7 +468,7 @@ export default class CambiarDatos extends Component {
 
                     { this.state.equipo!='' ?
                         <div className="text-center" style={{'margin-bottom': '15px'}}>
-                            <img src={'../public/images/clubs/'+this.state.equipo+'.png'} style={{'height': '4rem'}}/>
+                            <img src={'../../public/images/clubs/'+this.state.equipo+'.png'} style={{'height': '4rem'}}/>
                         </div>
                         :''
                     }
@@ -480,5 +489,11 @@ export default class CambiarDatos extends Component {
 }
 
 if (document.getElementById('cambiar-datos-perfil')) {
-    ReactDOM.render(<CambiarDatos />, document.getElementById('cambiar-datos-perfil'));
+
+    const element = document.getElementById('cambiar-datos-perfil');
+
+    const props = Object.assign({}, element.dataset);
+
+    ReactDOM.render(<CambiarDatos {...props} />, element);
+
 }
