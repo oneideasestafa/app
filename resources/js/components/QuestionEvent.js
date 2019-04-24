@@ -269,9 +269,17 @@ export default class QuestionEvent extends Component {
 
         return (
 
-            <div className="abs-center roboto-condensed">
+            <div className="abs-center">
 
-                <form method="POST" onSubmit={this.handleContinuar} className="form-login">
+                <form method="POST" onSubmit={this.handleContinuar} className="form-loginy">
+
+                    <div className="">
+                        <img src={'../public'+logoOne} className="img-fluid logo-box-registro" />
+                    </div>
+
+                    <div className="text-center">
+                        <h2>Ubicación</h2>
+                    </div>
 
                     <div className="alert alert-warning" role="alert">
                         <i className="fas fa-info-circle"></i>&nbsp;Por favor! seleccione y complete los campos del evento a ingresar
@@ -346,12 +354,13 @@ export default class QuestionEvent extends Component {
 
                     <div className="text-center">
                         <a href={urlLogout}>
-                            <button type="button" className="btn btn-rojo btn-box-index">Salir del Aplicativo</button>
+                            <button type="button" className="btn btn-rojo btn-box-index">Salir</button>
                         </a>
                     </div>
 
 
                 </form>
+
             </div>
         );
     }

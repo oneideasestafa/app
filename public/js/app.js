@@ -76095,6 +76095,24 @@ var optionToast = {
 };
 var Datepicker = __WEBPACK_IMPORTED_MODULE_16_react_mobile_datepicker___default.a;
 
+var dateConfig = {
+    'year': {
+        format: 'YYYY',
+        caption: 'Año',
+        step: 1
+    },
+    'month': {
+        format: 'MM',
+        caption: 'Mes',
+        step: 1
+    },
+    'date': {
+        format: 'DD',
+        caption: 'Dia',
+        step: 1
+    }
+};
+
 function convertDate(date, formate) {
     var year = date.getFullYear();
     var month = date.getMonth() + 1;
@@ -76410,11 +76428,12 @@ var RegistroCliente = function (_React$Component) {
                             {
                                 className: 'select-btn sm', style: { 'border': '1px solid #fff', 'padding-top': '0.5rem', 'padding-bottom': '0.5rem', 'width': '88%', 'color': '#dadada' },
                                 onClick: this.handleThemeToggle },
-                            this.state.edad == '' ? 'Ingrese su Fecha de Nacimiento' : this.state.time.getDate() + '/' + this.state.time.getMonth() + '/' + this.state.time.getFullYear()
+                            this.state.edad == '' ? 'Ingrese su Fecha de Nacimiento' : this.state.time.getDate() + '/' + (this.state.time.getMonth() + 1) + '/' + this.state.time.getFullYear()
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Datepicker, {
                             showCaption: true,
                             showHeader: true,
+                            headerFormat: 'DD/MM/YYYY',
                             value: this.state.time,
                             theme: this.state.theme,
                             isOpen: this.state.isOpen,
@@ -76424,7 +76443,8 @@ var RegistroCliente = function (_React$Component) {
                             },
                             confirmText: 'Seleccionar',
                             cancelText: 'Cancelar',
-                            max: new Date()
+                            max: new Date(),
+                            dateConfig: dateConfig
                         })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -76579,7 +76599,7 @@ var RegistroCliente = function (_React$Component) {
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'option',
                                 { key: '-1', value: '' },
-                                'Seleccione'
+                                'Equipos de futbol'
                             ),
                             this.state.clubs.length > 0 ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'option',
@@ -78787,10 +78807,24 @@ var QuestionEvent = function (_Component) {
 
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
-                { className: 'abs-center roboto-condensed' },
+                { className: 'abs-center' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'form',
-                    { method: 'POST', onSubmit: this.handleContinuar, className: 'form-login' },
+                    { method: 'POST', onSubmit: this.handleContinuar, className: 'form-loginy' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: '' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '../public' + __WEBPACK_IMPORTED_MODULE_8__public_images_logo_one_png___default.a, className: 'img-fluid logo-box-registro' })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'text-center' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'h2',
+                            null,
+                            'Ubicaci\xF3n'
+                        )
+                    ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         { className: 'alert alert-warning', role: 'alert' },
@@ -78894,7 +78928,7 @@ var QuestionEvent = function (_Component) {
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'button',
                                 { type: 'button', className: 'btn btn-rojo btn-box-index' },
-                                'Salir del Aplicativo'
+                                'Salir'
                             )
                         )
                     )
