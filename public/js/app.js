@@ -26793,10 +26793,43 @@ window.app = {
             console.log(s);
           }
         });
-
-        window.app.coordenadas();
+        if (window.Laravel.telefono != null && window.Laravel.telefono != undefined) {
+          window.app.coordenadas();
+        }
         window.app.ping();
+        //\Empresa\Evento\Multimedia se suscribe al envento de multimedia
+        cordova.plugins.CordovaMqTTPlugin.subscribe({
+          topic: "/" + window.Laravel.empresa + "/" + window.Laravel.evento + "/Multimedia",
+          qos: 0,
+          success: function success(s) {
+            console.log(s);
+          },
+          error: function error(e) {
+            console.log(s);
+          }
+        });
+        //escucha los enventos de canale multimedia
+        cordova.plugins.CordovaMqTTPlugin.listen("/" + window.Laravel.empresa + "/" + window.Laravel.evento + "/Multimedia", function (payload, params) {
+          console.log("multimedia");
+          //Callback:- (If the user has published to /topic/room/hall)
+          //payload : contains payload data
+          //params : {singlewc:room,multiwc:hall}
+          if (payload != undefined && payload.split(",").length > 1) {
+            var datos = payload.split(",");
+            if (datos[0] == 'TTR') {
+              var url = datos[1];
+              var urls = url.split("+");
+              //'magnet:?xt=urn:btih:0c5207462d0d2ba839b4d8d4bfa3686689738d63&dn=240192_splash.png&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com'
+              for (var i = urls.length - 1; i >= 0; i--) {
+                window.app.torrent(urls[i]);
+              }
+            }
+          }
 
+          console.log(payload);
+          console.log(params);
+        });
+        //escucha un canale simple
         cordova.plugins.CordovaMqTTPlugin.listen("sampletopic", function (payload, params) {
           console.log("testxd2");
           //Callback:- (If the user has published to /topic/room/hall)
@@ -26922,7 +26955,7 @@ window.app = {
     /*  var parentElement = document.getElementById(id);
       var listeningElement = parentElement.querySelector('.listening');
       var receivedElement = parentElement.querySelector('.received');
-       listeningElement.setAttribute('style', 'display:none;');
+        listeningElement.setAttribute('style', 'display:none;');
       receivedElement.setAttribute('style', 'display:block;');*/
 
     //console.log('Received Event: ' + id);
@@ -27068,9 +27101,41 @@ window.app = {
     console.log('lanzado', new Date());
     console.log('para ser ejecutado en', momento);
     setTimeout(tarea, momento.getTime() - new Date().getTime());
+  },
+  torrent: function torrent(uri) {
+    //var WebTorrent = require('webtorrent');
+    var client = new WebTorrent();
+    var magnetURI = uri;
+
+    client.add(magnetURI, function (torrent) {
+      // Got torrent metadata!
+      console.log('Client is downloading:', torrent.infoHash);
+
+      torrent.files.forEach(function (file) {
+        // Display the file by appending it to the DOM. Supports video, audio, images, and
+        // more. Specify a container element (CSS selector or reference to DOM node).
+        file.appendTo('body');
+        console.log(file);
+        client.seed(files, function (torrent) {
+          console.log('Client is seeding:', torrent.infoHash);
+        });
+      });
+    });
+  }, sendTorrent: function sendTorrent(argument) {
+    var client = new WebTorrent();
+
+    // When user drops files on the browser, create a new torrent and start seeding it!
+    dragDrop('body', function (files) {
+      client.seed(files, function (torrent) {
+        console.log('Client is seeding:', torrent.infoHash);
+      });
+    });
   }
 
 };
+//window.app.sendTorrent();
+//window.app.torrent('magnet:?xt=urn:btih:0c5207462d0d2ba839b4d8d4bfa3686689738d63&dn=240192_splash.png&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com');
+
 
 if (localStorage && localStorage.getItem('cache')) {
   window.app.cache = localStorage.getItem('cache') == 'false' ? false : true;
@@ -75341,121 +75406,121 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 __WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__["b" /* library */].add(__WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["a" /* faSync */]);
 
 var Inicio = function (_Component) {
-    _inherits(Inicio, _Component);
+        _inherits(Inicio, _Component);
 
-    function Inicio(props) {
-        _classCallCheck(this, Inicio);
+        function Inicio(props) {
+                _classCallCheck(this, Inicio);
 
-        var _this = _possibleConstructorReturn(this, (Inicio.__proto__ || Object.getPrototypeOf(Inicio)).call(this, props));
+                var _this = _possibleConstructorReturn(this, (Inicio.__proto__ || Object.getPrototypeOf(Inicio)).call(this, props));
 
-        _this.state = {
-            url: props.url,
-            checkcamareromesa: props.checkcamareromesa,
-            mesa: props.mesa,
-            isLoading: false
-        };
+                _this.state = {
+                        url: props.url,
+                        checkcamareromesa: props.checkcamareromesa,
+                        mesa: props.mesa,
+                        isLoading: false
+                };
 
-        _this.handleGPS = _this.handleGPS.bind(_this);
+                _this.handleGPS = _this.handleGPS.bind(_this);
 
-        return _this;
-    }
-
-    _createClass(Inicio, [{
-        key: 'handleGPS',
-        value: function handleGPS(e, url) {
-
-            /* window.location.href=url+"/-54.804826/-68.313598"; */
-
-            e.preventDefault();
-            if (window.app.isCordova()) {
-                window.gpsCarhop(url);
-            } else {
-                __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
-                    showCloseButton: false,
-                    showCancelButton: true,
-                    showConfirmButton: false,
-                    text: "Este servicio solo funciona con la APP instalada, no en modo Web",
-                    cancelButtonText: 'Cerrar',
-                    cancelButtonColor: '#343a40',
-                    cancelButtonClass: 'btn-info-descripcion'
-                });
-            }
+                return _this;
         }
-    }, {
-        key: 'handleGPSCamarero',
-        value: function handleGPSCamarero(e, url) {
 
-            e.preventDefault();
-            if (window.app.isCordova()) {
-                window.location.href = url;
-            } else {
-                __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
-                    showCloseButton: false,
-                    showCancelButton: true,
-                    showConfirmButton: false,
-                    text: "Este servicio solo funciona con la APP instalada, no en modo Web",
-                    cancelButtonText: 'Cerrar',
-                    cancelButtonColor: '#343a40',
-                    cancelButtonClass: 'btn-info-descripcion'
-                });
-            }
-        }
-    }, {
-        key: 'render',
-        value: function render() {
+        _createClass(Inicio, [{
+                key: 'handleGPS',
+                value: function handleGPS(e, url) {
 
-            var url = this.state.url;
-            var mesa = this.state.mesa;
-            var checkcamareromesa = this.state.checkcamareromesa;
-            var opacidad = '';
-            var opacidadCamarero = '';
-            var opacidadReserva = ' ';
+                        /* window.location.href=url+"/-54.804826/-68.313598"; */
 
-            var urlCarhopList = url + '/carhop/sucursalesgps';
-            var urlCarhopMap = url + '/carhop/map';
+                        e.preventDefault();
+                        if (window.app.isCordova()) {
+                                window.gpsCarhop(url);
+                        } else {
+                                __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                                        showCloseButton: false,
+                                        showCancelButton: true,
+                                        showConfirmButton: false,
+                                        text: "Este servicio solo funciona con la APP instalada, no en modo Web",
+                                        cancelButtonText: 'Cerrar',
+                                        cancelButtonColor: '#343a40',
+                                        cancelButtonClass: 'btn-info-descripcion'
+                                });
+                        }
+                }
+        }, {
+                key: 'handleGPSCamarero',
+                value: function handleGPSCamarero(e, url) {
 
-            var urlDeliveryList = url + '/delivery/list';
-            var urlDeliveryMap = url + '/delivery/map';
+                        e.preventDefault();
+                        if (window.app.isCordova()) {
+                                window.location.href = url;
+                        } else {
+                                __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                                        showCloseButton: false,
+                                        showCancelButton: true,
+                                        showConfirmButton: false,
+                                        text: "Este servicio solo funciona con la APP instalada, no en modo Web",
+                                        cancelButtonText: 'Cerrar',
+                                        cancelButtonColor: '#343a40',
+                                        cancelButtonClass: 'btn-info-descripcion'
+                                });
+                        }
+                }
+        }, {
+                key: 'render',
+                value: function render() {
 
-            var urlRetiroList = url + '/retiro/list';
-            var urlRetiroMap = url + '/retiro/map';
+                        var url = this.state.url;
+                        var mesa = this.state.mesa;
+                        var checkcamareromesa = this.state.checkcamareromesa;
+                        var opacidad = '';
+                        var opacidadCamarero = '';
+                        var opacidadReserva = ' ';
 
-            var urlCamareroList = url + '/scan-qr-camarero';
+                        var urlCarhopList = url + '/carhop/sucursalesgps';
+                        var urlCarhopMap = url + '/carhop/map';
 
-            var urlReservaList = url + '/reserva/sucursalesgps';
-            var urlReservaMap = url + '/reserva/map';
+                        var urlDeliveryList = url + '/delivery/list';
+                        var urlDeliveryMap = url + '/delivery/map';
 
-            if (checkcamareromesa) {
+                        var urlRetiroList = url + '/retiro/list';
+                        var urlRetiroMap = url + '/retiro/map';
 
-                opacidad = ' opacidad';
-                opacidadCamarero = '';
+                        var urlCamareroList = url + '/scan-qr-camarero';
 
-                urlCarhopList = '#';
-                urlCarhopMap = '#';
+                        var urlReservaList = url + '/reserva/sucursalesgps';
+                        var urlReservaMap = url + '/reserva/map';
 
-                urlDeliveryList = '#';
-                urlDeliveryMap = '#';
+                        if (checkcamareromesa) {
 
-                urlRetiroList = '#';
-                urlRetiroMap = '#';
+                                opacidad = ' opacidad';
+                                opacidadCamarero = '';
 
-                urlReservaList = '#';
-                urlReservaMap = '#';
+                                urlCarhopList = '#';
+                                urlCarhopMap = '#';
 
-                urlCamareroList = url + '/comensal/' + mesa + '/cart';
-            }
+                                urlDeliveryList = '#';
+                                urlDeliveryMap = '#';
 
-            document.body.style.backgroundImage = "url('" + '../public' + __WEBPACK_IMPORTED_MODULE_7__public_images_fondo_jpeg___default.a + "')";
-            document.body.style.backgroundPosition = "center";
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'main' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: '' })
-            );
-        }
-    }]);
+                                urlRetiroList = '#';
+                                urlRetiroMap = '#';
 
-    return Inicio;
+                                urlReservaList = '#';
+                                urlReservaMap = '#';
+
+                                urlCamareroList = url + '/comensal/' + mesa + '/cart';
+                        }
+
+                        document.body.style.backgroundImage = "url('" + '../public' + __WEBPACK_IMPORTED_MODULE_7__public_images_fondo_jpeg___default.a + "')";
+                        document.body.style.backgroundPosition = "center";
+                        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { className: 'main' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: '' })
+                        );
+                }
+        }]);
+
+        return Inicio;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Inicio);
@@ -75463,11 +75528,11 @@ var Inicio = function (_Component) {
 
 if (document.getElementById('inicio')) {
 
-    var element = document.getElementById('inicio');
+        var element = document.getElementById('inicio');
 
-    var props = Object.assign({}, element.dataset);
+        var props = Object.assign({}, element.dataset);
 
-    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Inicio, props), element);
+        __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Inicio, props), element);
 }
 
 /***/ }),

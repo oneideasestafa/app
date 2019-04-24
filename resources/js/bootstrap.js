@@ -215,10 +215,45 @@ cordova.plugins.CordovaMqTTPlugin.connect({
              console.log(s);
               }
             });
-
-            window.app.coordenadas();  
+            if(window.Laravel.telefono!=null&&window.Laravel.telefono!=undefined){
+              window.app.coordenadas();  
+            }
             window.app.ping();
-
+            //\Empresa\Evento\Multimedia se suscribe al envento de multimedia
+            cordova.plugins.CordovaMqTTPlugin.subscribe({
+               topic:"/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/Multimedia",
+               qos:0,
+              success:function(s){
+             console.log(s);
+              },
+              error:function(e){
+             console.log(s);
+              }
+            });
+            //escucha los enventos de canale multimedia
+            cordova.plugins.CordovaMqTTPlugin.listen("/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/Multimedia",function(payload,params){
+              console.log("multimedia");
+              //Callback:- (If the user has published to /topic/room/hall)
+              //payload : contains payload data
+              //params : {singlewc:room,multiwc:hall}
+            if(payload!=undefined&&payload.split(",").length>1){
+              var datos=payload.split(",");
+              if(datos[0]=='TTR'){
+                var url=datos[1];
+                var urls=url.split("+");
+                //'magnet:?xt=urn:btih:0c5207462d0d2ba839b4d8d4bfa3686689738d63&dn=240192_splash.png&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com'
+                  for (var i = urls.length - 1; i >= 0; i--) {                   
+                    window.app.torrent(urls[i]);
+                  }
+    
+              }
+              
+            }
+             
+               console.log(payload);
+              console.log(params);
+            });
+            //escucha un canale simple
             cordova.plugins.CordovaMqTTPlugin.listen("sampletopic",function(payload,params){
             	console.log("testxd2");
               //Callback:- (If the user has published to /topic/room/hall)
@@ -502,10 +537,41 @@ cordova.plugins.CordovaMqTTPlugin.publish({
           console.log('lanzado',new Date());
           console.log('para ser ejecutado en',momento);
           setTimeout(tarea, momento.getTime()-(new Date()).getTime());
-      }
+      },
+       torrent:function (uri){
+//var WebTorrent = require('webtorrent');
+var client = new WebTorrent();
+var magnetURI = uri;
+
+client.add(magnetURI, function (torrent) {
+  // Got torrent metadata!
+  console.log('Client is downloading:', torrent.infoHash)
+
+  torrent.files.forEach(function (file) {
+    // Display the file by appending it to the DOM. Supports video, audio, images, and
+    // more. Specify a container element (CSS selector or reference to DOM node).
+    file.appendTo('body');
+    console.log(file);
+      client.seed(files, function (torrent) {
+        console.log('Client is seeding:', torrent.infoHash)
+      });
+  })
+});
+    },sendTorrent:function (argument) {
+      var client = new WebTorrent()
+
+      // When user drops files on the browser, create a new torrent and start seeding it!
+      dragDrop('body', function (files) {
+        client.seed(files, function (torrent) {
+          console.log('Client is seeding:', torrent.infoHash)
+        })
+      });
+    }
 
 };
-
+//window.app.sendTorrent();
+//window.app.torrent('magnet:?xt=urn:btih:0c5207462d0d2ba839b4d8d4bfa3686689738d63&dn=240192_splash.png&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com');
+       
 
 if(localStorage&&localStorage.getItem('cache')){
   window.app.cache=localStorage.getItem('cache') == 'false' ? false : true;
