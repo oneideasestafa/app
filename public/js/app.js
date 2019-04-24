@@ -96829,7 +96829,7 @@ var CambiarDatos = function (_Component) {
                 apellido = _state.apellido;
 
 
-            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/ajax-post-perfil', { pais: pais, telefono: telefono, fechan: fechan, equipo: equipo, sexo: sexo, civil: civil, nombre: nombre, apellido: apellido }).then(function (res) {
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/public/ajax-post-perfil', { pais: pais, telefono: telefono, fechan: fechan, equipo: equipo, sexo: sexo, civil: civil, nombre: nombre, apellido: apellido }).then(function (res) {
 
                 self.setState({
                     isLoading: false
@@ -96879,7 +96879,7 @@ var CambiarDatos = function (_Component) {
             var _this5 = this;
 
             var self = this;
-            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/ajax-get-perfil', {}).then(function (res) {
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/public/ajax-get-perfil', {}).then(function (res) {
                 if (res) {
 
                     var r = res.data;

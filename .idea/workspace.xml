@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af40b18d-bc3e-44b1-b2cf-dd21e4584803" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/CambiarClaveController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/PerfilController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/ValidateCambiarPassword.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/ValidatePerfil.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/MongoDB/Pais.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/CambiarClave.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/Perfil/CambiarDatos.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Perfil/perfil.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/cambiar-clave.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/master-inside.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Registro.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Registro.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Perfil/CambiarDatos.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Perfil/CambiarDatos.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,8 +39,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/js/components/Perfil/CambiarDatos.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="342" column="119" selection-start-line="342" selection-start-column="119" selection-end-line="342" selection-end-column="119" />
+            <state relative-caret-position="589">
+              <caret line="211" column="27" lean-forward="true" selection-start-line="211" selection-start-column="27" selection-end-line="211" selection-end-column="27" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -80,8 +64,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Requests/ValidatePerfil.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="769">
-              <caret line="43" column="55" selection-start-line="43" selection-start-column="55" selection-end-line="43" selection-end-column="55" />
+            <state relative-caret-position="988">
+              <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+              <folding>
+                <element signature="e#37#83#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -89,8 +76,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Requests/ValidateRegistro.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="760">
-              <caret line="49" column="62" selection-start-line="41" selection-start-column="12" selection-end-line="49" selection-end-column="62" />
+            <state relative-caret-position="712">
+              <caret line="56" column="5" selection-start-line="53" selection-start-column="4" selection-end-line="56" selection-end-column="5" />
               <folding>
                 <element signature="e#37#80#0#PHP" expanded="true" />
               </folding>
@@ -364,12 +351,12 @@
       <option name="presentableId" value="Default" />
       <updated>1555651359213</updated>
       <workItem from="1555651360463" duration="34804000" />
-      <workItem from="1556072141089" duration="14139000" />
+      <workItem from="1556072141089" duration="14884000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67792000" />
+    <option name="totallyTimeSpent" value="68537000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
@@ -747,8 +734,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Requests/ValidateRegistro.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
-          <caret line="49" column="62" selection-start-line="41" selection-start-column="12" selection-end-line="49" selection-end-column="62" />
+        <state relative-caret-position="712">
+          <caret line="56" column="5" selection-start-line="53" selection-start-column="4" selection-end-line="56" selection-end-column="5" />
           <folding>
             <element signature="e#37#80#0#PHP" expanded="true" />
           </folding>
@@ -757,15 +744,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Requests/ValidatePerfil.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="769">
-          <caret line="43" column="55" selection-start-line="43" selection-start-column="55" selection-end-line="43" selection-end-column="55" />
+        <state relative-caret-position="988">
+          <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+          <folding>
+            <element signature="e#37#83#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/components/Perfil/CambiarDatos.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="342" column="119" selection-start-line="342" selection-start-column="119" selection-end-line="342" selection-end-column="119" />
+        <state relative-caret-position="589">
+          <caret line="211" column="27" lean-forward="true" selection-start-line="211" selection-start-column="27" selection-end-line="211" selection-end-column="27" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>

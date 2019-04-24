@@ -214,7 +214,7 @@ export default class CambiarDatos extends Component {
 
         let {pais, telefono, fechan, equipo, sexo, civil, nombre, apellido} = this.state;
 
-        axios.post('/ajax-post-perfil', { pais, telefono, fechan, equipo, sexo, civil, nombre, apellido})
+        axios.post('/public/ajax-post-perfil', { pais, telefono, fechan, equipo, sexo, civil, nombre, apellido})
             .then(res => {
 
                 self.setState({
@@ -270,7 +270,7 @@ export default class CambiarDatos extends Component {
     getPerfil(){
 
         var self = this;
-        axios.post('/ajax-get-perfil', {
+        axios.post('/public/ajax-get-perfil', {
         })
             .then(res => {
                 if(res){
