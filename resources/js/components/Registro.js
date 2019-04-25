@@ -305,7 +305,7 @@ export default class RegistroCliente extends React.Component {
                         <div className="input-group-prepend">
                             <i className="fa fa-address-card fa-lg"></i>
                         </div>
-                      {urlFacebook}  <input type="text" id="nombre" name="nombre" value={nombre} onChange={this.handleChange} className="form-control" placeholder="Ingrese su nombre" />
+                        <input type="text" id="nombre" name="nombre" value={nombre} onChange={this.handleChange} className="form-control" placeholder="Ingrese su nombre" />
                     </div>
 
                     <div className="input-group mb-4 mt-4">
@@ -435,7 +435,7 @@ export default class RegistroCliente extends React.Component {
 
                     { this.state.equipo!='' ?
                         <div className="text-center" style={{'margin-bottom': '15px'}}>
-                        <img src={'../public/images/clubs/'+this.state.equipo+'.png'} style={{'height': '4rem'}}/>
+                        <img src={'/images/clubs/'+this.state.equipo+'.png'} style={{'height': '4rem'}}/>
                     </div>
                     :''}
                     <div className="text-center">

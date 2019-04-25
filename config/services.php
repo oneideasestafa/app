@@ -43,7 +43,7 @@ return [
             'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
         ],
     ],
-     'facebook' => [
+    'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
         'redirect' => 'https://app.oneshow.com.ar/auth/facebook/callback',
@@ -56,7 +56,7 @@ return [
     'twitter' => [
         'client_id' => env('TWITTER_CLIENT_ID'),
         'client_secret' => env('TWITTER_CLIENT_SECRET'),
-        'redirect' => env('CALLBACK_URL_TWITTER'),
+        'redirect' => 'https://app.oneshow.com.ar/auth/twitter/callback',
     ],
     'linkedin' => [
         'client_id' => env('LINKEDIN_CLIENT_ID'),
@@ -66,7 +66,7 @@ return [
     'instagram' => [
         'client_id' => env('INSTAGRAM_CLIENT_ID'),
         'client_secret' => env('INSTAGRAM_CLIENT_SECRET'),
-        'redirect' => env('CALLBACK_URL_INSTAGRAM'),
+        'redirect' => 'https://app.oneshow.com.ar/auth/instagram/callback',
     ],
 
 ];
