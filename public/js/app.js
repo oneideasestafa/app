@@ -67910,7 +67910,7 @@ var Login = function (_Component) {
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'a',
-                            { href: '#' },
+                            { href: urlTwitter },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_10__public_images_social_twitter_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -93970,7 +93970,7 @@ var Index = function (_Component) {
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'a',
-                            { href: '#' },
+                            { href: urlTwitter },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_10__public_images_social_twitter_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -94643,7 +94643,7 @@ var RegistroCliente = function (_React$Component) {
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'a',
-                            { href: '#' },
+                            { href: urlTwitter },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_10__public_images_social_twitter_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
