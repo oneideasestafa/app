@@ -68,40 +68,48 @@ class PerfilController extends Controller
     //metodo para guardar perfil
     public function ajaxPostPerfil(ValidatePerfil $request){
 
-        $input = $request->all();
+        if(Auth::user()->TipoCuenta == 'Visitante'){
 
-        $fnac = Carbon::parse($input['fechan'])->format('d/m/Y');
+            return response()->json(['code' => 200, 'msj' => 'Data actualizada exitosamente. Recuerda que la cuenta es solo para demostración.']);
 
-        //capturo los datos y los acomodo en un arreglo
-        $data = [
-            'nombre'              => $input['nombre'],
-            'apellido'            => $input['apellido'],
-            'pais'                => new ObjectId($input['pais']),
-            'telefono'            => $input['telefono'],
-            'fechan'              => $fnac,
-            'sexo'                => $input['sexo'],
-            'equipo'              => $input['equipo'],
-            'civil'               => $input['civil'] == '' ? '' : new ObjectId($input['civil'])
-        ];
-
-        $id = Auth::user()->_id;
-
-        //procedo a guardarlos en la bd
-        $registro = Cliente::find($id);
-        $registro->Pais_id             = $data['pais'];
-        $registro->Telefono            = $data['telefono'];
-        $registro->Nombre              = $data['nombre'];
-        $registro->Apellido            = $data['apellido'];
-        $registro->Sexo                = $data['sexo'];
-        $registro->FechaNacimiento     = $data['fechan'];
-        $registro->Equipo              = $data['equipo'];
-        $registro->EstadoCivil_id      = $data['civil'];
-
-        //verifico si fue exitoso el insert en la bd
-        if($registro->save()){
-            return response()->json(['code' => 200, 'msj' => 'Data actualizada exitosamente']);
         }else{
-            return response()->json(['code' => 500, 'msj' => 'Error al Actualizar data']);
+
+            $input = $request->all();
+
+            $fnac = Carbon::parse($input['fechan'])->format('d/m/Y');
+
+            //capturo los datos y los acomodo en un arreglo
+            $data = [
+                'nombre'              => $input['nombre'],
+                'apellido'            => $input['apellido'],
+                'pais'                => new ObjectId($input['pais']),
+                'telefono'            => $input['telefono'],
+                'fechan'              => $fnac,
+                'sexo'                => $input['sexo'],
+                'equipo'              => $input['equipo'],
+                'civil'               => $input['civil'] == '' ? '' : new ObjectId($input['civil'])
+            ];
+
+            $id = Auth::user()->_id;
+
+            //procedo a guardarlos en la bd
+            $registro = Cliente::find($id);
+            $registro->Pais_id             = $data['pais'];
+            $registro->Telefono            = $data['telefono'];
+            $registro->Nombre              = $data['nombre'];
+            $registro->Apellido            = $data['apellido'];
+            $registro->Sexo                = $data['sexo'];
+            $registro->FechaNacimiento     = $data['fechan'];
+            $registro->Equipo              = $data['equipo'];
+            $registro->EstadoCivil_id      = $data['civil'];
+
+            //verifico si fue exitoso el insert en la bd
+            if($registro->save()){
+                return response()->json(['code' => 200, 'msj' => 'Data actualizada exitosamente']);
+            }else{
+                return response()->json(['code' => 500, 'msj' => 'Error al Actualizar data']);
+            }
+
         }
 
     }

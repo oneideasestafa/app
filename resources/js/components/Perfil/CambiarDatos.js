@@ -231,8 +231,6 @@ export default class CambiarDatos extends Component {
 
                 if(r.code === 200){
 
-                    this.getPerfil();
-
                     swal.fire({
                         title: '<i class="fa fa-check-circle"></i>',
                         text: r.msj,
@@ -241,6 +239,8 @@ export default class CambiarDatos extends Component {
                         confirmButtonText: 'Ok',
                     }).then((result) => {
                         if (result.value) {
+
+                            this.getPerfil();
 
                             window.location.href= url + '/inicio';
 

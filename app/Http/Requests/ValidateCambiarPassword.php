@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Facades\Auth;
 
 class ValidateCambiarPassword extends FormRequest
 {
@@ -25,11 +26,14 @@ class ValidateCambiarPassword extends FormRequest
      */
     public function rules()
     {
-        return [
+
+        $rules = [
             'oldpassword'    => 'required',
             'newpassword'    => 'required',
             'repeatpassword' => 'required|same:newpassword'
         ];
+
+        return $rules;
     }
 
     public function messages()

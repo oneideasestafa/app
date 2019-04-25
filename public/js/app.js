@@ -96853,8 +96853,6 @@ var CambiarDatos = function (_Component) {
 
                 if (r.code === 200) {
 
-                    _this4.getPerfil();
-
                     __WEBPACK_IMPORTED_MODULE_7_sweetalert2___default.a.fire({
                         title: '<i class="fa fa-check-circle"></i>',
                         text: r.msj,
@@ -96863,6 +96861,8 @@ var CambiarDatos = function (_Component) {
                         confirmButtonText: 'Ok'
                     }).then(function (result) {
                         if (result.value) {
+
+                            _this4.getPerfil();
 
                             window.location.href = url + '/inicio';
                         }
