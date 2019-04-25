@@ -27,24 +27,32 @@ class CambiarClaveController extends Controller
             'new'  => $input['newpassword']
         ];
 
-        //ubico el password actual del usuario
-        $user = Cliente::find(Auth::user()->_id);
+        if(Auth::user()->TipoCuenta == 'Visitante'){
 
-        //verifico que conicida con el ingresado, sino mando un error
-        if(Hash::check($data['old'], $user->Password)){
-
-            //guardo el nuevo password en la bd
-            $user->Password = Hash::make($data['new']);
-
-            //verifico que fue guardado
-            if($user->save()){
-                return response()->json(['code' => 200, 'msj' => 'Clave cambiada exitosamente']);
-            }else{
-                return response()->json(['code' => 500, 'msj' => 'Ocurrio un problema al cambiar la clave']);
-            }
+            return response()->json(['code' => 200, 'msj' => 'Clave cambiada exitosamente. Recuerda que la cuenta es solo para demostración.']);
 
         }else{
-            return response()->json(['code' => 600, 'msj' => 'Clave actual incorrecta']);
+
+            //ubico el password actual del usuario
+            $user = Cliente::find(Auth::user()->_id);
+
+            //verifico que conicida con el ingresado, sino mando un error
+            if(Hash::check($data['old'], $user->Password)){
+
+                //guardo el nuevo password en la bd
+                $user->Password = Hash::make($data['new']);
+
+                //verifico que fue guardado
+                if($user->save()){
+                    return response()->json(['code' => 200, 'msj' => 'Clave cambiada exitosamente']);
+                }else{
+                    return response()->json(['code' => 500, 'msj' => 'Ocurrio un problema al cambiar la clave']);
+                }
+
+            }else{
+                return response()->json(['code' => 600, 'msj' => 'Clave actual incorrecta']);
+            }
+
         }
 
     }

@@ -231,15 +231,21 @@ export default class CambiarDatos extends Component {
 
                 if(r.code === 200){
 
-                    this.getPerfil();
-
-                    swal({
-                        title: '<i class="fas fa-exclamation-circle"></i>',
+                    swal.fire({
+                        title: '<i class="fa fa-check-circle"></i>',
                         text: r.msj,
+                        showCancelButton: false,
                         confirmButtonColor: '#343a40',
-                        confirmButtonText: 'Ok'
-                    });
+                        confirmButtonText: 'Ok',
+                    }).then((result) => {
+                        if (result.value) {
 
+                            this.getPerfil();
+
+                            window.location.href= url + '/inicio';
+
+                        }
+                    });
 
                 }else if(r.code === 500){
 

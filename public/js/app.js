@@ -96460,11 +96460,17 @@ var CambiarClave = function (_Component) {
                         repeatpassword: ''
                     });
 
-                    __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                    __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default.a.fire({
                         title: '<i class="fa fa-check-circle"></i>',
                         text: r.msj,
+                        showCancelButton: false,
                         confirmButtonColor: '#343a40',
                         confirmButtonText: 'Ok'
+                    }).then(function (result) {
+                        if (result.value) {
+
+                            window.location.href = url + '/inicio';
+                        }
                     });
                 } else if (r.code === 500) {
 
@@ -96847,13 +96853,19 @@ var CambiarDatos = function (_Component) {
 
                 if (r.code === 200) {
 
-                    _this4.getPerfil();
-
-                    __WEBPACK_IMPORTED_MODULE_7_sweetalert2___default()({
-                        title: '<i class="fas fa-exclamation-circle"></i>',
+                    __WEBPACK_IMPORTED_MODULE_7_sweetalert2___default.a.fire({
+                        title: '<i class="fa fa-check-circle"></i>',
                         text: r.msj,
+                        showCancelButton: false,
                         confirmButtonColor: '#343a40',
                         confirmButtonText: 'Ok'
+                    }).then(function (result) {
+                        if (result.value) {
+
+                            _this4.getPerfil();
+
+                            window.location.href = url + '/inicio';
+                        }
                     });
                 } else if (r.code === 500) {
 
