@@ -457,7 +457,7 @@ export default class RegistroCliente extends React.Component {
                         <a href={urlGoogle}>
                             <img src={logoGoogle} className="img-fluid icon-social mr-3" />
                         </a>
-                        <a href="#">
+                        <a href={urlTwitter}>
                             <img src={logoTwitter} className="img-fluid icon-social mr-3" />
                         </a>
 
