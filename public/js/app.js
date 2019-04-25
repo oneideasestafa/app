@@ -67915,7 +67915,7 @@ var Login = function (_Component) {
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'a',
-                            { href: '#' },
+                            { href: urlInstagram },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_11__public_images_social_instagram_icon_svg___default.a, className: 'img-fluid icon-social' })
                         )
                     ),
@@ -93975,7 +93975,7 @@ var Index = function (_Component) {
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'a',
-                            { href: '#' },
+                            { href: urlInstagram },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_11__public_images_social_instagram_icon_svg___default.a, className: 'img-fluid icon-social' })
                         )
                     ),
@@ -94648,7 +94648,7 @@ var RegistroCliente = function (_React$Component) {
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'a',
-                            { href: '#' },
+                            { href: urlInstagram },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_11__public_images_social_instagram_icon_svg___default.a, className: 'img-fluid icon-social' })
                         )
                     ),
