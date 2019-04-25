@@ -79,7 +79,7 @@ export default class Index extends Component {
                 <div className="box">
 
                     <div className="">
-                        <img src={'../public'+logoOne} className="img-fluid logo-box-index" />
+                        <img src={logoOne} className="img-fluid logo-box-index" />
                     </div>
 
                     <div className="text-center">
@@ -101,19 +101,19 @@ export default class Index extends Component {
 
                     <div className="text-center mb-4">
 
-                        <a href="#">
-                            <img src={'../public'+logoFacebook} className="img-fluid icon-social mr-3" />
+                        <a href={urlFacebook}>
+                            <img src={logoFacebook} className="img-fluid icon-social mr-3" />
                         </a>
 
                         <a href="#">
-                            <img src={'../public'+logoGoogle} className="img-fluid icon-social mr-3" />
+                            <img src={logoGoogle} className="img-fluid icon-social mr-3" />
                         </a>
                         <a href="#">
-                            <img src={'../public'+logoTwitter} className="img-fluid icon-social mr-3" />
+                            <img src={logoTwitter} className="img-fluid icon-social mr-3" />
                         </a>
 
                         <a href="#">
-                            <img src={'../public'+logoInstagram} className="img-fluid icon-social" />
+                            <img src={logoInstagram} className="img-fluid icon-social" />
                         </a>
 
                     </div>
