@@ -105,7 +105,7 @@ export default class Index extends Component {
                             <img src={logoFacebook} className="img-fluid icon-social mr-3" />
                         </a>
 
-                        <a href="#">
+                        <a href={urlGoogle}>
                             <img src={logoGoogle} className="img-fluid icon-social mr-3" />
                         </a>
                         <a href="#">

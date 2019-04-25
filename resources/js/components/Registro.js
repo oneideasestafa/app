@@ -292,7 +292,7 @@ export default class RegistroCliente extends React.Component {
             <div className='box'>
 
                 <div className="">
-                    <img src={'../public'+logoOne} className="img-fluid logo-box-registro" />
+                    <img src={logoOne} className="img-fluid logo-box-registro" />
                 </div>
 
                 <div className="text-center">
@@ -305,7 +305,7 @@ export default class RegistroCliente extends React.Component {
                         <div className="input-group-prepend">
                             <i className="fa fa-address-card fa-lg"></i>
                         </div>
-                        <input type="text" id="nombre" name="nombre" value={nombre} onChange={this.handleChange} className="form-control" placeholder="Ingrese su nombre" />
+                      {urlFacebook}  <input type="text" id="nombre" name="nombre" value={nombre} onChange={this.handleChange} className="form-control" placeholder="Ingrese su nombre" />
                     </div>
 
                     <div className="input-group mb-4 mt-4">
@@ -370,7 +370,7 @@ export default class RegistroCliente extends React.Component {
 
                     <div className="input-group mb-4 mt-4">
                         <div className="input-group-prepend input-civil">
-                            <img src={'../public'+iconCivil} className="icon-civil" />
+                            <img src={iconCivil} className="icon-civil" />
                         </div>
                         <select className="form-control" value={civil} name="civil" id="civil" onChange={this.handleChange}>
                             <option  key="0" value=''>Ingrese Estado Civil (Opcional)</option>
@@ -406,12 +406,12 @@ export default class RegistroCliente extends React.Component {
 
                         <div className="form-check form-check-inline">
                             <input className="form-check-input" onChange={this.clubs} type="radio" name="pais" id="inlineRadio1" value="5caf334dff6eff0ae30e450b" checked={pais === '5caf334dff6eff0ae30e450b'}  />
-                            <label className="form-check-label" htmlFor="inlineRadio1"><img src={'../public'+imgAR} className="img-country" /></label>
+                            <label className="form-check-label" htmlFor="inlineRadio1"><img src={imgAR} className="img-country" /></label>
                         </div>
 
                         <div className="form-check form-check-inline">
                             <input className="form-check-input" onChange={this.clubs} type="radio" name="pais" id="inlineRadio2" value="5caf37adff6eff0ae30e450d" checked={pais === '5caf37adff6eff0ae30e450d'}  />
-                            <label className="form-check-label" htmlFor="inlineRadio2"><img src={'../public'+imgCL} className="img-country" /></label>
+                            <label className="form-check-label" htmlFor="inlineRadio2"><img src={imgCL} className="img-country" /></label>
                         </div>
 
                     </div>
@@ -450,19 +450,19 @@ export default class RegistroCliente extends React.Component {
 
                     <div className="text-center mb-4">
 
+                        <a href={urlFacebook}>
+                            <img src={logoFacebook} className="img-fluid icon-social mr-3" />
+                        </a>
+
+                        <a href={urlGoogle}>
+                            <img src={logoGoogle} className="img-fluid icon-social mr-3" />
+                        </a>
                         <a href="#">
-                            <img src={'../public'+logoFacebook} className="img-fluid icon-social mr-3" />
+                            <img src={logoTwitter} className="img-fluid icon-social mr-3" />
                         </a>
 
                         <a href="#">
-                            <img src={'../public'+logoGoogle} className="img-fluid icon-social mr-3" />
-                        </a>
-                        <a href="#">
-                            <img src={'../public'+logoTwitter} className="img-fluid icon-social mr-3" />
-                        </a>
-
-                        <a href="#">
-                            <img src={'../public'+logoInstagram} className="img-fluid icon-social" />
+                            <img src={logoInstagram} className="img-fluid icon-social" />
                         </a>
 
                     </div>
