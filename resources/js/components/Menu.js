@@ -32,6 +32,11 @@ export default class Menu extends Component {
             title: '<i class="fa fa-exclamation-triangle"></i>',
             text: 'Se ha detenido los procesos interno de la aplicación',
             confirmButtonColor: '#343a40'
+        }).then(function(value) {
+           // cumplimiento
+           window.app.detener();
+          }, function(reason) {
+          // rechazo
         });
 
     }

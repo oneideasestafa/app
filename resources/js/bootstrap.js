@@ -399,6 +399,10 @@ cordova.plugins.CordovaMqTTPlugin.publish({
 
         //console.log('Received Event: ' + id);
     },
+    detener:function() {
+      window.app.animacion=undefined;
+      window.app.animacionFinFLHEstado=5;
+    },
     tareaCOL: function(x) {
           console.log('acá va la tarea', new Date());
           var animacion=window.app.animacion;
