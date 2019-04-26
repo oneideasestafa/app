@@ -65,7 +65,7 @@ window.app = {
     animacionFinFLHEstado:0,
     animacionInicioVivo:false,
     animacionInicioVivoFLH:false,
-    gtm:' GMT-0400',
+    gtm:' GMT'+window.Laravel.gtm,
     isCordovaIos : function () {
             return (navigator.userAgent.match(/(Ios)/)&&navigator.userAgent.match(/(Cordova)/));
         },

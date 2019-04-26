@@ -58,7 +58,7 @@ class LoginController extends Controller
                 if(Hash::check($credenciales['password'], $user->Password)){
 
                     $user->QuestionEvent = true;
-
+                    
                     if($user->save()){
 
                         $exito = Auth::guard('web')->login($user);
