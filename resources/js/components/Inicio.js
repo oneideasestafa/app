@@ -109,7 +109,7 @@ export default class Inicio extends Component {
 
         }
 
-        document.body.style.backgroundImage = "url('"+'../public'+fondo+"')";
+        document.body.style.backgroundImage = "url('"+fondo+"')";
         document.body.style.backgroundPosition = "center";
         return (
 
