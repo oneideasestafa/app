@@ -12,7 +12,6 @@
     if ('serviceWorker' in navigator && 'PushManager' in window) instead of
     if ('serviceWorker' in navigator ) --}}
 
-    
     @include('layouts.data-laravel-echo')
 
     <script>

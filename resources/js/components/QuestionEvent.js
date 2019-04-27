@@ -111,7 +111,7 @@ export default class QuestionEvent extends Component {
         let evento = event;
         let idevento = idevent;
 
-        axios.post(this.state.url+'/ajax-post-check-ubicacion-evento', {evento, idevento})
+        axios.post('/ajax-post-check-ubicacion-evento', {evento, idevento})
             .then(res => {
 
                 let r = res.data;
@@ -197,7 +197,7 @@ export default class QuestionEvent extends Component {
 
         }else{
 
-            axios.post(this.state.url+'/ajax-continuar', {evento, idevento, sector, fila, asiento, manual, ideventobad, eventoUbicacionManual})
+            axios.post('/ajax-continuar', {evento, idevento, sector, fila, asiento, manual, ideventobad, eventoUbicacionManual})
                 .then(res => {
 
                     let r = res.data;
@@ -274,7 +274,7 @@ export default class QuestionEvent extends Component {
                 <form method="POST" onSubmit={this.handleContinuar} className="form-loginy">
 
                     <div className="">
-                        <img src={'../public'+logoOne} className="img-fluid logo-box-registro mb-4" />
+                        <img src={logoOne} className="img-fluid logo-box-registro mb-4" />
                     </div>
 
                     <div className="text-center">

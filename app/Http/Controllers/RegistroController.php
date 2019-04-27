@@ -32,27 +32,34 @@ class RegistroController extends Controller
 
         $fnac = Carbon::parse($input['edad'])->format('d/m/Y');
 
+        $tipofoto = $input['tipofoto'];
         //guardo la imagen en una variable
         $image = $input['foto'];
         $base64 = '';
 
-        if($image != ''){
+        if($tipofoto == 'upload'){
 
-            //obtengo la extension
-            $type = explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-            //creo un nombre temporal
-            $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-            //ruta imagen temporal
-            $pathImgTemporal = public_path('images/'.$name);
-            //proceso la imagen a 200x200
-            $img = Image::make($image)->fit(200,200)->save($pathImgTemporal);
-            //obtengo la data de la imagen
-            $data = file_get_contents($pathImgTemporal);
-            //convierto a base64
-            $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-            //elimino imagen temporal
-            File::delete($pathImgTemporal);
+            if($image != ''){
+
+                //obtengo la extension
+                $type = explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+                //creo un nombre temporal
+                $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+                //ruta imagen temporal
+                $pathImgTemporal = public_path('images/'.$name);
+                //proceso la imagen a 200x200
+                $img = Image::make($image)->fit(200,200)->save($pathImgTemporal);
+                //obtengo la data de la imagen
+                $data = file_get_contents($pathImgTemporal);
+                //convierto a base64
+                $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+                //elimino imagen temporal
+                File::delete($pathImgTemporal);
+            }
+
         }
+
+
 
         //capturo los datos y los acomodo en un arreglo
         $data = [
@@ -67,6 +74,7 @@ class RegistroController extends Controller
             'password'            => bcrypt($input['password']),
             'pais'                => new ObjectId($input['pais']),
             'civil'               => $input['civil'] == '' ? '' : new ObjectId($input['civil']),
+            'tipofoto'            => $tipofoto == null ? '' : $tipofoto,
             'foto'                => $base64,
             'borrado'             => false,
             'activo'              => true
@@ -86,6 +94,7 @@ class RegistroController extends Controller
         $registro->ProviderID          = '';
         $registro->Pais_id             = $data['pais'];
         $registro->EstadoCivil_id      = $data['civil'];
+        $registro->TipoFoto            = $data['tipofoto'];
         $registro->Foto                = $data['foto'];
         $registro->Borrado             = $data['borrado'];
         $registro->Activo              = $data['activo'];

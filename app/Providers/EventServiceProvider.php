@@ -19,10 +19,12 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
 
         ],
+
+        /*
           \SocialiteProviders\Manager\SocialiteWasCalled::class => [
         // add your listeners (aka providers) here
-        'SocialiteProviders\\Instagram\\InstagramExtendSocialite@handle',
-        ],
+        //'SocialiteProviders\\Instagram\\InstagramExtendSocialite@handle',
+        ],*/
     ];
 
     /**

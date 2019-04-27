@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\ValidateCambiarPassword;
 use App\Http\Requests\ValidatePerfil;
 use App\Models\MongoDB\Cliente;
 use App\Models\MongoDB\Clubs;
@@ -18,7 +17,7 @@ use App\Models\MongoDB\Reserva;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Hash;
+use Image, Storage, File, Hash;
 use MongoDB\BSON\ObjectId;
 
 
@@ -78,6 +77,33 @@ class PerfilController extends Controller
 
             $fnac = Carbon::parse($input['fechan'])->format('d/m/Y');
 
+            $tipofoto = $input['tipofoto'];
+            //guardo la imagen en una variable
+            $image = $input['fotonew'];
+            $base64 = '';
+
+            if($tipofoto == 'upload'){
+
+                if($image != ''){
+
+                    //obtengo la extension
+                    $type = explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+                    //creo un nombre temporal
+                    $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+                    //ruta imagen temporal
+                    $pathImgTemporal = public_path('images/'.$name);
+                    //proceso la imagen a 200x200
+                    $img = Image::make($image)->fit(200,200)->save($pathImgTemporal);
+                    //obtengo la data de la imagen
+                    $data = file_get_contents($pathImgTemporal);
+                    //convierto a base64
+                    $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+                    //elimino imagen temporal
+                    File::delete($pathImgTemporal);
+                }
+
+            }
+
             //capturo los datos y los acomodo en un arreglo
             $data = [
                 'nombre'              => $input['nombre'],
@@ -87,7 +113,9 @@ class PerfilController extends Controller
                 'fechan'              => $fnac,
                 'sexo'                => $input['sexo'],
                 'equipo'              => $input['equipo'],
-                'civil'               => $input['civil'] == '' ? '' : new ObjectId($input['civil'])
+                'civil'               => $input['civil'] == '' ? '' : new ObjectId($input['civil']),
+                'tipofoto'            => $tipofoto == null ? '' : $tipofoto,
+                'foto'                => $base64
             ];
 
             $id = Auth::user()->_id;
@@ -102,6 +130,11 @@ class PerfilController extends Controller
             $registro->FechaNacimiento     = $data['fechan'];
             $registro->Equipo              = $data['equipo'];
             $registro->EstadoCivil_id      = $data['civil'];
+            $registro->TipoFoto            = $data['tipofoto'];
+
+            if($data['foto'] != ''){
+                $registro->Foto            = $data['foto'];
+            }
 
             //verifico si fue exitoso el insert en la bd
             if($registro->save()){

@@ -43,7 +43,7 @@ export default class CambiarClave extends Component {
 
         let {oldpassword, newpassword, repeatpassword, url} = this.state;
 
-        axios.post(url + '/ajax-post-cambiar-clave', { oldpassword, newpassword, repeatpassword })
+        axios.post('/ajax-post-cambiar-clave', { oldpassword, newpassword, repeatpassword })
             .then(res => {
 
                 self.setState({

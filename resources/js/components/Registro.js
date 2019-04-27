@@ -81,7 +81,8 @@ export default class RegistroCliente extends React.Component {
             civil: '',
             time: new Date(),
             isOpen: false,
-            fileName: 'Subir Foto (Opcional)',
+            fileName: 'Seleccione imagen',
+            tipofoto: '',
             foto: '',
             theme: 'default',
             telefono:''
@@ -138,11 +139,11 @@ export default class RegistroCliente extends React.Component {
             isLoading: true
         });
 
-        let {nombre, apellido, correo, password, pais, civil, url, edad, sexo,equipo,time,telefono, foto} = this.state;
+        let {nombre, apellido, correo, password, pais, civil, url, edad, sexo,equipo,time,telefono, tipofoto, foto} = this.state;
 
         edad=time;
 
-        axios.post(url+'/ajax-post-registro', { nombre, apellido, correo, password, pais, edad, sexo,equipo , telefono, civil, foto})
+        axios.post(url+'/ajax-post-registro', { nombre, apellido, correo, password, pais, edad, sexo, equipo , telefono, civil, tipofoto, foto})
             .then(res => {
 
                 self.setState({
@@ -155,6 +156,7 @@ export default class RegistroCliente extends React.Component {
                     edad:'',
                     equipo:'',
                     civil: '',
+                    tipofoto: '',
                     foto: '',
                     fileName: 'Subir Foto (Opcional)',
                     telefono:'',
@@ -280,7 +282,7 @@ export default class RegistroCliente extends React.Component {
 
     render() {
 
-        let {nombre, apellido, correo, password, pais, civil, facebook, google,url,clubs,edad,sexo,equipo,telefono} = this.state;
+        let {nombre, apellido, correo, password, pais, civil, facebook, google, url, clubs, edad, sexo, equipo, telefono, tipofoto} = this.state;
 
         let urlFacebook    = url + '/auth/facebook';
         let urlGoogle      = url + '/auth/google';
@@ -380,17 +382,54 @@ export default class RegistroCliente extends React.Component {
                         </select>
                     </div>
 
+
                     <div className="input-group mb-4 mt-4">
-                        <div className="input-group-prepend mr-4">
+                        <div className="input-group-prepend">
                             <i className="fas fa-portrait fa-lg"></i>
                         </div>
 
-                        <div className="custom-file">
-                            <input type="file" name="fileFoto" onChange={(e) => this.handleChange(e)} className="custom-file-input" id="customFileLang" />
-                                <label className="custom-file-label" htmlFor="customFileLang">{this.state.fileName}</label>
+                        <select className="form-control" id="inputGroupSelect02" value={tipofoto} name="tipofoto" onChange={this.handleChange}>
+                            <option value=''>Seleccione Tipo de foto (Opcional)</option>
+                            <option value='upload'>Subir Imagen</option>
+                            <option value='camera'>Tomar Foto</option>
+                        </select>
+                    </div>
+
+                    {tipofoto == 'upload' ?
+
+
+                        <div className="input-group mb-4 mt-4">
+                            <div className="input-group-prepend mr-3">
+                                <i className="far fa-image fa-lg"></i>
+                            </div>
+
+                            <div className="custom-file">
+                                <input type="file" name="fileFoto" onChange={(e) => this.handleChange(e)}
+                                       className="custom-file-input" id="customFileLang"/>
+                                <label className="custom-file-label"
+                                       htmlFor="customFileLang">{this.state.fileName}</label>
+                            </div>
+
                         </div>
 
-                    </div>
+                        : ''
+
+                    }
+
+                    {tipofoto == 'camera' ?
+
+
+                        <div className="input-group mb-4 mt-4">
+                            <div className="input-group-prepend mr-3">
+                                <i className="fas fa-camera fa-lg"></i>
+                            </div>
+                            <span className="badge badge-warning">En construccion</span>
+
+                        </div>
+
+                        : ''
+
+                    }
 
                     <div className="input-group mb-4 mt-4">
                         <div className="input-group-prepend mr-3">
