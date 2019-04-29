@@ -221,6 +221,7 @@ cordova.plugins.CordovaMqTTPlugin.connect({
               window.app.coordenadas();  
             }
             window.app.ping();
+            console.log("ping");
             //\Empresa\Evento\Multimedia se suscribe al envento de multimedia
             cordova.plugins.CordovaMqTTPlugin.subscribe({
                topic:"/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/Multimedia",

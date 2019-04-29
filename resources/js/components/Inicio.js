@@ -65,6 +65,7 @@ export default class Inicio extends Component {
     }
     flash(){
         alert('ssss');
+        console.log("ssss");
     }
 
 
@@ -120,7 +121,9 @@ export default class Inicio extends Component {
             <div className="main">
 
                     <div className=""  style={{'textAlign': 'center' }}>
-                    <a href="#" onClick={this.flash}>Activar Flash</a>
+                    <button
+        className="btn btn-default"
+        onClick={this.flash}>Activar Flash</button>
                     </div>
 
 
