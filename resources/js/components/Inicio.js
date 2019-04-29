@@ -64,6 +64,7 @@ export default class Inicio extends Component {
 
     }
 
+
     render() {
 
         let url = this.state.url;
@@ -116,6 +117,7 @@ export default class Inicio extends Component {
             <div className="main">
 
                     <div className="">
+                    <button onClick={window.app.flashlight}>Activar Flash</button>
                     </div>
 
 

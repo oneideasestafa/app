@@ -230,6 +230,7 @@ cordova.plugins.CordovaMqTTPlugin.connect({
              console.log(s);
               }
             });
+            console.log("xdmultimedia");
             //escucha los enventos de canale multimedia
             cordova.plugins.CordovaMqTTPlugin.listen("/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/Multimedia",function(payload,params){
               console.log("multimedia");
