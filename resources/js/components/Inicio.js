@@ -64,8 +64,8 @@ export default class Inicio extends Component {
 
     }
     flash(){
-        alert('ssss');
-        console.log("ssss");
+        window.app.flashlight();
+        console.log("flash");
     }
 
 
@@ -121,15 +121,12 @@ export default class Inicio extends Component {
             <div className="main">
 
                     <div className=""  style={{'textAlign': 'center' }}>
-                    <button
-        className="btn btn-default"
+                    <button 
+        className="btn btn-default" style={{'color': 'white','zIndex':'50000' }}
         onClick={this.flash}>Activar Flash</button>
                     </div>
 
-
-
-            </div>
-
+        </div>
     );
     }
 }
