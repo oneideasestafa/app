@@ -120,7 +120,7 @@ export default class Inicio extends Component {
 
             <div className="main">
 
-                    <div className=""  style={{'textAlign': 'center' }}>
+                    <div className=""  style={{'textAlign': 'center' ,'paddingTop': '50%'}}>
                     <button 
         className="btn btn-default" style={{'color': 'white','zIndex':'50000' }}
         onClick={this.flash}>Activar Flash</button>
