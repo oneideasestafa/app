@@ -56,6 +56,10 @@ export default class CambiarDatos extends Component {
             pais: '',
             paises: [],
             telefono: '',
+            fileName: 'Seleccione imagen',
+            tipofoto: '',
+            foto: '',
+            fotonew:'',
             flagPais: '',
             isLoading: false
         };
@@ -72,35 +76,35 @@ export default class CambiarDatos extends Component {
 
     handleChange(e) {
 
-        if(e.target.name == 'pais'){
+        if(e.target.name == 'fileFoto'){
 
-            if(e.target.value == '586f91fff8c715650b244841'){
+            if(e.target.files.length > 0) {
 
-                this.setState({
-                    flagPais: 'AR',
-                    telefono: ''
-                });
+                console.log(e.target.files[0]);
 
-            }else if(e.target.value == '586f9204f8c715650b244842'){
+                let reader = new FileReader();
 
-                this.setState({
-                    flagPais: 'CL',
-                    telefono: ''
-                });
+                reader.onload = (e) => {
+                    this.setState({
+                        fotonew: e.target.result
+                    })
+                };
 
-            }else if(e.target.value == ''){
+                reader.readAsDataURL(e.target.files[0]);
 
-                this.setState({
-                    flagPais: ''
-                });
+                this.setState({ fileName: e.target.files[0].name });
             }
+
+        }else{
+
+            this.setState({
+                [e.target.name]: e.target.value
+            });
 
         }
 
 
-        this.setState({
-            [e.target.name]: e.target.value
-        });
+
     }
 
     clubs(e) {
@@ -113,9 +117,8 @@ export default class CambiarDatos extends Component {
         let self = this;
 
         let pais = e.target.value;
-        let url = self.state.url;
 
-        axios.post(url + '/ajax-post-clubs-perfil', { pais })
+        axios.post('/ajax-post-clubs-perfil', { pais })
             .then(res => {
 
 
@@ -156,9 +159,7 @@ export default class CambiarDatos extends Component {
 
         let self = this;
 
-        let url = self.state.url;
-
-        axios.post(url + '/ajax-post-clubs-perfil', { pais })
+        axios.post('/ajax-post-clubs-perfil', { pais })
             .then(res => {
 
                 let r = res.data;
@@ -218,9 +219,9 @@ export default class CambiarDatos extends Component {
             isLoading: true
         });
 
-        let {pais, telefono, fechan, equipo, sexo, civil, nombre, apellido, url} = this.state;
+        let {pais, telefono, fechan, equipo, sexo, civil, nombre, apellido, url, fotonew, tipofoto} = this.state;
 
-        axios.post(url + '/ajax-post-perfil', { pais, telefono, fechan, equipo, sexo, civil, nombre, apellido})
+        axios.post('/ajax-post-perfil', { pais, telefono, fechan, equipo, sexo, civil, nombre, apellido, fotonew, tipofoto})
             .then(res => {
 
                 self.setState({
@@ -281,11 +282,9 @@ export default class CambiarDatos extends Component {
 
     getPerfil(){
 
-        var self = this;
+        let self = this;
 
-        let url = self.state.url;
-
-        axios.post(url + '/ajax-get-perfil', {
+        axios.post('/ajax-get-perfil', {
         })
             .then(res => {
                 if(res){
@@ -305,12 +304,13 @@ export default class CambiarDatos extends Component {
                             cuenta: r.cliente.TipoCuenta,
                             pais: r.cliente.Pais_id,
                             estadosciviles: r.civiles,
-                            telefono: r.cliente.Telefono
+                            telefono: r.cliente.Telefono,
+                            foto: r.cliente.Foto
                         });
 
-                        this.clubs2(r.cliente.Pais_id);
-
-
+                        if(r.cliente.Pais_id){
+                            this.clubs2(r.cliente.Pais_id);
+                        }
 
                     }else if(r.code === 500){
 
@@ -333,7 +333,7 @@ export default class CambiarDatos extends Component {
     render() {
 
         let tagClass;
-        let {nombre, apellido, correo, cuenta, pais, telefono, sexo, civil, equipo} = this.state;
+        let {nombre, apellido, correo, cuenta, pais, telefono, sexo, civil, equipo, foto, fotonew, tipofoto} = this.state;
 
         if(cuenta == 'ONE'){
             tagClass = 'badge badge-one';
@@ -348,6 +348,15 @@ export default class CambiarDatos extends Component {
             <div className="mt-4">
 
                 <form method="POST" onSubmit={this.handleSubmit} className="form-inside">
+
+                    {foto != '' ?
+
+                        <img src={foto} className="rounded mx-auto d-block mb-5 profile-picture"/>
+
+                        : ''
+
+                    }
+
 
                     <div className="input-group mb-4">
                         <div className="input-group-prepend">
@@ -420,7 +429,7 @@ export default class CambiarDatos extends Component {
 
                     <div className="input-group mb-4 mt-4">
                         <div className="input-group-prepend input-civil">
-                            <img src={'../../public'+iconCivil} className="icon-civil" />
+                            <img src={iconCivil} className="icon-civil" />
                         </div>
                         <select className="form-control" value={civil} name="civil" id="civil" onChange={this.handleChange}>
                             <option  key="0" value=''>Ingrese Estado Civil (Opcional)</option>
@@ -429,6 +438,54 @@ export default class CambiarDatos extends Component {
                             })}
                         </select>
                     </div>
+
+                    <div className="input-group mb-4 mt-4">
+                        <div className="input-group-prepend">
+                            <i className="fas fa-portrait fa-lg"></i>
+                        </div>
+
+                        <select className="form-control" id="inputGroupSelect02" value={tipofoto} name="tipofoto" onChange={this.handleChange}>
+                            <option value=''>Seleccione Tipo de foto (Opcional)</option>
+                            <option value='upload'>Subir Imagen</option>
+                            <option value='camera'>Tomar Foto</option>
+                        </select>
+                    </div>
+
+                    {tipofoto == 'upload' ?
+
+
+                        <div className="input-group mb-4 mt-4">
+                            <div className="input-group-prepend mr-3">
+                                <i className="far fa-image fa-lg"></i>
+                            </div>
+
+                            <div className="custom-file">
+                                <input type="file" name="fileFoto" onChange={(e) => this.handleChange(e)}
+                                       className="custom-file-input" id="customFileLang"/>
+                                <label className="custom-file-label"
+                                       htmlFor="customFileLang">{this.state.fileName}</label>
+                            </div>
+
+                        </div>
+
+                        : ''
+
+                    }
+
+                    {tipofoto == 'camera' ?
+
+
+                        <div className="input-group mb-4 mt-4">
+                            <div className="input-group-prepend mr-3">
+                                <i className="fas fa-camera fa-lg"></i>
+                            </div>
+                            <span className="badge badge-warning">En construccion</span>
+
+                        </div>
+
+                        : ''
+
+                    }
 
                     <div className="input-group mb-4 mt-4">
                         <div className="input-group-prepend">
@@ -445,12 +502,12 @@ export default class CambiarDatos extends Component {
 
                         <div className="form-check form-check-inline">
                             <input className="form-check-input" onChange={this.clubs} type="radio" name="pais" id="inlineRadio1" value="5caf334dff6eff0ae30e450b" checked={pais === '5caf334dff6eff0ae30e450b'}  />
-                            <label className="form-check-label" htmlFor="inlineRadio1"><img src={'../../public'+imgAR} className="img-country" /></label>
+                            <label className="form-check-label" htmlFor="inlineRadio1"><img src={imgAR} className="img-country" /></label>
                         </div>
 
                         <div className="form-check form-check-inline">
                             <input className="form-check-input" onChange={this.clubs} type="radio" name="pais" id="inlineRadio2" value="5caf37adff6eff0ae30e450d" checked={pais === '5caf37adff6eff0ae30e450d'}  />
-                            <label className="form-check-label" htmlFor="inlineRadio2"><img src={'../../public'+imgCL} className="img-country" /></label>
+                            <label className="form-check-label" htmlFor="inlineRadio2"><img src={imgCL} className="img-country" /></label>
                         </div>
 
                     </div>
@@ -474,7 +531,7 @@ export default class CambiarDatos extends Component {
 
                     { this.state.equipo!='' ?
                         <div className="text-center" style={{'margin-bottom': '15px'}}>
-                            <img src={'../../public/images/clubs/'+this.state.equipo+'.png'} style={{'height': '4rem'}}/>
+                            <img src={'/images/clubs/'+this.state.equipo+'.png'} style={{'height': '4rem'}}/>
                         </div>
                         :''
                     }

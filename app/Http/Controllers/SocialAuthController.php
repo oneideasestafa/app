@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\MongoDB\Cliente;
+use MongoDB\BSON\ObjectId;
 use Socialite;
 use Exception;
 
@@ -52,17 +53,21 @@ class SocialAuthController extends Controller
             $registro = new Cliente;
             $registro->Nombre              = $user->name;
             $registro->Apellido            = '';
+            $registro->Sexo                = '';
+            $registro->FechaNacimiento     = '';
+            $registro->Equipo              = '';
             $registro->Correo              = strtolower($user->email);
+            $registro->Telefono            = '';
             $registro->Password            = '';
             $registro->TipoCuenta          = ucwords($provider);
             $registro->ProviderID          = $user->id;
             $registro->Pais_id             = '';
-            $registro->Telefono            = '';
-            $registro->Sexo                = '';
-            $registro->FechaNacimiento     = '';
-            $registro->Equipo              = '';
+            $registro->EstadoCivil_id      = new ObjectId('5cbad5c4cf88fb319a3b5503');
+            $registro->TipoFoto            = '';
+            $registro->Foto                = '';
             $registro->Borrado             = false;
             $registro->Activo              = true;
+
             $registro->save();
 
             Auth::login($registro);

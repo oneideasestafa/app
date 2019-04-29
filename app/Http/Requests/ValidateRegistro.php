@@ -25,15 +25,29 @@ class ValidateRegistro extends FormRequest
      */
     public function rules()
     {
-        return [
+
+        $foto   = 'nullable';
+
+        if( $this->input('tipofoto') == 'upload' ){
+            $foto = 'required';
+        }
+
+        if( $this->input('tipofoto') == 'camera' ){
+            $foto = 'required';
+        }
+
+        $rules = [
             'nombre'      => 'required',
             'apellido'    => 'required',
-            'sexo'        => 'required',
             'edad'        => 'required',
-            'equipo'      => 'required',
+            'sexo'        => 'required',
             'correo'      => 'required|email|unique:Clientes,Correo',
-            'password'    => 'required'
+            'password'    => 'required',
+            'foto'        => $foto,
+            'equipo'      => 'required'
         ];
+
+        return $rules;
     }
 
     public function messages()
@@ -47,7 +61,8 @@ class ValidateRegistro extends FormRequest
             'correo.required'    => 'El correo es requerido',
             'correo.email'    => 'Formato de correo invalido',
             'correo.unique' => 'El correo ya esta registrado, intente otro',
-            'password.required'  => 'El password es requerido'
+            'password.required'  => 'El password es requerido',
+            'foto.required' => 'La imagen o foto es requerida',
         ];
     }
 

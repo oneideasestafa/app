@@ -25,14 +25,27 @@ class ValidatePerfil extends FormRequest
      */
     public function rules()
     {
-        return [
+        $foto   = 'nullable';
+
+        if( $this->input('tipofoto') == 'upload' ){
+            $foto = 'required';
+        }
+
+        if( $this->input('tipofoto') == 'camera' ){
+            $foto = 'required';
+        }
+
+        $rules = [
             'nombre'      => 'required',
             'apellido'    => 'required',
             'fechan'      => 'required',
             'sexo'        => 'required',
+            'fotonew'     => $foto,
             'pais'        => 'required',
             'equipo'      => 'required'
         ];
+
+        return $rules;
     }
 
     public function messages()
@@ -43,8 +56,10 @@ class ValidatePerfil extends FormRequest
             'sexo.required'  => 'El sexo es requerido',
             'fechan.required'  => 'La fecha de nacimiento es requerido',
             'equipo.required'  => 'El equipo es requerido',
-            'pais.required'    => 'El pais es requerido'
+            'pais.required'    => 'El pais es requerido',
+            'fotonew.required' => 'La imagen o foto es requerida',
         ];
+
     }
 
     public function failedValidation(Validator $validator) {
