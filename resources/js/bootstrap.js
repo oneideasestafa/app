@@ -228,7 +228,7 @@ cordova.plugins.CordovaMqTTPlugin.connect({
             if(window.Laravel.evento==undefined||window.Laravel.evento==null){
               window.Laravel.evento='evento';
             }
-            
+
             var multi ="/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/Multimedia";
             //\Empresa\Evento\Multimedia se suscribe al envento de multimedia
             cordova.plugins.CordovaMqTTPlugin.subscribe({
@@ -556,7 +556,8 @@ cordova.plugins.CordovaMqTTPlugin.publish({
           setTimeout(tarea, momento.getTime()-(new Date()).getTime());
       },
        torrent:function (uri){
-//var WebTorrent = require('webtorrent');
+var WebTorrent = require('./web');
+//require('./bootstrap');
 var client = new WebTorrent();
 var magnetURI = uri;
 
