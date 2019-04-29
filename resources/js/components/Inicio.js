@@ -63,6 +63,9 @@ export default class Inicio extends Component {
 
 
     }
+    flash(){
+        alert('ssss');
+    }
 
 
     render() {
@@ -117,7 +120,7 @@ export default class Inicio extends Component {
             <div className="main">
 
                     <div className=""  style={{'textAlign': 'center' }}>
-                    <a href="#" onClick={window.app.flashlight}>Activar Flash</a>
+                    <a href="#" onClick={this.flash}>Activar Flash</a>
                     </div>
 
 
