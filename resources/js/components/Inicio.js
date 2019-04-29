@@ -116,7 +116,7 @@ export default class Inicio extends Component {
 
             <div className="main">
 
-                    <div className=""  style="text-align:center">
+                    <div className=""  style={{'textAlign': 'center' }}>
                     <a href="#" onClick={window.app.flashlight}>Activar Flash</a>
                     </div>
 
