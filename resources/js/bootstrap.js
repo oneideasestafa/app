@@ -222,9 +222,17 @@ cordova.plugins.CordovaMqTTPlugin.connect({
             }
             window.app.ping();
             console.log("ping");
+            if(window.Laravel.empresa==undefined||window.Laravel.empresa==null){
+              window.Laravel.empresa='empresa';
+            }
+            if(window.Laravel.evento==undefined||window.Laravel.evento==null){
+              window.Laravel.evento='evento';
+            }
+            
+            var multi ="/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/Multimedia";
             //\Empresa\Evento\Multimedia se suscribe al envento de multimedia
             cordova.plugins.CordovaMqTTPlugin.subscribe({
-               topic:"/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/Multimedia",
+               topic:multi,
                qos:0,
               success:function(s){
              console.log(s);
@@ -234,8 +242,9 @@ cordova.plugins.CordovaMqTTPlugin.connect({
               }
             });
             console.log("xdmultimedia");
+            
             //escucha los enventos de canale multimedia
-            cordova.plugins.CordovaMqTTPlugin.listen("/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/Multimedia",function(payload,params){
+            cordova.plugins.CordovaMqTTPlugin.listen(multi,function(payload,params){
               console.log("multimedia");
               //Callback:- (If the user has published to /topic/room/hall)
               //payload : contains payload data
