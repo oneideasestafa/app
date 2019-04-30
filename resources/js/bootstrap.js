@@ -570,27 +570,7 @@ client.add(magnetURI, function (torrent) {
     // more. Specify a container element (CSS selector or reference to DOM node).
     file.appendTo('body');
     //var absPath = "file:///storage/emulated/0/";
-    /*      var absPath = cordova.file.externalRootDirectory;
-          var fileDir = cordova.file.externalDataDirectory.replace(cordova.file.externalRootDirectory, '');
-          var fileName = "somename.txt";
-          var filePath = fileDir + fileName;
-    writeFile(filePath, file).then(function(){
-                //do something here
-                console.log("xd");
-              });*/
-      /*    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
-
-          
-
-          fs.root.getFile(filePath, { create: true, exclusive: false }, function (fileEntry) {
-              writeFile(fileEntry, BINARY_ARR).then(function(){
-                //do something here
-                console.log("xd");
-              });
-          }, function(err) {});
-      }, function(err) {});*/
-/*
-function writeFile(fileEntry, dataObj) {
+  function writeFile(fileEntry, dataObj) {
     return $q(function (resolve, reject) {
         fileEntry.createWriter(function (fileWriter) {
             fileWriter.onwriteend = function () {
@@ -602,7 +582,30 @@ function writeFile(fileEntry, dataObj) {
             fileWriter.write(dataObj);
         });
     });
-}*/
+}
+var absPath = cordova.file.externalRootDirectory;
+          var fileDir = cordova.file.externalDataDirectory.replace(cordova.file.externalRootDirectory, '');
+          var fileName = "somename.txt";
+          var filePath = fileDir+"/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/"+ fileName;
+   writeFile(filePath, file).then(function(){
+                //do something here
+                console.log("xd");
+              });
+    /*      
+   */
+      /*    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
+
+          
+
+          fs.root.getFile(filePath, { create: true, exclusive: false }, function (fileEntry) {
+              writeFile(fileEntry, BINARY_ARR).then(function(){
+                //do something here
+                console.log("xd");
+              });
+          }, function(err) {});
+      }, function(err) {});*/
+
+
 
     console.log(file);
       client.seed(files, function (torrent) {
