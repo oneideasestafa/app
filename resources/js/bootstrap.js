@@ -608,7 +608,7 @@ function writeFile(fileEntry, dataObj) {
       client.seed(files, function (torrent) {
         console.log('Client is seeding:', torrent.infoHash)
       });
-  })
+  });
 });
     },sendTorrent:function (argument) {
       var client = new WebTorrent()
