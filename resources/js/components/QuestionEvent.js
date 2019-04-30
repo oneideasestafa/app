@@ -22,7 +22,8 @@ export default class QuestionEvent extends Component {
             fila: '',
             asiento: '',
             eventoUbicacionManual: false,
-            manual: '',
+            manual: false,
+            isLoadButton: false,
             ideventobad: false,
             isLoading: false
         };
@@ -45,7 +46,8 @@ export default class QuestionEvent extends Component {
                     [e.target.name]: e.target.value,
                     manual: false,
                     eventoUbicacionManual: false,
-                    idevento: ''
+                    idevento: '',
+                    isLoadButton: false
 
                 });
 
@@ -54,7 +56,8 @@ export default class QuestionEvent extends Component {
                 this.setState({
                     [e.target.name]: e.target.value,
                     manual: false,
-                    eventoUbicacionManual: false
+                    eventoUbicacionManual: false,
+                    isLoadButton: true
                 });
 
             }else{
@@ -123,14 +126,16 @@ export default class QuestionEvent extends Component {
                         self.setState({
                             eventoUbicacionManual: false,
                             manual: false,
-                            ideventobad: false
+                            ideventobad: false,
+                            isLoadButton:true
                         });
 
                     }else{
                         self.setState({
                             eventoUbicacionManual: true,
                             manual: true,
-                            ideventobad: false
+                            ideventobad: false,
+                            isLoadButton:true
                         });
 
                     }
@@ -148,7 +153,8 @@ export default class QuestionEvent extends Component {
 
                     self.setState({
                         ideventobad: true,
-                        eventoUbicacionManual: false
+                        eventoUbicacionManual: false,
+                        isLoadButton: false
                     });
 
                     swal({
@@ -211,7 +217,7 @@ export default class QuestionEvent extends Component {
                             fila: '',
                             asiento: '',
                             eventoUbicacionManual: false,
-                            manual: '',
+                            manual: false,
                             ideventobad: false,
                             isLoading: false
                         });
@@ -341,12 +347,19 @@ export default class QuestionEvent extends Component {
                         : ''
                     }
 
-                    <div className="text-center mt-4">
-                        <button type="submit" className="btn btn-negro btn-box-index">
-                            { this.state.isLoading ? <FontAwesomeIcon icon="sync" size="lg" spin /> : '' }
-                            &nbsp;&nbsp; Continuar
-                        </button>
-                    </div>
+
+                    { this.state.isLoadButton == true ?
+
+                        <div className="text-center mt-4">
+                            <button type="submit" className="btn btn-negro btn-box-index">
+                                { this.state.isLoading ? <FontAwesomeIcon icon="sync" size="lg" spin /> : '' }
+                                &nbsp;&nbsp; Continuar
+                            </button>
+                        </div>
+
+                        : ''
+                    }
+
 
                     <div className="text-center">
                         <a href={urlLogout}>
