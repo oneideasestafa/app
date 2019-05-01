@@ -323,7 +323,7 @@ export default class RegistroCliente extends React.Component {
                        <a
                             className="select-btn sm" style={{'border': '1px solid #fff','padding-top': '0.5rem','padding-bottom': '0.5rem','width': '88%','color': '#dadada'}}
                             onClick={this.handleThemeToggle}>
-                            {this.state.edad==''?'Ingrese su Fecha de Nacimiento':this.state.time.getDate()+'/'+(this.state.time.getMonth() + 1) +'/'+this.state.time.getFullYear()}
+                            {this.state.edad==''?'Ingrese su Fecha de Nacimiento (Opcional)':this.state.time.getDate()+'/'+(this.state.time.getMonth() + 1) +'/'+this.state.time.getFullYear()}
                         </a>   
                         <Datepicker
                         showCaption={true}
@@ -340,7 +340,7 @@ export default class RegistroCliente extends React.Component {
                         dateConfig={dateConfig}
                         />
                     </div>
-                    <div className="input-group mb-4 mt-4">
+                    <div className="input-group mb-4 mt-4" style={{'display':'none'}}>
                         <div className="input-group-prepend">
                             <i className="fab fa-ello fa-lg"></i>
                         </div>
@@ -460,7 +460,7 @@ export default class RegistroCliente extends React.Component {
                         </div>
 
                           <select className="form-control" id="inputGroupSelect02" value={equipo} name="equipo" id="equipo" onChange={this.handleChange}>
-                            <option  key="-1" value=''>Equipos de futbol</option>
+                            <option  key="-1" value=''>Equipos de futbol (Opcional)</option>
                               { this.state.clubs.length > 0 ?
                                   <option  key="0" value='1000'>Ninguno</option>
                                   : ''

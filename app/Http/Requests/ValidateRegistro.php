@@ -39,12 +39,12 @@ class ValidateRegistro extends FormRequest
         $rules = [
             'nombre'      => 'required',
             'apellido'    => 'required',
-            'edad'        => 'required',
-            'sexo'        => 'required',
+          /*  'edad'        => 'required',*/
+          /*  'sexo'        => 'required',*/
             'correo'      => 'required|email|unique:Clientes,Correo',
             'password'    => 'required',
             'foto'        => $foto,
-            'equipo'      => 'required'
+          /*  'equipo'      => 'required'*/
         ];
 
         return $rules;
