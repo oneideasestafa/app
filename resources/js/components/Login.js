@@ -160,7 +160,24 @@ export default class Login extends Component {
                         <p style={{'color':'rgb(146, 143, 143)'}}>o puedes ingresar con</p>
                     </div>
 
-                   
+                   <div className="text-center mb-4">
+
+                        <a href={urlFacebook}>
+                            <img src={logoFacebook} className="img-fluid icon-social mr-3" />
+                        </a>
+
+                        <a href={urlGoogle}>
+                            <img src={logoGoogle} className="img-fluid icon-social mr-3" />
+                        </a>
+                        <a href={urlTwitter}>
+                            <img src={logoTwitter} className="img-fluid icon-social mr-3" />
+                        </a>
+
+                        <a href={urlInstagram}>
+                            <img src={logoInstagram} className="img-fluid icon-social" />
+                        </a>
+
+                    </div>
 
                     <div className="text-center">
                         <a href={urlIndex}>
@@ -189,22 +206,5 @@ if (document.getElementById('login')) {
 
 
 /*
- <div className="text-center mb-4">
-
-                        <a href={urlFacebook}>
-                            <img src={logoFacebook} className="img-fluid icon-social mr-3" />
-                        </a>
-
-                        <a href={urlGoogle}>
-                            <img src={logoGoogle} className="img-fluid icon-social mr-3" />
-                        </a>
-                        <a href={urlTwitter}>
-                            <img src={logoTwitter} className="img-fluid icon-social mr-3" />
-                        </a>
-
-                        <a href={urlInstagram}>
-                            <img src={logoInstagram} className="img-fluid icon-social" />
-                        </a>
-
-                    </div>
+ 
 */
