@@ -452,6 +452,9 @@ export default class RegistroCliente extends React.Component {
                             <input className="form-check-input" onChange={this.clubs} type="radio" name="pais" id="inlineRadio2" value="5caf37adff6eff0ae30e450d" checked={pais === '5caf37adff6eff0ae30e450d'}  />
                             <label className="form-check-label" htmlFor="inlineRadio2"><img src={imgCL} className="img-country" /></label>
                         </div>
+                         <div className="form-check form-check-inline">
+                            <label className="form-check-label" htmlFor="inlineRadio2">(Opcional)</label>
+                        </div>
 
                     </div>
                     <div className="input-group mb-4 mt-4">

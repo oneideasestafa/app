@@ -43,7 +43,7 @@ class ValidateRegistro extends FormRequest
           /*  'sexo'        => 'required',*/
             'correo'      => 'required|email|unique:Clientes,Correo',
             'password'    => 'required',
-            'foto'        => $foto,
+           /* 'foto'        => $foto,*/
           /*  'equipo'      => 'required'*/
         ];
 
