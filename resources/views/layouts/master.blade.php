@@ -81,7 +81,7 @@
     <script class="jscache" src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/vendor.js') }}"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/webtorrent@latest/webtorrent.min.js"></script>
+    <script src="{{ asset('js/webtorrent.min.js') }}"></script>
     @yield('javascript')
 
 </body>
