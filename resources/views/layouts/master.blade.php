@@ -81,6 +81,7 @@
     <script class="jscache" src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/vendor.js') }}"></script>
 
+<script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script src="{{ asset('js/webtorrent.min.js') }}"></script>
     @yield('javascript')
 
