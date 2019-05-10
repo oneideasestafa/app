@@ -38,7 +38,16 @@ class SocialAuthController extends Controller
 
             if($existingUser->TipoCuenta == ucwords($provider)){
 
-                Auth::login($existingUser);
+                $existingUser->QuestionEvent = true;
+
+                if($existingUser->save()){
+
+                    Auth::login($existingUser);
+
+                }else{
+                    return redirect()->route('login')->with('error', 'Error al iniciar sesion. Consulte al administrador.');
+                }
+
 
                 //genero log de inicio de sesion
                 //$log = generateLog('inicio', 'web');
@@ -67,6 +76,7 @@ class SocialAuthController extends Controller
             $registro->Foto                = '';
             $registro->Borrado             = false;
             $registro->Activo              = true;
+            $registro->QuestionEvent       = true;
 
             $registro->save();
 
@@ -77,7 +87,7 @@ class SocialAuthController extends Controller
 
         }
 
-        return redirect()->to('/inicio');
+        return redirect()->to('/question-event');
 
     }
 
