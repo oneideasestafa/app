@@ -59,7 +59,7 @@ export default class Menu extends Component {
         let urlPerfil       = url + '/cliente/perfil';
         let urlCambiarClave = url + '/cliente/cambiar/password';
         let urlChatSoporte  = url + '/chat/soporte';
-        let urlInvitacion   = url + '#';
+        let urlInvitacion   = url + '/invitacion';
 
         let changePassword =  <li className="nav-item"><a className="nav-link" href={urlCambiarClave}><i className="fas fa-lock fa-lg"></i>&nbsp;&nbsp; Contraseña</a></li>;
 
@@ -84,14 +84,13 @@ export default class Menu extends Component {
                 {menuapp.includes('5cc47b4af39c6a0a4f6a4de4') ?
 
                     <li className="nav-item">
-                        <a className="nav-link" href="#"><i
+                        <a className="nav-link" href={urlInvitacion} ><i
                             className="fas fa-user-friends fa-lg"></i>&nbsp;&nbsp; Invitación</a>
                     </li>
 
                     : ''
 
                 }
-
 
                 <li className="nav-item">
                     <a className="nav-link" href="#" onClick={this.getDetener}><i

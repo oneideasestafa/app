@@ -68,6 +68,9 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function(){
         Route::get('/cliente/cambiar/password', 'CambiarClaveController@index')->name('cambiar-clave');
         Route::post('/ajax-post-cambiar-clave', 'CambiarClaveController@ajaxPostCambiarClave')->name('ajax-post-cambiar-clave');
 
+        //ruta invitacion
+        Route::get('/invitacion', 'InvitacionController@index')->name('invitacion');
+
     });
 
 });
