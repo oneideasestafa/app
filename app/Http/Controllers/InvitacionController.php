@@ -27,17 +27,15 @@ class InvitacionController extends Controller
             if($i->Modo == 'HORIZONTAL'){
 
                 $result[0] = [
-                    'InvitacionH' => true,
-                    'PathImgH' => $i->PathImg,
-                    'PathPdfH' => $i->PathPdf
+                    'PathImg' => $i->PathImg,
+                    'PathPdf' => $i->PathPdf
                 ];
 
             }else if($i->Modo == 'VERTICAL'){
 
                 $result[1] = [
-                    'InvitacionV' => true,
-                    'PathImgV' => $i->PathImg,
-                    'PathPdfV' => $i->PathPdf
+                    'PathImg' => $i->PathImg,
+                    'PathPdf' => $i->PathPdf
                 ];
 
             }

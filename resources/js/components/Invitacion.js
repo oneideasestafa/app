@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import swal from "sweetalert2";
+import DeviceOrientation, { Orientation } from 'react-screen-orientation'
 library.add( faSync);
 
 export default class Invitacion extends Component {
@@ -27,26 +28,84 @@ export default class Invitacion extends Component {
 
         return (
 
-            <div className="abs-centere">
+            <div className="container-fluid">
+
+                <DeviceOrientation>
+
+                        <Orientation orientation='landscape' alwaysRender={false}>
+
+                            {invitaciones[0] ?
+                                <div>
+                                    <div className="row">
+                                        <div className="col-12">
+                                            <img src={invitaciones[0].PathImg} className="img-fluid"/>
+                                        </div>
+                                    </div>
+
+                                    <div className="row  mt-4">
+                                        <div className="col-12 text-center">
+                                            {invitaciones[0].PathPdf ?
+
+                                                <a href={invitaciones[0].PathPdf} target="_blank">
+                                                    <button className="btn btn-sm btn-danger">Descargar Invitación PDF
+                                                    </button>
+                                                </a>
+
+                                                : ''
+
+                                            }
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                :
+
+                                <div>Rote su dispositivo en modo vertical para ver la tarjeta de invitación</div>
 
 
-                <div className="row">
-                    <div className="col-12">
-                        <img src={invitaciones[0].PathImgH} width="1000" height="1200"/>
-                    </div>
-                </div>
+                            }
+                        </Orientation>
 
-                <div className="row text-center mt-4">
-                    <div className="col-12">
-                        {invitaciones[0].PathPdfH ?
+                        <Orientation orientation='portrait' alwaysRender={false}>
 
-                            <a href={invitaciones[0].PathPdfH} target="_blank"><button className="btn btn-sm btn-danger">Descargar PDF</button></a>
+                            {invitaciones[1] ?
 
-                            : ''
-                        }
-                    </div>
+                                <div>
 
-                </div>
+                                    <div className="row">
+                                        <div className="col-12">
+                                            <img src={invitaciones[1].PathImg} className="img-fluid"/>
+                                        </div>
+                                    </div>
+
+                                    <div className="row  mt-4">
+                                        <div className="col-12 text-center">
+                                            {invitaciones[1].PathPdf ?
+
+                                                <a href={invitaciones[1].PathPdf} target="_blank">
+                                                    <button className="btn btn-sm btn-danger">Descargar Invitación PDF
+                                                    </button>
+                                                </a>
+
+                                                : ''
+
+                                            }
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                :
+
+                                <div>Rote su dispositivo en modo horizontal para ver la tarjeta de invitación</div>
+
+                            }
+
+                        </Orientation>
+
+                </DeviceOrientation>
 
             </div>
         );
