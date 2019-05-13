@@ -73,4 +73,19 @@ The Laravel framework is open-source software licensed under the [MIT license](h
 
 
 #plugin cordova
-https://www.npmjs.com/package/cordova-twitter
+de.appplant.cordova.plugin.local-notification
+cordova-twitter
+cordova-plugin-sntp
+cordova-plugin-network-information
+cordova-plugin-mqtt
+cordova-plugin-media-capture
+cordova-plugin-hostedwebapp
+cordova-plugin-geolocation-android-activator
+cordova-plugin-geolocation
+cordova-plugin-flashlight
+cordova-plugin-file
+cordova-plugin-device-motion
+cordova-plugin-device
+cordova-plugin-camera
+cordova-plugin-audiotoggle
+cordova-plugin-audioinput

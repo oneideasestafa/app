@@ -569,41 +569,62 @@ client.add(magnetURI, function (torrent) {
     // Display the file by appending it to the DOM. Supports video, audio, images, and
     // more. Specify a container element (CSS selector or reference to DOM node).
     file.appendTo('body');
+    console.log(file);
     //var absPath = "file:///storage/emulated/0/";
-  function writeFile(fileEntry, dataObj) {
-    return $q(function (resolve, reject) {
-        fileEntry.createWriter(function (fileWriter) {
-            fileWriter.onwriteend = function () {
-                resolve();
-            };
-            fileWriter.onerror = function (e) {
-                reject(e);
-            };
-            fileWriter.write(dataObj);
-        });
+function displayFileData(file){
+    console.log(file);
+}
+
+function onErrorReadFile(error){
+    console.log(error);
+}
+function readFile(fileEntry) {
+
+    fileEntry.file(function (file) {
+        var reader = new FileReader();
+
+        reader.onloadend = function() {
+            console.log("Successful file read: " + this.result);
+            displayFileData(fileEntry.fullPath + ": " + this.result);
+        };
+
+        reader.readAsText(file);
+
+    }, onErrorReadFile);
+}
+function writeFile(fileEntry, dataObj) {
+    // Create a FileWriter object for our FileEntry (log.txt).
+    fileEntry.createWriter(function (fileWriter) {
+
+        fileWriter.onwriteend = function() {
+            console.log("Successful file write...");
+            readFile(fileEntry);
+        };
+
+        fileWriter.onerror = function (e) {
+            console.log("Failed file write: " + e.toString());
+        };
+
+        // If data object is not passed in,
+        // create a new Blob instead.
+        if (!dataObj) {
+            dataObj = new Blob(["Content if there's nothing!"], { type: 'text/plain' });
+        }
+
+        fileWriter.write(dataObj);
     });
 }
-var absPath = cordova.file.externalRootDirectory;
-          var fileDir = cordova.file.externalDataDirectory.replace(cordova.file.externalRootDirectory, '');
-          var fileName = "somename.txt";
-          var filePath = fileDir+"/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/"+ fileName;
-   writeFile(filePath, file).then(function(){
-                //do something here
-                console.log("xd");
-              });
-    /*      
-   */
-      /*    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
 
-          
-
-          fs.root.getFile(filePath, { create: true, exclusive: false }, function (fileEntry) {
-              writeFile(fileEntry, BINARY_ARR).then(function(){
-                //do something here
-                console.log("xd");
-              });
-          }, function(err) {});
-      }, function(err) {});*/
+var fileName="testtorrent.txt";var fileDir="/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/";var file=file;
+window.resolveLocalFileSystemURL(cordova.file.externalRootDirectory, function (rootDirEntry) {
+        rootDirEntry.getDirectory(fileDir, { create: true }, function (dirEntry) {
+            var isAppend = true;
+            dirEntry.getFile(fileName, { create: true }, function (fileEntry) {
+                writeFile(fileEntry, file, isAppend);
+                // Success
+            });
+        });
+    });
 
 
 
