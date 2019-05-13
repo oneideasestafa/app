@@ -14,11 +14,10 @@ export default class Menu extends Component {
         super(props);
         this.state = {
             tipocuenta: props.tipocuenta,
+            menuapp: JSON.parse(props.menuapp),
             pais: props.pais,
             url: props.url,
-            fotoproducto: props.fotoproducto == "1" ? true : false,
-            checkcamareromesa: false,
-            codigoComensal: ''
+            fotoproducto: props.fotoproducto == "1" ? true : false
         };
 
         this.handleLogout = this.handleLogout.bind(this);
@@ -53,12 +52,14 @@ export default class Menu extends Component {
     render() {
 
         let tipoCuenta = this.state.tipocuenta;
+        let menuapp = this.state.menuapp;
         let url = this.state.url;
 
         let urlInicio       = url + '/';
         let urlPerfil       = url + '/cliente/perfil';
         let urlCambiarClave = url + '/cliente/cambiar/password';
         let urlChatSoporte  = url + '/chat/soporte';
+        let urlInvitacion   = url + '/invitacion';
 
         let changePassword =  <li className="nav-item"><a className="nav-link" href={urlCambiarClave}><i className="fas fa-lock fa-lg"></i>&nbsp;&nbsp; Contraseña</a></li>;
 
@@ -74,10 +75,22 @@ export default class Menu extends Component {
                     <a className="nav-link" href={urlPerfil}><i
                         className="fas fa-cog fa-lg"></i>&nbsp;&nbsp;  Perfil</a>
                 </li>
+
                 <li className="nav-item">
                     <a className="nav-link" href="#"><i
                         className="fab fa-weixin fa-lg"></i>&nbsp;&nbsp; Notificaciones</a>
                 </li>
+
+                {menuapp.includes('5cc47b4af39c6a0a4f6a4de4') ?
+
+                    <li className="nav-item">
+                        <a className="nav-link" href={urlInvitacion} ><i
+                            className="fas fa-user-friends fa-lg"></i>&nbsp;&nbsp; Invitación</a>
+                    </li>
+
+                    : ''
+
+                }
 
                 <li className="nav-item">
                     <a className="nav-link" href="#" onClick={this.getDetener}><i

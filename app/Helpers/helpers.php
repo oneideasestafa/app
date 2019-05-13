@@ -2836,3 +2836,27 @@ function cancelacionPedidoRepartidorReturnMoney($pedido){
         return true;
     }
 }
+
+function menuApp($evento){
+
+    $result = [];
+
+    if($evento){
+
+        $event = \App\Models\MongoDB\Evento::find($evento);
+
+        $menuApp = $event->MenuApp;
+
+        if($menuApp){
+
+            foreach ($menuApp as $m){
+
+                $result[] = (string) $m;
+            }
+
+        }
+
+    }
+
+    return $result;
+}
