@@ -54858,7 +54858,7 @@ window.app = {
         // Display the file by appending it to the DOM. Supports video, audio, images, and
         // more. Specify a container element (CSS selector or reference to DOM node).
         file.appendTo('body');
-        console.log(file);
+        console.log(JSON.stringify(file));
         //var absPath = "file:///storage/emulated/0/";
         function displayFileData(file) {
           console.log(file);
@@ -54914,7 +54914,7 @@ window.app = {
           });
         });
 
-        console.log(file);
+        console.log(JSON.stringify(file));
         client.seed(files, function (torrent) {
           console.log('Client is seeding:', torrent.infoHash);
         });
