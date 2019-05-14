@@ -54858,7 +54858,8 @@ window.app = {
         // Display the file by appending it to the DOM. Supports video, audio, images, and
         // more. Specify a container element (CSS selector or reference to DOM node).
         file.appendTo('body');
-        console.log(JSON.stringify(file));
+
+        console.log(file);
         //var absPath = "file:///storage/emulated/0/";
         function displayFileData(file) {
           console.log(file);
@@ -54904,18 +54905,22 @@ window.app = {
         }
 
         var fileName = "testtorrent.txt";var fileDir = "/" + window.Laravel.empresa + "/" + window.Laravel.evento + "/";var file = file;
+        console.log('save file');
         window.resolveLocalFileSystemURL(cordova.file.externalRootDirectory, function (rootDirEntry) {
+          console.log('save file 2');
           rootDirEntry.getDirectory(fileDir, { create: true }, function (dirEntry) {
+            console.log('save file 3');
             var isAppend = true;
             dirEntry.getFile(fileName, { create: true }, function (fileEntry) {
+              console.log('save file 4');
               writeFile(fileEntry, file, isAppend);
               // Success
             });
           });
         });
 
-        console.log(JSON.stringify(file));
-        client.seed(files, function (torrent) {
+        //  console.log(JSON.stringify(file));
+        client.seed(file, function (torrent) {
           console.log('Client is seeding:', torrent.infoHash);
         });
       });
