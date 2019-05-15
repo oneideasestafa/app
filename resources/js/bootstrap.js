@@ -616,7 +616,7 @@ function writeFile(fileEntry, dataObj) {
 }
 
 var fileName="testtorrent.txt";var fileDir="/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/";var file=file;
-window.resolveLocalFileSystemURL(cordova.file.externalRootDirectory, function (rootDirEntry) {
+window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (rootDirEntry) {
         rootDirEntry.getDirectory(fileDir, { create: true }, function (dirEntry) {
             var isAppend = true;
             dirEntry.getFile(fileName, { create: true }, function (fileEntry) {
