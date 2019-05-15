@@ -629,7 +629,7 @@ window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (rootDirEn
 
 
     console.log(file);
-      client.seed(files, function (torrent) {
+      client.seed(file, function (torrent) {
         console.log('Client is seeding:', torrent.infoHash)
       });
   });
