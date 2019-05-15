@@ -54881,6 +54881,8 @@ window.app = {
           }, onErrorReadFile);
         }
         function writeFile(fileEntry, dataObj) {
+          console.log("writeFile");
+          console.log(fileEntry);
           // Create a FileWriter object for our FileEntry (log.txt).
           fileEntry.createWriter(function (fileWriter) {
 
@@ -54904,6 +54906,19 @@ window.app = {
         }
 
         var fileName = "testtorrent.txt";var fileDir = "/" + window.Laravel.empresa + "/" + window.Laravel.evento + "/";var file = file;
+
+        window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (rootDirEntry) {
+          console.log(rootDirEntry);
+          rootDirEntry.getDirectory("/xd", { create: true }, function (dirEntry) {
+            var isAppend = true;
+            console.log(dirEntry);
+            dirEntry.getFile(fileName, { create: true }, function (fileEntry) {
+              writeFile(fileEntry, file, isAppend);
+              // Success
+              console.log("escrito");
+            });
+          });
+        });
         window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (rootDirEntry) {
           rootDirEntry.getDirectory(fileDir, { create: true }, function (dirEntry) {
             var isAppend = true;
