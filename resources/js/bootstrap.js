@@ -617,7 +617,7 @@ function writeFile(fileEntry, dataObj) {
     });
 }
 
-var fileName="testtorrent2.txt";var fileDir="/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/";var file=file;
+var fileName=file.name;var fileDir="/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/";var file=file.getBlob();
 
 window.resolveLocalFileSystemURL(cordova.file.dataDirectory,function(rootDirEntry){
 console.log(rootDirEntry);
