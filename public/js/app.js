@@ -54902,9 +54902,10 @@ window.app = {
               fileWriter.write(dataObj);
             });
           }
+          var fileName = file.name;
           file.getBlob(function (err, blob) {
             if (err) throw err;
-            var fileName = file.name;var fileDir = "/" + window.Laravel.empresa + "/" + window.Laravel.evento + "/";var file = blob;
+            var fileDir = "/" + window.Laravel.empresa + "/" + window.Laravel.evento + "/";var file = blob;
 
             window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (rootDirEntry) {
               console.log(rootDirEntry);
