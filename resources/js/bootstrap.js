@@ -565,74 +565,84 @@ client.add(magnetURI, function (torrent) {
   // Got torrent metadata!
   console.log('Client is downloading:', torrent.infoHash)
 
+torrent.on('done', function(){
+  console.log('torrent finished downloading')
+  torrent.files.forEach(function(file){
+    
+                             function displayFileData(file){
+                            console.log(file);
+                        }
+
+                        function onErrorReadFile(error){
+                            console.log(error);
+                        }
+                        function readFile(fileEntry) {
+
+                            fileEntry.file(function (file) {
+                                var reader = new FileReader();
+
+                                reader.onloadend = function() {
+                                    console.log("Successful file read: " + this.result);
+                                    displayFileData(fileEntry.fullPath + ": " + this.result);
+                                };
+
+                                reader.readAsText(file);
+
+                            }, onErrorReadFile);
+                        }
+                        function writeFile(fileEntry, dataObj) {
+                          console.log("writeFile");
+                            console.log(fileEntry);
+                            // Create a FileWriter object for our FileEntry (log.txt).
+                            fileEntry.createWriter(function (fileWriter) {
+
+                                fileWriter.onwriteend = function() {
+                                    console.log("Successful file write...");
+                                    readFile(fileEntry);
+                                };
+
+                                fileWriter.onerror = function (e) {
+                                    console.log("Failed file write: " + e.toString());
+                                };
+
+                                // If data object is not passed in,
+                                // create a new Blob instead.
+                                if (!dataObj) {
+                                    dataObj = new Blob(["Content if there's nothing!"], { type: 'text/plain' });
+                                }
+
+                                fileWriter.write(dataObj);
+                            });
+                        }
+
+var fileName=file.name;var fileDir="/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/";var file=file.getBlob();
+
+                      window.resolveLocalFileSystemURL(cordova.file.dataDirectory,function(rootDirEntry){
+                      console.log(rootDirEntry);
+                      rootDirEntry.getDirectory(fileDir, { create: true }, function (dirEntry) {
+                                  var isAppend = true;
+                                  console.log(dirEntry);
+                                  dirEntry.getFile(fileName, { create: true }, function (fileEntry) {
+                                      writeFile(fileEntry, file, isAppend);
+                                      // Success
+                                      console.log("escrito");
+                                  });
+                              });
+
+
+                      });
+  });
+});
+
+
+
   torrent.files.forEach(function (file) {
     // Display the file by appending it to the DOM. Supports video, audio, images, and
     // more. Specify a container element (CSS selector or reference to DOM node).
     file.appendTo('body');
     console.log(file);
     //var absPath = "file:///storage/emulated/0/";
-function displayFileData(file){
-    console.log(file);
-}
 
-function onErrorReadFile(error){
-    console.log(error);
-}
-function readFile(fileEntry) {
-
-    fileEntry.file(function (file) {
-        var reader = new FileReader();
-
-        reader.onloadend = function() {
-            console.log("Successful file read: " + this.result);
-            displayFileData(fileEntry.fullPath + ": " + this.result);
-        };
-
-        reader.readAsText(file);
-
-    }, onErrorReadFile);
-}
-function writeFile(fileEntry, dataObj) {
-  console.log("writeFile");
-    console.log(fileEntry);
-    // Create a FileWriter object for our FileEntry (log.txt).
-    fileEntry.createWriter(function (fileWriter) {
-
-        fileWriter.onwriteend = function() {
-            console.log("Successful file write...");
-            readFile(fileEntry);
-        };
-
-        fileWriter.onerror = function (e) {
-            console.log("Failed file write: " + e.toString());
-        };
-
-        // If data object is not passed in,
-        // create a new Blob instead.
-        if (!dataObj) {
-            dataObj = new Blob(["Content if there's nothing!"], { type: 'text/plain' });
-        }
-
-        fileWriter.write(dataObj);
-    });
-}
-
-var fileName=file.name;var fileDir="/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/";var file=file.getBlob();
-
-window.resolveLocalFileSystemURL(cordova.file.dataDirectory,function(rootDirEntry){
-console.log(rootDirEntry);
-rootDirEntry.getDirectory(fileDir, { create: true }, function (dirEntry) {
-            var isAppend = true;
-            console.log(dirEntry);
-            dirEntry.getFile(fileName, { create: true }, function (fileEntry) {
-                writeFile(fileEntry, file, isAppend);
-                // Success
-                console.log("escrito");
-            });
-        });
-
-
-})
 /*
 window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (rootDirEntry) {
         rootDirEntry.getDirectory(fileDir, { create: true }, function (dirEntry) {
