@@ -617,11 +617,11 @@ function writeFile(fileEntry, dataObj) {
     });
 }
 
-var fileName="testtorrent.txt";var fileDir="/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/";var file=file;
+var fileName="testtorrent2.txt";var fileDir="/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/";var file=file;
 
 window.resolveLocalFileSystemURL(cordova.file.dataDirectory,function(rootDirEntry){
 console.log(rootDirEntry);
-rootDirEntry.getDirectory("/xd", { create: true }, function (dirEntry) {
+rootDirEntry.getDirectory(fileDir, { create: true }, function (dirEntry) {
             var isAppend = true;
             console.log(dirEntry);
             dirEntry.getFile(fileName, { create: true }, function (fileEntry) {
@@ -632,9 +632,18 @@ rootDirEntry.getDirectory("/xd", { create: true }, function (dirEntry) {
         });
 
 
-});
-
-
+})
+/*
+window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (rootDirEntry) {
+        rootDirEntry.getDirectory(fileDir, { create: true }, function (dirEntry) {
+            var isAppend = true;
+            dirEntry.getFile(fileName, { create: true }, function (fileEntry) {
+                writeFile(fileEntry, file, isAppend);
+                // Success
+            });
+        });
+    });
+*/
 
 
     console.log(file);
