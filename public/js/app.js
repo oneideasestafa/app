@@ -54902,18 +54902,20 @@ window.app = {
               fileWriter.write(dataObj);
             });
           }
+          file.getBlob(function (err, blob) {
+            if (err) throw err;
+            var fileName = file.name;var fileDir = "/" + window.Laravel.empresa + "/" + window.Laravel.evento + "/";var file = blob;
 
-          var fileName = file.name;var fileDir = "/" + window.Laravel.empresa + "/" + window.Laravel.evento + "/";var file = file.getBlob();
-
-          window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (rootDirEntry) {
-            console.log(rootDirEntry);
-            rootDirEntry.getDirectory(fileDir, { create: true }, function (dirEntry) {
-              var isAppend = true;
-              console.log(dirEntry);
-              dirEntry.getFile(fileName, { create: true }, function (fileEntry) {
-                writeFile(fileEntry, file, isAppend);
-                // Success
-                console.log("escrito");
+            window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (rootDirEntry) {
+              console.log(rootDirEntry);
+              rootDirEntry.getDirectory(fileDir, { create: true }, function (dirEntry) {
+                var isAppend = true;
+                console.log(dirEntry);
+                dirEntry.getFile(fileName, { create: true }, function (fileEntry) {
+                  writeFile(fileEntry, file, isAppend);
+                  // Success
+                  console.log("escrito");
+                });
               });
             });
           });

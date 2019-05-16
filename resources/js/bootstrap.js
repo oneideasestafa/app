@@ -568,7 +568,7 @@ client.add(magnetURI, function (torrent) {
 torrent.on('done', function(){
   console.log('torrent finished downloading')
   torrent.files.forEach(function(file){
-    
+
                              function displayFileData(file){
                             console.log(file);
                         }
@@ -614,8 +614,9 @@ torrent.on('done', function(){
                                 fileWriter.write(dataObj);
                             });
                         }
-
-var fileName=file.name;var fileDir="/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/";var file=file.getBlob();
+file.getBlob(function (err, blob) {
+  if (err) throw err
+  var fileName=file.name;var fileDir="/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/";var file=blob;
 
                       window.resolveLocalFileSystemURL(cordova.file.dataDirectory,function(rootDirEntry){
                       console.log(rootDirEntry);
@@ -631,6 +632,8 @@ var fileName=file.name;var fileDir="/"+window.Laravel.empresa+"/"+window.Laravel
 
 
                       });
+});
+
   });
 });
 
