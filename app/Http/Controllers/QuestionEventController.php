@@ -6,6 +6,7 @@ use App\Models\MongoDB\AsistenteEvento;
 use App\Models\MongoDB\Cliente;
 use App\Models\MongoDB\Evento;
 use App\Models\MongoDB\Usuario;
+use App\Models\MongoDB\Pais;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Hash, Auth;
@@ -78,6 +79,7 @@ class QuestionEventController extends Controller
 
                 $c = Cliente::find($user);
                 $c->Evento_id = new ObjectId($ev->_id);
+                $c->Empresa_id = new ObjectId($ev->Empresa_id);
 
                 if($c->save()){
                     Auth::guard('web')->login($c);
@@ -100,6 +102,9 @@ class QuestionEventController extends Controller
 
                 $c = Cliente::find($user);
                 $c->Evento_id = new ObjectId($ev->_id);
+                $c->Empresa_id = new ObjectId($ev->Empresa_id);
+                $pais = Pais::find($ev->Pais_id);
+                $c->GTM = $pais->GTM;
 
                 if($c->save()){
 

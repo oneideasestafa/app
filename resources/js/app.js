@@ -129,7 +129,7 @@ require('./components/Registro');
 require('./components/QuestionEvent');
 require('./components/CambiarClave');
 require('./components/Perfil/CambiarDatos');
-require('./components/Invitacion');
+//require('./components/Invitacion');
 
 
 //require('./cache');

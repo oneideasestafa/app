@@ -84,9 +84,8 @@
     <script class="jscache" src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/vendor.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/webtorrent@latest/webtorrent.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script>
-    
+    <script src="https://cdn.plyr.io/3.5.3/plyr.polyfilled.js"></script>
     @yield('javascript')
 
 </body>

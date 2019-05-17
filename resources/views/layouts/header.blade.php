@@ -12,7 +12,7 @@
             <a class="navbar-brand px-0" href="javascript:void(0)">Menú</a>
         </div>
 
-        <div id="menu" data-menuapp="{{ json_encode(menuApp(Auth::user()->Evento_id)) }}" data-tipocuenta="{{ Auth::user()->TipoCuenta }}" data-url="{{ url('/') }}" ></div>
+        <div id="menu" data-menuapp="[]" data-tipocuenta="{{ Auth::user()->TipoCuenta }}" data-url="{{ url('/') }}" ></div>
 
     </div>
 </div>
