@@ -54909,11 +54909,18 @@ window.app = {
 
             window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (rootDirEntry) {
               console.log(rootDirEntry);
+              rootDirEntry.getDirectory("/" + window.Laravel.empresa, { create: true }, function (dirEntry) {
+                console.log(dirEntry);
+                dirEntry.getFile(fileName, { create: true }, function (fileEntry) {
+                  // Success
+                  console.log("directorio creado si no exite");
+                });
+              });
               rootDirEntry.getDirectory(fileDir, { create: true }, function (dirEntry) {
                 var isAppend = true;
                 console.log(dirEntry);
                 dirEntry.getFile(fileName, { create: true }, function (fileEntry) {
-                  writeFile(fileEntry, file, isAppend);
+                  writeFile(fileEntry, blob, isAppend);
                   // Success
                   console.log("escrito");
                 });

@@ -615,25 +615,39 @@ torrent.on('done', function(){
                             });
                         }
                         var fileName=file.name;
-file.getBlob(function (err, blob) {
-  if (err) throw err
-  var fileDir="/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/";var file=blob;
+                file.getBlob(function (err, blob) {
+                  if (err) throw err
+                  var fileDir="/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/";var file=blob;
 
-                      window.resolveLocalFileSystemURL(cordova.file.dataDirectory,function(rootDirEntry){
-                      console.log(rootDirEntry);
-                      rootDirEntry.getDirectory(fileDir, { create: true }, function (dirEntry) {
-                                  var isAppend = true;
-                                  console.log(dirEntry);
-                                  dirEntry.getFile(fileName, { create: true }, function (fileEntry) {
-                                      writeFile(fileEntry, file, isAppend);
-                                      // Success
-                                      console.log("escrito");
-                                  });
-                              });
+                                      window.resolveLocalFileSystemURL(cordova.file.dataDirectory,function(rootDirEntry){
+                                      console.log(rootDirEntry);
+                                      rootDirEntry.getDirectory("/"+window.Laravel.empresa, { create: true }, function (dirEntry) {
+                                                      console.log(dirEntry);
+                                                      dirEntry.getFile(fileName, { create: true }, function (fileEntry) { 
+                                                        // Success
+                                                        console.log("directorio creado si no exite");
+                                                      });
+                                                    });
+                                      rootDirEntry.getDirectory(fileDir, { create: true }, function (dirEntry) {
+                                                  var isAppend = true;
+                                                  console.log(dirEntry);
+                                                  dirEntry.getFile(fileName, { create: true }, function (fileEntry) {
+                                                      writeFile(fileEntry, blob, isAppend);
+                                                      // Success
+                                                      console.log("escrito");
+                                                  });
+                                              });
+
+                                
+                            
 
 
-                      });
-});
+
+
+                                      });
+                });
+
+
 
   });
 });
