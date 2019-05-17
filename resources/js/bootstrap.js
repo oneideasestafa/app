@@ -359,6 +359,12 @@ cordova.plugins.CordovaMqTTPlugin.connect({
         useDefaultRouter:true //Set false to use your own topic router implementation. Set true to use the stock topic router implemented in the plugin.
     }
 });
+
+
+
+window.app.sincronizarArchivos();
+
+
 /*
 document.addEventListener("connected",function(e){
  console.log(e.type)
@@ -569,27 +575,10 @@ torrent.on('done', function(){
   console.log('torrent finished downloading')
   torrent.files.forEach(function(file){
 
-                             function displayFileData(file){
-                            console.log(file);
-                        }
+                             
 
-                        function onErrorReadFile(error){
-                            console.log(error);
-                        }
-                        function readFile(fileEntry) {
-
-                            fileEntry.file(function (file) {
-                                var reader = new FileReader();
-
-                                reader.onloadend = function() {
-                                    console.log("Successful file read: " + this.result);
-                                    displayFileData(fileEntry.fullPath + ": " + this.result);
-                                };
-
-                                reader.readAsText(file);
-
-                            }, onErrorReadFile);
-                        }
+                       
+                        
                         function writeFile(fileEntry, dataObj) {
                           console.log("writeFile");
                             console.log(fileEntry);
@@ -598,7 +587,7 @@ torrent.on('done', function(){
 
                                 fileWriter.onwriteend = function() {
                                     console.log("Successful file write...");
-                                    readFile(fileEntry);
+                                    window.app.readFile(fileEntry);
                                 };
 
                                 fileWriter.onerror = function (e) {
@@ -689,7 +678,32 @@ window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (rootDirEn
           console.log('Client is seeding:', torrent.infoHash)
         })
       });
-    }
+    },
+    sincronizarArchivos:function () {
+      if(window.Laravel.empresa!=null){
+        for (var i = 0; i < window.Laravel.archivos.length; i++) {
+          window.app.torrent(window.Laravel.archivos[i]);
+        }
+        
+      }
+    },
+    readFile:function (fileEntry) {
+
+                            fileEntry.file(function (file) {
+                                var reader = new FileReader();
+
+                                reader.onloadend = function() {
+                                    console.log("Successful file read: " + this.result);
+                                    console.log(fileEntry.fullPath + ": " + this.result);
+                                };
+
+                                reader.readAsText(file);
+
+                            }, function(error){
+                            console.log(error);
+                        });
+                        }
+    
 
 };
 //window.app.sendTorrent();

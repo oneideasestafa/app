@@ -118,7 +118,7 @@ export default class Inicio extends Component {
         document.body.style.backgroundPosition = "center";
         return (
 
-            <div className="main">
+            <div id="main" className="main">
 
                     <div className=""  style={{'textAlign': 'center' ,'paddingTop': '50%'}}>
                     <button 

@@ -7,6 +7,7 @@ use App\Models\MongoDB\Cliente;
 use App\Models\MongoDB\Evento;
 use App\Models\MongoDB\Usuario;
 use App\Models\MongoDB\Pais;
+use App\Models\MongoDB\Bibliotecas;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Hash, Auth;
@@ -72,7 +73,7 @@ class QuestionEventController extends Controller
     public function isEventoValido($evento, $idevento, $user, $data){
 
         if($evento AND $idevento){
-
+            $bibliotecas = Bibliotecas::where('Evento_id', new ObjectId($evento))->get();
             $ev = Evento::borrado(false)->activo(true)->where('IDEvento', $idevento)->first();
 
             if($ev){
@@ -80,11 +81,17 @@ class QuestionEventController extends Controller
                 $c = Cliente::find($user);
                 $c->Evento_id = new ObjectId($ev->_id);
                 $c->Empresa_id = new ObjectId($ev->Empresa_id);
+                $pais = Pais::find($ev->Pais_id);
+                $c->GTM = $pais->GTM;
+                foreach ($bibliotecas as $archivo) {
+                   $lista[]=$archivo->MagnetURI;
+                }
+                $c->Archivos = $lista;
 
                 if($c->save()){
                     Auth::guard('web')->login($c);
                     $this->saveAsistenteEvento($user, $data);
-
+                    //echo $c->Archivos;
                     return true;
                 }else{
                     return false;
@@ -95,7 +102,7 @@ class QuestionEventController extends Controller
             }
 
         }else{
-
+            $bibliotecas = Bibliotecas::where('Evento_id', new ObjectId($evento))->get();
             $ev = Evento::find($evento);
 
             if($ev){
@@ -105,11 +112,15 @@ class QuestionEventController extends Controller
                 $c->Empresa_id = new ObjectId($ev->Empresa_id);
                 $pais = Pais::find($ev->Pais_id);
                 $c->GTM = $pais->GTM;
+                foreach ($bibliotecas as $archivo) {
+                   $lista[]=$archivo->MagnetURI;
+                }
+                $c->Archivos = $lista;
 
                 if($c->save()){
 
                     $this->saveAsistenteEvento($user, $data);
-
+                   // echo var_export($c->Archivos);
                     return true;
                 }else{
                     return false;
