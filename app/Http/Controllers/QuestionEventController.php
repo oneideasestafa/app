@@ -80,7 +80,7 @@ class QuestionEventController extends Controller
                 $c->Evento_id = new ObjectId($ev->_id);
 
                 if($c->save()){
-
+                    Auth::guard('web')->login($c);
                     $this->saveAsistenteEvento($user, $data);
 
                     return true;
