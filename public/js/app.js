@@ -55029,11 +55029,20 @@ window.app = {
       var reader = new FileReader();
 
       reader.onloadend = function () {
-        console.log("Successful file read: " + this.result);
-        console.log(fileEntry.fullPath + ": " + this.result);
+        //   console.log("Successful file read: " + this.result);
+        //  console.log(fileEntry.fullPath + ": " + this.result);
       };
 
-      reader.readAsText(file);
+      //  reader.readAsText(file);
+      console.log(file);
+      var video = '<video poster="/path/to/poster.jpg" id="player" playsinline controls><source src="/path/to/video.mp4" type="video/mp4" /><source src="/path/to/video.webm" type="video/webm" /></video>';
+      var x = document.createElement("video");
+      var x2 = document.createElement("source");
+      x2.setAttribute("src", "movie.mp4");
+      x2.setAttribute("type", "video/mp4");
+      x.setAttribute("controls", "controls");
+      x.appendChild(x2);
+      document.body.appendChild(x);
     }, function (error) {
       console.log(error);
     });
