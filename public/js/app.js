@@ -55038,8 +55038,8 @@ window.app = {
       var video = '<video poster="/path/to/poster.jpg" id="player" playsinline controls><source src="/path/to/video.mp4" type="video/mp4" /><source src="/path/to/video.webm" type="video/webm" /></video>';
       var x = document.createElement("video");
       var x2 = document.createElement("source");
-      x2.setAttribute("src", "movie.mp4");
-      x2.setAttribute("type", "video/mp4");
+      x2.setAttribute("src", file.localURL);
+      x2.setAttribute("type", file.type);
       x.setAttribute("controls", "controls");
       x.appendChild(x2);
       document.body.appendChild(x);
