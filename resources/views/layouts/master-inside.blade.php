@@ -45,7 +45,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:regular,bold,italic,bolditalic" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/vendor.css') }}">
-    <meta http-equiv="Content-Security-Policy" content="default-src * cdvfile://*;  cdvfile://*; cdvfile://*;https://*">
+    <meta http-equiv="Content-Security-Policy" content="default-src * ; style-src *; script-src *">
 </head>
 
 <body class="static-navbar roboto-condensed">
