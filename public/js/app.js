@@ -55041,10 +55041,10 @@ window.app = {
   LeerArchivo: function LeerArchivo(path) {
 
     var datos = path.split("/");
-
+    var fileDir = "/" + window.Laravel.empresa + "/" + window.Laravel.evento + "/";
     window.resolveLocalFileSystemURL(cordova.file.dataDirectory + datos[0] + "/" + datos[1], function (rootDirEntry) {
       console.log(rootDirEntry);
-      rootDirEntry.getDirectory(fileDir, { create: true }, function (dirEntry) {
+      rootDirEntry.getDirectory(fileDir, { create: false }, function (dirEntry) {
         var isAppend = true;
         console.log(dirEntry);
         dirEntry.getFile(datos[2], { create: true }, function (fileEntry) {
