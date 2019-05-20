@@ -337,6 +337,33 @@ cordova.plugins.CordovaMqTTPlugin.connect({
             );
 
             }
+
+            if(datos[0]=='MUL'){//MUL,
+            window.app.animacionMUL=datos[1].split("+");
+            window.app.animacionActualMUL=0;
+            window.app.animacionInicioMUL=datos[2];
+            window.app.animacionFinMUL=datos[3];
+            if(window.app.animacionInicioMUL=='99:99:99'){
+              window.app.animacionInicioMUL=today.getHours()+':'+today.getMinutes()+':'+today.getSeconds();
+              window.app.animacionInicioVivoMUL=true;
+            }
+            cordova.plugins.sntp.getClockOffset(
+                function(offset) {
+                    console.log("System clock offset is:", offset);
+                    var diferenciaSegundos= offset/1000;
+                    var fecha =new Date(yyyy+'-'+mm+'-'+dd+' '+window.app.animacionInicioMUL+window.app.gtm);
+                    if(diferenciaSegundos>0||diferenciaSegundos<0){
+                      fecha.setSeconds(diferenciaSegundos);
+                    }
+                    window.app.lanzarElDia(fecha, window.app.tareaMUL);
+                },
+                function(errorMessage) {
+                    console.log("I haz error:", errorMessage);
+                }
+            );
+
+            }
+
             //window.app.comandos=
             }
              
@@ -461,6 +488,51 @@ cordova.plugins.CordovaMqTTPlugin.publish({
             }else{
               window.app.animacionActual=i+1;
               setTimeout(window.app.tareaCOL,efecto[1]*1000);
+            }
+
+    },
+    tareaMUL: function(x) {
+          console.log('acá va la tarea', new Date());
+          var animacion=window.app.animacionMUL;
+          var i = window.app.animacionActualMUL;
+          if(window.app.animacionMUL==undefined||window.app.animacionMUL==''){
+            return false;
+          }
+          if(i>=window.app.animacionMUL.length){
+            return false;
+          }
+          var today = new Date();
+          if(!window.app.animacionInicioVivoMUL){
+          //cargar fecha
+            var fin=window.app.animacionFinMUL.split(':');
+            var inicio=window.app.animacionInicioMUL.split(':');
+            //validar tiempo
+            if(today.getHours()>=parseInt(fin[0])&&today.getMinutes()>=parseInt(fin[1])&&today.getSeconds()>=parseInt(fin[0])){
+              return false;
+            }
+            if(today.getHours()<parseInt(inicio[0])&&today.getMinutes()<parseInt(inicio[1])&&today.getSeconds()<parseInt(inicio[0])){
+              return false;
+            }
+          }else{
+            window.app.animacionInicioVivoMUL=false;
+          }  
+            var efecto=animacion[i].split(".");
+            console.log(efecto);
+            
+          //  document.body.style.backgroundColor = efecto[0];
+           // document.querySelector('.navbar-toggler-icon').style.color =  efecto[0];
+           // document.body.style.backgroundImage = "none";
+           //efecto[0]
+           window.app.LeerArchivo(efecto[0]);
+
+            
+            //cargar el ciclo
+            if(i+1>=window.app.animacionMUL.length){
+              window.app.animacionActualMUL=0;
+              setTimeout(window.app.tareaMUL,efecto[1]*1000);
+            }else{
+              window.app.animacionActualMUL=i+1;
+              setTimeout(window.app.tareaMUL,efecto[1]*1000);
             }
 
     },
@@ -702,6 +774,30 @@ window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (rootDirEn
                             }, function(error){
                             console.log(error);
                         });
+                        },
+                        LeerArchivo:function (path) {
+
+                           var datos=path.split("/");
+
+                           window.resolveLocalFileSystemURL(cordova.file.dataDirectory+datos[0]+"/"+datos[1],function(rootDirEntry){
+                                      console.log(rootDirEntry);
+                                      rootDirEntry.getDirectory(fileDir, { create: true }, function (dirEntry) {
+                                                  var isAppend = true;
+                                                  console.log(dirEntry);
+                                                  dirEntry.getFile(datos[2], { create: true }, function (fileEntry) {
+                                                      window.app.readFile(fileEntry);
+                                                      // Success
+                                                      console.log("leido");
+                                                  });
+                                              });
+
+                                
+                            
+
+
+
+
+                                      });
                         }
     
 
