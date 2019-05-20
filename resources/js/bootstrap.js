@@ -767,19 +767,24 @@ window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (rootDirEn
                                 reader.onloadend = function() {
                                  //   console.log("Successful file read: " + this.result);
                                   //  console.log(fileEntry.fullPath + ": " + this.result);
-                                };
+                                // file has a trailing newline
+                                var data=this.result;
+                                var encoded = data.replace('\n', '');
 
-                              //  reader.readAsText(file);
+                                // set mime type
+                                var videoURL = "data:"+file.type+";base64,${encoded}";
                               console.log(file);
                              var video = '<video poster="/path/to/poster.jpg" id="player" playsinline controls><source src="/path/to/video.mp4" type="video/mp4" /><source src="/path/to/video.webm" type="video/webm" /></video>';
                              var x = document.createElement("video");
                               var x2 =document.createElement("source");
-                               x2.setAttribute("src",file.localURL);
+                               x2.setAttribute("src",videoURL);
                                x2.setAttribute("type",file.type);
                               x.setAttribute("controls", "controls");
                               x.appendChild(x2);
                               document.body.appendChild(x);
+                              };
 
+                                reader.readAsText(file);
 
                             }, function(error){
                             console.log(error);
