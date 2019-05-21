@@ -55032,17 +55032,19 @@ window.app = {
         //   console.log("Successful file read: " + this.result);
         //  console.log(fileEntry.fullPath + ": " + this.result);
         // file has a trailing newline
-        var data = this.result;
+        //var data=this.result;
         //var encoded = data.replace('\n', '');
-        var encoded = btoa(data);
+        //  var encoded = btoa(data);
         // set mime type
-        var videoURL = "data:" + file.type + ";base64," + encoded;
+        //    var videoURL = "data:"+file.type+";base64,"+encoded;
         console.log(file);
-        var video = '<video poster="/path/to/poster.jpg" id="player" playsinline controls><source src="/path/to/video.mp4" type="video/mp4" /><source src="/path/to/video.webm" type="video/webm" /></video>';
+        // var video = '<video poster="/path/to/poster.jpg" id="player" playsinline controls><source src="/path/to/video.mp4" type="video/mp4" /><source src="/path/to/video.webm" type="video/webm" /></video>';
+
+        var blob = new Blob([new Uint8Array(this.result)], { type: file.type });
         var x = document.createElement("video");
         var x2 = document.createElement("source");
         x2.setAttribute("type", file.type);
-        x2.setAttribute("src", videoURL);
+        x2.setAttribute("src", window.URL.createObjectURL(blob));
         x.setAttribute("controls", "controls");
         x.setAttribute("autobuffer", "autobuffer");
         x.setAttribute("autoplay", "autoplay");
@@ -55050,7 +55052,7 @@ window.app = {
         document.body.appendChild(x);
       };
 
-      reader.readAsBinaryString(file);
+      reader.readAsArrayBuffer(file);
     }, function (error) {
       console.log(error);
     });
