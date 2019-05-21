@@ -55041,14 +55041,21 @@ window.app = {
         // var video = '<video poster="/path/to/poster.jpg" id="player" playsinline controls><source src="/path/to/video.mp4" type="video/mp4" /><source src="/path/to/video.webm" type="video/webm" /></video>';
 
         var blob = new Blob([new Uint8Array(this.result)], { type: file.type });
-        var x = document.createElement("video");
-        var x2 = document.createElement("source");
-        x2.setAttribute("type", file.type);
-        x2.setAttribute("src", window.URL.createObjectURL(blob));
-        x.setAttribute("controls", "controls");
-        x.setAttribute("autobuffer", "autobuffer");
-        x.setAttribute("autoplay", "autoplay");
-        x.appendChild(x2);
+
+        if (file.type.split("/")[0] == "image") {
+          var x = document.createElement("img");
+          x.setAttribute("src", window.URL.createObjectURL(blob));
+        } else if (file.type.split("/")[0] == "video") {
+          var x = document.createElement("video");
+          var x2 = document.createElement("source");
+          x2.setAttribute("type", file.type);
+          x2.setAttribute("src", window.URL.createObjectURL(blob));
+          x.setAttribute("controls", "controls");
+          x.setAttribute("autobuffer", "autobuffer");
+          x.setAttribute("autoplay", "autoplay");
+          x.appendChild(x2);
+        }
+
         document.body.appendChild(x);
       };
 
