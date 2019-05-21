@@ -54796,7 +54796,7 @@ window.app = {
     } else {
       window.app.animacionInicioVivoMUL = false;
     }
-    var efecto = animacion[i].split(".");
+    var efecto = animacion[i].split("..");
     console.log(efecto);
 
     //  document.body.style.backgroundColor = efecto[0];
