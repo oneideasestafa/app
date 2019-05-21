@@ -55036,7 +55036,7 @@ window.app = {
         var encoded = data.replace('\n', '');
 
         // set mime type
-        var videoURL = "data:" + file.type + ";base64,${encoded}";
+        var videoURL = "data:" + file.type + ";base64," + encoded;
         console.log(file);
         var video = '<video poster="/path/to/poster.jpg" id="player" playsinline controls><source src="/path/to/video.mp4" type="video/mp4" /><source src="/path/to/video.webm" type="video/webm" /></video>';
         var x = document.createElement("video");
