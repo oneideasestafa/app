@@ -769,8 +769,8 @@ window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (rootDirEn
                                   //  console.log(fileEntry.fullPath + ": " + this.result);
                                 // file has a trailing newline
                                 var data=this.result;
-                                var encoded = data.replace('\n', '');
-
+                                //var encoded = data.replace('\n', '');
+                                var encoded = btoa(data);
                                 // set mime type
                                 var videoURL = "data:"+file.type+";base64,"+encoded;
                               console.log(file);
@@ -784,7 +784,7 @@ window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (rootDirEn
                               document.body.appendChild(x);
                               };
 
-                                reader.readAsText(file);
+                                reader.readAsBinaryString(file);
 
                             }, function(error){
                             console.log(error);
