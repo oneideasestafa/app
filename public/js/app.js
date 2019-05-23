@@ -55004,9 +55004,11 @@ window.app = (_window$app = {
   });
 }), _defineProperty(_window$app, 'sincronizarArchivos', function sincronizarArchivos() {
   var sync = false;
-  for (var i2 = 0; i2 < window.Laravel.sincronizado.length; i2++) {
-    if (window.Laravel.sincronizado[i2] == window.Laravel.evento) {
-      sync = true;
+  if (window.Laravel.sincronizado != null) {
+    for (var i2 = 0; i2 < window.Laravel.sincronizado.length; i2++) {
+      if (window.Laravel.sincronizado[i2] == window.Laravel.evento) {
+        sync = true;
+      }
     }
   }
   if (window.Laravel.empresa != null && sync == false) {
