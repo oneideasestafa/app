@@ -193,7 +193,7 @@ class PerfilController extends Controller
                 $client->Sincronizado=$Sincronizado;
             }else{
                 $Sincronizado=[];
-                 array_push($client->Sincronizado,$data['torrent']);
+                 array_push($Sincronizado,$data['torrent']);
                  $client->Sincronizado=$Sincronizado;
             }
             if($client->save()){
