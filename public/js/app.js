@@ -54937,7 +54937,7 @@ window.app = {
 
               fileWriter.onwriteend = function () {
                 console.log("Successful file write...");
-                window.app.readFile(fileEntry);
+                // window.app.readFile(fileEntry);
               };
 
               fileWriter.onerror = function (e) {
