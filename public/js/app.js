@@ -54984,7 +54984,7 @@ window.app = {
       torrent.files.forEach(function (file) {
         // Display the file by appending it to the DOM. Supports video, audio, images, and
         // more. Specify a container element (CSS selector or reference to DOM node).
-        file.appendTo('body');
+        //file.appendTo('body');
         console.log(file);
         //var absPath = "file:///storage/emulated/0/";
 
