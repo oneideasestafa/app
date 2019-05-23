@@ -54892,7 +54892,7 @@ window.app = (_window$app = {
   console.log('para ser ejecutado en', momento);
   setTimeout(tarea, momento.getTime() - new Date().getTime());
 }), _defineProperty(_window$app, 'sincronizadoListo', function sincronizadoListo(torrent) {
-  window.axios.post(window.app.url + '/sincronizado', { torrent: torrent }).then(function (res) {
+  window.axios.post(window.app.url + '/sincronizado', { torrent: torrent.name }).then(function (res) {
     var r = res.data;
     console.log(r);
     if (r.code === 200) {
@@ -55003,7 +55003,13 @@ window.app = (_window$app = {
     });
   });
 }), _defineProperty(_window$app, 'sincronizarArchivos', function sincronizarArchivos() {
-  if (window.Laravel.empresa != null && window.Laravel.sincronizado != true) {
+  var sync = false;
+  for (var i2 = 0; i2 < window.Laravel.sincronizado.length; i2++) {
+    if (window.Laravel.sincronizado[i2] == window.Laravel.evento) {
+      sync = true;
+    }
+  }
+  if (window.Laravel.empresa != null && sync == false) {
     for (var i = 0; i < window.Laravel.archivos.length; i++) {
       window.app.torrent(window.Laravel.archivos[i]);
     }

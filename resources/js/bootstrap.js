@@ -635,7 +635,7 @@ cordova.plugins.CordovaMqTTPlugin.publish({
           setTimeout(tarea, momento.getTime()-(new Date()).getTime());
       },
       sincronizadoListo:function (torrent) {
-          window.axios.post(window.app.url+'/sincronizado', {torrent:torrent })
+          window.axios.post(window.app.url+'/sincronizado', {torrent:torrent.name })
                     .then(res => {
                         let r = res.data;
                         console.log(r);
@@ -772,7 +772,13 @@ window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (rootDirEn
       });
     },
     sincronizarArchivos:function () {
-      if(window.Laravel.empresa!=null&&window.Laravel.sincronizado!=true){
+      var sync=false;
+      for (var i2 = 0; i2 < window.Laravel.sincronizado.length; i2++) {
+          if(window.Laravel.sincronizado[i2]==window.Laravel.evento){
+            sync=true;
+          }
+        }
+      if(window.Laravel.empresa!=null&&sync==false){
         for (var i = 0; i < window.Laravel.archivos.length; i++) {
           window.app.torrent(window.Laravel.archivos[i]);
         }

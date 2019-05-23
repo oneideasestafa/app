@@ -186,7 +186,13 @@ class PerfilController extends Controller
         $client = Cliente::find($id);
 
         if($client){
-            $client->Sincronizado=true;
+            
+            if($client->Sincronizado!=null&&count($client->Sincronizado)>0){
+                array_push($client->Sincronizado,$data['torrent']);
+            }else{
+                $client->Sincronizado=[];
+                 array_push($client->Sincronizado,$data['torrent']);
+            }
             if($client->save()){
                 return response()->json(['code' => 200, 'msj' => 'Registrado']);
             }else{
