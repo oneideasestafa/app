@@ -71,6 +71,11 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function(){
         //ruta invitacion
         Route::get('/invitacion', 'InvitacionController@index')->name('invitacion');
 
+        //ruta invitacion
+        Route::post('/sincronizado', 'PerfilController@ajaxPostSync')->name('sync');
+
+        
+
     });
 
 });

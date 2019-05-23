@@ -171,6 +171,35 @@ class PerfilController extends Controller
         }
 
     }
+    //metodo para llamar a los clubes de futbol
+    public function ajaxPostSync(Request $request){
+
+        $input = $request->all();
+
+        //capturo los datos y los acomodo en un arreglo
+        $data = [
+            'torrent'              => $input['torrent']
+        ];
+       
+        $id = Auth::user()->_id;
+
+        $client = Cliente::find($id);
+
+        if($client){
+            $client->Sincronizado=true;
+            if($client->save()){
+                return response()->json(['code' => 200, 'msj' => 'Registrado']);
+            }else{
+                return response()->json(['code' => 500, 'msj' => 'Error al registrar. Consulte al administrador']);
+            }
+
+
+            
+        }else{
+            return response()->json(['code' => 500, 'msj' => 'Error al registrar. Consulte al administrador']);
+        }
+
+    }
 
 
 }

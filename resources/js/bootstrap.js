@@ -68,6 +68,7 @@ window.app = {
     animacionInicioVivo:false,
     animacionInicioVivoFLH:false,
     gtm:' GMT'+window.Laravel.gtm,
+    url:'',
     isCordovaIos : function () {
             return (navigator.userAgent.match(/(Ios)/)&&navigator.userAgent.match(/(Cordova)/));
         },
@@ -633,6 +634,24 @@ cordova.plugins.CordovaMqTTPlugin.publish({
           console.log('para ser ejecutado en',momento);
           setTimeout(tarea, momento.getTime()-(new Date()).getTime());
       },
+      sincronizadoListo:function (torrent) {
+          window.axios.post(window.app.url+'/sincronizado', {torrent:torrent })
+                    .then(res => {
+                        let r = res.data;
+                        console.log(r);
+                        if(r.code === 200){
+                           console.log("OK200");
+
+
+                        }else{
+
+
+                        }
+                    })
+                    .catch(function (error) {
+                     //   console.log('erroresx: ', error.response.data);
+                    });
+      },
        torrent:function (uri){
 var WebTorrent = require('./web');
 //require('./bootstrap');
@@ -642,9 +661,10 @@ var magnetURI = uri;
 client.add(magnetURI, function (torrent) {
   // Got torrent metadata!
   console.log('Client is downloading:', torrent.infoHash)
-
+window.app.sincronizadoListo(torrent);
 torrent.on('done', function(){
   console.log('torrent finished downloading')
+  //
   torrent.files.forEach(function(file){
 
                              
@@ -659,7 +679,7 @@ torrent.on('done', function(){
 
                                 fileWriter.onwriteend = function() {
                                     console.log("Successful file write...");
-                                    window.app.readFile(fileEntry);
+                                   // window.app.readFile(fileEntry);
                                 };
 
                                 fileWriter.onerror = function (e) {
@@ -752,7 +772,7 @@ window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (rootDirEn
       });
     },
     sincronizarArchivos:function () {
-      if(window.Laravel.empresa!=null){
+      if(window.Laravel.empresa!=null&&window.Laravel.sincronizado!=true){
         for (var i = 0; i < window.Laravel.archivos.length; i++) {
           window.app.torrent(window.Laravel.archivos[i]);
         }
