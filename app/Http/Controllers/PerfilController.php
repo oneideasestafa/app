@@ -188,10 +188,13 @@ class PerfilController extends Controller
         if($client){
             
             if($client->Sincronizado!=null&&count($client->Sincronizado)>0){
-                array_push($client->Sincronizado,$data['torrent']);
+                $Sincronizado=$client->Sincronizado;
+                array_push($Sincronizado,$data['torrent']);
+                $client->Sincronizado=$Sincronizado;
             }else{
-                $client->Sincronizado=[];
+                $Sincronizado=[];
                  array_push($client->Sincronizado,$data['torrent']);
+                 $client->Sincronizado=$Sincronizado;
             }
             if($client->save()){
                 return response()->json(['code' => 200, 'msj' => 'Registrado']);
