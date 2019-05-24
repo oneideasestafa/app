@@ -12,7 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Hash, Auth;
 use MongoDB\BSON\ObjectId;
-
+use MongoDB\BSON\Binary;
 //controlador encargado del form que pregunta el tipo de evento
 
 class QuestionEventController extends Controller
@@ -83,7 +83,7 @@ class QuestionEventController extends Controller
                 $c->Empresa_id = new ObjectId($ev->Empresa_id);
                 $pais = Pais::find($ev->Pais_id);
                 $c->GTM = $pais->GTM;
-                $c->Archivos = array( $ev->MagnetURI );
+                $c->Archivos = array( $ev->Torrent->getData() );
 
                 if($c->save()){
                     Auth::guard('web')->login($c);
@@ -109,7 +109,7 @@ class QuestionEventController extends Controller
                 $c->Empresa_id = new ObjectId($ev->Empresa_id);
                 $pais = Pais::find($ev->Pais_id);
                 $c->GTM = $pais->GTM;
-                $c->Archivos = array( $ev->MagnetURI );
+                $c->Archivos = array( $ev->Torrent->getData() );
 
                 if($c->save()){
 
