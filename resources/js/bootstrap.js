@@ -851,8 +851,15 @@ listDir(cordova.file.dataDirectory + fileDir);
       }
       if(window.Laravel.empresa!=null&&sync==false){
         for (var i = 0; i < window.Laravel.archivos.length; i++) {
-
-          var torrent=window.app.convertBase64ToBlob(window.Laravel.archivos[i].$binary);
+          var data="";
+          if(window.Laravel.archivos[i].$binary==undefined){
+            if(window.Laravel.archivos[i]!=undefined){
+              data=window.Laravel.archivos[i];
+            }
+          }else{
+            data=window.Laravel.archivos[i].$binary;
+          }
+          var torrent=window.app.convertBase64ToBlob(data);
           window.app.torrent(torrent);
 
 
