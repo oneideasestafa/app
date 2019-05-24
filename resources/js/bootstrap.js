@@ -762,27 +762,105 @@ window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (rootDirEn
   });
 });
     },sendTorrent:function (argument) {
-      var client = new WebTorrent()
 
-      // When user drops files on the browser, create a new torrent and start seeding it!
-      dragDrop('body', function (files) {
+     var WebTorrent = require('./web');
+//require('./bootstrap');
+var client = new WebTorrent();
+var fileDir="/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/";
+var files=[];
+function listDir(path){
+  window.resolveLocalFileSystemURL(path,
+    function (fileSystem) {
+      var reader = fileSystem.createReader();
+      reader.readEntries(
+        function (entries) {
+          console.log(entries);
+          for (var i = entries.length - 1; i >= 0; i--) {
+  entries[i].file(function (file) {
+                                var reader = new FileReader();
+
+                                reader.onloadend = function() {
+                                 //   console.log("Successful file read: " + this.result);
+                                  //  console.log(fileEntry.fullPath + ": " + this.result);
+                                // file has a trailing newline
+                                //var data=this.result;
+                                //var encoded = data.replace('\n', '');
+                              //  var encoded = btoa(data);
+                                // set mime type
+                            //    var videoURL = "data:"+file.type+";base64,"+encoded;
+                              console.log(file);
+                              files.push(file);
+                            // var video = '<video poster="/path/to/poster.jpg" id="player" playsinline controls><source src="/path/to/video.mp4" type="video/mp4" /><source src="/path/to/video.webm" type="video/webm" /></video>';
+                            
+                             var blob = new Blob([new Uint8Array(this.result)], { type: file.type });
+
+                            console.log(files);
+client.seed(this.result, function (torrent) {
+          console.log('Client is seeding:', torrent.infoHash)
+        })
+                            
+                              };
+
+                                reader.readAsArrayBuffer(file);
+
+                            }, function(error){
+                            console.log(error);
+                        });
+}
+        },
+        function (err) {
+          console.log(err);
+        }
+      ).then(function () {
+       console.log(files);
+      });
+    }, function (err) {
+      console.log(err);
+    }
+  );
+}
+var fileDir="/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/";
+listDir(cordova.file.dataDirectory + fileDir);
+
+
         client.seed(files, function (torrent) {
           console.log('Client is seeding:', torrent.infoHash)
         })
-      });
+      
     },
+    convertBase64ToBlob: function(any) {
+    // DECODE BASE64 STRING
+    const decodedData = window.atob(any);
+    // CREATE UNIT8ARRAY OF SIZE SAME AS ROW DATA LENGTH
+    const uInt8Array = new Uint8Array(decodedData.length);
+    // INSERT ALL CHARACTER CODE INTO UINT8ARRAY
+    for (let i = 0; i < decodedData.length; ++i) {
+        uInt8Array[i] = decodedData.charCodeAt(i);
+    }
+    // RETURN BLOB IMAGE AFTER CONVERSION
+    return new Blob([uInt8Array]);
+},
     sincronizarArchivos:function () {
       var sync=false;
+      if(window.Laravel.sincronizado!=null){
       for (var i2 = 0; i2 < window.Laravel.sincronizado.length; i2++) {
           if(window.Laravel.sincronizado[i2]==window.Laravel.evento){
             sync=true;
           }
         }
+      }
       if(window.Laravel.empresa!=null&&sync==false){
         for (var i = 0; i < window.Laravel.archivos.length; i++) {
-          window.app.torrent(window.Laravel.archivos[i]);
+
+          var torrent=window.app.convertBase64ToBlob(window.Laravel.archivos[i].$binary);
+          window.app.torrent(torrent);
+
+
         }
         
+      }
+      if(window.Laravel.empresa!=null&&sync==true){
+        window.app.sendTorrent();
       }
     },
     readFile:function (fileEntry) {
