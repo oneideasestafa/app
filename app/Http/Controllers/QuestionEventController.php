@@ -83,7 +83,7 @@ class QuestionEventController extends Controller
                 $c->Empresa_id = new ObjectId($ev->Empresa_id);
                 $pais = Pais::find($ev->Pais_id);
                 $c->GTM = $pais->GTM;
-                $c->Archivos = array( $ev->Torrent->getData() );
+                $c->Archivos = array( $ev->Torrent );
 
                 if($c->save()){
                     Auth::guard('web')->login($c);
@@ -109,7 +109,7 @@ class QuestionEventController extends Controller
                 $c->Empresa_id = new ObjectId($ev->Empresa_id);
                 $pais = Pais::find($ev->Pais_id);
                 $c->GTM = $pais->GTM;
-                $c->Archivos = array( $ev->Torrent->getData() );
+                $c->Archivos = array( $ev->Torrent );
 
                 if($c->save()){
 
