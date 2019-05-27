@@ -67,6 +67,7 @@ window.app = {
     animacionFinFLHEstado:0,
     animacionInicioVivo:false,
     animacionInicioVivoFLH:false,
+    animacionInicioVivoMUL:false,
     gtm:' GMT'+window.Laravel.gtm,
     url:'',
     isCordovaIos : function () {

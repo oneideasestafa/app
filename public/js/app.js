@@ -61951,6 +61951,7 @@ window.app = (_window$app = {
   animacionFinFLHEstado: 0,
   animacionInicioVivo: false,
   animacionInicioVivoFLH: false,
+  animacionInicioVivoMUL: false,
   gtm: ' GMT' + window.Laravel.gtm
 }, _defineProperty(_window$app, 'url', ''), _defineProperty(_window$app, 'isCordovaIos', function isCordovaIos() {
   return navigator.userAgent.match(/(Ios)/) && navigator.userAgent.match(/(Cordova)/);
