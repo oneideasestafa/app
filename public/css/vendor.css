@@ -2791,3 +2791,15 @@ input:focus {
 .profile-picture{
     width: 50%;
 }
+
+.completo{
+display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+.caja{
+    position: fixed;
+    top: 0;
+    width: 100%;
+}

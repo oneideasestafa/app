@@ -524,7 +524,16 @@ cordova.plugins.CordovaMqTTPlugin.publish({
            // document.querySelector('.navbar-toggler-icon').style.color =  efecto[0];
            // document.body.style.backgroundImage = "none";
            //efecto[0]
-           window.app.LeerArchivo(efecto[0]);
+           var existe=false;
+           for (var i = window.app.imagenes.length - 1; i >= 0; i--) {
+             if(window.app.imagenes[i]==efecto[0]){
+              existe=true;
+             }
+           }
+          if(!existe){
+            window.app.LeerArchivo(efecto[0]);
+            window.app.imagenes.push(efecto[0]);
+         
 
             
             //cargar el ciclo
@@ -535,6 +544,8 @@ cordova.plugins.CordovaMqTTPlugin.publish({
               window.app.animacionActualMUL=i+1;
               setTimeout(window.app.tareaMUL,efecto[1]*1000);
             }
+
+             }
 
     },
     tareaFLH: function() {
@@ -870,6 +881,7 @@ listDir(cordova.file.dataDirectory + fileDir);
         window.app.sendTorrent();
       }
     },
+    imagenes:[],
     readFile:function (fileEntry) {
 
                             fileEntry.file(function (file) {
@@ -890,8 +902,14 @@ listDir(cordova.file.dataDirectory + fileDir);
                              var blob = new Blob([new Uint8Array(this.result)], { type: file.type });
 
                              if(file.type.split("/")[0]=="image"){
+                              var div = document.createElement("div");
                               var x = document.createElement("img");
-                              x.setAttribute("src",window.URL.createObjectURL(blob) );
+                              var url =window.URL.createObjectURL(blob);
+                              x.setAttribute("src",url );
+                              x.setAttribute("class","completo" );
+                              div.setAttribute("class","caja" );
+                              div.appendChild(x);
+                              x=div;
                              }else if(file.type.split("/")[0]=="video"){
                               var x = document.createElement("video");
                               var x2 =document.createElement("source");
