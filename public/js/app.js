@@ -39311,7 +39311,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
             (function (n) {
                 t.exports = function (e, t) {
                     function r(i) {
-                        o.removeEventListener("loadend", r, !1), i.error ? t(i.error) : t(null, n.from(o.result));
+                        if (typeof o.removeEventListener === "function") {
+                            o.addEventListener("loadend", r, !1);
+                        } else {
+                            o.loadend = r;
+                        }
+                        i.error ? t(i.error) : t(null, n.from(o.result));
                     }if ("undefined" == typeof Blob || !(e instanceof Blob)) throw new Error("first argument must be a Blob");
                     if ("function" != typeof t) throw new Error("second argument must be a function");
                     var o = new FileReader();
