@@ -39318,7 +39318,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                     if (typeof FileReader.prototype.addEventListener === "function") {
                         o.addEventListener("loadend", r, !1);
                     } else {
-                        reader.onload = r;
+                        o.onload = r;
                     }
 
                     o.readAsArrayBuffer(e);
