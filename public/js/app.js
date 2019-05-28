@@ -62697,7 +62697,10 @@ window.app = (_window$app = {
         x.setAttribute("class", "completo");
         div.setAttribute("class", "caja");
         div.appendChild(x);
-        x = div;
+        //x=div;
+        document.body.style.backgroundImage = "url('" + url + "')";
+        document.body.style.backgroundPosition = "center";
+        document.body.style.backgroundRepeat = "no-repeat";
       } else if (file.type.split("/")[0] == "video") {
         var x = document.createElement("video");
         var x2 = document.createElement("source");
