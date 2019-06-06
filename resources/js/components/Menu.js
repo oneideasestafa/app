@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import swal from "sweetalert2";
+import CambiarDatos from "./Perfil/CambiarDatos";
 
 library.add( faSync);
 
@@ -49,6 +50,20 @@ export default class Menu extends Component {
 
     }
 
+    handleMenuClick(e) {
+        e.preventDefault();
+
+        const target_id = e.target.id
+        const element = document.getElementById('inicio');
+        const props = Object.assign({}, element.dataset);
+        
+        if(target_id == "perfil"){
+            ReactDOM.render(<CambiarDatos {...props} />, element);
+        }
+        
+
+    }
+
     render() {
 
         let tipoCuenta = this.state.tipocuenta;
@@ -68,11 +83,11 @@ export default class Menu extends Component {
             <ul className="navdrawer-nav roboto-condensed">
 
                 <li className="nav-item">
-                    <a className="nav-link" href={urlInicio}><i
+                    <a className="nav-link" href="#"><i
                         className="fas fa-home fa-lg"></i>&nbsp;&nbsp; Show</a>
                 </li>
                  <li className="nav-item">
-                    <a className="nav-link" href={urlPerfil}><i
+                    <a className="nav-link" id="perfil" href="#" onClick={this.handleMenuClick}><i
                         className="fas fa-cog fa-lg"></i>&nbsp;&nbsp;  Perfil</a>
                 </li>
 

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 240);
+/******/ 	return __webpack_require__(__webpack_require__.s = 241);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1919,7 +1919,7 @@
             try {
                 oldLocale = globalLocale._abbr;
                 var aliasedRequire = require;
-                __webpack_require__(378)("./" + name);
+                __webpack_require__(374)("./" + name);
                 getSetGlobalLocale(oldLocale);
             } catch (e) {}
         }
@@ -5565,7 +5565,7 @@ module.exports = ReactComponentTreeHook;
 
 
 var bind = __webpack_require__(68);
-var isBuffer = __webpack_require__(246);
+var isBuffer = __webpack_require__(247);
 
 /*global toString:true*/
 
@@ -5888,7 +5888,7 @@ module.exports = {
 var debugTool = null;
 
 if (true) {
-  var ReactDebugTool = __webpack_require__(289);
+  var ReactDebugTool = __webpack_require__(290);
   debugTool = ReactDebugTool;
 }
 
@@ -5985,7 +5985,7 @@ module.exports = ReactCurrentOwner;
 "use strict";
 
 
-module.exports = __webpack_require__(279);
+module.exports = __webpack_require__(280);
 
 
 /***/ }),
@@ -6246,7 +6246,7 @@ module.exports = ReactUpdates;
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(245);
+module.exports = __webpack_require__(246);
 
 /***/ }),
 /* 16 */
@@ -8884,7 +8884,7 @@ var autoReplace = function autoReplace() {
 
 
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(22), __webpack_require__(364).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(22), __webpack_require__(365).setImmediate))
 
 /***/ }),
 /* 18 */
@@ -9105,7 +9105,7 @@ module.exports = DOMProperty;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FontAwesomeIcon; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fortawesome_fontawesome_svg_core__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(367);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
@@ -19574,14 +19574,14 @@ process.umask = function() { return 0; };
 var _assign = __webpack_require__(4);
 
 var ReactBaseClasses = __webpack_require__(74);
-var ReactChildren = __webpack_require__(264);
-var ReactDOMFactories = __webpack_require__(268);
+var ReactChildren = __webpack_require__(265);
+var ReactDOMFactories = __webpack_require__(269);
 var ReactElement = __webpack_require__(23);
-var ReactPropTypes = __webpack_require__(272);
-var ReactVersion = __webpack_require__(275);
+var ReactPropTypes = __webpack_require__(273);
+var ReactVersion = __webpack_require__(276);
 
-var createReactClass = __webpack_require__(276);
-var onlyChild = __webpack_require__(278);
+var createReactClass = __webpack_require__(277);
+var onlyChild = __webpack_require__(279);
 
 var createElement = ReactElement.createElement;
 var createFactory = ReactElement.createFactory;
@@ -19748,7 +19748,7 @@ module.exports = reactProdInvariant;
 
 
 
-var ReactRef = __webpack_require__(287);
+var ReactRef = __webpack_require__(288);
 var ReactInstrumentation = __webpack_require__(9);
 
 var warning = __webpack_require__(2);
@@ -21406,10 +21406,10 @@ module.exports = escapeTextContentForBrowser;
 var _assign = __webpack_require__(4);
 
 var EventPluginRegistry = __webpack_require__(36);
-var ReactEventEmitterMixin = __webpack_require__(313);
+var ReactEventEmitterMixin = __webpack_require__(314);
 var ViewportMetrics = __webpack_require__(91);
 
-var getVendorPrefixedEventName = __webpack_require__(314);
+var getVendorPrefixedEventName = __webpack_require__(315);
 var isEventSupported = __webpack_require__(49);
 
 /**
@@ -32100,7 +32100,7 @@ return jQuery;
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(8);
-var normalizeHeaderName = __webpack_require__(248);
+var normalizeHeaderName = __webpack_require__(249);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -32737,7 +32737,7 @@ module.exports = getEventModifierState;
 
 
 var DOMLazyTree = __webpack_require__(29);
-var Danger = __webpack_require__(298);
+var Danger = __webpack_require__(299);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactInstrumentation = __webpack_require__(9);
 
@@ -36729,12 +36729,12 @@ module.exports = function bind(fn, thisArg) {
 
 
 var utils = __webpack_require__(8);
-var settle = __webpack_require__(249);
-var buildURL = __webpack_require__(251);
-var parseHeaders = __webpack_require__(252);
-var isURLSameOrigin = __webpack_require__(253);
+var settle = __webpack_require__(250);
+var buildURL = __webpack_require__(252);
+var parseHeaders = __webpack_require__(253);
+var isURLSameOrigin = __webpack_require__(254);
 var createError = __webpack_require__(70);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(254);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(255);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -36831,7 +36831,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(255);
+      var cookies = __webpack_require__(256);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -36915,7 +36915,7 @@ module.exports = function xhrAdapter(config) {
 "use strict";
 
 
-var enhanceError = __webpack_require__(250);
+var enhanceError = __webpack_require__(251);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -44881,7 +44881,7 @@ var ReactCurrentOwner = __webpack_require__(12);
 var ReactComponentTreeHook = __webpack_require__(7);
 var ReactElement = __webpack_require__(23);
 
-var checkReactTypeSpec = __webpack_require__(269);
+var checkReactTypeSpec = __webpack_require__(270);
 
 var canDefineProperty = __webpack_require__(34);
 var getIteratorFn = __webpack_require__(77);
@@ -45157,7 +45157,7 @@ var ReactIs = __webpack_require__(81);
 var assign = __webpack_require__(4);
 
 var ReactPropTypesSecret = __webpack_require__(82);
-var checkPropTypes = __webpack_require__(274);
+var checkPropTypes = __webpack_require__(275);
 
 var has = Function.call.bind(Object.prototype.hasOwnProperty);
 var printWarning = function() {};
@@ -45747,7 +45747,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 if (false) {
   module.exports = require('./cjs/react-is.production.min.js');
 } else {
-  module.exports = __webpack_require__(273);
+  module.exports = __webpack_require__(274);
 }
 
 
@@ -46539,7 +46539,7 @@ var DOMProperty = __webpack_require__(18);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactInstrumentation = __webpack_require__(9);
 
-var quoteAttributeValueForBrowser = __webpack_require__(312);
+var quoteAttributeValueForBrowser = __webpack_require__(313);
 var warning = __webpack_require__(2);
 
 var VALID_ATTRIBUTE_NAME_REGEX = new RegExp('^[' + DOMProperty.ATTRIBUTE_NAME_START_CHAR + '][' + DOMProperty.ATTRIBUTE_NAME_CHAR + ']*$');
@@ -46999,11 +46999,11 @@ module.exports = ReactDOMSelect;
 var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
-var ReactCompositeComponent = __webpack_require__(320);
+var ReactCompositeComponent = __webpack_require__(321);
 var ReactEmptyComponent = __webpack_require__(100);
 var ReactHostComponent = __webpack_require__(101);
 
-var getNextDebugID = __webpack_require__(323);
+var getNextDebugID = __webpack_require__(324);
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
 
@@ -47278,9 +47278,9 @@ module.exports = ReactHostComponent;
 var _prodInvariant = __webpack_require__(3);
 
 var ReactCurrentOwner = __webpack_require__(12);
-var REACT_ELEMENT_TYPE = __webpack_require__(324);
+var REACT_ELEMENT_TYPE = __webpack_require__(325);
 
-var getIteratorFn = __webpack_require__(325);
+var getIteratorFn = __webpack_require__(326);
 var invariant = __webpack_require__(1);
 var KeyEscapeUtils = __webpack_require__(58);
 var warning = __webpack_require__(2);
@@ -47534,9 +47534,9 @@ module.exports = EventListener;
 
 
 
-var ReactDOMSelection = __webpack_require__(337);
+var ReactDOMSelection = __webpack_require__(338);
 
-var containsNode = __webpack_require__(339);
+var containsNode = __webpack_require__(340);
 var focusNode = __webpack_require__(93);
 var getActiveElement = __webpack_require__(105);
 
@@ -47710,12 +47710,12 @@ var React = __webpack_require__(26);
 var ReactBrowserEventEmitter = __webpack_require__(41);
 var ReactCurrentOwner = __webpack_require__(12);
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactDOMContainerInfo = __webpack_require__(354);
-var ReactDOMFeatureFlags = __webpack_require__(355);
+var ReactDOMContainerInfo = __webpack_require__(355);
+var ReactDOMFeatureFlags = __webpack_require__(356);
 var ReactFeatureFlags = __webpack_require__(88);
 var ReactInstanceMap = __webpack_require__(33);
 var ReactInstrumentation = __webpack_require__(9);
-var ReactMarkupChecksum = __webpack_require__(356);
+var ReactMarkupChecksum = __webpack_require__(357);
 var ReactReconciler = __webpack_require__(28);
 var ReactUpdateQueue = __webpack_require__(59);
 var ReactUpdates = __webpack_require__(14);
@@ -48263,18 +48263,729 @@ module.exports = getHostComponentFromComposite;
 
 /***/ }),
 /* 108 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_input_mask__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_input_mask___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react_input_mask__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_sweetalert2__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_sweetalert2__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__public_images_countrys_ar_png__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__public_images_countrys_ar_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__public_images_countrys_ar_png__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__public_images_countrys_es_png__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__public_images_countrys_es_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__public_images_countrys_es_png__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_react_mobile_datepicker__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_react_mobile_datepicker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_react_mobile_datepicker__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__public_images_EstadoCivil01_png__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__public_images_EstadoCivil01_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__public_images_EstadoCivil01_png__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_moment__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_moment__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__["b" /* library */].add(__WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["a" /* faSync */]);
+
+var Datepicker = __WEBPACK_IMPORTED_MODULE_10_react_mobile_datepicker___default.a;
+
+var dateConfig = {
+    'year': {
+        format: 'YYYY',
+        caption: 'Año',
+        step: 1
+    },
+    'month': {
+        format: 'MM',
+        caption: 'Mes',
+        step: 1
+    },
+    'date': {
+        format: 'DD',
+        caption: 'Dia',
+        step: 1
+    }
+};
+
+var CambiarDatos = function (_Component) {
+    _inherits(CambiarDatos, _Component);
+
+    function CambiarDatos(props) {
+        _classCallCheck(this, CambiarDatos);
+
+        var _this = _possibleConstructorReturn(this, (CambiarDatos.__proto__ || Object.getPrototypeOf(CambiarDatos)).call(this, props));
+
+        _this.state = {
+            url: props.url,
+            nombre: '',
+            apellido: '',
+            sexo: '',
+            fechan: '',
+            equipo: '',
+            civil: '',
+            clubs: [],
+            estadosciviles: [],
+            correo: '',
+            cuenta: '',
+            pais: '',
+            paises: [],
+            telefono: '',
+            fileName: 'Seleccione imagen',
+            tipofoto: '',
+            foto: '',
+            fotonew: '',
+            flagPais: '',
+            isLoading: false
+        };
+
+        _this.handleChange = _this.handleChange.bind(_this);
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        _this.clubs = _this.clubs.bind(_this);
+        _this.clubs2 = _this.clubs2.bind(_this);
+        _this.handleToggle = _this.handleToggle.bind(_this);
+        _this.handleThemeToggle = _this.handleThemeToggle.bind(_this);
+        _this.handleSelect = _this.handleSelect.bind(_this);
+
+        return _this;
+    }
+
+    _createClass(CambiarDatos, [{
+        key: 'handleChange',
+        value: function handleChange(e) {
+            var _this2 = this;
+
+            if (e.target.name == 'fileFoto') {
+
+                if (e.target.files.length > 0) {
+
+                    console.log(e.target.files[0]);
+
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        _this2.setState({
+                            fotonew: e.target.result
+                        });
+                    };
+
+                    reader.readAsDataURL(e.target.files[0]);
+
+                    this.setState({ fileName: e.target.files[0].name });
+                }
+            } else {
+
+                this.setState(_defineProperty({}, e.target.name, e.target.value));
+            }
+        }
+    }, {
+        key: 'clubs',
+        value: function clubs(e) {
+            var _setState2,
+                _this3 = this;
+
+            this.setState((_setState2 = {}, _defineProperty(_setState2, e.target.name, e.target.value), _defineProperty(_setState2, 'equipo', ''), _setState2));
+
+            var self = this;
+
+            var pais = e.target.value;
+
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/ajax-post-clubs-perfil', { pais: pais }).then(function (res) {
+
+                var r = res.data;
+
+                if (r.code === 200) {
+                    _this3.setState({
+                        'clubs': r.datos
+                    });
+                } else if (r.code === 500) {
+
+                    __WEBPACK_IMPORTED_MODULE_7_sweetalert2___default()({
+                        title: '<i class="fas fa-exclamation-circle"></i>',
+                        text: r.msj,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    });
+                }
+            }).catch(function (error) {
+
+                if (error.response.status == 422) {
+
+                    self.setState({
+                        isLoading: false
+                    });
+
+                    console.log('errores: ', error.response.data);
+                }
+            });
+        }
+    }, {
+        key: 'clubs2',
+        value: function clubs2(pais) {
+            var _this4 = this;
+
+            var self = this;
+
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/ajax-post-clubs-perfil', { pais: pais }).then(function (res) {
+
+                var r = res.data;
+
+                if (r.code === 200) {
+                    _this4.setState({
+                        'clubs': r.datos
+                    });
+                } else if (r.code === 500) {
+
+                    __WEBPACK_IMPORTED_MODULE_7_sweetalert2___default()({
+                        title: '<i class="fas fa-exclamation-circle"></i>',
+                        text: r.msj,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    });
+                }
+            }).catch(function (error) {
+
+                if (error.response.status == 422) {
+
+                    self.setState({
+                        isLoading: false
+                    });
+
+                    console.log('errores: ', error.response.data);
+                }
+            });
+        }
+    }, {
+        key: 'handleToggle',
+        value: function handleToggle(isOpen) {
+            this.setState({ isOpen: isOpen });
+        }
+    }, {
+        key: 'handleThemeToggle',
+        value: function handleThemeToggle() {
+            var theme = 'android-dark';
+            this.setState({ theme: theme, isOpen: true });
+        }
+    }, {
+        key: 'handleSelect',
+        value: function handleSelect(time) {
+            this.setState({ time: time, isOpen: false, fechan: time });
+        }
+    }, {
+        key: 'handleSubmit',
+        value: function handleSubmit(e) {
+            var _this5 = this;
+
+            e.preventDefault();
+
+            var self = this;
+
+            self.setState({
+                isLoading: true
+            });
+
+            var _state = this.state,
+                pais = _state.pais,
+                telefono = _state.telefono,
+                fechan = _state.fechan,
+                equipo = _state.equipo,
+                sexo = _state.sexo,
+                civil = _state.civil,
+                nombre = _state.nombre,
+                apellido = _state.apellido,
+                url = _state.url,
+                fotonew = _state.fotonew,
+                tipofoto = _state.tipofoto;
+
+
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/ajax-post-perfil', { pais: pais, telefono: telefono, fechan: fechan, equipo: equipo, sexo: sexo, civil: civil, nombre: nombre, apellido: apellido, fotonew: fotonew, tipofoto: tipofoto }).then(function (res) {
+
+                self.setState({
+                    isLoading: false
+                });
+
+                var r = res.data;
+
+                if (r.code === 200) {
+
+                    __WEBPACK_IMPORTED_MODULE_7_sweetalert2___default.a.fire({
+                        title: '<i class="fa fa-check-circle"></i>',
+                        text: r.msj,
+                        showCancelButton: false,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    }).then(function (result) {
+                        if (result.value) {
+
+                            _this5.getPerfil();
+
+                            window.location.href = url + '/inicio';
+                        }
+                    });
+                } else if (r.code === 500) {
+
+                    __WEBPACK_IMPORTED_MODULE_7_sweetalert2___default()({
+                        title: '<i class="fas fa-exclamation-circle"></i>',
+                        text: r.msj,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    });
+                }
+            }).catch(function (error) {
+
+                if (error.response.status == 422) {
+
+                    self.setState({
+                        isLoading: false
+                    });
+
+                    __WEBPACK_IMPORTED_MODULE_7_sweetalert2___default()({
+                        title: '<i class="fas fa-exclamation-circle"></i>',
+                        text: error.response.data,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    });
+                }
+            });
+        }
+    }, {
+        key: 'getPerfil',
+        value: function getPerfil() {
+            var _this6 = this;
+
+            var self = this;
+
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/ajax-get-perfil', {}).then(function (res) {
+                if (res) {
+
+                    var r = res.data;
+
+                    if (r.code === 200) {
+
+                        self.setState({
+                            nombre: r.cliente.Nombre,
+                            apellido: r.cliente.Apellido,
+                            correo: r.cliente.Correo,
+                            sexo: r.cliente.Sexo,
+                            equipo: r.cliente.Equipo,
+                            fechan: __WEBPACK_IMPORTED_MODULE_12_moment___default()(r.cliente.FechaNacimiento, 'DD/MM/YYYY').toDate(),
+                            civil: r.cliente.EstadoCivil_id,
+                            cuenta: r.cliente.TipoCuenta,
+                            pais: r.cliente.Pais_id,
+                            estadosciviles: r.civiles,
+                            telefono: r.cliente.Telefono,
+                            foto: r.cliente.Foto
+                        });
+
+                        if (r.cliente.Pais_id) {
+                            _this6.clubs2(r.cliente.Pais_id);
+                        }
+                    } else if (r.code === 500) {
+
+                        console.log(r.msj);
+                    }
+                }
+            }).catch(function (error) {});
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.getPerfil();
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this7 = this,
+                _React$createElement;
+
+            var tagClass = void 0;
+            var _state2 = this.state,
+                nombre = _state2.nombre,
+                apellido = _state2.apellido,
+                correo = _state2.correo,
+                cuenta = _state2.cuenta,
+                pais = _state2.pais,
+                telefono = _state2.telefono,
+                sexo = _state2.sexo,
+                civil = _state2.civil,
+                equipo = _state2.equipo,
+                foto = _state2.foto,
+                fotonew = _state2.fotonew,
+                tipofoto = _state2.tipofoto;
+
+
+            if (cuenta == 'ONE') {
+                tagClass = 'badge badge-one';
+            } else if (cuenta == 'Facebook') {
+                tagClass = 'badge badge-facebook';
+            } else if (cuenta == 'Google') {
+                tagClass = 'badge badge-google';
+            }
+
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'mt-4' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'form',
+                    { method: 'POST', onSubmit: this.handleSubmit, className: 'form-inside' },
+                    foto != '' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: foto, className: 'rounded mx-auto d-block mb-5 profile-picture' }) : '',
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-address-card fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', id: 'nombre', name: 'nombre', value: nombre, onChange: this.handleChange, className: 'form-control' })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-address-card fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', id: 'apellido', name: 'apellido', value: apellido, onChange: this.handleChange, className: 'form-control' })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-calendar-alt fa-lg', style: { fontSize: '1.714em' } })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'a',
+                            {
+                                className: 'select-btn sm', style: { 'border': '1px solid #fff', 'padding-top': '0.5rem', 'padding-bottom': '0.5rem', 'width': '88%', 'color': '#dadada' },
+                                onClick: this.handleThemeToggle },
+                            this.state.fechan == '' ? 'Ingrese su Fecha de Nacimiento' : this.state.fechan.getDate() + '/' + (this.state.fechan.getMonth() + 1) + '/' + this.state.fechan.getFullYear()
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Datepicker, {
+                            showCaption: true,
+                            showHeader: true,
+                            headerFormat: 'DD/MM/YYYY',
+                            value: this.state.fechan,
+                            theme: this.state.theme,
+                            isOpen: this.state.isOpen,
+                            onSelect: this.handleSelect,
+                            onCancel: function onCancel(e) {
+                                return _this7.handleToggle(false);
+                            },
+                            confirmText: 'Seleccionar',
+                            cancelText: 'Cancelar',
+                            max: new Date(),
+                            dateConfig: dateConfig
+                        })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-envelope fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', id: 'correo', name: 'correo', value: correo, className: 'form-control', disabled: true })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fab fa-ello fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'form-check form-check-inline' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-check-input', onChange: this.handleChange, type: 'radio', name: 'sexo', id: 'inlineRadio1x', value: 'm', checked: sexo === 'm' }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'label',
+                                { className: 'form-check-label', htmlFor: 'inlineRadio1x' },
+                                'Masculino'
+                            )
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'form-check form-check-inline' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-check-input', onChange: this.handleChange, type: 'radio', name: 'sexo', id: 'inlineRadio2x', value: 'f', checked: sexo === 'f' }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'label',
+                                { className: 'form-check-label', htmlFor: 'inlineRadio2x' },
+                                'Femenino'
+                            )
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-user-circle fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'span',
+                            { className: tagClass },
+                            'Cuenta ',
+                            cuenta
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend input-civil' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_11__public_images_EstadoCivil01_png___default.a, className: 'icon-civil' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'select',
+                            { className: 'form-control', value: civil, name: 'civil', id: 'civil', onChange: this.handleChange },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'option',
+                                { key: '0', value: '' },
+                                'Ingrese Estado Civil (Opcional)'
+                            ),
+                            this.state.estadosciviles.map(function (item) {
+                                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'option',
+                                    { key: item._id, value: item._id },
+                                    item.Nombre
+                                );
+                            })
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-portrait fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'select',
+                            { className: 'form-control', id: 'inputGroupSelect02', value: tipofoto, name: 'tipofoto', onChange: this.handleChange },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'option',
+                                { value: '' },
+                                'Seleccione Tipo de foto (Opcional)'
+                            ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'option',
+                                { value: 'upload' },
+                                'Subir Imagen'
+                            ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'option',
+                                { value: 'camera' },
+                                'Tomar Foto'
+                            )
+                        )
+                    ),
+                    tipofoto == 'upload' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend mr-3' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'far fa-image fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'custom-file' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'file', name: 'fileFoto', onChange: function onChange(e) {
+                                    return _this7.handleChange(e);
+                                },
+                                className: 'custom-file-input', id: 'customFileLang' }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'label',
+                                { className: 'custom-file-label',
+                                    htmlFor: 'customFileLang' },
+                                this.state.fileName
+                            )
+                        )
+                    ) : '',
+                    tipofoto == 'camera' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend mr-3' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-camera fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'span',
+                            { className: 'badge badge-warning' },
+                            'En construccion'
+                        )
+                    ) : '',
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-phone fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'number', min: '0', max: '99999999999', maxLength: '11', id: 'telefono', name: 'telefono', value: telefono, onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese su telefono (Opcional)' })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'label',
+                                { className: 'input-group-text' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-globe-americas fa-lg' })
+                            )
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'form-check form-check-inline' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-check-input', onChange: this.clubs, type: 'radio', name: 'pais', id: 'inlineRadio1', value: '5caf334dff6eff0ae30e450b', checked: pais === '5caf334dff6eff0ae30e450b' }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'label',
+                                { className: 'form-check-label', htmlFor: 'inlineRadio1' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_8__public_images_countrys_ar_png___default.a, className: 'img-country' })
+                            )
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'form-check form-check-inline' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-check-input', onChange: this.clubs, type: 'radio', name: 'pais', id: 'inlineRadio2', value: '5caf37adff6eff0ae30e450d', checked: pais === '5caf37adff6eff0ae30e450d' }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'label',
+                                { className: 'form-check-label', htmlFor: 'inlineRadio2' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_9__public_images_countrys_es_png___default.a, className: 'img-country' })
+                            )
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-futbol fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'select',
+                            (_React$createElement = { className: 'form-control', id: 'inputGroupSelect02', value: equipo, name: 'equipo' }, _defineProperty(_React$createElement, 'id', 'equipo'), _defineProperty(_React$createElement, 'onChange', this.handleChange), _React$createElement),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'option',
+                                { key: '-1', value: '' },
+                                'Equipos de futbol'
+                            ),
+                            this.state.clubs.length > 0 ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'option',
+                                { key: '0', value: '1000' },
+                                'Ninguno'
+                            ) : '',
+                            this.state.clubs.map(function (item) {
+                                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'option',
+                                    { key: item.id, value: item.id },
+                                    item.Nombre
+                                );
+                            })
+                        )
+                    ),
+                    this.state.equipo != '' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'text-center', style: { 'margin-bottom': '15px' } },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '/images/clubs/' + this.state.equipo + '.png', style: { 'height': '4rem' } })
+                    ) : '',
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'text-center' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'button',
+                            { type: 'submit', className: 'btn btn-negro black btn-box-index' },
+                            this.state.isLoading ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'sync', size: 'lg', spin: true }) : '',
+                            '\xA0\xA0 Actualizar'
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return CambiarDatos;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (CambiarDatos);
+
+
+if (document.getElementById('cambiar-datos-perfil')) {
+
+    var element = document.getElementById('cambiar-datos-perfil');
+
+    var props = Object.assign({}, element.dataset);
+
+    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(CambiarDatos, props), element);
+}
+
+/***/ }),
+/* 109 */
+/***/ (function(module, exports, __webpack_require__) {
+
+if (false) {
+  module.exports = require('./lib/react-input-mask.production.min.js');
+} else {
+  module.exports = __webpack_require__(371);
+}
+
+
+/***/ }),
+/* 110 */
 /***/ (function(module, exports) {
 
 module.exports = "/images/ar.png?ba1f5f13777f396982957515d1f68b3f";
 
 /***/ }),
-/* 109 */
+/* 111 */
 /***/ (function(module, exports) {
 
 module.exports = "/images/es.png?f718dd5fd0ff53818a3899e400dce264";
 
 /***/ }),
-/* 110 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function (global, factory) {
@@ -49507,24 +50218,13 @@ return ModalDatePicker;
 
 
 /***/ }),
-/* 111 */
+/* 113 */
 /***/ (function(module, exports) {
 
 module.exports = "/images/EstadoCivil01.png?b911c15d4468e9a4ef655337d225201a";
 
 /***/ }),
-/* 112 */
-/***/ (function(module, exports, __webpack_require__) {
-
-if (false) {
-  module.exports = require('./lib/react-input-mask.production.min.js');
-} else {
-  module.exports = __webpack_require__(373);
-}
-
-
-/***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49601,7 +50301,7 @@ if (false) {
 
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49740,7 +50440,7 @@ if (false) {
 
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49803,7 +50503,7 @@ if (false) {
 
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49866,7 +50566,7 @@ if (false) {
 
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49992,7 +50692,7 @@ if (false) {
 
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50055,7 +50755,7 @@ if (false) {
 
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50163,7 +50863,7 @@ if (false) {
 
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50226,7 +50926,7 @@ if (false) {
 
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50335,7 +51035,7 @@ if (false) {
 
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50471,7 +51171,7 @@ if (false) {
 
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50565,7 +51265,7 @@ if (false) {
 
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50627,7 +51327,7 @@ if (false) {
 
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50750,7 +51450,7 @@ if (false) {
 
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50873,7 +51573,7 @@ if (false) {
 
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50985,7 +51685,7 @@ if (false) {
 
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -51140,7 +51840,7 @@ if (false) {
 
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -51232,7 +51932,7 @@ if (false) {
 
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -51408,7 +52108,7 @@ if (false) {
 
 
 /***/ }),
-/* 131 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -51475,7 +52175,7 @@ if (false) {
 
 
 /***/ }),
-/* 132 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -51559,7 +52259,7 @@ if (false) {
 
 
 /***/ }),
-/* 133 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -51623,7 +52323,7 @@ if (false) {
 
 
 /***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -51703,7 +52403,7 @@ if (false) {
 
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -51783,7 +52483,7 @@ if (false) {
 
 
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -51863,7 +52563,7 @@ if (false) {
 
 
 /***/ }),
-/* 137 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -51966,7 +52666,7 @@ if (false) {
 
 
 /***/ }),
-/* 138 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -52070,7 +52770,7 @@ if (false) {
 
 
 /***/ }),
-/* 139 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -52141,7 +52841,7 @@ if (false) {
 
 
 /***/ }),
-/* 140 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -52212,7 +52912,7 @@ if (false) {
 
 
 /***/ }),
-/* 141 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -52279,7 +52979,7 @@ if (false) {
 
 
 /***/ }),
-/* 142 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -52350,7 +53050,7 @@ if (false) {
 
 
 /***/ }),
-/* 143 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -52421,7 +53121,7 @@ if (false) {
 
 
 /***/ }),
-/* 144 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -52487,7 +53187,7 @@ if (false) {
 
 
 /***/ }),
-/* 145 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -52558,7 +53258,7 @@ if (false) {
 
 
 /***/ }),
-/* 146 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -52633,7 +53333,7 @@ if (false) {
 
 
 /***/ }),
-/* 147 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -52729,7 +53429,7 @@ if (false) {
 
 
 /***/ }),
-/* 148 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -52825,7 +53525,7 @@ if (false) {
 
 
 /***/ }),
-/* 149 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -52921,7 +53621,7 @@ if (false) {
 
 
 /***/ }),
-/* 150 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -53005,7 +53705,7 @@ if (false) {
 
 
 /***/ }),
-/* 151 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -53075,7 +53775,7 @@ if (false) {
 
 
 /***/ }),
-/* 152 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -53185,7 +53885,7 @@ if (false) {
 
 
 /***/ }),
-/* 153 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -53298,7 +53998,7 @@ if (false) {
 
 
 /***/ }),
-/* 154 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -53362,7 +54062,7 @@ if (false) {
 
 
 /***/ }),
-/* 155 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -53449,7 +54149,7 @@ if (false) {
 
 
 /***/ }),
-/* 156 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -53527,7 +54227,7 @@ if (false) {
 
 
 /***/ }),
-/* 157 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -53609,7 +54309,7 @@ if (false) {
 
 
 /***/ }),
-/* 158 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -53688,7 +54388,7 @@ if (false) {
 
 
 /***/ }),
-/* 159 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -53769,7 +54469,7 @@ if (false) {
 
 
 /***/ }),
-/* 160 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -53849,7 +54549,7 @@ if (false) {
 
 
 /***/ }),
-/* 161 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -53930,7 +54630,7 @@ if (false) {
 
 
 /***/ }),
-/* 162 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -54057,7 +54757,7 @@ if (false) {
 
 
 /***/ }),
-/* 163 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -54185,7 +54885,7 @@ if (false) {
 
 
 /***/ }),
-/* 164 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -54286,7 +54986,7 @@ if (false) {
 
 
 /***/ }),
-/* 165 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -54414,7 +55114,7 @@ if (false) {
 
 
 /***/ }),
-/* 166 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -54572,7 +55272,7 @@ if (false) {
 
 
 /***/ }),
-/* 167 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -54686,7 +55386,7 @@ if (false) {
 
 
 /***/ }),
-/* 168 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -54785,7 +55485,7 @@ if (false) {
 
 
 /***/ }),
-/* 169 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -54871,7 +55571,7 @@ if (false) {
 
 
 /***/ }),
-/* 170 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -55007,7 +55707,7 @@ if (false) {
 
 
 /***/ }),
-/* 171 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -55080,7 +55780,7 @@ if (false) {
 
 
 /***/ }),
-/* 172 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -55153,7 +55853,7 @@ if (false) {
 
 
 /***/ }),
-/* 173 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -55249,7 +55949,7 @@ if (false) {
 
 
 /***/ }),
-/* 174 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -55335,7 +56035,7 @@ if (false) {
 
 
 /***/ }),
-/* 175 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -55428,7 +56128,7 @@ if (false) {
 
 
 /***/ }),
-/* 176 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -55519,7 +56219,7 @@ if (false) {
 
 
 /***/ }),
-/* 177 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -55633,7 +56333,7 @@ if (false) {
 
 
 /***/ }),
-/* 178 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -55763,7 +56463,7 @@ if (false) {
 
 
 /***/ }),
-/* 179 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -55848,7 +56548,7 @@ if (false) {
 
 
 /***/ }),
-/* 180 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -55971,7 +56671,7 @@ if (false) {
 
 
 /***/ }),
-/* 181 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -56062,7 +56762,7 @@ if (false) {
 
 
 /***/ }),
-/* 182 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -56202,7 +56902,7 @@ if (false) {
 
 
 /***/ }),
-/* 183 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -56276,7 +56976,7 @@ if (false) {
 
 
 /***/ }),
-/* 184 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -56398,7 +57098,7 @@ if (false) {
 
 
 /***/ }),
-/* 185 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -56499,7 +57199,7 @@ if (false) {
 
 
 /***/ }),
-/* 186 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -56615,7 +57315,7 @@ if (false) {
 
 
 /***/ }),
-/* 187 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -56683,7 +57383,7 @@ if (false) {
 
 
 /***/ }),
-/* 188 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -56777,7 +57477,7 @@ if (false) {
 
 
 /***/ }),
-/* 189 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -56862,7 +57562,7 @@ if (false) {
 
 
 /***/ }),
-/* 190 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -56970,7 +57670,7 @@ if (false) {
 
 
 /***/ }),
-/* 191 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -57134,7 +57834,7 @@ if (false) {
 
 
 /***/ }),
-/* 192 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -57220,7 +57920,7 @@ if (false) {
 
 
 /***/ }),
-/* 193 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -57306,7 +58006,7 @@ if (false) {
 
 
 /***/ }),
-/* 194 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -57370,7 +58070,7 @@ if (false) {
 
 
 /***/ }),
-/* 195 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -57467,7 +58167,7 @@ if (false) {
 
 
 /***/ }),
-/* 196 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -57533,7 +58233,7 @@ if (false) {
 
 
 /***/ }),
-/* 197 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -57660,7 +58360,7 @@ if (false) {
 
 
 /***/ }),
-/* 198 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -57751,7 +58451,7 @@ if (false) {
 
 
 /***/ }),
-/* 199 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -57842,7 +58542,7 @@ if (false) {
 
 
 /***/ }),
-/* 200 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -57906,7 +58606,7 @@ if (false) {
 
 
 /***/ }),
-/* 201 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -58034,7 +58734,7 @@ if (false) {
 
 
 /***/ }),
-/* 202 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -58164,7 +58864,7 @@ if (false) {
 
 
 /***/ }),
-/* 203 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -58233,7 +58933,7 @@ if (false) {
 
 
 /***/ }),
-/* 204 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -58298,7 +58998,7 @@ if (false) {
 
 
 /***/ }),
-/* 205 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -58377,7 +59077,7 @@ if (false) {
 
 
 /***/ }),
-/* 206 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -58563,7 +59263,7 @@ if (false) {
 
 
 /***/ }),
-/* 207 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -58665,7 +59365,7 @@ if (false) {
 
 
 /***/ }),
-/* 208 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -58729,7 +59429,7 @@ if (false) {
 
 
 /***/ }),
-/* 209 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -58804,7 +59504,7 @@ if (false) {
 
 
 /***/ }),
-/* 210 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -58964,7 +59664,7 @@ if (false) {
 
 
 /***/ }),
-/* 211 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -59141,7 +59841,7 @@ if (false) {
 
 
 /***/ }),
-/* 212 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -59213,7 +59913,7 @@ if (false) {
 
 
 /***/ }),
-/* 213 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -59328,7 +60028,7 @@ if (false) {
 
 
 /***/ }),
-/* 214 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -59443,7 +60143,7 @@ if (false) {
 
 
 /***/ }),
-/* 215 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -59535,7 +60235,7 @@ if (false) {
 
 
 /***/ }),
-/* 216 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -59608,7 +60308,7 @@ if (false) {
 
 
 /***/ }),
-/* 217 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -59671,7 +60371,7 @@ if (false) {
 
 
 /***/ }),
-/* 218 */
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -59804,7 +60504,7 @@ if (false) {
 
 
 /***/ }),
-/* 219 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -59897,7 +60597,7 @@ if (false) {
 
 
 /***/ }),
-/* 220 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -59968,7 +60668,7 @@ if (false) {
 
 
 /***/ }),
-/* 221 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -60088,7 +60788,7 @@ if (false) {
 
 
 /***/ }),
-/* 222 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -60159,7 +60859,7 @@ if (false) {
 
 
 /***/ }),
-/* 223 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -60225,7 +60925,7 @@ if (false) {
 
 
 /***/ }),
-/* 224 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -60351,7 +61051,7 @@ if (false) {
 
 
 /***/ }),
-/* 225 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -60449,7 +61149,7 @@ if (false) {
 
 
 /***/ }),
-/* 226 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -60544,7 +61244,7 @@ if (false) {
 
 
 /***/ }),
-/* 227 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -60606,7 +61306,7 @@ if (false) {
 
 
 /***/ }),
-/* 228 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -60668,7 +61368,7 @@ if (false) {
 
 
 /***/ }),
-/* 229 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js language configuration
@@ -60791,7 +61491,7 @@ if (false) {
 
 
 /***/ }),
-/* 230 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -60949,7 +61649,7 @@ if (false) {
 
 
 /***/ }),
-/* 231 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -61051,7 +61751,7 @@ if (false) {
 
 
 /***/ }),
-/* 232 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -61113,7 +61813,7 @@ if (false) {
 
 
 /***/ }),
-/* 233 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -61175,7 +61875,7 @@ if (false) {
 
 
 /***/ }),
-/* 234 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -61258,7 +61958,7 @@ if (false) {
 
 
 /***/ }),
-/* 235 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -61330,7 +62030,7 @@ if (false) {
 
 
 /***/ }),
-/* 236 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -61394,7 +62094,7 @@ if (false) {
 
 
 /***/ }),
-/* 237 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -61508,7 +62208,7 @@ if (false) {
 
 
 /***/ }),
-/* 238 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -61615,7 +62315,7 @@ if (false) {
 
 
 /***/ }),
-/* 239 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -61722,14 +62422,14 @@ if (false) {
 
 
 /***/ }),
-/* 240 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(241);
+module.exports = __webpack_require__(242);
 
 
 /***/ }),
-/* 241 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -61854,7 +62554,7 @@ if (!Array.prototype.includes) {
  * building robust, powerful web applications using React + Laravel.
  */
 
-__webpack_require__(242);
+__webpack_require__(243);
 
 /**
  * Next, we will create a fresh React component instance and attach it to
@@ -61862,28 +62562,28 @@ __webpack_require__(242);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-__webpack_require__(263);
-__webpack_require__(367);
-__webpack_require__(369);
+__webpack_require__(264);
+__webpack_require__(368);
 __webpack_require__(370);
-__webpack_require__(371);
-__webpack_require__(372);
+__webpack_require__(375);
 __webpack_require__(376);
 __webpack_require__(377);
+__webpack_require__(378);
+__webpack_require__(108);
 //require('./components/Invitacion');
 
 
 //require('./cache');
 
 /***/ }),
-/* 242 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var _window$app;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-window._ = __webpack_require__(243);
+window._ = __webpack_require__(244);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -61895,7 +62595,7 @@ try {
   window.Popper = __webpack_require__(67).default;
   window.$ = window.jQuery = __webpack_require__(43);
 
-  __webpack_require__(244);
+  __webpack_require__(245);
 } catch (e) {}
 
 /**
@@ -62278,7 +62978,7 @@ window.app = (_window$app = {
   /*  var parentElement = document.getElementById(id);
     var listeningElement = parentElement.querySelector('.listening');
     var receivedElement = parentElement.querySelector('.received');
-      listeningElement.setAttribute('style', 'display:none;');
+     listeningElement.setAttribute('style', 'display:none;');
     receivedElement.setAttribute('style', 'display:block;');*/
 
   //console.log('Received Event: ' + id);
@@ -62748,7 +63448,7 @@ if (localStorage && localStorage.getItem('cache')) {
 app.initialize({});
 
 /***/ }),
-/* 243 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -79863,7 +80563,7 @@ app.initialize({});
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22), __webpack_require__(66)(module)))
 
 /***/ }),
-/* 244 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -84304,7 +85004,7 @@ app.initialize({});
 
 
 /***/ }),
-/* 245 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84312,7 +85012,7 @@ app.initialize({});
 
 var utils = __webpack_require__(8);
 var bind = __webpack_require__(68);
-var Axios = __webpack_require__(247);
+var Axios = __webpack_require__(248);
 var defaults = __webpack_require__(44);
 
 /**
@@ -84347,14 +85047,14 @@ axios.create = function create(instanceConfig) {
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(72);
-axios.CancelToken = __webpack_require__(261);
+axios.CancelToken = __webpack_require__(262);
 axios.isCancel = __webpack_require__(71);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(262);
+axios.spread = __webpack_require__(263);
 
 module.exports = axios;
 
@@ -84363,7 +85063,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 246 */
+/* 247 */
 /***/ (function(module, exports) {
 
 /*!
@@ -84390,7 +85090,7 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 247 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84398,8 +85098,8 @@ function isSlowBuffer (obj) {
 
 var defaults = __webpack_require__(44);
 var utils = __webpack_require__(8);
-var InterceptorManager = __webpack_require__(256);
-var dispatchRequest = __webpack_require__(257);
+var InterceptorManager = __webpack_require__(257);
+var dispatchRequest = __webpack_require__(258);
 
 /**
  * Create a new instance of Axios
@@ -84476,7 +85176,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 248 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84495,7 +85195,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 249 */
+/* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84528,7 +85228,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 250 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84556,7 +85256,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 251 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84629,7 +85329,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 252 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84689,7 +85389,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 253 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84764,7 +85464,7 @@ module.exports = (
 
 
 /***/ }),
-/* 254 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84807,7 +85507,7 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 255 */
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84867,7 +85567,7 @@ module.exports = (
 
 
 /***/ }),
-/* 256 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84926,18 +85626,18 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 257 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(8);
-var transformData = __webpack_require__(258);
+var transformData = __webpack_require__(259);
 var isCancel = __webpack_require__(71);
 var defaults = __webpack_require__(44);
-var isAbsoluteURL = __webpack_require__(259);
-var combineURLs = __webpack_require__(260);
+var isAbsoluteURL = __webpack_require__(260);
+var combineURLs = __webpack_require__(261);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -85019,7 +85719,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 258 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85046,7 +85746,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 259 */
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85067,7 +85767,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 260 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85088,7 +85788,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 261 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85152,7 +85852,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 262 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85186,7 +85886,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 263 */
+/* 264 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -85470,7 +86170,7 @@ if (document.getElementById('login')) {
 */
 
 /***/ }),
-/* 264 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85484,11 +86184,11 @@ if (document.getElementById('login')) {
 
 
 
-var PooledClass = __webpack_require__(265);
+var PooledClass = __webpack_require__(266);
 var ReactElement = __webpack_require__(23);
 
 var emptyFunction = __webpack_require__(11);
-var traverseAllChildren = __webpack_require__(266);
+var traverseAllChildren = __webpack_require__(267);
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
 var fourArgumentPooler = PooledClass.fourArgumentPooler;
@@ -85664,7 +86364,7 @@ var ReactChildren = {
 module.exports = ReactChildren;
 
 /***/ }),
-/* 265 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85779,7 +86479,7 @@ var PooledClass = {
 module.exports = PooledClass;
 
 /***/ }),
-/* 266 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85800,7 +86500,7 @@ var REACT_ELEMENT_TYPE = __webpack_require__(76);
 
 var getIteratorFn = __webpack_require__(77);
 var invariant = __webpack_require__(1);
-var KeyEscapeUtils = __webpack_require__(267);
+var KeyEscapeUtils = __webpack_require__(268);
 var warning = __webpack_require__(2);
 
 var SEPARATOR = '.';
@@ -85958,7 +86658,7 @@ function traverseAllChildren(children, callback, traverseContext) {
 module.exports = traverseAllChildren;
 
 /***/ }),
-/* 267 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -86020,7 +86720,7 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ }),
-/* 268 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -86192,7 +86892,7 @@ var ReactDOMFactories = {
 module.exports = ReactDOMFactories;
 
 /***/ }),
-/* 269 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -86208,15 +86908,15 @@ module.exports = ReactDOMFactories;
 
 var _prodInvariant = __webpack_require__(27);
 
-var ReactPropTypeLocationNames = __webpack_require__(270);
-var ReactPropTypesSecret = __webpack_require__(271);
+var ReactPropTypeLocationNames = __webpack_require__(271);
+var ReactPropTypesSecret = __webpack_require__(272);
 
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
 
 var ReactComponentTreeHook;
 
-if (typeof process !== 'undefined' && Object({"NODE_ENV":"development"}) && "development" === 'test') {
+if (typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development" === 'test') {
   // Temporary hack.
   // Inline requires don't work well with Jest:
   // https://github.com/facebook/react/issues/7240
@@ -86283,7 +86983,7 @@ module.exports = checkReactTypeSpec;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(25)))
 
 /***/ }),
-/* 270 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -86311,7 +87011,7 @@ if (true) {
 module.exports = ReactPropTypeLocationNames;
 
 /***/ }),
-/* 271 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -86331,7 +87031,7 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ }),
-/* 272 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -86353,7 +87053,7 @@ var factory = __webpack_require__(79);
 module.exports = factory(isValidElement);
 
 /***/ }),
-/* 273 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -86587,7 +87287,7 @@ exports.isSuspense = isSuspense;
 
 
 /***/ }),
-/* 274 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -86696,7 +87396,7 @@ module.exports = checkPropTypes;
 
 
 /***/ }),
-/* 275 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -86713,7 +87413,7 @@ module.exports = checkPropTypes;
 module.exports = '15.6.2';
 
 /***/ }),
-/* 276 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -86734,12 +87434,12 @@ var _require2 = __webpack_require__(23),
     isValidElement = _require2.isValidElement;
 
 var ReactNoopUpdateQueue = __webpack_require__(75);
-var factory = __webpack_require__(277);
+var factory = __webpack_require__(278);
 
 module.exports = factory(Component, isValidElement, ReactNoopUpdateQueue);
 
 /***/ }),
-/* 277 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -87672,7 +88372,7 @@ module.exports = factory;
 
 
 /***/ }),
-/* 278 */
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -87713,7 +88413,7 @@ function onlyChild(children) {
 module.exports = onlyChild;
 
 /***/ }),
-/* 279 */
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -87730,15 +88430,15 @@ module.exports = onlyChild;
 
 
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactDefaultInjection = __webpack_require__(280);
+var ReactDefaultInjection = __webpack_require__(281);
 var ReactMount = __webpack_require__(106);
 var ReactReconciler = __webpack_require__(28);
 var ReactUpdates = __webpack_require__(14);
-var ReactVersion = __webpack_require__(358);
+var ReactVersion = __webpack_require__(359);
 
-var findDOMNode = __webpack_require__(359);
+var findDOMNode = __webpack_require__(360);
 var getHostComponentFromComposite = __webpack_require__(107);
-var renderSubtreeIntoContainer = __webpack_require__(360);
+var renderSubtreeIntoContainer = __webpack_require__(361);
 var warning = __webpack_require__(2);
 
 ReactDefaultInjection.inject();
@@ -87815,9 +88515,9 @@ if (true) {
 
 if (true) {
   var ReactInstrumentation = __webpack_require__(9);
-  var ReactDOMUnknownPropertyHook = __webpack_require__(361);
-  var ReactDOMNullInputValuePropHook = __webpack_require__(362);
-  var ReactDOMInvalidARIAHook = __webpack_require__(363);
+  var ReactDOMUnknownPropertyHook = __webpack_require__(362);
+  var ReactDOMNullInputValuePropHook = __webpack_require__(363);
+  var ReactDOMInvalidARIAHook = __webpack_require__(364);
 
   ReactInstrumentation.debugTool.addHook(ReactDOMUnknownPropertyHook);
   ReactInstrumentation.debugTool.addHook(ReactDOMNullInputValuePropHook);
@@ -87827,7 +88527,7 @@ if (true) {
 module.exports = ReactDOM;
 
 /***/ }),
-/* 280 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -87841,25 +88541,25 @@ module.exports = ReactDOM;
 
 
 
-var ARIADOMPropertyConfig = __webpack_require__(281);
-var BeforeInputEventPlugin = __webpack_require__(282);
-var ChangeEventPlugin = __webpack_require__(286);
-var DefaultEventPluginOrder = __webpack_require__(294);
-var EnterLeaveEventPlugin = __webpack_require__(295);
-var HTMLDOMPropertyConfig = __webpack_require__(296);
-var ReactComponentBrowserEnvironment = __webpack_require__(297);
-var ReactDOMComponent = __webpack_require__(303);
+var ARIADOMPropertyConfig = __webpack_require__(282);
+var BeforeInputEventPlugin = __webpack_require__(283);
+var ChangeEventPlugin = __webpack_require__(287);
+var DefaultEventPluginOrder = __webpack_require__(295);
+var EnterLeaveEventPlugin = __webpack_require__(296);
+var HTMLDOMPropertyConfig = __webpack_require__(297);
+var ReactComponentBrowserEnvironment = __webpack_require__(298);
+var ReactDOMComponent = __webpack_require__(304);
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactDOMEmptyComponent = __webpack_require__(329);
-var ReactDOMTreeTraversal = __webpack_require__(330);
-var ReactDOMTextComponent = __webpack_require__(331);
-var ReactDefaultBatchingStrategy = __webpack_require__(332);
-var ReactEventListener = __webpack_require__(333);
-var ReactInjection = __webpack_require__(335);
-var ReactReconcileTransaction = __webpack_require__(336);
-var SVGDOMPropertyConfig = __webpack_require__(342);
-var SelectEventPlugin = __webpack_require__(343);
-var SimpleEventPlugin = __webpack_require__(344);
+var ReactDOMEmptyComponent = __webpack_require__(330);
+var ReactDOMTreeTraversal = __webpack_require__(331);
+var ReactDOMTextComponent = __webpack_require__(332);
+var ReactDefaultBatchingStrategy = __webpack_require__(333);
+var ReactEventListener = __webpack_require__(334);
+var ReactInjection = __webpack_require__(336);
+var ReactReconcileTransaction = __webpack_require__(337);
+var SVGDOMPropertyConfig = __webpack_require__(343);
+var SelectEventPlugin = __webpack_require__(344);
+var SimpleEventPlugin = __webpack_require__(345);
 
 var alreadyInjected = false;
 
@@ -87916,7 +88616,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 281 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -87993,7 +88693,7 @@ var ARIADOMPropertyConfig = {
 module.exports = ARIADOMPropertyConfig;
 
 /***/ }),
-/* 282 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88009,9 +88709,9 @@ module.exports = ARIADOMPropertyConfig;
 
 var EventPropagators = __webpack_require__(30);
 var ExecutionEnvironment = __webpack_require__(6);
-var FallbackCompositionState = __webpack_require__(283);
-var SyntheticCompositionEvent = __webpack_require__(284);
-var SyntheticInputEvent = __webpack_require__(285);
+var FallbackCompositionState = __webpack_require__(284);
+var SyntheticCompositionEvent = __webpack_require__(285);
+var SyntheticInputEvent = __webpack_require__(286);
 
 var END_KEYCODES = [9, 13, 27, 32]; // Tab, Return, Esc, Space
 var START_KEYCODE = 229;
@@ -88380,7 +89080,7 @@ var BeforeInputEventPlugin = {
 module.exports = BeforeInputEventPlugin;
 
 /***/ }),
-/* 283 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88478,7 +89178,7 @@ PooledClass.addPoolingTo(FallbackCompositionState);
 module.exports = FallbackCompositionState;
 
 /***/ }),
-/* 284 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88517,7 +89217,7 @@ SyntheticEvent.augmentClass(SyntheticCompositionEvent, CompositionEventInterface
 module.exports = SyntheticCompositionEvent;
 
 /***/ }),
-/* 285 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88557,7 +89257,7 @@ SyntheticEvent.augmentClass(SyntheticInputEvent, InputEventInterface);
 module.exports = SyntheticInputEvent;
 
 /***/ }),
-/* 286 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88872,7 +89572,7 @@ var ChangeEventPlugin = {
 module.exports = ChangeEventPlugin;
 
 /***/ }),
-/* 287 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88887,7 +89587,7 @@ module.exports = ChangeEventPlugin;
 
 
 
-var ReactOwner = __webpack_require__(288);
+var ReactOwner = __webpack_require__(289);
 
 var ReactRef = {};
 
@@ -88964,7 +89664,7 @@ ReactRef.detachRefs = function (instance, element) {
 module.exports = ReactRef;
 
 /***/ }),
-/* 288 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89060,7 +89760,7 @@ var ReactOwner = {
 module.exports = ReactOwner;
 
 /***/ }),
-/* 289 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89075,12 +89775,12 @@ module.exports = ReactOwner;
 
 
 
-var ReactInvalidSetStateWarningHook = __webpack_require__(290);
-var ReactHostOperationHistoryHook = __webpack_require__(291);
+var ReactInvalidSetStateWarningHook = __webpack_require__(291);
+var ReactHostOperationHistoryHook = __webpack_require__(292);
 var ReactComponentTreeHook = __webpack_require__(7);
 var ExecutionEnvironment = __webpack_require__(6);
 
-var performanceNow = __webpack_require__(292);
+var performanceNow = __webpack_require__(293);
 var warning = __webpack_require__(2);
 
 var hooks = [];
@@ -89424,7 +90124,7 @@ if (/[?&]react_perf\b/.test(url)) {
 module.exports = ReactDebugTool;
 
 /***/ }),
-/* 290 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89464,7 +90164,7 @@ var ReactInvalidSetStateWarningHook = {
 module.exports = ReactInvalidSetStateWarningHook;
 
 /***/ }),
-/* 291 */
+/* 292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89501,7 +90201,7 @@ var ReactHostOperationHistoryHook = {
 module.exports = ReactHostOperationHistoryHook;
 
 /***/ }),
-/* 292 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89516,7 +90216,7 @@ module.exports = ReactHostOperationHistoryHook;
  * @typechecks
  */
 
-var performance = __webpack_require__(293);
+var performance = __webpack_require__(294);
 
 var performanceNow;
 
@@ -89538,7 +90238,7 @@ if (performance.now) {
 module.exports = performanceNow;
 
 /***/ }),
-/* 293 */
+/* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89564,7 +90264,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = performance || {};
 
 /***/ }),
-/* 294 */
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89593,7 +90293,7 @@ var DefaultEventPluginOrder = ['ResponderEventPlugin', 'SimpleEventPlugin', 'Tap
 module.exports = DefaultEventPluginOrder;
 
 /***/ }),
-/* 295 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89694,7 +90394,7 @@ var EnterLeaveEventPlugin = {
 module.exports = EnterLeaveEventPlugin;
 
 /***/ }),
-/* 296 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89934,7 +90634,7 @@ var HTMLDOMPropertyConfig = {
 module.exports = HTMLDOMPropertyConfig;
 
 /***/ }),
-/* 297 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89949,7 +90649,7 @@ module.exports = HTMLDOMPropertyConfig;
 
 
 var DOMChildrenOperations = __webpack_require__(51);
-var ReactDOMIDOperations = __webpack_require__(302);
+var ReactDOMIDOperations = __webpack_require__(303);
 
 /**
  * Abstracts away all functionality of the reconciler that requires knowledge of
@@ -89965,7 +90665,7 @@ var ReactComponentBrowserEnvironment = {
 module.exports = ReactComponentBrowserEnvironment;
 
 /***/ }),
-/* 298 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89984,7 +90684,7 @@ var _prodInvariant = __webpack_require__(3);
 var DOMLazyTree = __webpack_require__(29);
 var ExecutionEnvironment = __webpack_require__(6);
 
-var createNodesFromMarkup = __webpack_require__(299);
+var createNodesFromMarkup = __webpack_require__(300);
 var emptyFunction = __webpack_require__(11);
 var invariant = __webpack_require__(1);
 
@@ -90014,7 +90714,7 @@ var Danger = {
 module.exports = Danger;
 
 /***/ }),
-/* 299 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90033,8 +90733,8 @@ module.exports = Danger;
 
 var ExecutionEnvironment = __webpack_require__(6);
 
-var createArrayFromMixed = __webpack_require__(300);
-var getMarkupWrap = __webpack_require__(301);
+var createArrayFromMixed = __webpack_require__(301);
+var getMarkupWrap = __webpack_require__(302);
 var invariant = __webpack_require__(1);
 
 /**
@@ -90101,7 +90801,7 @@ function createNodesFromMarkup(markup, handleScript) {
 module.exports = createNodesFromMarkup;
 
 /***/ }),
-/* 300 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90231,7 +90931,7 @@ function createArrayFromMixed(obj) {
 module.exports = createArrayFromMixed;
 
 /***/ }),
-/* 301 */
+/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90329,7 +91029,7 @@ function getMarkupWrap(nodeName) {
 module.exports = getMarkupWrap;
 
 /***/ }),
-/* 302 */
+/* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90365,7 +91065,7 @@ var ReactDOMIDOperations = {
 module.exports = ReactDOMIDOperations;
 
 /***/ }),
-/* 303 */
+/* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90384,8 +91084,8 @@ module.exports = ReactDOMIDOperations;
 var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
-var AutoFocusUtils = __webpack_require__(304);
-var CSSPropertyOperations = __webpack_require__(305);
+var AutoFocusUtils = __webpack_require__(305);
+var CSSPropertyOperations = __webpack_require__(306);
 var DOMLazyTree = __webpack_require__(29);
 var DOMNamespaces = __webpack_require__(52);
 var DOMProperty = __webpack_require__(18);
@@ -90395,13 +91095,13 @@ var EventPluginRegistry = __webpack_require__(36);
 var ReactBrowserEventEmitter = __webpack_require__(41);
 var ReactDOMComponentFlags = __webpack_require__(83);
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactDOMInput = __webpack_require__(315);
-var ReactDOMOption = __webpack_require__(316);
+var ReactDOMInput = __webpack_require__(316);
+var ReactDOMOption = __webpack_require__(317);
 var ReactDOMSelect = __webpack_require__(97);
-var ReactDOMTextarea = __webpack_require__(317);
+var ReactDOMTextarea = __webpack_require__(318);
 var ReactInstrumentation = __webpack_require__(9);
-var ReactMultiChild = __webpack_require__(318);
-var ReactServerRenderingTransaction = __webpack_require__(327);
+var ReactMultiChild = __webpack_require__(319);
+var ReactServerRenderingTransaction = __webpack_require__(328);
 
 var emptyFunction = __webpack_require__(11);
 var escapeTextContentForBrowser = __webpack_require__(40);
@@ -91382,7 +92082,7 @@ _assign(ReactDOMComponent.prototype, ReactDOMComponent.Mixin, ReactMultiChild.Mi
 module.exports = ReactDOMComponent;
 
 /***/ }),
-/* 304 */
+/* 305 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -91409,7 +92109,7 @@ var AutoFocusUtils = {
 module.exports = AutoFocusUtils;
 
 /***/ }),
-/* 305 */
+/* 306 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -91427,10 +92127,10 @@ var CSSProperty = __webpack_require__(94);
 var ExecutionEnvironment = __webpack_require__(6);
 var ReactInstrumentation = __webpack_require__(9);
 
-var camelizeStyleName = __webpack_require__(306);
-var dangerousStyleValue = __webpack_require__(308);
-var hyphenateStyleName = __webpack_require__(309);
-var memoizeStringOnly = __webpack_require__(311);
+var camelizeStyleName = __webpack_require__(307);
+var dangerousStyleValue = __webpack_require__(309);
+var hyphenateStyleName = __webpack_require__(310);
+var memoizeStringOnly = __webpack_require__(312);
 var warning = __webpack_require__(2);
 
 var processStyleName = memoizeStringOnly(function (styleName) {
@@ -91627,7 +92327,7 @@ var CSSPropertyOperations = {
 module.exports = CSSPropertyOperations;
 
 /***/ }),
-/* 306 */
+/* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -91642,7 +92342,7 @@ module.exports = CSSPropertyOperations;
 
 
 
-var camelize = __webpack_require__(307);
+var camelize = __webpack_require__(308);
 
 var msPattern = /^-ms-/;
 
@@ -91670,7 +92370,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 307 */
+/* 308 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -91705,7 +92405,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 308 */
+/* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -91787,7 +92487,7 @@ function dangerousStyleValue(name, value, component, isCustomProperty) {
 module.exports = dangerousStyleValue;
 
 /***/ }),
-/* 309 */
+/* 310 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -91802,7 +92502,7 @@ module.exports = dangerousStyleValue;
 
 
 
-var hyphenate = __webpack_require__(310);
+var hyphenate = __webpack_require__(311);
 
 var msPattern = /^ms-/;
 
@@ -91829,7 +92529,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 310 */
+/* 311 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -91865,7 +92565,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 311 */
+/* 312 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -91898,7 +92598,7 @@ function memoizeStringOnly(callback) {
 module.exports = memoizeStringOnly;
 
 /***/ }),
-/* 312 */
+/* 313 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -91927,7 +92627,7 @@ function quoteAttributeValueForBrowser(value) {
 module.exports = quoteAttributeValueForBrowser;
 
 /***/ }),
-/* 313 */
+/* 314 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -91962,7 +92662,7 @@ var ReactEventEmitterMixin = {
 module.exports = ReactEventEmitterMixin;
 
 /***/ }),
-/* 314 */
+/* 315 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -92066,7 +92766,7 @@ function getVendorPrefixedEventName(eventName) {
 module.exports = getVendorPrefixedEventName;
 
 /***/ }),
-/* 315 */
+/* 316 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -92356,7 +93056,7 @@ function _handleChange(event) {
 module.exports = ReactDOMInput;
 
 /***/ }),
-/* 316 */
+/* 317 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -92481,7 +93181,7 @@ var ReactDOMOption = {
 module.exports = ReactDOMOption;
 
 /***/ }),
-/* 317 */
+/* 318 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -92644,7 +93344,7 @@ function _handleChange(event) {
 module.exports = ReactDOMTextarea;
 
 /***/ }),
-/* 318 */
+/* 319 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -92666,10 +93366,10 @@ var ReactInstrumentation = __webpack_require__(9);
 
 var ReactCurrentOwner = __webpack_require__(12);
 var ReactReconciler = __webpack_require__(28);
-var ReactChildReconciler = __webpack_require__(319);
+var ReactChildReconciler = __webpack_require__(320);
 
 var emptyFunction = __webpack_require__(11);
-var flattenChildren = __webpack_require__(326);
+var flattenChildren = __webpack_require__(327);
 var invariant = __webpack_require__(1);
 
 /**
@@ -93093,7 +93793,7 @@ var ReactMultiChild = {
 module.exports = ReactMultiChild;
 
 /***/ }),
-/* 319 */
+/* 320 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -93117,7 +93817,7 @@ var warning = __webpack_require__(2);
 
 var ReactComponentTreeHook;
 
-if (typeof process !== 'undefined' && Object({"NODE_ENV":"development"}) && "development" === 'test') {
+if (typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development" === 'test') {
   // Temporary hack.
   // Inline requires don't work well with Jest:
   // https://github.com/facebook/react/issues/7240
@@ -93250,7 +93950,7 @@ module.exports = ReactChildReconciler;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(25)))
 
 /***/ }),
-/* 320 */
+/* 321 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -93277,7 +93977,7 @@ var ReactNodeTypes = __webpack_require__(99);
 var ReactReconciler = __webpack_require__(28);
 
 if (true) {
-  var checkReactTypeSpec = __webpack_require__(321);
+  var checkReactTypeSpec = __webpack_require__(322);
 }
 
 var emptyObject = __webpack_require__(35);
@@ -94153,7 +94853,7 @@ var ReactCompositeComponent = {
 module.exports = ReactCompositeComponent;
 
 /***/ }),
-/* 321 */
+/* 322 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -94169,7 +94869,7 @@ module.exports = ReactCompositeComponent;
 
 var _prodInvariant = __webpack_require__(3);
 
-var ReactPropTypeLocationNames = __webpack_require__(322);
+var ReactPropTypeLocationNames = __webpack_require__(323);
 var ReactPropTypesSecret = __webpack_require__(96);
 
 var invariant = __webpack_require__(1);
@@ -94177,7 +94877,7 @@ var warning = __webpack_require__(2);
 
 var ReactComponentTreeHook;
 
-if (typeof process !== 'undefined' && Object({"NODE_ENV":"development"}) && "development" === 'test') {
+if (typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development" === 'test') {
   // Temporary hack.
   // Inline requires don't work well with Jest:
   // https://github.com/facebook/react/issues/7240
@@ -94244,7 +94944,7 @@ module.exports = checkReactTypeSpec;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(25)))
 
 /***/ }),
-/* 322 */
+/* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -94272,7 +94972,7 @@ if (true) {
 module.exports = ReactPropTypeLocationNames;
 
 /***/ }),
-/* 323 */
+/* 324 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -94296,7 +94996,7 @@ function getNextDebugID() {
 module.exports = getNextDebugID;
 
 /***/ }),
-/* 324 */
+/* 325 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -94319,7 +95019,7 @@ var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol
 module.exports = REACT_ELEMENT_TYPE;
 
 /***/ }),
-/* 325 */
+/* 326 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -94363,7 +95063,7 @@ function getIteratorFn(maybeIterable) {
 module.exports = getIteratorFn;
 
 /***/ }),
-/* 326 */
+/* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -94384,7 +95084,7 @@ var warning = __webpack_require__(2);
 
 var ReactComponentTreeHook;
 
-if (typeof process !== 'undefined' && Object({"NODE_ENV":"development"}) && "development" === 'test') {
+if (typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development" === 'test') {
   // Temporary hack.
   // Inline requires don't work well with Jest:
   // https://github.com/facebook/react/issues/7240
@@ -94443,7 +95143,7 @@ module.exports = flattenChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(25)))
 
 /***/ }),
-/* 327 */
+/* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -94462,7 +95162,7 @@ var _assign = __webpack_require__(4);
 var PooledClass = __webpack_require__(24);
 var Transaction = __webpack_require__(37);
 var ReactInstrumentation = __webpack_require__(9);
-var ReactServerUpdateQueue = __webpack_require__(328);
+var ReactServerUpdateQueue = __webpack_require__(329);
 
 /**
  * Executed within the scope of the `Transaction` instance. Consider these as
@@ -94536,7 +95236,7 @@ PooledClass.addPoolingTo(ReactServerRenderingTransaction);
 module.exports = ReactServerRenderingTransaction;
 
 /***/ }),
-/* 328 */
+/* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -94678,7 +95378,7 @@ var ReactServerUpdateQueue = function () {
 module.exports = ReactServerUpdateQueue;
 
 /***/ }),
-/* 329 */
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -94741,7 +95441,7 @@ _assign(ReactDOMEmptyComponent.prototype, {
 module.exports = ReactDOMEmptyComponent;
 
 /***/ }),
-/* 330 */
+/* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -94880,7 +95580,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 331 */
+/* 332 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -95045,7 +95745,7 @@ _assign(ReactDOMTextComponent.prototype, {
 module.exports = ReactDOMTextComponent;
 
 /***/ }),
-/* 332 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -95116,7 +95816,7 @@ var ReactDefaultBatchingStrategy = {
 module.exports = ReactDefaultBatchingStrategy;
 
 /***/ }),
-/* 333 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -95139,7 +95839,7 @@ var ReactDOMComponentTree = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(14);
 
 var getEventTarget = __webpack_require__(48);
-var getUnboundedScrollPosition = __webpack_require__(334);
+var getUnboundedScrollPosition = __webpack_require__(335);
 
 /**
  * Find the deepest React component completely containing the root of the
@@ -95274,7 +95974,7 @@ var ReactEventListener = {
 module.exports = ReactEventListener;
 
 /***/ }),
-/* 334 */
+/* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -95316,7 +96016,7 @@ function getUnboundedScrollPosition(scrollable) {
 module.exports = getUnboundedScrollPosition;
 
 /***/ }),
-/* 335 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -95353,7 +96053,7 @@ var ReactInjection = {
 module.exports = ReactInjection;
 
 /***/ }),
-/* 336 */
+/* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -95534,7 +96234,7 @@ PooledClass.addPoolingTo(ReactReconcileTransaction);
 module.exports = ReactReconcileTransaction;
 
 /***/ }),
-/* 337 */
+/* 338 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -95550,7 +96250,7 @@ module.exports = ReactReconcileTransaction;
 
 var ExecutionEnvironment = __webpack_require__(6);
 
-var getNodeForCharacterOffset = __webpack_require__(338);
+var getNodeForCharacterOffset = __webpack_require__(339);
 var getTextContentAccessor = __webpack_require__(86);
 
 /**
@@ -95749,7 +96449,7 @@ var ReactDOMSelection = {
 module.exports = ReactDOMSelection;
 
 /***/ }),
-/* 338 */
+/* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -95826,7 +96526,7 @@ function getNodeForCharacterOffset(root, offset) {
 module.exports = getNodeForCharacterOffset;
 
 /***/ }),
-/* 339 */
+/* 340 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -95841,7 +96541,7 @@ module.exports = getNodeForCharacterOffset;
  * 
  */
 
-var isTextNode = __webpack_require__(340);
+var isTextNode = __webpack_require__(341);
 
 /*eslint-disable no-bitwise */
 
@@ -95869,7 +96569,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 340 */
+/* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -95884,7 +96584,7 @@ module.exports = containsNode;
  * @typechecks
  */
 
-var isNode = __webpack_require__(341);
+var isNode = __webpack_require__(342);
 
 /**
  * @param {*} object The object to check.
@@ -95897,7 +96597,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 341 */
+/* 342 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -95925,7 +96625,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 342 */
+/* 343 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -96230,7 +96930,7 @@ Object.keys(ATTRS).forEach(function (key) {
 module.exports = SVGDOMPropertyConfig;
 
 /***/ }),
-/* 343 */
+/* 344 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -96421,7 +97121,7 @@ var SelectEventPlugin = {
 module.exports = SelectEventPlugin;
 
 /***/ }),
-/* 344 */
+/* 345 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -96441,17 +97141,17 @@ var _prodInvariant = __webpack_require__(3);
 var EventListener = __webpack_require__(103);
 var EventPropagators = __webpack_require__(30);
 var ReactDOMComponentTree = __webpack_require__(5);
-var SyntheticAnimationEvent = __webpack_require__(345);
-var SyntheticClipboardEvent = __webpack_require__(346);
+var SyntheticAnimationEvent = __webpack_require__(346);
+var SyntheticClipboardEvent = __webpack_require__(347);
 var SyntheticEvent = __webpack_require__(16);
-var SyntheticFocusEvent = __webpack_require__(347);
-var SyntheticKeyboardEvent = __webpack_require__(348);
+var SyntheticFocusEvent = __webpack_require__(348);
+var SyntheticKeyboardEvent = __webpack_require__(349);
 var SyntheticMouseEvent = __webpack_require__(38);
-var SyntheticDragEvent = __webpack_require__(350);
-var SyntheticTouchEvent = __webpack_require__(351);
-var SyntheticTransitionEvent = __webpack_require__(352);
+var SyntheticDragEvent = __webpack_require__(351);
+var SyntheticTouchEvent = __webpack_require__(352);
+var SyntheticTransitionEvent = __webpack_require__(353);
 var SyntheticUIEvent = __webpack_require__(32);
-var SyntheticWheelEvent = __webpack_require__(353);
+var SyntheticWheelEvent = __webpack_require__(354);
 
 var emptyFunction = __webpack_require__(11);
 var getEventCharCode = __webpack_require__(61);
@@ -96650,7 +97350,7 @@ var SimpleEventPlugin = {
 module.exports = SimpleEventPlugin;
 
 /***/ }),
-/* 345 */
+/* 346 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -96692,7 +97392,7 @@ SyntheticEvent.augmentClass(SyntheticAnimationEvent, AnimationEventInterface);
 module.exports = SyntheticAnimationEvent;
 
 /***/ }),
-/* 346 */
+/* 347 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -96733,7 +97433,7 @@ SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 module.exports = SyntheticClipboardEvent;
 
 /***/ }),
-/* 347 */
+/* 348 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -96772,7 +97472,7 @@ SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 module.exports = SyntheticFocusEvent;
 
 /***/ }),
-/* 348 */
+/* 349 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -96789,7 +97489,7 @@ module.exports = SyntheticFocusEvent;
 var SyntheticUIEvent = __webpack_require__(32);
 
 var getEventCharCode = __webpack_require__(61);
-var getEventKey = __webpack_require__(349);
+var getEventKey = __webpack_require__(350);
 var getEventModifierState = __webpack_require__(50);
 
 /**
@@ -96859,7 +97559,7 @@ SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 module.exports = SyntheticKeyboardEvent;
 
 /***/ }),
-/* 349 */
+/* 350 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -96974,7 +97674,7 @@ function getEventKey(nativeEvent) {
 module.exports = getEventKey;
 
 /***/ }),
-/* 350 */
+/* 351 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -97013,7 +97713,7 @@ SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
 module.exports = SyntheticDragEvent;
 
 /***/ }),
-/* 351 */
+/* 352 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -97061,7 +97761,7 @@ SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 module.exports = SyntheticTouchEvent;
 
 /***/ }),
-/* 352 */
+/* 353 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -97103,7 +97803,7 @@ SyntheticEvent.augmentClass(SyntheticTransitionEvent, TransitionEventInterface);
 module.exports = SyntheticTransitionEvent;
 
 /***/ }),
-/* 353 */
+/* 354 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -97157,7 +97857,7 @@ SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 module.exports = SyntheticWheelEvent;
 
 /***/ }),
-/* 354 */
+/* 355 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -97193,7 +97893,7 @@ function ReactDOMContainerInfo(topLevelWrapper, node) {
 module.exports = ReactDOMContainerInfo;
 
 /***/ }),
-/* 355 */
+/* 356 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -97215,7 +97915,7 @@ var ReactDOMFeatureFlags = {
 module.exports = ReactDOMFeatureFlags;
 
 /***/ }),
-/* 356 */
+/* 357 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -97229,7 +97929,7 @@ module.exports = ReactDOMFeatureFlags;
 
 
 
-var adler32 = __webpack_require__(357);
+var adler32 = __webpack_require__(358);
 
 var TAG_END = /\/?>/;
 var COMMENT_START = /^<\!\-\-/;
@@ -97268,7 +97968,7 @@ var ReactMarkupChecksum = {
 module.exports = ReactMarkupChecksum;
 
 /***/ }),
-/* 357 */
+/* 358 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -97315,7 +98015,7 @@ function adler32(data) {
 module.exports = adler32;
 
 /***/ }),
-/* 358 */
+/* 359 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -97332,7 +98032,7 @@ module.exports = adler32;
 module.exports = '15.6.2';
 
 /***/ }),
-/* 359 */
+/* 360 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -97395,7 +98095,7 @@ function findDOMNode(componentOrElement) {
 module.exports = findDOMNode;
 
 /***/ }),
-/* 360 */
+/* 361 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -97414,7 +98114,7 @@ var ReactMount = __webpack_require__(106);
 module.exports = ReactMount.renderSubtreeIntoContainer;
 
 /***/ }),
-/* 361 */
+/* 362 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -97529,7 +98229,7 @@ var ReactDOMUnknownPropertyHook = {
 module.exports = ReactDOMUnknownPropertyHook;
 
 /***/ }),
-/* 362 */
+/* 363 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -97575,7 +98275,7 @@ var ReactDOMNullInputValuePropHook = {
 module.exports = ReactDOMNullInputValuePropHook;
 
 /***/ }),
-/* 363 */
+/* 364 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -97671,7 +98371,7 @@ var ReactDOMInvalidARIAHook = {
 module.exports = ReactDOMInvalidARIAHook;
 
 /***/ }),
-/* 364 */
+/* 365 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -97727,7 +98427,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(365);
+__webpack_require__(366);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -97741,7 +98441,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22)))
 
 /***/ }),
-/* 365 */
+/* 366 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -97934,7 +98634,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22), __webpack_require__(25)))
 
 /***/ }),
-/* 366 */
+/* 367 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -97959,7 +98659,7 @@ if (true) {
 
 
 /***/ }),
-/* 367 */
+/* 368 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -97975,7 +98675,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_sweetalert2__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_sweetalert2__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__public_images_fondo_jpeg__ = __webpack_require__(368);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__public_images_fondo_jpeg__ = __webpack_require__(369);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__public_images_fondo_jpeg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__public_images_fondo_jpeg__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -97996,137 +98696,137 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 __WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__["b" /* library */].add(__WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["a" /* faSync */]);
 
 var Inicio = function (_Component) {
-        _inherits(Inicio, _Component);
+    _inherits(Inicio, _Component);
 
-        function Inicio(props) {
-                _classCallCheck(this, Inicio);
+    function Inicio(props) {
+        _classCallCheck(this, Inicio);
 
-                var _this = _possibleConstructorReturn(this, (Inicio.__proto__ || Object.getPrototypeOf(Inicio)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (Inicio.__proto__ || Object.getPrototypeOf(Inicio)).call(this, props));
 
-                _this.state = {
-                        url: props.url,
-                        checkcamareromesa: props.checkcamareromesa,
-                        mesa: props.mesa,
-                        isLoading: false
-                };
+        _this.state = {
+            url: props.url,
+            checkcamareromesa: props.checkcamareromesa,
+            mesa: props.mesa,
+            isLoading: false
+        };
 
-                _this.handleGPS = _this.handleGPS.bind(_this);
+        _this.handleGPS = _this.handleGPS.bind(_this);
 
-                return _this;
+        return _this;
+    }
+
+    _createClass(Inicio, [{
+        key: 'handleGPS',
+        value: function handleGPS(e, url) {
+
+            /* window.location.href=url+"/-54.804826/-68.313598"; */
+
+            e.preventDefault();
+            if (window.app.isCordova()) {
+                window.gpsCarhop(url);
+            } else {
+                __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                    showCloseButton: false,
+                    showCancelButton: true,
+                    showConfirmButton: false,
+                    text: "Este servicio solo funciona con la APP instalada, no en modo Web",
+                    cancelButtonText: 'Cerrar',
+                    cancelButtonColor: '#343a40',
+                    cancelButtonClass: 'btn-info-descripcion'
+                });
+            }
         }
+    }, {
+        key: 'handleGPSCamarero',
+        value: function handleGPSCamarero(e, url) {
 
-        _createClass(Inicio, [{
-                key: 'handleGPS',
-                value: function handleGPS(e, url) {
+            e.preventDefault();
+            if (window.app.isCordova()) {
+                window.location.href = url;
+            } else {
+                __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                    showCloseButton: false,
+                    showCancelButton: true,
+                    showConfirmButton: false,
+                    text: "Este servicio solo funciona con la APP instalada, no en modo Web",
+                    cancelButtonText: 'Cerrar',
+                    cancelButtonColor: '#343a40',
+                    cancelButtonClass: 'btn-info-descripcion'
+                });
+            }
+        }
+    }, {
+        key: 'flash',
+        value: function flash() {
+            window.app.flashlight();
+            console.log("flash");
+        }
+    }, {
+        key: 'render',
+        value: function render() {
 
-                        /* window.location.href=url+"/-54.804826/-68.313598"; */
+            var url = this.state.url;
+            var mesa = this.state.mesa;
+            var checkcamareromesa = this.state.checkcamareromesa;
+            var opacidad = '';
+            var opacidadCamarero = '';
+            var opacidadReserva = ' ';
 
-                        e.preventDefault();
-                        if (window.app.isCordova()) {
-                                window.gpsCarhop(url);
-                        } else {
-                                __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
-                                        showCloseButton: false,
-                                        showCancelButton: true,
-                                        showConfirmButton: false,
-                                        text: "Este servicio solo funciona con la APP instalada, no en modo Web",
-                                        cancelButtonText: 'Cerrar',
-                                        cancelButtonColor: '#343a40',
-                                        cancelButtonClass: 'btn-info-descripcion'
-                                });
-                        }
-                }
-        }, {
-                key: 'handleGPSCamarero',
-                value: function handleGPSCamarero(e, url) {
+            var urlCarhopList = url + '/carhop/sucursalesgps';
+            var urlCarhopMap = url + '/carhop/map';
 
-                        e.preventDefault();
-                        if (window.app.isCordova()) {
-                                window.location.href = url;
-                        } else {
-                                __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
-                                        showCloseButton: false,
-                                        showCancelButton: true,
-                                        showConfirmButton: false,
-                                        text: "Este servicio solo funciona con la APP instalada, no en modo Web",
-                                        cancelButtonText: 'Cerrar',
-                                        cancelButtonColor: '#343a40',
-                                        cancelButtonClass: 'btn-info-descripcion'
-                                });
-                        }
-                }
-        }, {
-                key: 'flash',
-                value: function flash() {
-                        window.app.flashlight();
-                        console.log("flash");
-                }
-        }, {
-                key: 'render',
-                value: function render() {
+            var urlDeliveryList = url + '/delivery/list';
+            var urlDeliveryMap = url + '/delivery/map';
 
-                        var url = this.state.url;
-                        var mesa = this.state.mesa;
-                        var checkcamareromesa = this.state.checkcamareromesa;
-                        var opacidad = '';
-                        var opacidadCamarero = '';
-                        var opacidadReserva = ' ';
+            var urlRetiroList = url + '/retiro/list';
+            var urlRetiroMap = url + '/retiro/map';
 
-                        var urlCarhopList = url + '/carhop/sucursalesgps';
-                        var urlCarhopMap = url + '/carhop/map';
+            var urlCamareroList = url + '/scan-qr-camarero';
 
-                        var urlDeliveryList = url + '/delivery/list';
-                        var urlDeliveryMap = url + '/delivery/map';
+            var urlReservaList = url + '/reserva/sucursalesgps';
+            var urlReservaMap = url + '/reserva/map';
 
-                        var urlRetiroList = url + '/retiro/list';
-                        var urlRetiroMap = url + '/retiro/map';
+            if (checkcamareromesa) {
 
-                        var urlCamareroList = url + '/scan-qr-camarero';
+                opacidad = ' opacidad';
+                opacidadCamarero = '';
 
-                        var urlReservaList = url + '/reserva/sucursalesgps';
-                        var urlReservaMap = url + '/reserva/map';
+                urlCarhopList = '#';
+                urlCarhopMap = '#';
 
-                        if (checkcamareromesa) {
+                urlDeliveryList = '#';
+                urlDeliveryMap = '#';
 
-                                opacidad = ' opacidad';
-                                opacidadCamarero = '';
+                urlRetiroList = '#';
+                urlRetiroMap = '#';
 
-                                urlCarhopList = '#';
-                                urlCarhopMap = '#';
+                urlReservaList = '#';
+                urlReservaMap = '#';
 
-                                urlDeliveryList = '#';
-                                urlDeliveryMap = '#';
+                urlCamareroList = url + '/comensal/' + mesa + '/cart';
+            }
 
-                                urlRetiroList = '#';
-                                urlRetiroMap = '#';
+            document.body.style.backgroundImage = "url('" + __WEBPACK_IMPORTED_MODULE_7__public_images_fondo_jpeg___default.a + "')";
+            document.body.style.backgroundPosition = "center";
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { id: 'main', className: 'main' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: '', style: { 'textAlign': 'center', 'paddingTop': '50%' } },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'button',
+                        {
+                            className: 'btn btn-default', style: { 'color': 'white', 'zIndex': '50000' },
+                            onClick: this.flash },
+                        'Activar Flash'
+                    )
+                )
+            );
+        }
+    }]);
 
-                                urlReservaList = '#';
-                                urlReservaMap = '#';
-
-                                urlCamareroList = url + '/comensal/' + mesa + '/cart';
-                        }
-
-                        document.body.style.backgroundImage = "url('" + __WEBPACK_IMPORTED_MODULE_7__public_images_fondo_jpeg___default.a + "')";
-                        document.body.style.backgroundPosition = "center";
-                        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                { id: 'main', className: 'main' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                        'div',
-                                        { className: '', style: { 'textAlign': 'center', 'paddingTop': '50%' } },
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                'button',
-                                                {
-                                                        className: 'btn btn-default', style: { 'color': 'white', 'zIndex': '50000' },
-                                                        onClick: this.flash },
-                                                'Activar Flash'
-                                        )
-                                )
-                        );
-                }
-        }]);
-
-        return Inicio;
+    return Inicio;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Inicio);
@@ -98134,21 +98834,21 @@ var Inicio = function (_Component) {
 
 if (document.getElementById('inicio')) {
 
-        var element = document.getElementById('inicio');
+    var element = document.getElementById('inicio');
 
-        var props = Object.assign({}, element.dataset);
+    var props = Object.assign({}, element.dataset);
 
-        __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Inicio, props), element);
+    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Inicio, props), element);
 }
 
 /***/ }),
-/* 368 */
+/* 369 */
 /***/ (function(module, exports) {
 
 module.exports = "/images/fondo.jpeg?4935e183fc1df4d178042f51a761d4e5";
 
 /***/ }),
-/* 369 */
+/* 370 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98164,6 +98864,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_sweetalert2__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_sweetalert2__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Perfil_CambiarDatos__ = __webpack_require__(108);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -98171,6 +98872,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -98229,6 +98931,19 @@ var Menu = function (_Component) {
             window.location.href = urlLogout;
         }
     }, {
+        key: 'handleMenuClick',
+        value: function handleMenuClick(e) {
+            e.preventDefault();
+
+            var target_id = e.target.id;
+            var element = document.getElementById('inicio');
+            var props = Object.assign({}, element.dataset);
+
+            if (target_id == "perfil") {
+                __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__Perfil_CambiarDatos__["default"], props), element);
+            }
+        }
+    }, {
         key: 'render',
         value: function render() {
 
@@ -98261,7 +98976,7 @@ var Menu = function (_Component) {
                     { className: 'nav-item' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'a',
-                        { className: 'nav-link', href: urlInicio },
+                        { className: 'nav-link', href: '#' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', {
                             className: 'fas fa-home fa-lg' }),
                         '\xA0\xA0 Show'
@@ -98272,7 +98987,7 @@ var Menu = function (_Component) {
                     { className: 'nav-item' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'a',
-                        { className: 'nav-link', href: urlPerfil },
+                        { className: 'nav-link', id: 'perfil', href: '#', onClick: this.handleMenuClick },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', {
                             className: 'fas fa-cog fa-lg' }),
                         '\xA0\xA0  Perfil'
@@ -98343,1391 +99058,7 @@ if (document.getElementById('menu')) {
 }
 
 /***/ }),
-/* 370 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_sweetalert2__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_sweetalert2__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__public_images_logo_one_png__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__public_images_logo_one_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__public_images_logo_one_png__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__public_images_social_facebook_icon_svg__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__public_images_social_facebook_icon_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__public_images_social_facebook_icon_svg__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__public_images_social_google_icon_svg__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__public_images_social_google_icon_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__public_images_social_google_icon_svg__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__public_images_social_twitter_icon_svg__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__public_images_social_twitter_icon_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__public_images_social_twitter_icon_svg__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__public_images_social_instagram_icon_svg__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__public_images_social_instagram_icon_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__public_images_social_instagram_icon_svg__);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-
-
-
-
-
-
-
-
-
-//import logoGooglePlay from '../../../../public/images/others/download-google-play.png';
-//import logoAppleStore from '../../../../public/images/others/download-app-store.png';
-//import {isMobile,isMobileOnly,isAndroid,isIOS,isChrome,isFirefox,isSafari,isMobileSafari,osVersion,osName,browserName, } from 'react-device-detect';
-
-__WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__["b" /* library */].add(__WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["a" /* faSync */]);
-
-var Index = function (_Component) {
-    _inherits(Index, _Component);
-
-    function Index(props) {
-        _classCallCheck(this, Index);
-
-        var _this = _possibleConstructorReturn(this, (Index.__proto__ || Object.getPrototypeOf(Index)).call(this, props));
-
-        _this.state = {
-            url: props.url,
-            urlGooglePlay: props.googleplay,
-            urlAppleStore: props.applestore
-        };
-
-        return _this;
-    }
-
-    _createClass(Index, [{
-        key: 'isCordova',
-        value: function isCordova() {
-            return navigator.userAgent.match(/(Cordova)/);
-        }
-    }, {
-        key: 'getOS',
-        value: function getOS() {
-
-            var userAgent = window.navigator.userAgent,
-                platform = window.navigator.platform,
-                macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
-                windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
-                iosPlatforms = ['iPhone', 'iPad', 'iPod'],
-                os = null;
-
-            if (macosPlatforms.indexOf(platform) !== -1) {
-                os = 'Mac OS';
-            } else if (iosPlatforms.indexOf(platform) !== -1) {
-                os = 'iOS';
-            } else if (windowsPlatforms.indexOf(platform) !== -1) {
-                os = 'Windows';
-            } else if (/Android/.test(userAgent)) {
-                os = 'Android';
-            } else if (!os && /Linux/.test(platform)) {
-                os = 'Linux';
-            }
-
-            return os;
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-
-            var url = this.state.url;
-
-            var urlIngresar = url + '/login';
-            var urlRegistrar = url + '/registro';
-            var urlDemo = url + '/demo';
-            var urlFacebook = url + '/auth/facebook';
-            var urlGoogle = url + '/auth/google';
-
-            var urlTwitter = url + '/auth/twitter';
-            var urlInstagram = url + '/auth/instagram';
-            var urlGooglePlay = this.state.urlGooglePlay;
-            var urlAppleStore = this.state.urlAppleStore;
-
-            //console.log(osName,osVersion,browserName, this.getOS());
-
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'abs-center roboto-condensed' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'box' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: '' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_7__public_images_logo_one_png___default.a, className: 'img-fluid logo-box-index' })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'text-center' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'a',
-                            { href: urlIngresar },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                { className: 'btn btn-negro btn-box-index' },
-                                'Ingresar'
-                            )
-                        )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'text-center' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'a',
-                            { href: urlRegistrar },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                { className: 'btn btn-rojo btn-box-index' },
-                                'Registrar'
-                            )
-                        )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'text-center roboto-condensed text-can-login-social' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'p',
-                            { style: { 'color': 'rgb(146, 143, 143)' } },
-                            'o puedes ingresar con'
-                        )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'text-center mb-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'a',
-                            { href: urlFacebook },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_8__public_images_social_facebook_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'a',
-                            { href: urlGoogle },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_9__public_images_social_google_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'a',
-                            { href: urlTwitter },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_10__public_images_social_twitter_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'a',
-                            { href: urlInstagram },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_11__public_images_social_instagram_icon_svg___default.a, className: 'img-fluid icon-social' })
-                        )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'text-center' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'a',
-                            { href: urlDemo },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                { className: 'btn btn-gris' },
-                                'Demo'
-                            )
-                        )
-                    )
-                )
-            );
-        }
-    }]);
-
-    return Index;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
-
-/* harmony default export */ __webpack_exports__["default"] = (Index);
-
-
-if (document.getElementById('index')) {
-
-    var element = document.getElementById('index');
-
-    var props = Object.assign({}, element.dataset);
-
-    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Index, props), element);
-}
-
-/*
-
-*/
-
-/***/ }),
 /* 371 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_sweetalert2__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_sweetalert2__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__public_images_logo_one_png__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__public_images_logo_one_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__public_images_logo_one_png__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__public_images_social_facebook_icon_svg__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__public_images_social_facebook_icon_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__public_images_social_facebook_icon_svg__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__public_images_social_google_icon_svg__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__public_images_social_google_icon_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__public_images_social_google_icon_svg__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__public_images_social_twitter_icon_svg__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__public_images_social_twitter_icon_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__public_images_social_twitter_icon_svg__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__public_images_social_instagram_icon_svg__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__public_images_social_instagram_icon_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__public_images_social_instagram_icon_svg__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__public_images_countrys_ar_png__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__public_images_countrys_ar_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__public_images_countrys_ar_png__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__public_images_countrys_es_png__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__public_images_countrys_es_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__public_images_countrys_es_png__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_jquery__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_react_mobile_datepicker__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_react_mobile_datepicker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_react_mobile_datepicker__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__public_images_EstadoCivil01_png__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__public_images_EstadoCivil01_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16__public_images_EstadoCivil01_png__);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//import logoFacebook from '../../../../../public/images/social/facebook-icon.svg';
-//import logoGoogle from '../../../../../public/images/social/google-icon.svg';
-
-
-
-
-
-__WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__["b" /* library */].add(__WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["a" /* faSync */]);
-
-var Datepicker = __WEBPACK_IMPORTED_MODULE_15_react_mobile_datepicker___default.a;
-
-var dateConfig = {
-    'year': {
-        format: 'YYYY',
-        caption: 'Año',
-        step: 1
-    },
-    'month': {
-        format: 'MM',
-        caption: 'Mes',
-        step: 1
-    },
-    'date': {
-        format: 'DD',
-        caption: 'Dia',
-        step: 1
-    }
-};
-
-function convertDate(date, formate) {
-    var year = date.getFullYear();
-    var month = date.getMonth() + 1;
-    var day = date.getDate();
-    var hour = date.getHours();
-    var minute = date.getMinutes();
-    var second = date.getSeconds();
-
-    return formate.replace(/Y+/, year).replace(/M+/, month).replace(/D+/, day).replace(/h+/, hour).replace(/m+/, minute).replace(/s+/, second);
-}
-
-var RegistroCliente = function (_React$Component) {
-    _inherits(RegistroCliente, _React$Component);
-
-    function RegistroCliente(props) {
-        _classCallCheck(this, RegistroCliente);
-
-        var _this = _possibleConstructorReturn(this, (RegistroCliente.__proto__ || Object.getPrototypeOf(RegistroCliente)).call(this, props));
-
-        _this.state = {
-            nombre: '',
-            apellido: '',
-            correo: '',
-            password: '',
-            pais: '',
-            edad: '',
-            sexo: '',
-            equipo: '',
-            url: props.url,
-            facebook: props.facebook,
-            google: props.google,
-            isLoading: false,
-            clubs: [],
-            estadosciviles: JSON.parse(props.estadosciviles),
-            civil: '',
-            time: new Date(),
-            isOpen: false,
-            fileName: 'Seleccione imagen',
-            tipofoto: '',
-            foto: '',
-            theme: 'default',
-            telefono: ''
-        };
-
-        _this.handleChange = _this.handleChange.bind(_this);
-        _this.handleSubmit = _this.handleSubmit.bind(_this);
-        _this.clubs = _this.clubs.bind(_this);
-        _this.handleToggle = _this.handleToggle.bind(_this);
-        _this.handleThemeToggle = _this.handleThemeToggle.bind(_this);
-        _this.handleSelect = _this.handleSelect.bind(_this);
-
-        return _this;
-    }
-
-    _createClass(RegistroCliente, [{
-        key: 'handleChange',
-        value: function handleChange(e) {
-            var _this2 = this;
-
-            if (e.target.name == 'fileFoto') {
-
-                if (e.target.files.length > 0) {
-
-                    console.log(e.target.files[0]);
-
-                    var reader = new FileReader();
-
-                    reader.onload = function (e) {
-                        _this2.setState({
-                            foto: e.target.result
-                        });
-                    };
-
-                    reader.readAsDataURL(e.target.files[0]);
-
-                    this.setState({ fileName: e.target.files[0].name });
-                }
-            } else {
-
-                this.setState(_defineProperty({}, e.target.name, e.target.value));
-            }
-        }
-    }, {
-        key: 'handleSubmit',
-        value: function handleSubmit(e) {
-
-            e.preventDefault();
-
-            var self = this;
-
-            self.setState({
-                isLoading: true
-            });
-
-            var _state = this.state,
-                nombre = _state.nombre,
-                apellido = _state.apellido,
-                correo = _state.correo,
-                password = _state.password,
-                pais = _state.pais,
-                civil = _state.civil,
-                url = _state.url,
-                edad = _state.edad,
-                sexo = _state.sexo,
-                equipo = _state.equipo,
-                time = _state.time,
-                telefono = _state.telefono,
-                tipofoto = _state.tipofoto,
-                foto = _state.foto;
-
-
-            edad = time;
-
-            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(url + '/ajax-post-registro', { nombre: nombre, apellido: apellido, correo: correo, password: password, pais: pais, edad: edad, sexo: sexo, equipo: equipo, telefono: telefono, civil: civil, tipofoto: tipofoto, foto: foto }).then(function (res) {
-
-                self.setState({
-                    nombre: '',
-                    apellido: '',
-                    correo: '',
-                    password: '',
-                    pais: '',
-                    sexo: '',
-                    edad: '',
-                    equipo: '',
-                    civil: '',
-                    tipofoto: '',
-                    foto: '',
-                    fileName: 'Subir Foto (Opcional)',
-                    telefono: '',
-                    isLoading: false
-                });
-
-                var r = res.data;
-
-                if (r.code === 200) {
-
-                    __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default.a.fire({
-                        title: '<i class="fa fa-check-circle"></i>',
-                        text: r.msj,
-                        showCancelButton: false,
-                        confirmButtonColor: '#343a40',
-                        confirmButtonText: 'Ok'
-                    }).then(function (result) {
-                        if (result.value) {
-
-                            window.location.href = url + '/login';
-                        }
-                    });
-                } else if (r.code === 500) {
-
-                    __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
-                        title: '<i class="fas fa-exclamation-circle"></i>',
-                        text: r.msj,
-                        confirmButtonColor: '#343a40',
-                        confirmButtonText: 'Ok'
-                    });
-                }
-            }).catch(function (error) {
-
-                if (error.response.status == 422) {
-
-                    self.setState({
-                        isLoading: false
-                    });
-
-                    console.log('errores: ', error.response.data);
-
-                    __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
-                        title: '<i class="fas fa-exclamation-circle"></i>',
-                        text: error.response.data,
-                        confirmButtonColor: '#343a40',
-                        confirmButtonText: 'Ok'
-                    });
-                }
-            });
-        }
-    }, {
-        key: 'clubs',
-        value: function clubs(e) {
-            var _setState2,
-                _this3 = this;
-
-            this.setState((_setState2 = {}, _defineProperty(_setState2, e.target.name, e.target.value), _defineProperty(_setState2, 'equipo', ''), _setState2));
-
-            var self = this;
-
-            var pais = e.target.value;
-            var url = this.state.url;
-            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(url + '/ajax-post-clubs', { pais: pais }).then(function (res) {
-
-                var r = res.data;
-
-                if (r.code === 200) {
-                    _this3.setState({
-                        'clubs': r.datos
-                    });
-                } else if (r.code === 500) {
-
-                    __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
-                        title: '<i class="fas fa-exclamation-circle"></i>',
-                        text: r.msj,
-                        confirmButtonColor: '#343a40',
-                        confirmButtonText: 'Ok'
-                    });
-                }
-            }).catch(function (error) {
-
-                if (error.response.status == 422) {
-
-                    self.setState({
-                        isLoading: false
-                    });
-
-                    console.log('errores: ', error.response.data);
-                }
-            });
-        }
-    }, {
-        key: 'componentDidMount',
-        value: function componentDidMount() {}
-    }, {
-        key: 'handleToggle',
-        value: function handleToggle(isOpen) {
-            this.setState({ isOpen: isOpen });
-        }
-    }, {
-        key: 'handleThemeToggle',
-        value: function handleThemeToggle() {
-            var theme = 'android-dark';
-            this.setState({ theme: theme, isOpen: true });
-        }
-    }, {
-        key: 'handleSelect',
-        value: function handleSelect(time) {
-            this.setState({ time: time, isOpen: false, edad: time });
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var _this4 = this,
-                _React$createElement;
-
-            var _state2 = this.state,
-                nombre = _state2.nombre,
-                apellido = _state2.apellido,
-                correo = _state2.correo,
-                password = _state2.password,
-                pais = _state2.pais,
-                civil = _state2.civil,
-                facebook = _state2.facebook,
-                google = _state2.google,
-                url = _state2.url,
-                clubs = _state2.clubs,
-                edad = _state2.edad,
-                sexo = _state2.sexo,
-                equipo = _state2.equipo,
-                telefono = _state2.telefono,
-                tipofoto = _state2.tipofoto;
-
-
-            var urlFacebook = url + '/auth/facebook';
-            var urlGoogle = url + '/auth/google';
-
-            var urlTwitter = url + '/auth/twitter';
-            var urlInstagram = url + '/auth/instagram';
-
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'box' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: '' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_7__public_images_logo_one_png___default.a, className: 'img-fluid logo-box-registro' })
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'text-center' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'h2',
-                        null,
-                        'Registro'
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'form',
-                    { method: 'POST', onSubmit: this.handleSubmit },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-address-card fa-lg' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', id: 'nombre', name: 'nombre', value: nombre, onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese su nombre' })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-address-card fa-lg' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', id: 'apellido', name: 'apellido', value: apellido, onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese su apellido' })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-calendar-alt fa-lg', style: { fontSize: '1.714em' } })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'a',
-                            {
-                                className: 'select-btn sm', style: { 'border': '1px solid #fff', 'padding-top': '0.5rem', 'padding-bottom': '0.5rem', 'width': '88%', 'color': '#dadada' },
-                                onClick: this.handleThemeToggle },
-                            this.state.edad == '' ? 'Ingrese su Fecha de Nacimiento (Opcional)' : this.state.time.getDate() + '/' + (this.state.time.getMonth() + 1) + '/' + this.state.time.getFullYear()
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Datepicker, {
-                            showCaption: true,
-                            showHeader: true,
-                            headerFormat: 'DD/MM/YYYY',
-                            value: this.state.time,
-                            theme: this.state.theme,
-                            isOpen: this.state.isOpen,
-                            onSelect: this.handleSelect,
-                            onCancel: function onCancel(e) {
-                                return _this4.handleToggle(false);
-                            },
-                            confirmText: 'Seleccionar',
-                            cancelText: 'Cancelar',
-                            max: new Date(),
-                            dateConfig: dateConfig
-                        })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4', style: { 'display': 'none' } },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fab fa-ello fa-lg' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'form-check form-check-inline' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-check-input', onChange: this.handleChange, type: 'radio', name: 'sexo', id: 'inlineRadio1x', value: 'm', checked: sexo === 'm' }),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'label',
-                                { className: 'form-check-label', htmlFor: 'inlineRadio1x' },
-                                'Masculino'
-                            )
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'form-check form-check-inline' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-check-input', onChange: this.handleChange, type: 'radio', name: 'sexo', id: 'inlineRadio2x', value: 'f', checked: sexo === 'f' }),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'label',
-                                { className: 'form-check-label', htmlFor: 'inlineRadio2x' },
-                                'Femenino'
-                            )
-                        )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-envelope fa-lg' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', id: 'correo', name: 'correo', value: correo, onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese su correo' })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-phone fa-lg' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'number', min: '0', max: '99999999999', maxLength: '11', id: 'telefono', name: 'telefono', value: telefono, onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese su telefono (Opcional)' })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend input-civil' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_16__public_images_EstadoCivil01_png___default.a, className: 'icon-civil' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'select',
-                            { className: 'form-control', value: civil, name: 'civil', id: 'civil', onChange: this.handleChange },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'option',
-                                { key: '0', value: '' },
-                                'Ingrese Estado Civil (Opcional)'
-                            ),
-                            this.state.estadosciviles.map(function (item) {
-                                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'option',
-                                    { key: item._id, value: item._id },
-                                    item.Nombre
-                                );
-                            })
-                        )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-portrait fa-lg' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'select',
-                            { className: 'form-control', id: 'inputGroupSelect02', value: tipofoto, name: 'tipofoto', onChange: this.handleChange },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'option',
-                                { value: '' },
-                                'Seleccione Tipo de foto (Opcional)'
-                            ),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'option',
-                                { value: 'upload' },
-                                'Subir Imagen'
-                            ),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'option',
-                                { value: 'camera' },
-                                'Tomar Foto'
-                            )
-                        )
-                    ),
-                    tipofoto == 'upload' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend mr-3' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'far fa-image fa-lg' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'custom-file' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'file', name: 'fileFoto', onChange: function onChange(e) {
-                                    return _this4.handleChange(e);
-                                },
-                                className: 'custom-file-input', id: 'customFileLang' }),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'label',
-                                { className: 'custom-file-label',
-                                    htmlFor: 'customFileLang' },
-                                this.state.fileName
-                            )
-                        )
-                    ) : '',
-                    tipofoto == 'camera' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend mr-3' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-camera fa-lg' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'span',
-                            { className: 'badge badge-warning' },
-                            'En construccion'
-                        )
-                    ) : '',
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend mr-3' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-key fa-lg' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'password', id: 'password', name: 'password', value: password, onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese su password' })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'label',
-                                { className: 'input-group-text' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-globe-americas fa-lg' })
-                            )
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'form-check form-check-inline' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-check-input', onChange: this.clubs, type: 'radio', name: 'pais', id: 'inlineRadio1', value: '5caf334dff6eff0ae30e450b', checked: pais === '5caf334dff6eff0ae30e450b' }),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'label',
-                                { className: 'form-check-label', htmlFor: 'inlineRadio1' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_12__public_images_countrys_ar_png___default.a, className: 'img-country' })
-                            )
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'form-check form-check-inline' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-check-input', onChange: this.clubs, type: 'radio', name: 'pais', id: 'inlineRadio2', value: '5caf37adff6eff0ae30e450d', checked: pais === '5caf37adff6eff0ae30e450d' }),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'label',
-                                { className: 'form-check-label', htmlFor: 'inlineRadio2' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_13__public_images_countrys_es_png___default.a, className: 'img-country' })
-                            )
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'form-check form-check-inline' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'label',
-                                { className: 'form-check-label', htmlFor: 'inlineRadio2' },
-                                '(Opcional)'
-                            )
-                        )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-futbol fa-lg' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'select',
-                            (_React$createElement = { className: 'form-control', id: 'inputGroupSelect02', value: equipo, name: 'equipo' }, _defineProperty(_React$createElement, 'id', 'equipo'), _defineProperty(_React$createElement, 'onChange', this.handleChange), _React$createElement),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'option',
-                                { key: '-1', value: '' },
-                                'Equipos de futbol (Opcional)'
-                            ),
-                            this.state.clubs.length > 0 ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'option',
-                                { key: '0', value: '1000' },
-                                'Ninguno'
-                            ) : '',
-                            this.state.clubs.map(function (item) {
-                                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'option',
-                                    { key: item.id, value: item.id },
-                                    item.Nombre
-                                );
-                            })
-                        )
-                    ),
-                    this.state.equipo != '' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'text-center', style: { 'margin-bottom': '15px' } },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '/images/clubs/' + this.state.equipo + '.png', style: { 'height': '4rem' } })
-                    ) : '',
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'text-center' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'button',
-                            { type: 'submit', className: 'btn btn-negro black btn-box-index' },
-                            this.state.isLoading ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'sync', size: 'lg', spin: true }) : '',
-                            '\xA0\xA0 Registrar'
-                        )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'text-center roboto-condensed text-can-login-social' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'p',
-                            { style: { 'color': 'rgb(146, 143, 143)' } },
-                            'o puedes registrarte con'
-                        )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'text-center mb-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'a',
-                            { href: urlFacebook },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_8__public_images_social_facebook_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'a',
-                            { href: urlGoogle },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_9__public_images_social_google_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'a',
-                            { href: urlTwitter },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_10__public_images_social_twitter_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'a',
-                            { href: urlInstagram },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_11__public_images_social_instagram_icon_svg___default.a, className: 'img-fluid icon-social' })
-                        )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'text-center' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'a',
-                            { href: './' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'button',
-                                { type: 'button', className: 'btn btn-rojo btn-box-index' },
-                                'Volver'
-                            )
-                        )
-                    )
-                )
-            );
-        }
-    }]);
-
-    return RegistroCliente;
-}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["default"] = (RegistroCliente);
-
-
-if (document.getElementById('registro-cliente')) {
-
-    var element = document.getElementById('registro-cliente');
-
-    var props = Object.assign({}, element.dataset);
-
-    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(RegistroCliente, props), element);
-}
-
-/*
-
- 
-                    
-*/
-
-/***/ }),
-/* 372 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_sweetalert2__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_sweetalert2__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_input_mask__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_input_mask___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_react_input_mask__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__public_images_logo_one_png__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__public_images_logo_one_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__public_images_logo_one_png__);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-
-
-
-
-
-
-__WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__["b" /* library */].add(__WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["a" /* faSync */]);
-
-var QuestionEvent = function (_Component) {
-    _inherits(QuestionEvent, _Component);
-
-    function QuestionEvent(props) {
-        _classCallCheck(this, QuestionEvent);
-
-        var _this = _possibleConstructorReturn(this, (QuestionEvent.__proto__ || Object.getPrototypeOf(QuestionEvent)).call(this, props));
-
-        _this.state = {
-            url: props.url,
-            eventos: JSON.parse(props.eventos),
-            evento: '',
-            idevento: '',
-            sector: '',
-            fila: '',
-            asiento: '',
-            eventoUbicacionManual: false,
-            manual: false,
-            isLoadButton: false,
-            ideventobad: false,
-            isLoading: false
-        };
-
-        _this.handleContinuar = _this.handleContinuar.bind(_this);
-        _this.handleChange = _this.handleChange.bind(_this);
-        _this.handleUbicacion = _this.handleUbicacion.bind(_this);
-
-        return _this;
-    }
-
-    _createClass(QuestionEvent, [{
-        key: 'handleChange',
-        value: function handleChange(e) {
-
-            var name = e.target.name;
-
-            if (name == 'evento') {
-
-                if (e.target.value == '') {
-                    var _setState;
-
-                    this.setState((_setState = {}, _defineProperty(_setState, e.target.name, e.target.value), _defineProperty(_setState, 'manual', false), _defineProperty(_setState, 'eventoUbicacionManual', false), _defineProperty(_setState, 'idevento', ''), _defineProperty(_setState, 'isLoadButton', false), _setState));
-                } else if (e.target.value == 'idevento') {
-                    var _setState2;
-
-                    this.setState((_setState2 = {}, _defineProperty(_setState2, e.target.name, e.target.value), _defineProperty(_setState2, 'manual', false), _defineProperty(_setState2, 'eventoUbicacionManual', false), _defineProperty(_setState2, 'isLoadButton', true), _setState2));
-                } else {
-                    var _setState3;
-
-                    this.handleUbicacion(e.target.value, null);
-
-                    this.setState((_setState3 = {}, _defineProperty(_setState3, e.target.name, e.target.value), _defineProperty(_setState3, 'idevento', ''), _setState3));
-                }
-            } else if (name == 'idevento') {
-
-                var data = e.target.value.toUpperCase();
-
-                if (data.length == 6) {
-                    this.handleUbicacion(null, data);
-
-                    this.setState(_defineProperty({}, e.target.name, data));
-                } else {
-                    var _setState5;
-
-                    this.setState((_setState5 = {}, _defineProperty(_setState5, e.target.name, data), _defineProperty(_setState5, 'ideventobad', true), _setState5));
-                }
-            } else if (name == 'fila' || name == 'sector' || name == 'asiento') {
-
-                this.setState(_defineProperty({}, e.target.name, e.target.value.toUpperCase()));
-            } else {
-
-                this.setState(_defineProperty({}, e.target.name, e.target.value));
-            }
-        }
-    }, {
-        key: 'handleUbicacion',
-        value: function handleUbicacion(event, idevent) {
-
-            var self = this;
-
-            var evento = event;
-            var idevento = idevent;
-
-            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/ajax-post-check-ubicacion-evento', { evento: evento, idevento: idevento }).then(function (res) {
-
-                var r = res.data;
-
-                if (r.code === 200) {
-
-                    if (r.ubicacion === false) {
-
-                        self.setState({
-                            eventoUbicacionManual: false,
-                            manual: false,
-                            ideventobad: false,
-                            isLoadButton: true
-                        });
-                    } else {
-                        self.setState({
-                            eventoUbicacionManual: true,
-                            manual: true,
-                            ideventobad: false,
-                            isLoadButton: true
-                        });
-                    }
-                } else if (r.code === 600) {
-
-                    __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
-                        title: '<i class="fas fa-exclamation-circle"></i>',
-                        text: r.msj,
-                        confirmButtonColor: '#343a40',
-                        confirmButtonText: 'Ok'
-                    });
-                } else if (r.code === 700) {
-
-                    self.setState({
-                        ideventobad: true,
-                        eventoUbicacionManual: false,
-                        isLoadButton: false
-                    });
-
-                    __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
-                        title: '<i class="fas fa-exclamation-circle"></i>',
-                        text: r.msj,
-                        confirmButtonColor: '#343a40',
-                        confirmButtonText: 'Ok'
-                    });
-                }
-            }).catch(function (error) {
-
-                console.log(error);
-            });
-        }
-    }, {
-        key: 'handleContinuar',
-        value: function handleContinuar(e) {
-
-            var self = this;
-
-            self.setState({
-                isLoading: true
-            });
-
-            var urlInicio = this.state.url + '/inicio';
-            var _state = this.state,
-                evento = _state.evento,
-                idevento = _state.idevento,
-                sector = _state.sector,
-                fila = _state.fila,
-                asiento = _state.asiento,
-                eventoUbicacionManual = _state.eventoUbicacionManual,
-                manual = _state.manual,
-                ideventobad = _state.ideventobad;
-
-
-            e.preventDefault();
-
-            if (ideventobad == true) {
-
-                self.setState({
-                    isLoading: false
-                });
-
-                __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
-                    title: '<i class="fas fa-exclamation-circle"></i>',
-                    text: 'El codigo del evento es invalido',
-                    confirmButtonColor: '#343a40',
-                    confirmButtonText: 'Ok'
-                });
-            } else {
-
-                __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/ajax-continuar', { evento: evento, idevento: idevento, sector: sector, fila: fila, asiento: asiento, manual: manual, ideventobad: ideventobad, eventoUbicacionManual: eventoUbicacionManual }).then(function (res) {
-
-                    var r = res.data;
-
-                    if (r.code === 200) {
-
-                        self.setState({
-                            evento: '',
-                            idevento: '',
-                            sector: '',
-                            fila: '',
-                            asiento: '',
-                            eventoUbicacionManual: false,
-                            manual: false,
-                            ideventobad: false,
-                            isLoading: false
-                        });
-
-                        window.location.href = urlInicio;
-                    } else if (r.code === 600) {
-
-                        self.setState({
-                            isLoading: false
-                        });
-
-                        __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
-                            title: '<i class="fas fa-exclamation-circle"></i>',
-                            text: r.msj,
-                            confirmButtonColor: '#343a40',
-                            confirmButtonText: 'Ok'
-                        });
-                    }
-                }).catch(function (error) {
-
-                    if (error.response.status == 422) {
-
-                        self.setState({
-                            isLoading: false
-                        });
-
-                        __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
-                            title: '<i class="fas fa-exclamation-circle"></i>',
-                            text: error.response.data,
-                            confirmButtonColor: '#343a40',
-                            confirmButtonText: 'Ok'
-                        });
-                    }
-                });
-            }
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var _React$createElement;
-
-            var evento = this.state.evento;
-            var idevento = this.state.idevento;
-            var url = this.state.url;
-
-            var _state2 = this.state,
-                fila = _state2.fila,
-                asiento = _state2.asiento,
-                sector = _state2.sector,
-                eventoUbicacionManual = _state2.eventoUbicacionManual;
-
-
-            var urlLogout = url + '/logout';
-
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'abs-center' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'form',
-                    { method: 'POST', onSubmit: this.handleContinuar, className: 'form-loginy' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: '' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_8__public_images_logo_one_png___default.a, className: 'img-fluid logo-box-registro mb-4' })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'text-center' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'h2',
-                            null,
-                            'Ubicaci\xF3n'
-                        )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-calendar-week fa-lg' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'select',
-                            (_React$createElement = { className: 'form-control', id: 'inputGroupSelect02', value: evento, name: 'evento' }, _defineProperty(_React$createElement, 'id', 'evento'), _defineProperty(_React$createElement, 'onChange', this.handleChange), _React$createElement),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'option',
-                                { key: '0', value: '' },
-                                'Seleccione Evento'
-                            ),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'option',
-                                { key: '100', value: 'idevento' },
-                                'ID Evento'
-                            ),
-                            this.state.eventos.map(function (item) {
-                                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'option',
-                                    { key: item._id, value: item._id },
-                                    item.Nombre
-                                );
-                            })
-                        )
-                    ),
-                    evento == 'idevento' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-lock fa-lg' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_input_mask___default.a, { mask: '******', maskChar: null, value: idevento, name: 'idevento', onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese el codigo del evento' }),
-                        ';'
-                    ) : '',
-                    eventoUbicacionManual == true ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group mb-4 mt-4' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                { className: 'input-group-prepend' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-vector-square fa-lg' })
-                            ),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_input_mask___default.a, { mask: '********', maskChar: null, value: sector, name: 'sector', onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese el sector' }),
-                            ';'
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group mb-4 mt-4' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                { className: 'input-group-prepend' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-arrows-alt-h fa-lg' })
-                            ),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_input_mask___default.a, { mask: '********', maskChar: null, value: fila, name: 'fila', onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese la fila' }),
-                            ';'
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group mb-4 mt-4' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                { className: 'input-group-prepend' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-chair fa-lg' })
-                            ),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_input_mask___default.a, { mask: '********', maskChar: null, value: asiento, name: 'asiento', onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese el asiento' }),
-                            ';'
-                        )
-                    ) : '',
-                    this.state.isLoadButton == true ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'text-center mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'button',
-                            { type: 'submit', className: 'btn btn-negro btn-box-index' },
-                            this.state.isLoading ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'sync', size: 'lg', spin: true }) : '',
-                            '\xA0\xA0 Continuar'
-                        )
-                    ) : '',
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'text-center' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'a',
-                            { href: urlLogout },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'button',
-                                { type: 'button', className: 'btn btn-rojo btn-box-index' },
-                                'Salir'
-                            )
-                        )
-                    )
-                )
-            );
-        }
-    }]);
-
-    return QuestionEvent;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
-
-/* harmony default export */ __webpack_exports__["default"] = (QuestionEvent);
-
-
-if (document.getElementById('question-event')) {
-
-    var element = document.getElementById('question-event');
-
-    var props = Object.assign({}, element.dataset);
-
-    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(QuestionEvent, props), element);
-}
-
-/***/ }),
-/* 373 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -99737,8 +99068,8 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 var React = _interopDefault(__webpack_require__(10));
 var reactDom = __webpack_require__(13);
-var invariant = _interopDefault(__webpack_require__(374));
-var warning = _interopDefault(__webpack_require__(375));
+var invariant = _interopDefault(__webpack_require__(372));
+var warning = _interopDefault(__webpack_require__(373));
 
 function _defaults2(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
 
@@ -100860,7 +100191,7 @@ module.exports = InputElement;
 
 
 /***/ }),
-/* 374 */
+/* 372 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -100916,7 +100247,7 @@ module.exports = invariant;
 
 
 /***/ }),
-/* 375 */
+/* 373 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -100985,7 +100316,1667 @@ module.exports = warning;
 
 
 /***/ }),
+/* 374 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./af": 114,
+	"./af.js": 114,
+	"./ar": 115,
+	"./ar-dz": 116,
+	"./ar-dz.js": 116,
+	"./ar-kw": 117,
+	"./ar-kw.js": 117,
+	"./ar-ly": 118,
+	"./ar-ly.js": 118,
+	"./ar-ma": 119,
+	"./ar-ma.js": 119,
+	"./ar-sa": 120,
+	"./ar-sa.js": 120,
+	"./ar-tn": 121,
+	"./ar-tn.js": 121,
+	"./ar.js": 115,
+	"./az": 122,
+	"./az.js": 122,
+	"./be": 123,
+	"./be.js": 123,
+	"./bg": 124,
+	"./bg.js": 124,
+	"./bm": 125,
+	"./bm.js": 125,
+	"./bn": 126,
+	"./bn.js": 126,
+	"./bo": 127,
+	"./bo.js": 127,
+	"./br": 128,
+	"./br.js": 128,
+	"./bs": 129,
+	"./bs.js": 129,
+	"./ca": 130,
+	"./ca.js": 130,
+	"./cs": 131,
+	"./cs.js": 131,
+	"./cv": 132,
+	"./cv.js": 132,
+	"./cy": 133,
+	"./cy.js": 133,
+	"./da": 134,
+	"./da.js": 134,
+	"./de": 135,
+	"./de-at": 136,
+	"./de-at.js": 136,
+	"./de-ch": 137,
+	"./de-ch.js": 137,
+	"./de.js": 135,
+	"./dv": 138,
+	"./dv.js": 138,
+	"./el": 139,
+	"./el.js": 139,
+	"./en-SG": 140,
+	"./en-SG.js": 140,
+	"./en-au": 141,
+	"./en-au.js": 141,
+	"./en-ca": 142,
+	"./en-ca.js": 142,
+	"./en-gb": 143,
+	"./en-gb.js": 143,
+	"./en-ie": 144,
+	"./en-ie.js": 144,
+	"./en-il": 145,
+	"./en-il.js": 145,
+	"./en-nz": 146,
+	"./en-nz.js": 146,
+	"./eo": 147,
+	"./eo.js": 147,
+	"./es": 148,
+	"./es-do": 149,
+	"./es-do.js": 149,
+	"./es-us": 150,
+	"./es-us.js": 150,
+	"./es.js": 148,
+	"./et": 151,
+	"./et.js": 151,
+	"./eu": 152,
+	"./eu.js": 152,
+	"./fa": 153,
+	"./fa.js": 153,
+	"./fi": 154,
+	"./fi.js": 154,
+	"./fo": 155,
+	"./fo.js": 155,
+	"./fr": 156,
+	"./fr-ca": 157,
+	"./fr-ca.js": 157,
+	"./fr-ch": 158,
+	"./fr-ch.js": 158,
+	"./fr.js": 156,
+	"./fy": 159,
+	"./fy.js": 159,
+	"./ga": 160,
+	"./ga.js": 160,
+	"./gd": 161,
+	"./gd.js": 161,
+	"./gl": 162,
+	"./gl.js": 162,
+	"./gom-latn": 163,
+	"./gom-latn.js": 163,
+	"./gu": 164,
+	"./gu.js": 164,
+	"./he": 165,
+	"./he.js": 165,
+	"./hi": 166,
+	"./hi.js": 166,
+	"./hr": 167,
+	"./hr.js": 167,
+	"./hu": 168,
+	"./hu.js": 168,
+	"./hy-am": 169,
+	"./hy-am.js": 169,
+	"./id": 170,
+	"./id.js": 170,
+	"./is": 171,
+	"./is.js": 171,
+	"./it": 172,
+	"./it-ch": 173,
+	"./it-ch.js": 173,
+	"./it.js": 172,
+	"./ja": 174,
+	"./ja.js": 174,
+	"./jv": 175,
+	"./jv.js": 175,
+	"./ka": 176,
+	"./ka.js": 176,
+	"./kk": 177,
+	"./kk.js": 177,
+	"./km": 178,
+	"./km.js": 178,
+	"./kn": 179,
+	"./kn.js": 179,
+	"./ko": 180,
+	"./ko.js": 180,
+	"./ku": 181,
+	"./ku.js": 181,
+	"./ky": 182,
+	"./ky.js": 182,
+	"./lb": 183,
+	"./lb.js": 183,
+	"./lo": 184,
+	"./lo.js": 184,
+	"./lt": 185,
+	"./lt.js": 185,
+	"./lv": 186,
+	"./lv.js": 186,
+	"./me": 187,
+	"./me.js": 187,
+	"./mi": 188,
+	"./mi.js": 188,
+	"./mk": 189,
+	"./mk.js": 189,
+	"./ml": 190,
+	"./ml.js": 190,
+	"./mn": 191,
+	"./mn.js": 191,
+	"./mr": 192,
+	"./mr.js": 192,
+	"./ms": 193,
+	"./ms-my": 194,
+	"./ms-my.js": 194,
+	"./ms.js": 193,
+	"./mt": 195,
+	"./mt.js": 195,
+	"./my": 196,
+	"./my.js": 196,
+	"./nb": 197,
+	"./nb.js": 197,
+	"./ne": 198,
+	"./ne.js": 198,
+	"./nl": 199,
+	"./nl-be": 200,
+	"./nl-be.js": 200,
+	"./nl.js": 199,
+	"./nn": 201,
+	"./nn.js": 201,
+	"./pa-in": 202,
+	"./pa-in.js": 202,
+	"./pl": 203,
+	"./pl.js": 203,
+	"./pt": 204,
+	"./pt-br": 205,
+	"./pt-br.js": 205,
+	"./pt.js": 204,
+	"./ro": 206,
+	"./ro.js": 206,
+	"./ru": 207,
+	"./ru.js": 207,
+	"./sd": 208,
+	"./sd.js": 208,
+	"./se": 209,
+	"./se.js": 209,
+	"./si": 210,
+	"./si.js": 210,
+	"./sk": 211,
+	"./sk.js": 211,
+	"./sl": 212,
+	"./sl.js": 212,
+	"./sq": 213,
+	"./sq.js": 213,
+	"./sr": 214,
+	"./sr-cyrl": 215,
+	"./sr-cyrl.js": 215,
+	"./sr.js": 214,
+	"./ss": 216,
+	"./ss.js": 216,
+	"./sv": 217,
+	"./sv.js": 217,
+	"./sw": 218,
+	"./sw.js": 218,
+	"./ta": 219,
+	"./ta.js": 219,
+	"./te": 220,
+	"./te.js": 220,
+	"./tet": 221,
+	"./tet.js": 221,
+	"./tg": 222,
+	"./tg.js": 222,
+	"./th": 223,
+	"./th.js": 223,
+	"./tl-ph": 224,
+	"./tl-ph.js": 224,
+	"./tlh": 225,
+	"./tlh.js": 225,
+	"./tr": 226,
+	"./tr.js": 226,
+	"./tzl": 227,
+	"./tzl.js": 227,
+	"./tzm": 228,
+	"./tzm-latn": 229,
+	"./tzm-latn.js": 229,
+	"./tzm.js": 228,
+	"./ug-cn": 230,
+	"./ug-cn.js": 230,
+	"./uk": 231,
+	"./uk.js": 231,
+	"./ur": 232,
+	"./ur.js": 232,
+	"./uz": 233,
+	"./uz-latn": 234,
+	"./uz-latn.js": 234,
+	"./uz.js": 233,
+	"./vi": 235,
+	"./vi.js": 235,
+	"./x-pseudo": 236,
+	"./x-pseudo.js": 236,
+	"./yo": 237,
+	"./yo.js": 237,
+	"./zh-cn": 238,
+	"./zh-cn.js": 238,
+	"./zh-hk": 239,
+	"./zh-hk.js": 239,
+	"./zh-tw": 240,
+	"./zh-tw.js": 240
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 374;
+
+/***/ }),
+/* 375 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_sweetalert2__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_sweetalert2__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__public_images_logo_one_png__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__public_images_logo_one_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__public_images_logo_one_png__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__public_images_social_facebook_icon_svg__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__public_images_social_facebook_icon_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__public_images_social_facebook_icon_svg__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__public_images_social_google_icon_svg__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__public_images_social_google_icon_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__public_images_social_google_icon_svg__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__public_images_social_twitter_icon_svg__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__public_images_social_twitter_icon_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__public_images_social_twitter_icon_svg__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__public_images_social_instagram_icon_svg__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__public_images_social_instagram_icon_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__public_images_social_instagram_icon_svg__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+//import logoGooglePlay from '../../../../public/images/others/download-google-play.png';
+//import logoAppleStore from '../../../../public/images/others/download-app-store.png';
+//import {isMobile,isMobileOnly,isAndroid,isIOS,isChrome,isFirefox,isSafari,isMobileSafari,osVersion,osName,browserName, } from 'react-device-detect';
+
+__WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__["b" /* library */].add(__WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["a" /* faSync */]);
+
+var Index = function (_Component) {
+    _inherits(Index, _Component);
+
+    function Index(props) {
+        _classCallCheck(this, Index);
+
+        var _this = _possibleConstructorReturn(this, (Index.__proto__ || Object.getPrototypeOf(Index)).call(this, props));
+
+        _this.state = {
+            url: props.url,
+            urlGooglePlay: props.googleplay,
+            urlAppleStore: props.applestore
+        };
+
+        return _this;
+    }
+
+    _createClass(Index, [{
+        key: 'isCordova',
+        value: function isCordova() {
+            return navigator.userAgent.match(/(Cordova)/);
+        }
+    }, {
+        key: 'getOS',
+        value: function getOS() {
+
+            var userAgent = window.navigator.userAgent,
+                platform = window.navigator.platform,
+                macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+                windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+                iosPlatforms = ['iPhone', 'iPad', 'iPod'],
+                os = null;
+
+            if (macosPlatforms.indexOf(platform) !== -1) {
+                os = 'Mac OS';
+            } else if (iosPlatforms.indexOf(platform) !== -1) {
+                os = 'iOS';
+            } else if (windowsPlatforms.indexOf(platform) !== -1) {
+                os = 'Windows';
+            } else if (/Android/.test(userAgent)) {
+                os = 'Android';
+            } else if (!os && /Linux/.test(platform)) {
+                os = 'Linux';
+            }
+
+            return os;
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+
+            var url = this.state.url;
+
+            var urlIngresar = url + '/login';
+            var urlRegistrar = url + '/registro';
+            var urlDemo = url + '/demo';
+            var urlFacebook = url + '/auth/facebook';
+            var urlGoogle = url + '/auth/google';
+
+            var urlTwitter = url + '/auth/twitter';
+            var urlInstagram = url + '/auth/instagram';
+            var urlGooglePlay = this.state.urlGooglePlay;
+            var urlAppleStore = this.state.urlAppleStore;
+
+            //console.log(osName,osVersion,browserName, this.getOS());
+
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'abs-center roboto-condensed' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'box' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: '' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_7__public_images_logo_one_png___default.a, className: 'img-fluid logo-box-index' })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'text-center' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'a',
+                            { href: urlIngresar },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { className: 'btn btn-negro btn-box-index' },
+                                'Ingresar'
+                            )
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'text-center' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'a',
+                            { href: urlRegistrar },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { className: 'btn btn-rojo btn-box-index' },
+                                'Registrar'
+                            )
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'text-center roboto-condensed text-can-login-social' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'p',
+                            { style: { 'color': 'rgb(146, 143, 143)' } },
+                            'o puedes ingresar con'
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'text-center mb-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'a',
+                            { href: urlFacebook },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_8__public_images_social_facebook_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'a',
+                            { href: urlGoogle },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_9__public_images_social_google_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'a',
+                            { href: urlTwitter },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_10__public_images_social_twitter_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'a',
+                            { href: urlInstagram },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_11__public_images_social_instagram_icon_svg___default.a, className: 'img-fluid icon-social' })
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'text-center' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'a',
+                            { href: urlDemo },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { className: 'btn btn-gris' },
+                                'Demo'
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Index;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Index);
+
+
+if (document.getElementById('index')) {
+
+    var element = document.getElementById('index');
+
+    var props = Object.assign({}, element.dataset);
+
+    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Index, props), element);
+}
+
+/*
+
+*/
+
+/***/ }),
 /* 376 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_sweetalert2__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_sweetalert2__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__public_images_logo_one_png__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__public_images_logo_one_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__public_images_logo_one_png__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__public_images_social_facebook_icon_svg__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__public_images_social_facebook_icon_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__public_images_social_facebook_icon_svg__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__public_images_social_google_icon_svg__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__public_images_social_google_icon_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__public_images_social_google_icon_svg__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__public_images_social_twitter_icon_svg__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__public_images_social_twitter_icon_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__public_images_social_twitter_icon_svg__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__public_images_social_instagram_icon_svg__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__public_images_social_instagram_icon_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__public_images_social_instagram_icon_svg__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__public_images_countrys_ar_png__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__public_images_countrys_ar_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__public_images_countrys_ar_png__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__public_images_countrys_es_png__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__public_images_countrys_es_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__public_images_countrys_es_png__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_jquery__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_jquery__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_react_mobile_datepicker__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_react_mobile_datepicker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_react_mobile_datepicker__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__public_images_EstadoCivil01_png__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__public_images_EstadoCivil01_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16__public_images_EstadoCivil01_png__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//import logoFacebook from '../../../../../public/images/social/facebook-icon.svg';
+//import logoGoogle from '../../../../../public/images/social/google-icon.svg';
+
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__["b" /* library */].add(__WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["a" /* faSync */]);
+
+var Datepicker = __WEBPACK_IMPORTED_MODULE_15_react_mobile_datepicker___default.a;
+
+var dateConfig = {
+    'year': {
+        format: 'YYYY',
+        caption: 'Año',
+        step: 1
+    },
+    'month': {
+        format: 'MM',
+        caption: 'Mes',
+        step: 1
+    },
+    'date': {
+        format: 'DD',
+        caption: 'Dia',
+        step: 1
+    }
+};
+
+function convertDate(date, formate) {
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var hour = date.getHours();
+    var minute = date.getMinutes();
+    var second = date.getSeconds();
+
+    return formate.replace(/Y+/, year).replace(/M+/, month).replace(/D+/, day).replace(/h+/, hour).replace(/m+/, minute).replace(/s+/, second);
+}
+
+var RegistroCliente = function (_React$Component) {
+    _inherits(RegistroCliente, _React$Component);
+
+    function RegistroCliente(props) {
+        _classCallCheck(this, RegistroCliente);
+
+        var _this = _possibleConstructorReturn(this, (RegistroCliente.__proto__ || Object.getPrototypeOf(RegistroCliente)).call(this, props));
+
+        _this.state = {
+            nombre: '',
+            apellido: '',
+            correo: '',
+            password: '',
+            pais: '',
+            edad: '',
+            sexo: '',
+            equipo: '',
+            url: props.url,
+            facebook: props.facebook,
+            google: props.google,
+            isLoading: false,
+            clubs: [],
+            estadosciviles: JSON.parse(props.estadosciviles),
+            civil: '',
+            time: new Date(),
+            isOpen: false,
+            fileName: 'Seleccione imagen',
+            tipofoto: '',
+            foto: '',
+            theme: 'default',
+            telefono: ''
+        };
+
+        _this.handleChange = _this.handleChange.bind(_this);
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        _this.clubs = _this.clubs.bind(_this);
+        _this.handleToggle = _this.handleToggle.bind(_this);
+        _this.handleThemeToggle = _this.handleThemeToggle.bind(_this);
+        _this.handleSelect = _this.handleSelect.bind(_this);
+
+        return _this;
+    }
+
+    _createClass(RegistroCliente, [{
+        key: 'handleChange',
+        value: function handleChange(e) {
+            var _this2 = this;
+
+            if (e.target.name == 'fileFoto') {
+
+                if (e.target.files.length > 0) {
+
+                    console.log(e.target.files[0]);
+
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        _this2.setState({
+                            foto: e.target.result
+                        });
+                    };
+
+                    reader.readAsDataURL(e.target.files[0]);
+
+                    this.setState({ fileName: e.target.files[0].name });
+                }
+            } else {
+
+                this.setState(_defineProperty({}, e.target.name, e.target.value));
+            }
+        }
+    }, {
+        key: 'handleSubmit',
+        value: function handleSubmit(e) {
+
+            e.preventDefault();
+
+            var self = this;
+
+            self.setState({
+                isLoading: true
+            });
+
+            var _state = this.state,
+                nombre = _state.nombre,
+                apellido = _state.apellido,
+                correo = _state.correo,
+                password = _state.password,
+                pais = _state.pais,
+                civil = _state.civil,
+                url = _state.url,
+                edad = _state.edad,
+                sexo = _state.sexo,
+                equipo = _state.equipo,
+                time = _state.time,
+                telefono = _state.telefono,
+                tipofoto = _state.tipofoto,
+                foto = _state.foto;
+
+
+            edad = time;
+
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(url + '/ajax-post-registro', { nombre: nombre, apellido: apellido, correo: correo, password: password, pais: pais, edad: edad, sexo: sexo, equipo: equipo, telefono: telefono, civil: civil, tipofoto: tipofoto, foto: foto }).then(function (res) {
+
+                self.setState({
+                    nombre: '',
+                    apellido: '',
+                    correo: '',
+                    password: '',
+                    pais: '',
+                    sexo: '',
+                    edad: '',
+                    equipo: '',
+                    civil: '',
+                    tipofoto: '',
+                    foto: '',
+                    fileName: 'Subir Foto (Opcional)',
+                    telefono: '',
+                    isLoading: false
+                });
+
+                var r = res.data;
+
+                if (r.code === 200) {
+
+                    __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default.a.fire({
+                        title: '<i class="fa fa-check-circle"></i>',
+                        text: r.msj,
+                        showCancelButton: false,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    }).then(function (result) {
+                        if (result.value) {
+
+                            window.location.href = url + '/login';
+                        }
+                    });
+                } else if (r.code === 500) {
+
+                    __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                        title: '<i class="fas fa-exclamation-circle"></i>',
+                        text: r.msj,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    });
+                }
+            }).catch(function (error) {
+
+                if (error.response.status == 422) {
+
+                    self.setState({
+                        isLoading: false
+                    });
+
+                    console.log('errores: ', error.response.data);
+
+                    __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                        title: '<i class="fas fa-exclamation-circle"></i>',
+                        text: error.response.data,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    });
+                }
+            });
+        }
+    }, {
+        key: 'clubs',
+        value: function clubs(e) {
+            var _setState2,
+                _this3 = this;
+
+            this.setState((_setState2 = {}, _defineProperty(_setState2, e.target.name, e.target.value), _defineProperty(_setState2, 'equipo', ''), _setState2));
+
+            var self = this;
+
+            var pais = e.target.value;
+            var url = this.state.url;
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post(url + '/ajax-post-clubs', { pais: pais }).then(function (res) {
+
+                var r = res.data;
+
+                if (r.code === 200) {
+                    _this3.setState({
+                        'clubs': r.datos
+                    });
+                } else if (r.code === 500) {
+
+                    __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                        title: '<i class="fas fa-exclamation-circle"></i>',
+                        text: r.msj,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    });
+                }
+            }).catch(function (error) {
+
+                if (error.response.status == 422) {
+
+                    self.setState({
+                        isLoading: false
+                    });
+
+                    console.log('errores: ', error.response.data);
+                }
+            });
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {}
+    }, {
+        key: 'handleToggle',
+        value: function handleToggle(isOpen) {
+            this.setState({ isOpen: isOpen });
+        }
+    }, {
+        key: 'handleThemeToggle',
+        value: function handleThemeToggle() {
+            var theme = 'android-dark';
+            this.setState({ theme: theme, isOpen: true });
+        }
+    }, {
+        key: 'handleSelect',
+        value: function handleSelect(time) {
+            this.setState({ time: time, isOpen: false, edad: time });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this4 = this,
+                _React$createElement;
+
+            var _state2 = this.state,
+                nombre = _state2.nombre,
+                apellido = _state2.apellido,
+                correo = _state2.correo,
+                password = _state2.password,
+                pais = _state2.pais,
+                civil = _state2.civil,
+                facebook = _state2.facebook,
+                google = _state2.google,
+                url = _state2.url,
+                clubs = _state2.clubs,
+                edad = _state2.edad,
+                sexo = _state2.sexo,
+                equipo = _state2.equipo,
+                telefono = _state2.telefono,
+                tipofoto = _state2.tipofoto;
+
+
+            var urlFacebook = url + '/auth/facebook';
+            var urlGoogle = url + '/auth/google';
+
+            var urlTwitter = url + '/auth/twitter';
+            var urlInstagram = url + '/auth/instagram';
+
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'box' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: '' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_7__public_images_logo_one_png___default.a, className: 'img-fluid logo-box-registro' })
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'text-center' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'h2',
+                        null,
+                        'Registro'
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'form',
+                    { method: 'POST', onSubmit: this.handleSubmit },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-address-card fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', id: 'nombre', name: 'nombre', value: nombre, onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese su nombre' })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-address-card fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', id: 'apellido', name: 'apellido', value: apellido, onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese su apellido' })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-calendar-alt fa-lg', style: { fontSize: '1.714em' } })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'a',
+                            {
+                                className: 'select-btn sm', style: { 'border': '1px solid #fff', 'padding-top': '0.5rem', 'padding-bottom': '0.5rem', 'width': '88%', 'color': '#dadada' },
+                                onClick: this.handleThemeToggle },
+                            this.state.edad == '' ? 'Ingrese su Fecha de Nacimiento (Opcional)' : this.state.time.getDate() + '/' + (this.state.time.getMonth() + 1) + '/' + this.state.time.getFullYear()
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Datepicker, {
+                            showCaption: true,
+                            showHeader: true,
+                            headerFormat: 'DD/MM/YYYY',
+                            value: this.state.time,
+                            theme: this.state.theme,
+                            isOpen: this.state.isOpen,
+                            onSelect: this.handleSelect,
+                            onCancel: function onCancel(e) {
+                                return _this4.handleToggle(false);
+                            },
+                            confirmText: 'Seleccionar',
+                            cancelText: 'Cancelar',
+                            max: new Date(),
+                            dateConfig: dateConfig
+                        })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4', style: { 'display': 'none' } },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fab fa-ello fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'form-check form-check-inline' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-check-input', onChange: this.handleChange, type: 'radio', name: 'sexo', id: 'inlineRadio1x', value: 'm', checked: sexo === 'm' }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'label',
+                                { className: 'form-check-label', htmlFor: 'inlineRadio1x' },
+                                'Masculino'
+                            )
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'form-check form-check-inline' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-check-input', onChange: this.handleChange, type: 'radio', name: 'sexo', id: 'inlineRadio2x', value: 'f', checked: sexo === 'f' }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'label',
+                                { className: 'form-check-label', htmlFor: 'inlineRadio2x' },
+                                'Femenino'
+                            )
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-envelope fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', id: 'correo', name: 'correo', value: correo, onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese su correo' })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-phone fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'number', min: '0', max: '99999999999', maxLength: '11', id: 'telefono', name: 'telefono', value: telefono, onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese su telefono (Opcional)' })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend input-civil' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_16__public_images_EstadoCivil01_png___default.a, className: 'icon-civil' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'select',
+                            { className: 'form-control', value: civil, name: 'civil', id: 'civil', onChange: this.handleChange },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'option',
+                                { key: '0', value: '' },
+                                'Ingrese Estado Civil (Opcional)'
+                            ),
+                            this.state.estadosciviles.map(function (item) {
+                                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'option',
+                                    { key: item._id, value: item._id },
+                                    item.Nombre
+                                );
+                            })
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-portrait fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'select',
+                            { className: 'form-control', id: 'inputGroupSelect02', value: tipofoto, name: 'tipofoto', onChange: this.handleChange },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'option',
+                                { value: '' },
+                                'Seleccione Tipo de foto (Opcional)'
+                            ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'option',
+                                { value: 'upload' },
+                                'Subir Imagen'
+                            ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'option',
+                                { value: 'camera' },
+                                'Tomar Foto'
+                            )
+                        )
+                    ),
+                    tipofoto == 'upload' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend mr-3' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'far fa-image fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'custom-file' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'file', name: 'fileFoto', onChange: function onChange(e) {
+                                    return _this4.handleChange(e);
+                                },
+                                className: 'custom-file-input', id: 'customFileLang' }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'label',
+                                { className: 'custom-file-label',
+                                    htmlFor: 'customFileLang' },
+                                this.state.fileName
+                            )
+                        )
+                    ) : '',
+                    tipofoto == 'camera' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend mr-3' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-camera fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'span',
+                            { className: 'badge badge-warning' },
+                            'En construccion'
+                        )
+                    ) : '',
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend mr-3' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-key fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'password', id: 'password', name: 'password', value: password, onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese su password' })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'label',
+                                { className: 'input-group-text' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-globe-americas fa-lg' })
+                            )
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'form-check form-check-inline' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-check-input', onChange: this.clubs, type: 'radio', name: 'pais', id: 'inlineRadio1', value: '5caf334dff6eff0ae30e450b', checked: pais === '5caf334dff6eff0ae30e450b' }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'label',
+                                { className: 'form-check-label', htmlFor: 'inlineRadio1' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_12__public_images_countrys_ar_png___default.a, className: 'img-country' })
+                            )
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'form-check form-check-inline' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-check-input', onChange: this.clubs, type: 'radio', name: 'pais', id: 'inlineRadio2', value: '5caf37adff6eff0ae30e450d', checked: pais === '5caf37adff6eff0ae30e450d' }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'label',
+                                { className: 'form-check-label', htmlFor: 'inlineRadio2' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_13__public_images_countrys_es_png___default.a, className: 'img-country' })
+                            )
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'form-check form-check-inline' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'label',
+                                { className: 'form-check-label', htmlFor: 'inlineRadio2' },
+                                '(Opcional)'
+                            )
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-futbol fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'select',
+                            (_React$createElement = { className: 'form-control', id: 'inputGroupSelect02', value: equipo, name: 'equipo' }, _defineProperty(_React$createElement, 'id', 'equipo'), _defineProperty(_React$createElement, 'onChange', this.handleChange), _React$createElement),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'option',
+                                { key: '-1', value: '' },
+                                'Equipos de futbol (Opcional)'
+                            ),
+                            this.state.clubs.length > 0 ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'option',
+                                { key: '0', value: '1000' },
+                                'Ninguno'
+                            ) : '',
+                            this.state.clubs.map(function (item) {
+                                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'option',
+                                    { key: item.id, value: item.id },
+                                    item.Nombre
+                                );
+                            })
+                        )
+                    ),
+                    this.state.equipo != '' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'text-center', style: { 'margin-bottom': '15px' } },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '/images/clubs/' + this.state.equipo + '.png', style: { 'height': '4rem' } })
+                    ) : '',
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'text-center' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'button',
+                            { type: 'submit', className: 'btn btn-negro black btn-box-index' },
+                            this.state.isLoading ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'sync', size: 'lg', spin: true }) : '',
+                            '\xA0\xA0 Registrar'
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'text-center roboto-condensed text-can-login-social' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'p',
+                            { style: { 'color': 'rgb(146, 143, 143)' } },
+                            'o puedes registrarte con'
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'text-center mb-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'a',
+                            { href: urlFacebook },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_8__public_images_social_facebook_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'a',
+                            { href: urlGoogle },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_9__public_images_social_google_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'a',
+                            { href: urlTwitter },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_10__public_images_social_twitter_icon_svg___default.a, className: 'img-fluid icon-social mr-3' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'a',
+                            { href: urlInstagram },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_11__public_images_social_instagram_icon_svg___default.a, className: 'img-fluid icon-social' })
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'text-center' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'a',
+                            { href: './' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'button',
+                                { type: 'button', className: 'btn btn-rojo btn-box-index' },
+                                'Volver'
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return RegistroCliente;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (RegistroCliente);
+
+
+if (document.getElementById('registro-cliente')) {
+
+    var element = document.getElementById('registro-cliente');
+
+    var props = Object.assign({}, element.dataset);
+
+    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(RegistroCliente, props), element);
+}
+
+/*
+
+ 
+                    
+*/
+
+/***/ }),
+/* 377 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_sweetalert2__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_sweetalert2__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_input_mask__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_input_mask___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_react_input_mask__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__public_images_logo_one_png__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__public_images_logo_one_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__public_images_logo_one_png__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__["b" /* library */].add(__WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["a" /* faSync */]);
+
+var QuestionEvent = function (_Component) {
+    _inherits(QuestionEvent, _Component);
+
+    function QuestionEvent(props) {
+        _classCallCheck(this, QuestionEvent);
+
+        var _this = _possibleConstructorReturn(this, (QuestionEvent.__proto__ || Object.getPrototypeOf(QuestionEvent)).call(this, props));
+
+        _this.state = {
+            url: props.url,
+            eventos: JSON.parse(props.eventos),
+            evento: '',
+            idevento: '',
+            sector: '',
+            fila: '',
+            asiento: '',
+            eventoUbicacionManual: false,
+            manual: false,
+            isLoadButton: false,
+            ideventobad: false,
+            isLoading: false
+        };
+
+        _this.handleContinuar = _this.handleContinuar.bind(_this);
+        _this.handleChange = _this.handleChange.bind(_this);
+        _this.handleUbicacion = _this.handleUbicacion.bind(_this);
+
+        return _this;
+    }
+
+    _createClass(QuestionEvent, [{
+        key: 'handleChange',
+        value: function handleChange(e) {
+
+            var name = e.target.name;
+
+            if (name == 'evento') {
+
+                if (e.target.value == '') {
+                    var _setState;
+
+                    this.setState((_setState = {}, _defineProperty(_setState, e.target.name, e.target.value), _defineProperty(_setState, 'manual', false), _defineProperty(_setState, 'eventoUbicacionManual', false), _defineProperty(_setState, 'idevento', ''), _defineProperty(_setState, 'isLoadButton', false), _setState));
+                } else if (e.target.value == 'idevento') {
+                    var _setState2;
+
+                    this.setState((_setState2 = {}, _defineProperty(_setState2, e.target.name, e.target.value), _defineProperty(_setState2, 'manual', false), _defineProperty(_setState2, 'eventoUbicacionManual', false), _defineProperty(_setState2, 'isLoadButton', true), _setState2));
+                } else {
+                    var _setState3;
+
+                    this.handleUbicacion(e.target.value, null);
+
+                    this.setState((_setState3 = {}, _defineProperty(_setState3, e.target.name, e.target.value), _defineProperty(_setState3, 'idevento', ''), _setState3));
+                }
+            } else if (name == 'idevento') {
+
+                var data = e.target.value.toUpperCase();
+
+                if (data.length == 6) {
+                    this.handleUbicacion(null, data);
+
+                    this.setState(_defineProperty({}, e.target.name, data));
+                } else {
+                    var _setState5;
+
+                    this.setState((_setState5 = {}, _defineProperty(_setState5, e.target.name, data), _defineProperty(_setState5, 'ideventobad', true), _setState5));
+                }
+            } else if (name == 'fila' || name == 'sector' || name == 'asiento') {
+
+                this.setState(_defineProperty({}, e.target.name, e.target.value.toUpperCase()));
+            } else {
+
+                this.setState(_defineProperty({}, e.target.name, e.target.value));
+            }
+        }
+    }, {
+        key: 'handleUbicacion',
+        value: function handleUbicacion(event, idevent) {
+
+            var self = this;
+
+            var evento = event;
+            var idevento = idevent;
+
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/ajax-post-check-ubicacion-evento', { evento: evento, idevento: idevento }).then(function (res) {
+
+                var r = res.data;
+
+                if (r.code === 200) {
+
+                    if (r.ubicacion === false) {
+
+                        self.setState({
+                            eventoUbicacionManual: false,
+                            manual: false,
+                            ideventobad: false,
+                            isLoadButton: true
+                        });
+                    } else {
+                        self.setState({
+                            eventoUbicacionManual: true,
+                            manual: true,
+                            ideventobad: false,
+                            isLoadButton: true
+                        });
+                    }
+                } else if (r.code === 600) {
+
+                    __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                        title: '<i class="fas fa-exclamation-circle"></i>',
+                        text: r.msj,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    });
+                } else if (r.code === 700) {
+
+                    self.setState({
+                        ideventobad: true,
+                        eventoUbicacionManual: false,
+                        isLoadButton: false
+                    });
+
+                    __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                        title: '<i class="fas fa-exclamation-circle"></i>',
+                        text: r.msj,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    });
+                }
+            }).catch(function (error) {
+
+                console.log(error);
+            });
+        }
+    }, {
+        key: 'handleContinuar',
+        value: function handleContinuar(e) {
+
+            var self = this;
+
+            self.setState({
+                isLoading: true
+            });
+
+            var urlInicio = this.state.url + '/inicio';
+            var _state = this.state,
+                evento = _state.evento,
+                idevento = _state.idevento,
+                sector = _state.sector,
+                fila = _state.fila,
+                asiento = _state.asiento,
+                eventoUbicacionManual = _state.eventoUbicacionManual,
+                manual = _state.manual,
+                ideventobad = _state.ideventobad;
+
+
+            e.preventDefault();
+
+            if (ideventobad == true) {
+
+                self.setState({
+                    isLoading: false
+                });
+
+                __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                    title: '<i class="fas fa-exclamation-circle"></i>',
+                    text: 'El codigo del evento es invalido',
+                    confirmButtonColor: '#343a40',
+                    confirmButtonText: 'Ok'
+                });
+            } else {
+
+                __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/ajax-continuar', { evento: evento, idevento: idevento, sector: sector, fila: fila, asiento: asiento, manual: manual, ideventobad: ideventobad, eventoUbicacionManual: eventoUbicacionManual }).then(function (res) {
+
+                    var r = res.data;
+
+                    if (r.code === 200) {
+
+                        self.setState({
+                            evento: '',
+                            idevento: '',
+                            sector: '',
+                            fila: '',
+                            asiento: '',
+                            eventoUbicacionManual: false,
+                            manual: false,
+                            ideventobad: false,
+                            isLoading: false
+                        });
+
+                        window.location.href = urlInicio;
+                    } else if (r.code === 600) {
+
+                        self.setState({
+                            isLoading: false
+                        });
+
+                        __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                            title: '<i class="fas fa-exclamation-circle"></i>',
+                            text: r.msj,
+                            confirmButtonColor: '#343a40',
+                            confirmButtonText: 'Ok'
+                        });
+                    }
+                }).catch(function (error) {
+
+                    if (error.response.status == 422) {
+
+                        self.setState({
+                            isLoading: false
+                        });
+
+                        __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                            title: '<i class="fas fa-exclamation-circle"></i>',
+                            text: error.response.data,
+                            confirmButtonColor: '#343a40',
+                            confirmButtonText: 'Ok'
+                        });
+                    }
+                });
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _React$createElement;
+
+            var evento = this.state.evento;
+            var idevento = this.state.idevento;
+            var url = this.state.url;
+
+            var _state2 = this.state,
+                fila = _state2.fila,
+                asiento = _state2.asiento,
+                sector = _state2.sector,
+                eventoUbicacionManual = _state2.eventoUbicacionManual;
+
+
+            var urlLogout = url + '/logout';
+
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'abs-center' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'form',
+                    { method: 'POST', onSubmit: this.handleContinuar, className: 'form-loginy' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: '' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_8__public_images_logo_one_png___default.a, className: 'img-fluid logo-box-registro mb-4' })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'text-center' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'h2',
+                            null,
+                            'Ubicaci\xF3n'
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-calendar-week fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'select',
+                            (_React$createElement = { className: 'form-control', id: 'inputGroupSelect02', value: evento, name: 'evento' }, _defineProperty(_React$createElement, 'id', 'evento'), _defineProperty(_React$createElement, 'onChange', this.handleChange), _React$createElement),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'option',
+                                { key: '0', value: '' },
+                                'Seleccione Evento'
+                            ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'option',
+                                { key: '100', value: 'idevento' },
+                                'ID Evento'
+                            ),
+                            this.state.eventos.map(function (item) {
+                                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'option',
+                                    { key: item._id, value: item._id },
+                                    item.Nombre
+                                );
+                            })
+                        )
+                    ),
+                    evento == 'idevento' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'input-group mb-4 mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group-prepend' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-lock fa-lg' })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_input_mask___default.a, { mask: '******', maskChar: null, value: idevento, name: 'idevento', onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese el codigo del evento' }),
+                        ';'
+                    ) : '',
+                    eventoUbicacionManual == true ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group mb-4 mt-4' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { className: 'input-group-prepend' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-vector-square fa-lg' })
+                            ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_input_mask___default.a, { mask: '********', maskChar: null, value: sector, name: 'sector', onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese el sector' }),
+                            ';'
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group mb-4 mt-4' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { className: 'input-group-prepend' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-arrows-alt-h fa-lg' })
+                            ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_input_mask___default.a, { mask: '********', maskChar: null, value: fila, name: 'fila', onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese la fila' }),
+                            ';'
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group mb-4 mt-4' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { className: 'input-group-prepend' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-chair fa-lg' })
+                            ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_input_mask___default.a, { mask: '********', maskChar: null, value: asiento, name: 'asiento', onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese el asiento' }),
+                            ';'
+                        )
+                    ) : '',
+                    this.state.isLoadButton == true ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'text-center mt-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'button',
+                            { type: 'submit', className: 'btn btn-negro btn-box-index' },
+                            this.state.isLoading ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'sync', size: 'lg', spin: true }) : '',
+                            '\xA0\xA0 Continuar'
+                        )
+                    ) : '',
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'text-center' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'a',
+                            { href: urlLogout },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'button',
+                                { type: 'button', className: 'btn btn-rojo btn-box-index' },
+                                'Salir'
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return QuestionEvent;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (QuestionEvent);
+
+
+if (document.getElementById('question-event')) {
+
+    var element = document.getElementById('question-event');
+
+    var props = Object.assign({}, element.dataset);
+
+    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(QuestionEvent, props), element);
+}
+
+/***/ }),
+/* 378 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -101203,982 +102194,6 @@ if (document.getElementById('cambiar-clave')) {
 
     __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(CambiarClave, props), element);
 }
-
-/***/ }),
-/* 377 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_input_mask__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_input_mask___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react_input_mask__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_sweetalert2__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_sweetalert2__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__public_images_countrys_ar_png__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__public_images_countrys_ar_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__public_images_countrys_ar_png__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__public_images_countrys_es_png__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__public_images_countrys_es_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__public_images_countrys_es_png__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_react_mobile_datepicker__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_react_mobile_datepicker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_react_mobile_datepicker__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__public_images_EstadoCivil01_png__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__public_images_EstadoCivil01_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__public_images_EstadoCivil01_png__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_moment__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_moment__);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-__WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__["b" /* library */].add(__WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["a" /* faSync */]);
-
-var Datepicker = __WEBPACK_IMPORTED_MODULE_10_react_mobile_datepicker___default.a;
-
-var dateConfig = {
-    'year': {
-        format: 'YYYY',
-        caption: 'Año',
-        step: 1
-    },
-    'month': {
-        format: 'MM',
-        caption: 'Mes',
-        step: 1
-    },
-    'date': {
-        format: 'DD',
-        caption: 'Dia',
-        step: 1
-    }
-};
-
-var CambiarDatos = function (_Component) {
-    _inherits(CambiarDatos, _Component);
-
-    function CambiarDatos(props) {
-        _classCallCheck(this, CambiarDatos);
-
-        var _this = _possibleConstructorReturn(this, (CambiarDatos.__proto__ || Object.getPrototypeOf(CambiarDatos)).call(this, props));
-
-        _this.state = {
-            url: props.url,
-            nombre: '',
-            apellido: '',
-            sexo: '',
-            fechan: '',
-            equipo: '',
-            civil: '',
-            clubs: [],
-            estadosciviles: [],
-            correo: '',
-            cuenta: '',
-            pais: '',
-            paises: [],
-            telefono: '',
-            fileName: 'Seleccione imagen',
-            tipofoto: '',
-            foto: '',
-            fotonew: '',
-            flagPais: '',
-            isLoading: false
-        };
-
-        _this.handleChange = _this.handleChange.bind(_this);
-        _this.handleSubmit = _this.handleSubmit.bind(_this);
-        _this.clubs = _this.clubs.bind(_this);
-        _this.clubs2 = _this.clubs2.bind(_this);
-        _this.handleToggle = _this.handleToggle.bind(_this);
-        _this.handleThemeToggle = _this.handleThemeToggle.bind(_this);
-        _this.handleSelect = _this.handleSelect.bind(_this);
-
-        return _this;
-    }
-
-    _createClass(CambiarDatos, [{
-        key: 'handleChange',
-        value: function handleChange(e) {
-            var _this2 = this;
-
-            if (e.target.name == 'fileFoto') {
-
-                if (e.target.files.length > 0) {
-
-                    console.log(e.target.files[0]);
-
-                    var reader = new FileReader();
-
-                    reader.onload = function (e) {
-                        _this2.setState({
-                            fotonew: e.target.result
-                        });
-                    };
-
-                    reader.readAsDataURL(e.target.files[0]);
-
-                    this.setState({ fileName: e.target.files[0].name });
-                }
-            } else {
-
-                this.setState(_defineProperty({}, e.target.name, e.target.value));
-            }
-        }
-    }, {
-        key: 'clubs',
-        value: function clubs(e) {
-            var _setState2,
-                _this3 = this;
-
-            this.setState((_setState2 = {}, _defineProperty(_setState2, e.target.name, e.target.value), _defineProperty(_setState2, 'equipo', ''), _setState2));
-
-            var self = this;
-
-            var pais = e.target.value;
-
-            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/ajax-post-clubs-perfil', { pais: pais }).then(function (res) {
-
-                var r = res.data;
-
-                if (r.code === 200) {
-                    _this3.setState({
-                        'clubs': r.datos
-                    });
-                } else if (r.code === 500) {
-
-                    __WEBPACK_IMPORTED_MODULE_7_sweetalert2___default()({
-                        title: '<i class="fas fa-exclamation-circle"></i>',
-                        text: r.msj,
-                        confirmButtonColor: '#343a40',
-                        confirmButtonText: 'Ok'
-                    });
-                }
-            }).catch(function (error) {
-
-                if (error.response.status == 422) {
-
-                    self.setState({
-                        isLoading: false
-                    });
-
-                    console.log('errores: ', error.response.data);
-                }
-            });
-        }
-    }, {
-        key: 'clubs2',
-        value: function clubs2(pais) {
-            var _this4 = this;
-
-            var self = this;
-
-            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/ajax-post-clubs-perfil', { pais: pais }).then(function (res) {
-
-                var r = res.data;
-
-                if (r.code === 200) {
-                    _this4.setState({
-                        'clubs': r.datos
-                    });
-                } else if (r.code === 500) {
-
-                    __WEBPACK_IMPORTED_MODULE_7_sweetalert2___default()({
-                        title: '<i class="fas fa-exclamation-circle"></i>',
-                        text: r.msj,
-                        confirmButtonColor: '#343a40',
-                        confirmButtonText: 'Ok'
-                    });
-                }
-            }).catch(function (error) {
-
-                if (error.response.status == 422) {
-
-                    self.setState({
-                        isLoading: false
-                    });
-
-                    console.log('errores: ', error.response.data);
-                }
-            });
-        }
-    }, {
-        key: 'handleToggle',
-        value: function handleToggle(isOpen) {
-            this.setState({ isOpen: isOpen });
-        }
-    }, {
-        key: 'handleThemeToggle',
-        value: function handleThemeToggle() {
-            var theme = 'android-dark';
-            this.setState({ theme: theme, isOpen: true });
-        }
-    }, {
-        key: 'handleSelect',
-        value: function handleSelect(time) {
-            this.setState({ time: time, isOpen: false, fechan: time });
-        }
-    }, {
-        key: 'handleSubmit',
-        value: function handleSubmit(e) {
-            var _this5 = this;
-
-            e.preventDefault();
-
-            var self = this;
-
-            self.setState({
-                isLoading: true
-            });
-
-            var _state = this.state,
-                pais = _state.pais,
-                telefono = _state.telefono,
-                fechan = _state.fechan,
-                equipo = _state.equipo,
-                sexo = _state.sexo,
-                civil = _state.civil,
-                nombre = _state.nombre,
-                apellido = _state.apellido,
-                url = _state.url,
-                fotonew = _state.fotonew,
-                tipofoto = _state.tipofoto;
-
-
-            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/ajax-post-perfil', { pais: pais, telefono: telefono, fechan: fechan, equipo: equipo, sexo: sexo, civil: civil, nombre: nombre, apellido: apellido, fotonew: fotonew, tipofoto: tipofoto }).then(function (res) {
-
-                self.setState({
-                    isLoading: false
-                });
-
-                var r = res.data;
-
-                if (r.code === 200) {
-
-                    __WEBPACK_IMPORTED_MODULE_7_sweetalert2___default.a.fire({
-                        title: '<i class="fa fa-check-circle"></i>',
-                        text: r.msj,
-                        showCancelButton: false,
-                        confirmButtonColor: '#343a40',
-                        confirmButtonText: 'Ok'
-                    }).then(function (result) {
-                        if (result.value) {
-
-                            _this5.getPerfil();
-
-                            window.location.href = url + '/inicio';
-                        }
-                    });
-                } else if (r.code === 500) {
-
-                    __WEBPACK_IMPORTED_MODULE_7_sweetalert2___default()({
-                        title: '<i class="fas fa-exclamation-circle"></i>',
-                        text: r.msj,
-                        confirmButtonColor: '#343a40',
-                        confirmButtonText: 'Ok'
-                    });
-                }
-            }).catch(function (error) {
-
-                if (error.response.status == 422) {
-
-                    self.setState({
-                        isLoading: false
-                    });
-
-                    __WEBPACK_IMPORTED_MODULE_7_sweetalert2___default()({
-                        title: '<i class="fas fa-exclamation-circle"></i>',
-                        text: error.response.data,
-                        confirmButtonColor: '#343a40',
-                        confirmButtonText: 'Ok'
-                    });
-                }
-            });
-        }
-    }, {
-        key: 'getPerfil',
-        value: function getPerfil() {
-            var _this6 = this;
-
-            var self = this;
-
-            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/ajax-get-perfil', {}).then(function (res) {
-                if (res) {
-
-                    var r = res.data;
-
-                    if (r.code === 200) {
-
-                        self.setState({
-                            nombre: r.cliente.Nombre,
-                            apellido: r.cliente.Apellido,
-                            correo: r.cliente.Correo,
-                            sexo: r.cliente.Sexo,
-                            equipo: r.cliente.Equipo,
-                            fechan: __WEBPACK_IMPORTED_MODULE_12_moment___default()(r.cliente.FechaNacimiento, 'DD/MM/YYYY').toDate(),
-                            civil: r.cliente.EstadoCivil_id,
-                            cuenta: r.cliente.TipoCuenta,
-                            pais: r.cliente.Pais_id,
-                            estadosciviles: r.civiles,
-                            telefono: r.cliente.Telefono,
-                            foto: r.cliente.Foto
-                        });
-
-                        if (r.cliente.Pais_id) {
-                            _this6.clubs2(r.cliente.Pais_id);
-                        }
-                    } else if (r.code === 500) {
-
-                        console.log(r.msj);
-                    }
-                }
-            }).catch(function (error) {});
-        }
-    }, {
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            this.getPerfil();
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var _this7 = this,
-                _React$createElement;
-
-            var tagClass = void 0;
-            var _state2 = this.state,
-                nombre = _state2.nombre,
-                apellido = _state2.apellido,
-                correo = _state2.correo,
-                cuenta = _state2.cuenta,
-                pais = _state2.pais,
-                telefono = _state2.telefono,
-                sexo = _state2.sexo,
-                civil = _state2.civil,
-                equipo = _state2.equipo,
-                foto = _state2.foto,
-                fotonew = _state2.fotonew,
-                tipofoto = _state2.tipofoto;
-
-
-            if (cuenta == 'ONE') {
-                tagClass = 'badge badge-one';
-            } else if (cuenta == 'Facebook') {
-                tagClass = 'badge badge-facebook';
-            } else if (cuenta == 'Google') {
-                tagClass = 'badge badge-google';
-            }
-
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'mt-4' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'form',
-                    { method: 'POST', onSubmit: this.handleSubmit, className: 'form-inside' },
-                    foto != '' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: foto, className: 'rounded mx-auto d-block mb-5 profile-picture' }) : '',
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-address-card fa-lg' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', id: 'nombre', name: 'nombre', value: nombre, onChange: this.handleChange, className: 'form-control' })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-address-card fa-lg' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', id: 'apellido', name: 'apellido', value: apellido, onChange: this.handleChange, className: 'form-control' })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-calendar-alt fa-lg', style: { fontSize: '1.714em' } })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'a',
-                            {
-                                className: 'select-btn sm', style: { 'border': '1px solid #fff', 'padding-top': '0.5rem', 'padding-bottom': '0.5rem', 'width': '88%', 'color': '#dadada' },
-                                onClick: this.handleThemeToggle },
-                            this.state.fechan == '' ? 'Ingrese su Fecha de Nacimiento' : this.state.fechan.getDate() + '/' + (this.state.fechan.getMonth() + 1) + '/' + this.state.fechan.getFullYear()
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Datepicker, {
-                            showCaption: true,
-                            showHeader: true,
-                            headerFormat: 'DD/MM/YYYY',
-                            value: this.state.fechan,
-                            theme: this.state.theme,
-                            isOpen: this.state.isOpen,
-                            onSelect: this.handleSelect,
-                            onCancel: function onCancel(e) {
-                                return _this7.handleToggle(false);
-                            },
-                            confirmText: 'Seleccionar',
-                            cancelText: 'Cancelar',
-                            max: new Date(),
-                            dateConfig: dateConfig
-                        })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-envelope fa-lg' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', id: 'correo', name: 'correo', value: correo, className: 'form-control', disabled: true })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fab fa-ello fa-lg' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'form-check form-check-inline' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-check-input', onChange: this.handleChange, type: 'radio', name: 'sexo', id: 'inlineRadio1x', value: 'm', checked: sexo === 'm' }),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'label',
-                                { className: 'form-check-label', htmlFor: 'inlineRadio1x' },
-                                'Masculino'
-                            )
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'form-check form-check-inline' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-check-input', onChange: this.handleChange, type: 'radio', name: 'sexo', id: 'inlineRadio2x', value: 'f', checked: sexo === 'f' }),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'label',
-                                { className: 'form-check-label', htmlFor: 'inlineRadio2x' },
-                                'Femenino'
-                            )
-                        )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-user-circle fa-lg' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'span',
-                            { className: tagClass },
-                            'Cuenta ',
-                            cuenta
-                        )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend input-civil' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_11__public_images_EstadoCivil01_png___default.a, className: 'icon-civil' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'select',
-                            { className: 'form-control', value: civil, name: 'civil', id: 'civil', onChange: this.handleChange },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'option',
-                                { key: '0', value: '' },
-                                'Ingrese Estado Civil (Opcional)'
-                            ),
-                            this.state.estadosciviles.map(function (item) {
-                                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'option',
-                                    { key: item._id, value: item._id },
-                                    item.Nombre
-                                );
-                            })
-                        )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-portrait fa-lg' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'select',
-                            { className: 'form-control', id: 'inputGroupSelect02', value: tipofoto, name: 'tipofoto', onChange: this.handleChange },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'option',
-                                { value: '' },
-                                'Seleccione Tipo de foto (Opcional)'
-                            ),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'option',
-                                { value: 'upload' },
-                                'Subir Imagen'
-                            ),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'option',
-                                { value: 'camera' },
-                                'Tomar Foto'
-                            )
-                        )
-                    ),
-                    tipofoto == 'upload' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend mr-3' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'far fa-image fa-lg' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'custom-file' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'file', name: 'fileFoto', onChange: function onChange(e) {
-                                    return _this7.handleChange(e);
-                                },
-                                className: 'custom-file-input', id: 'customFileLang' }),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'label',
-                                { className: 'custom-file-label',
-                                    htmlFor: 'customFileLang' },
-                                this.state.fileName
-                            )
-                        )
-                    ) : '',
-                    tipofoto == 'camera' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend mr-3' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-camera fa-lg' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'span',
-                            { className: 'badge badge-warning' },
-                            'En construccion'
-                        )
-                    ) : '',
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-phone fa-lg' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'number', min: '0', max: '99999999999', maxLength: '11', id: 'telefono', name: 'telefono', value: telefono, onChange: this.handleChange, className: 'form-control', placeholder: 'Ingrese su telefono (Opcional)' })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'label',
-                                { className: 'input-group-text' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-globe-americas fa-lg' })
-                            )
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'form-check form-check-inline' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-check-input', onChange: this.clubs, type: 'radio', name: 'pais', id: 'inlineRadio1', value: '5caf334dff6eff0ae30e450b', checked: pais === '5caf334dff6eff0ae30e450b' }),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'label',
-                                { className: 'form-check-label', htmlFor: 'inlineRadio1' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_8__public_images_countrys_ar_png___default.a, className: 'img-country' })
-                            )
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'form-check form-check-inline' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-check-input', onChange: this.clubs, type: 'radio', name: 'pais', id: 'inlineRadio2', value: '5caf37adff6eff0ae30e450d', checked: pais === '5caf37adff6eff0ae30e450d' }),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'label',
-                                { className: 'form-check-label', htmlFor: 'inlineRadio2' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: __WEBPACK_IMPORTED_MODULE_9__public_images_countrys_es_png___default.a, className: 'img-country' })
-                            )
-                        )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'input-group mb-4 mt-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'input-group-prepend' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-futbol fa-lg' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'select',
-                            (_React$createElement = { className: 'form-control', id: 'inputGroupSelect02', value: equipo, name: 'equipo' }, _defineProperty(_React$createElement, 'id', 'equipo'), _defineProperty(_React$createElement, 'onChange', this.handleChange), _React$createElement),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'option',
-                                { key: '-1', value: '' },
-                                'Equipos de futbol'
-                            ),
-                            this.state.clubs.length > 0 ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'option',
-                                { key: '0', value: '1000' },
-                                'Ninguno'
-                            ) : '',
-                            this.state.clubs.map(function (item) {
-                                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'option',
-                                    { key: item.id, value: item.id },
-                                    item.Nombre
-                                );
-                            })
-                        )
-                    ),
-                    this.state.equipo != '' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'text-center', style: { 'margin-bottom': '15px' } },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '/images/clubs/' + this.state.equipo + '.png', style: { 'height': '4rem' } })
-                    ) : '',
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'text-center' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'button',
-                            { type: 'submit', className: 'btn btn-negro black btn-box-index' },
-                            this.state.isLoading ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'sync', size: 'lg', spin: true }) : '',
-                            '\xA0\xA0 Actualizar'
-                        )
-                    )
-                )
-            );
-        }
-    }]);
-
-    return CambiarDatos;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
-
-/* harmony default export */ __webpack_exports__["default"] = (CambiarDatos);
-
-
-if (document.getElementById('cambiar-datos-perfil')) {
-
-    var element = document.getElementById('cambiar-datos-perfil');
-
-    var props = Object.assign({}, element.dataset);
-
-    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(CambiarDatos, props), element);
-}
-
-/***/ }),
-/* 378 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./af": 113,
-	"./af.js": 113,
-	"./ar": 114,
-	"./ar-dz": 115,
-	"./ar-dz.js": 115,
-	"./ar-kw": 116,
-	"./ar-kw.js": 116,
-	"./ar-ly": 117,
-	"./ar-ly.js": 117,
-	"./ar-ma": 118,
-	"./ar-ma.js": 118,
-	"./ar-sa": 119,
-	"./ar-sa.js": 119,
-	"./ar-tn": 120,
-	"./ar-tn.js": 120,
-	"./ar.js": 114,
-	"./az": 121,
-	"./az.js": 121,
-	"./be": 122,
-	"./be.js": 122,
-	"./bg": 123,
-	"./bg.js": 123,
-	"./bm": 124,
-	"./bm.js": 124,
-	"./bn": 125,
-	"./bn.js": 125,
-	"./bo": 126,
-	"./bo.js": 126,
-	"./br": 127,
-	"./br.js": 127,
-	"./bs": 128,
-	"./bs.js": 128,
-	"./ca": 129,
-	"./ca.js": 129,
-	"./cs": 130,
-	"./cs.js": 130,
-	"./cv": 131,
-	"./cv.js": 131,
-	"./cy": 132,
-	"./cy.js": 132,
-	"./da": 133,
-	"./da.js": 133,
-	"./de": 134,
-	"./de-at": 135,
-	"./de-at.js": 135,
-	"./de-ch": 136,
-	"./de-ch.js": 136,
-	"./de.js": 134,
-	"./dv": 137,
-	"./dv.js": 137,
-	"./el": 138,
-	"./el.js": 138,
-	"./en-SG": 139,
-	"./en-SG.js": 139,
-	"./en-au": 140,
-	"./en-au.js": 140,
-	"./en-ca": 141,
-	"./en-ca.js": 141,
-	"./en-gb": 142,
-	"./en-gb.js": 142,
-	"./en-ie": 143,
-	"./en-ie.js": 143,
-	"./en-il": 144,
-	"./en-il.js": 144,
-	"./en-nz": 145,
-	"./en-nz.js": 145,
-	"./eo": 146,
-	"./eo.js": 146,
-	"./es": 147,
-	"./es-do": 148,
-	"./es-do.js": 148,
-	"./es-us": 149,
-	"./es-us.js": 149,
-	"./es.js": 147,
-	"./et": 150,
-	"./et.js": 150,
-	"./eu": 151,
-	"./eu.js": 151,
-	"./fa": 152,
-	"./fa.js": 152,
-	"./fi": 153,
-	"./fi.js": 153,
-	"./fo": 154,
-	"./fo.js": 154,
-	"./fr": 155,
-	"./fr-ca": 156,
-	"./fr-ca.js": 156,
-	"./fr-ch": 157,
-	"./fr-ch.js": 157,
-	"./fr.js": 155,
-	"./fy": 158,
-	"./fy.js": 158,
-	"./ga": 159,
-	"./ga.js": 159,
-	"./gd": 160,
-	"./gd.js": 160,
-	"./gl": 161,
-	"./gl.js": 161,
-	"./gom-latn": 162,
-	"./gom-latn.js": 162,
-	"./gu": 163,
-	"./gu.js": 163,
-	"./he": 164,
-	"./he.js": 164,
-	"./hi": 165,
-	"./hi.js": 165,
-	"./hr": 166,
-	"./hr.js": 166,
-	"./hu": 167,
-	"./hu.js": 167,
-	"./hy-am": 168,
-	"./hy-am.js": 168,
-	"./id": 169,
-	"./id.js": 169,
-	"./is": 170,
-	"./is.js": 170,
-	"./it": 171,
-	"./it-ch": 172,
-	"./it-ch.js": 172,
-	"./it.js": 171,
-	"./ja": 173,
-	"./ja.js": 173,
-	"./jv": 174,
-	"./jv.js": 174,
-	"./ka": 175,
-	"./ka.js": 175,
-	"./kk": 176,
-	"./kk.js": 176,
-	"./km": 177,
-	"./km.js": 177,
-	"./kn": 178,
-	"./kn.js": 178,
-	"./ko": 179,
-	"./ko.js": 179,
-	"./ku": 180,
-	"./ku.js": 180,
-	"./ky": 181,
-	"./ky.js": 181,
-	"./lb": 182,
-	"./lb.js": 182,
-	"./lo": 183,
-	"./lo.js": 183,
-	"./lt": 184,
-	"./lt.js": 184,
-	"./lv": 185,
-	"./lv.js": 185,
-	"./me": 186,
-	"./me.js": 186,
-	"./mi": 187,
-	"./mi.js": 187,
-	"./mk": 188,
-	"./mk.js": 188,
-	"./ml": 189,
-	"./ml.js": 189,
-	"./mn": 190,
-	"./mn.js": 190,
-	"./mr": 191,
-	"./mr.js": 191,
-	"./ms": 192,
-	"./ms-my": 193,
-	"./ms-my.js": 193,
-	"./ms.js": 192,
-	"./mt": 194,
-	"./mt.js": 194,
-	"./my": 195,
-	"./my.js": 195,
-	"./nb": 196,
-	"./nb.js": 196,
-	"./ne": 197,
-	"./ne.js": 197,
-	"./nl": 198,
-	"./nl-be": 199,
-	"./nl-be.js": 199,
-	"./nl.js": 198,
-	"./nn": 200,
-	"./nn.js": 200,
-	"./pa-in": 201,
-	"./pa-in.js": 201,
-	"./pl": 202,
-	"./pl.js": 202,
-	"./pt": 203,
-	"./pt-br": 204,
-	"./pt-br.js": 204,
-	"./pt.js": 203,
-	"./ro": 205,
-	"./ro.js": 205,
-	"./ru": 206,
-	"./ru.js": 206,
-	"./sd": 207,
-	"./sd.js": 207,
-	"./se": 208,
-	"./se.js": 208,
-	"./si": 209,
-	"./si.js": 209,
-	"./sk": 210,
-	"./sk.js": 210,
-	"./sl": 211,
-	"./sl.js": 211,
-	"./sq": 212,
-	"./sq.js": 212,
-	"./sr": 213,
-	"./sr-cyrl": 214,
-	"./sr-cyrl.js": 214,
-	"./sr.js": 213,
-	"./ss": 215,
-	"./ss.js": 215,
-	"./sv": 216,
-	"./sv.js": 216,
-	"./sw": 217,
-	"./sw.js": 217,
-	"./ta": 218,
-	"./ta.js": 218,
-	"./te": 219,
-	"./te.js": 219,
-	"./tet": 220,
-	"./tet.js": 220,
-	"./tg": 221,
-	"./tg.js": 221,
-	"./th": 222,
-	"./th.js": 222,
-	"./tl-ph": 223,
-	"./tl-ph.js": 223,
-	"./tlh": 224,
-	"./tlh.js": 224,
-	"./tr": 225,
-	"./tr.js": 225,
-	"./tzl": 226,
-	"./tzl.js": 226,
-	"./tzm": 227,
-	"./tzm-latn": 228,
-	"./tzm-latn.js": 228,
-	"./tzm.js": 227,
-	"./ug-cn": 229,
-	"./ug-cn.js": 229,
-	"./uk": 230,
-	"./uk.js": 230,
-	"./ur": 231,
-	"./ur.js": 231,
-	"./uz": 232,
-	"./uz-latn": 233,
-	"./uz-latn.js": 233,
-	"./uz.js": 232,
-	"./vi": 234,
-	"./vi.js": 234,
-	"./x-pseudo": 235,
-	"./x-pseudo.js": 235,
-	"./yo": 236,
-	"./yo.js": 236,
-	"./zh-cn": 237,
-	"./zh-cn.js": 237,
-	"./zh-hk": 238,
-	"./zh-hk.js": 238,
-	"./zh-tw": 239,
-	"./zh-tw.js": 239
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 378;
 
 /***/ })
 /******/ ]);
