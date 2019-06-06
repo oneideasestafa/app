@@ -69,6 +69,7 @@ window.app = {
     animacionInicioVivoFLH:false,
     animacionInicioVivoMUL:false,
     gtm:' GMT'+window.Laravel.gtm,
+    topic:'sampletopic',
     url:'',
     isCordovaIos : function () {
             return (navigator.userAgent.match(/(Ios)/)&&navigator.userAgent.match(/(Cordova)/));
@@ -187,6 +188,13 @@ window.app = {
 
     // Set the SNTP server and timeout
     cordova.plugins.sntp.setServer("time1.google.com", 10000);
+    if(window.Laravel.empresa==undefined||window.Laravel.empresa==null){
+      window.Laravel.empresa='empresa';
+    }
+    if(window.Laravel.evento==undefined||window.Laravel.evento==null){
+      window.Laravel.evento='evento';
+    }
+    window.app.topic="/"+window.Laravel.empresa+"/"+window.Laravel.evento;
 
         console.log('ready');
     var routerObject={};  
@@ -198,7 +206,7 @@ cordova.plugins.CordovaMqTTPlugin.connect({
     willTopicConfig:{
         qos:0, //default is 0
         retain:true, //default is true
-        topic:"sampletopic",
+        topic:window.app.topic,
         payload:"test1"
     },
     username:null,
@@ -210,7 +218,7 @@ cordova.plugins.CordovaMqTTPlugin.connect({
         console.log("connect success");
         //Simple subscribe
             cordova.plugins.CordovaMqTTPlugin.subscribe({
-               topic:"sampletopic",
+               topic:window.app.topic,
                qos:0,
               success:function(s){
              console.log(s);
@@ -224,12 +232,7 @@ cordova.plugins.CordovaMqTTPlugin.connect({
             }
             window.app.ping();
             console.log("ping");
-            if(window.Laravel.empresa==undefined||window.Laravel.empresa==null){
-              window.Laravel.empresa='empresa';
-            }
-            if(window.Laravel.evento==undefined||window.Laravel.evento==null){
-              window.Laravel.evento='evento';
-            }
+            
 
             var multi ="/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/Multimedia";
             //\Empresa\Evento\Multimedia se suscribe al envento de multimedia
@@ -269,7 +272,7 @@ cordova.plugins.CordovaMqTTPlugin.connect({
               console.log(params);
             });
             //escucha un canale simple
-            cordova.plugins.CordovaMqTTPlugin.listen("sampletopic",function(payload,params){
+            cordova.plugins.CordovaMqTTPlugin.listen(window.app.topic,function(payload,params){
             	console.log("testxd2");
               //Callback:- (If the user has published to /topic/room/hall)
               //payload : contains payload data
@@ -406,7 +409,7 @@ document.addEventListener("connected",function(e){
 
 /*
 cordova.plugins.CordovaMqTTPlugin.publish({
-   topic:"sampletopic",
+   topic:window.app.topic,
    payload:"hello from the plugin",
    qos:0,
    retain:false,
@@ -421,7 +424,7 @@ cordova.plugins.CordovaMqTTPlugin.publish({
 */
 /*
  //Deprecated
- document.addEventListener("sampletopic",function(e){
+ document.addEventListener(window.app.topic,function(e){
   console.log(e.payload)
  },false);
 
@@ -906,12 +909,12 @@ listDir(cordova.file.dataDirectory + fileDir);
                              if(file.type.split("/")[0]=="image"){
                               var div = document.createElement("div");
                               var x = document.createElement("img");
-                              var url =window.URL.createObjectURL(blob);
+                              /*var url =window.URL.createObjectURL(blob);
                               x.setAttribute("src",url );
                               x.setAttribute("class","completo" );
                               div.setAttribute("class","caja" );
-                              div.appendChild(x);
-                              //x=div;
+                              div.appendChild(x);*/
+                              x=div;
                               document.body.style.backgroundImage = "url('"+url+"')";
                               document.body.style.backgroundPosition = "center";
                               document.body.style.backgroundRepeat="no-repeat";
