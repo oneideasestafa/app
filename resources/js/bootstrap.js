@@ -216,6 +216,7 @@ cordova.plugins.CordovaMqTTPlugin.connect({
     success:function(s){
     	console.log(s);
         console.log("connect success");
+        document.querySelector(".flash").style.display="none";
         //Simple subscribe
             cordova.plugins.CordovaMqTTPlugin.subscribe({
                topic:window.app.topic,
