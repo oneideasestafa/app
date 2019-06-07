@@ -7,7 +7,6 @@ import axios from 'axios';
 import swal from "sweetalert2";
 import CambiarDatos from "./Perfil/CambiarDatos";
 import CambiarClave from "./CambiarClave";
-import Inicio from "./Inicio";
 
 library.add( faSync);
 
@@ -73,11 +72,6 @@ export default class Menu extends Component {
             div_inicio.style.display = "none";
             ReactDOM.render(<CambiarClave {...props} />, div_contenido);
         }
-        //para agregar el botón del flash
-        /*var div_boton_flash = document.createElement('div');
-        div_boton_flash.id = 'boton_flash';
-        ReactDOM.render(<Inicio {...props} />, div_boton_flash);
-        element.appendChild(iDiv);*/
     }
 
     render() {
