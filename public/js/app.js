@@ -48590,6 +48590,7 @@ var CambiarDatos = function (_Component) {
 
                     if (r.code === 200) {
 
+<<<<<<< HEAD
                         self.setState({
                             nombre: r.cliente.Nombre,
                             apellido: r.cliente.Apellido,
@@ -48610,6 +48611,428 @@ var CambiarDatos = function (_Component) {
                         }
                     } else if (r.code === 500) {
 
+=======
+        var diffIndex = firstDifferenceIndex(normalizedMarkup, rootMarkup);
+        var difference = ' (client) ' + normalizedMarkup.substring(diffIndex - 20, diffIndex + 20) + '\n (server) ' + rootMarkup.substring(diffIndex - 20, diffIndex + 20);
+
+        !(container.nodeType !== DOC_NODE_TYPE) ?  true ? invariant(false, 'You\'re trying to render a component to the document using server rendering but the checksum was invalid. This usually means you rendered a different component type or props on the client from the one on the server, or your render() methods are impure. React cannot handle this case due to cross-browser quirks by rendering at the document root. You should look for environment dependent code in your components and ensure the props are the same client and server side:\n%s', difference) : _prodInvariant('42', difference) : void 0;
+
+        if (true) {
+           true ? warning(false, 'React attempted to reuse markup in a container but the ' + 'checksum was invalid. This generally means that you are ' + 'using server rendering and the markup generated on the ' + 'server was not what the client was expecting. React injected ' + 'new markup to compensate which works but you have lost many ' + 'of the benefits of server rendering. Instead, figure out ' + 'why the markup being generated is different on the client ' + 'or server:\n%s', difference) : void 0;
+        }
+      }
+    }
+
+    !(container.nodeType !== DOC_NODE_TYPE) ?  true ? invariant(false, 'You\'re trying to render a component to the document but you didn\'t use server rendering. We can\'t do this without using server rendering due to cross-browser quirks. See ReactDOMServer.renderToString() for server rendering.') : _prodInvariant('43') : void 0;
+
+    if (transaction.useCreateElement) {
+      while (container.lastChild) {
+        container.removeChild(container.lastChild);
+      }
+      DOMLazyTree.insertTreeBefore(container, markup, null);
+    } else {
+      setInnerHTML(container, markup);
+      ReactDOMComponentTree.precacheNode(instance, container.firstChild);
+    }
+
+    if (true) {
+      var hostNode = ReactDOMComponentTree.getInstanceFromNode(container.firstChild);
+      if (hostNode._debugID !== 0) {
+        ReactInstrumentation.debugTool.onHostOperation({
+          instanceID: hostNode._debugID,
+          type: 'mount',
+          payload: markup.toString()
+        });
+      }
+    }
+  }
+};
+
+module.exports = ReactMount;
+
+/***/ }),
+/* 107 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+
+
+var ReactNodeTypes = __webpack_require__(99);
+
+function getHostComponentFromComposite(inst) {
+  var type;
+
+  while ((type = inst._renderedNodeType) === ReactNodeTypes.COMPOSITE) {
+    inst = inst._renderedComponent;
+  }
+
+  if (type === ReactNodeTypes.HOST) {
+    return inst._renderedComponent;
+  } else if (type === ReactNodeTypes.EMPTY) {
+    return null;
+  }
+}
+
+module.exports = getHostComponentFromComposite;
+
+/***/ }),
+/* 108 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_input_mask__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_input_mask___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react_input_mask__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_sweetalert2__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_sweetalert2__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__public_images_countrys_ar_png__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__public_images_countrys_ar_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__public_images_countrys_ar_png__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__public_images_countrys_es_png__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__public_images_countrys_es_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__public_images_countrys_es_png__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_react_mobile_datepicker__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_react_mobile_datepicker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_react_mobile_datepicker__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__public_images_EstadoCivil01_png__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__public_images_EstadoCivil01_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__public_images_EstadoCivil01_png__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_moment__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_moment__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__["b" /* library */].add(__WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["a" /* faSync */]);
+
+var Datepicker = __WEBPACK_IMPORTED_MODULE_10_react_mobile_datepicker___default.a;
+
+var dateConfig = {
+    'year': {
+        format: 'YYYY',
+        caption: 'Año',
+        step: 1
+    },
+    'month': {
+        format: 'MM',
+        caption: 'Mes',
+        step: 1
+    },
+    'date': {
+        format: 'DD',
+        caption: 'Dia',
+        step: 1
+    }
+};
+
+var CambiarDatos = function (_Component) {
+    _inherits(CambiarDatos, _Component);
+
+    function CambiarDatos(props) {
+        _classCallCheck(this, CambiarDatos);
+
+        var _this = _possibleConstructorReturn(this, (CambiarDatos.__proto__ || Object.getPrototypeOf(CambiarDatos)).call(this, props));
+
+        _this.state = {
+            url: props.url,
+            nombre: '',
+            apellido: '',
+            sexo: '',
+            fechan: '',
+            equipo: '',
+            civil: '',
+            clubs: [],
+            estadosciviles: [],
+            correo: '',
+            cuenta: '',
+            pais: '',
+            paises: [],
+            telefono: '',
+            fileName: 'Seleccione imagen',
+            tipofoto: '',
+            foto: '',
+            fotonew: '',
+            flagPais: '',
+            isLoading: false
+        };
+
+        _this.handleChange = _this.handleChange.bind(_this);
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        _this.clubs = _this.clubs.bind(_this);
+        _this.clubs2 = _this.clubs2.bind(_this);
+        _this.handleToggle = _this.handleToggle.bind(_this);
+        _this.handleThemeToggle = _this.handleThemeToggle.bind(_this);
+        _this.handleSelect = _this.handleSelect.bind(_this);
+
+        return _this;
+    }
+
+    _createClass(CambiarDatos, [{
+        key: 'handleChange',
+        value: function handleChange(e) {
+            var _this2 = this;
+
+            if (e.target.name == 'fileFoto') {
+
+                if (e.target.files.length > 0) {
+
+                    console.log(e.target.files[0]);
+
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        _this2.setState({
+                            fotonew: e.target.result
+                        });
+                    };
+
+                    reader.readAsDataURL(e.target.files[0]);
+
+                    this.setState({ fileName: e.target.files[0].name });
+                }
+            } else {
+
+                this.setState(_defineProperty({}, e.target.name, e.target.value));
+            }
+        }
+    }, {
+        key: 'clubs',
+        value: function clubs(e) {
+            var _setState2,
+                _this3 = this;
+
+            this.setState((_setState2 = {}, _defineProperty(_setState2, e.target.name, e.target.value), _defineProperty(_setState2, 'equipo', ''), _setState2));
+
+            var self = this;
+
+            var pais = e.target.value;
+
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/ajax-post-clubs-perfil', { pais: pais }).then(function (res) {
+
+                var r = res.data;
+
+                if (r.code === 200) {
+                    _this3.setState({
+                        'clubs': r.datos
+                    });
+                } else if (r.code === 500) {
+
+                    __WEBPACK_IMPORTED_MODULE_7_sweetalert2___default()({
+                        title: '<i class="fas fa-exclamation-circle"></i>',
+                        text: r.msj,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    });
+                }
+            }).catch(function (error) {
+
+                if (error.response.status == 422) {
+
+                    self.setState({
+                        isLoading: false
+                    });
+
+                    console.log('errores: ', error.response.data);
+                }
+            });
+        }
+    }, {
+        key: 'clubs2',
+        value: function clubs2(pais) {
+            var _this4 = this;
+
+            var self = this;
+
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/ajax-post-clubs-perfil', { pais: pais }).then(function (res) {
+
+                var r = res.data;
+
+                if (r.code === 200) {
+                    _this4.setState({
+                        'clubs': r.datos
+                    });
+                } else if (r.code === 500) {
+
+                    __WEBPACK_IMPORTED_MODULE_7_sweetalert2___default()({
+                        title: '<i class="fas fa-exclamation-circle"></i>',
+                        text: r.msj,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    });
+                }
+            }).catch(function (error) {
+
+                if (error.response.status == 422) {
+
+                    self.setState({
+                        isLoading: false
+                    });
+
+                    console.log('errores: ', error.response.data);
+                }
+            });
+        }
+    }, {
+        key: 'handleToggle',
+        value: function handleToggle(isOpen) {
+            this.setState({ isOpen: isOpen });
+        }
+    }, {
+        key: 'handleThemeToggle',
+        value: function handleThemeToggle() {
+            var theme = 'android-dark';
+            this.setState({ theme: theme, isOpen: true });
+        }
+    }, {
+        key: 'handleSelect',
+        value: function handleSelect(time) {
+            this.setState({ time: time, isOpen: false, fechan: time });
+        }
+    }, {
+        key: 'handleSubmit',
+        value: function handleSubmit(e) {
+            var _this5 = this;
+
+            e.preventDefault();
+
+            var self = this;
+
+            self.setState({
+                isLoading: true
+            });
+
+            var _state = this.state,
+                pais = _state.pais,
+                telefono = _state.telefono,
+                fechan = _state.fechan,
+                equipo = _state.equipo,
+                sexo = _state.sexo,
+                civil = _state.civil,
+                nombre = _state.nombre,
+                apellido = _state.apellido,
+                url = _state.url,
+                fotonew = _state.fotonew,
+                tipofoto = _state.tipofoto;
+
+
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/ajax-post-perfil', { pais: pais, telefono: telefono, fechan: fechan, equipo: equipo, sexo: sexo, civil: civil, nombre: nombre, apellido: apellido, fotonew: fotonew, tipofoto: tipofoto }).then(function (res) {
+
+                self.setState({
+                    isLoading: false
+                });
+
+                var r = res.data;
+
+                if (r.code === 200) {
+
+                    __WEBPACK_IMPORTED_MODULE_7_sweetalert2___default.a.fire({
+                        title: '<i class="fa fa-check-circle"></i>',
+                        text: r.msj,
+                        showCancelButton: false,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    }).then(function (result) {
+                        if (result.value) {
+
+                            _this5.getPerfil();
+
+                            window.location.href = url + '/inicio';
+                        }
+                    });
+                } else if (r.code === 500) {
+
+                    __WEBPACK_IMPORTED_MODULE_7_sweetalert2___default()({
+                        title: '<i class="fas fa-exclamation-circle"></i>',
+                        text: r.msj,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    });
+                }
+            }).catch(function (error) {
+
+                if (error.response.status == 422) {
+
+                    self.setState({
+                        isLoading: false
+                    });
+
+                    __WEBPACK_IMPORTED_MODULE_7_sweetalert2___default()({
+                        title: '<i class="fas fa-exclamation-circle"></i>',
+                        text: error.response.data,
+                        confirmButtonColor: '#343a40',
+                        confirmButtonText: 'Ok'
+                    });
+                }
+            });
+        }
+    }, {
+        key: 'getPerfil',
+        value: function getPerfil() {
+            var _this6 = this;
+
+            var self = this;
+
+            __WEBPACK_IMPORTED_MODULE_5_axios___default.a.post('/ajax-get-perfil', {}).then(function (res) {
+                if (res) {
+
+                    var r = res.data;
+
+                    if (r.code === 200) {
+
+                        self.setState({
+                            nombre: r.cliente.Nombre,
+                            apellido: r.cliente.Apellido,
+                            correo: r.cliente.Correo,
+                            sexo: r.cliente.Sexo,
+                            equipo: r.cliente.Equipo,
+                            fechan: __WEBPACK_IMPORTED_MODULE_12_moment___default()(r.cliente.FechaNacimiento, 'DD/MM/YYYY').toDate(),
+                            civil: r.cliente.EstadoCivil_id,
+                            cuenta: r.cliente.TipoCuenta,
+                            pais: r.cliente.Pais_id,
+                            estadosciviles: r.civiles,
+                            telefono: r.cliente.Telefono,
+                            foto: r.cliente.Foto
+                        });
+
+                        if (r.cliente.Pais_id) {
+                            _this6.clubs2(r.cliente.Pais_id);
+                        }
+                    } else if (r.code === 500) {
+
+>>>>>>> 84b84cb143de2fe56557321234b1c9119ce52fb8
                         console.log(r.msj);
                     }
                 }
@@ -62981,7 +63404,7 @@ window.app = (_window$app = {
   /*  var parentElement = document.getElementById(id);
     var listeningElement = parentElement.querySelector('.listening');
     var receivedElement = parentElement.querySelector('.received');
-      listeningElement.setAttribute('style', 'display:none;');
+     listeningElement.setAttribute('style', 'display:none;');
     receivedElement.setAttribute('style', 'display:block;');*/
 
   //console.log('Received Event: ' + id);
@@ -86919,7 +87342,7 @@ var warning = __webpack_require__(2);
 
 var ReactComponentTreeHook;
 
-if (typeof process !== 'undefined' && Object({"NODE_ENV":"development"}) && "development" === 'test') {
+if (typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development" === 'test') {
   // Temporary hack.
   // Inline requires don't work well with Jest:
   // https://github.com/facebook/react/issues/7240
@@ -93820,7 +94243,7 @@ var warning = __webpack_require__(2);
 
 var ReactComponentTreeHook;
 
-if (typeof process !== 'undefined' && Object({"NODE_ENV":"development"}) && "development" === 'test') {
+if (typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development" === 'test') {
   // Temporary hack.
   // Inline requires don't work well with Jest:
   // https://github.com/facebook/react/issues/7240
@@ -94880,7 +95303,7 @@ var warning = __webpack_require__(2);
 
 var ReactComponentTreeHook;
 
-if (typeof process !== 'undefined' && Object({"NODE_ENV":"development"}) && "development" === 'test') {
+if (typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development" === 'test') {
   // Temporary hack.
   // Inline requires don't work well with Jest:
   // https://github.com/facebook/react/issues/7240
@@ -95087,7 +95510,7 @@ var warning = __webpack_require__(2);
 
 var ReactComponentTreeHook;
 
-if (typeof process !== 'undefined' && Object({"NODE_ENV":"development"}) && "development" === 'test') {
+if (typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development" === 'test') {
   // Temporary hack.
   // Inline requires don't work well with Jest:
   // https://github.com/facebook/react/issues/7240
@@ -98699,116 +99122,117 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 __WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__["b" /* library */].add(__WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["a" /* faSync */]);
 
 var Inicio = function (_Component) {
-        _inherits(Inicio, _Component);
+    _inherits(Inicio, _Component);
 
-        function Inicio(props) {
-                _classCallCheck(this, Inicio);
+    function Inicio(props) {
+        _classCallCheck(this, Inicio);
 
-                var _this = _possibleConstructorReturn(this, (Inicio.__proto__ || Object.getPrototypeOf(Inicio)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (Inicio.__proto__ || Object.getPrototypeOf(Inicio)).call(this, props));
 
-                _this.state = {
-                        url: props.url,
-                        checkcamareromesa: props.checkcamareromesa,
-                        mesa: props.mesa,
-                        isLoading: false
-                };
+        _this.state = {
+            url: props.url,
+            checkcamareromesa: props.checkcamareromesa,
+            mesa: props.mesa,
+            isLoading: false
+        };
 
-                _this.handleGPS = _this.handleGPS.bind(_this);
+        _this.handleGPS = _this.handleGPS.bind(_this);
 
-                return _this;
+        return _this;
+    }
+
+    _createClass(Inicio, [{
+        key: 'handleGPS',
+        value: function handleGPS(e, url) {
+
+            /* window.location.href=url+"/-54.804826/-68.313598"; */
+
+            e.preventDefault();
+            if (window.app.isCordova()) {
+                window.gpsCarhop(url);
+            } else {
+                __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                    showCloseButton: false,
+                    showCancelButton: true,
+                    showConfirmButton: false,
+                    text: "Este servicio solo funciona con la APP instalada, no en modo Web",
+                    cancelButtonText: 'Cerrar',
+                    cancelButtonColor: '#343a40',
+                    cancelButtonClass: 'btn-info-descripcion'
+                });
+            }
         }
+    }, {
+        key: 'handleGPSCamarero',
+        value: function handleGPSCamarero(e, url) {
 
-        _createClass(Inicio, [{
-                key: 'handleGPS',
-                value: function handleGPS(e, url) {
+            e.preventDefault();
+            if (window.app.isCordova()) {
+                window.location.href = url;
+            } else {
+                __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                    showCloseButton: false,
+                    showCancelButton: true,
+                    showConfirmButton: false,
+                    text: "Este servicio solo funciona con la APP instalada, no en modo Web",
+                    cancelButtonText: 'Cerrar',
+                    cancelButtonColor: '#343a40',
+                    cancelButtonClass: 'btn-info-descripcion'
+                });
+            }
+        }
+    }, {
+        key: 'flash',
+        value: function flash() {
+            window.app.flashlight();
+            console.log("flash");
+        }
+    }, {
+        key: 'render',
+        value: function render() {
 
-                        /* window.location.href=url+"/-54.804826/-68.313598"; */
+            var url = this.state.url;
+            var mesa = this.state.mesa;
+            var checkcamareromesa = this.state.checkcamareromesa;
+            var opacidad = '';
+            var opacidadCamarero = '';
+            var opacidadReserva = ' ';
 
-                        e.preventDefault();
-                        if (window.app.isCordova()) {
-                                window.gpsCarhop(url);
-                        } else {
-                                __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
-                                        showCloseButton: false,
-                                        showCancelButton: true,
-                                        showConfirmButton: false,
-                                        text: "Este servicio solo funciona con la APP instalada, no en modo Web",
-                                        cancelButtonText: 'Cerrar',
-                                        cancelButtonColor: '#343a40',
-                                        cancelButtonClass: 'btn-info-descripcion'
-                                });
-                        }
-                }
-        }, {
-                key: 'handleGPSCamarero',
-                value: function handleGPSCamarero(e, url) {
+            var urlCarhopList = url + '/carhop/sucursalesgps';
+            var urlCarhopMap = url + '/carhop/map';
 
-                        e.preventDefault();
-                        if (window.app.isCordova()) {
-                                window.location.href = url;
-                        } else {
-                                __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
-                                        showCloseButton: false,
-                                        showCancelButton: true,
-                                        showConfirmButton: false,
-                                        text: "Este servicio solo funciona con la APP instalada, no en modo Web",
-                                        cancelButtonText: 'Cerrar',
-                                        cancelButtonColor: '#343a40',
-                                        cancelButtonClass: 'btn-info-descripcion'
-                                });
-                        }
-                }
-        }, {
-                key: 'flash',
-                value: function flash() {
-                        window.app.flashlight();
-                        console.log("flash");
-                }
-        }, {
-                key: 'render',
-                value: function render() {
+            var urlDeliveryList = url + '/delivery/list';
+            var urlDeliveryMap = url + '/delivery/map';
 
-                        var url = this.state.url;
-                        var mesa = this.state.mesa;
-                        var checkcamareromesa = this.state.checkcamareromesa;
-                        var opacidad = '';
-                        var opacidadCamarero = '';
-                        var opacidadReserva = ' ';
+            var urlRetiroList = url + '/retiro/list';
+            var urlRetiroMap = url + '/retiro/map';
 
-                        var urlCarhopList = url + '/carhop/sucursalesgps';
-                        var urlCarhopMap = url + '/carhop/map';
+            var urlCamareroList = url + '/scan-qr-camarero';
 
-                        var urlDeliveryList = url + '/delivery/list';
-                        var urlDeliveryMap = url + '/delivery/map';
+            var urlReservaList = url + '/reserva/sucursalesgps';
+            var urlReservaMap = url + '/reserva/map';
 
-                        var urlRetiroList = url + '/retiro/list';
-                        var urlRetiroMap = url + '/retiro/map';
+            if (checkcamareromesa) {
 
-                        var urlCamareroList = url + '/scan-qr-camarero';
+                opacidad = ' opacidad';
+                opacidadCamarero = '';
 
-                        var urlReservaList = url + '/reserva/sucursalesgps';
-                        var urlReservaMap = url + '/reserva/map';
+                urlCarhopList = '#';
+                urlCarhopMap = '#';
 
-                        if (checkcamareromesa) {
+                urlDeliveryList = '#';
+                urlDeliveryMap = '#';
 
-                                opacidad = ' opacidad';
-                                opacidadCamarero = '';
+                urlRetiroList = '#';
+                urlRetiroMap = '#';
 
-                                urlCarhopList = '#';
-                                urlCarhopMap = '#';
+                urlReservaList = '#';
+                urlReservaMap = '#';
 
-                                urlDeliveryList = '#';
-                                urlDeliveryMap = '#';
+                urlCamareroList = url + '/comensal/' + mesa + '/cart';
+            }
 
-                                urlRetiroList = '#';
-                                urlRetiroMap = '#';
-
-                                urlReservaList = '#';
-                                urlReservaMap = '#';
-
-                                urlCamareroList = url + '/comensal/' + mesa + '/cart';
-                        }
-
+<<<<<<< HEAD
                         document.body.style.backgroundImage = "url('" + __WEBPACK_IMPORTED_MODULE_7__public_images_fondo_jpeg___default.a + "')";
                         document.body.style.backgroundPosition = "center";
                         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -98828,8 +99252,29 @@ var Inicio = function (_Component) {
                         );
                 }
         }]);
+=======
+            document.body.style.backgroundImage = "url('" + __WEBPACK_IMPORTED_MODULE_7__public_images_fondo_jpeg___default.a + "')";
+            document.body.style.backgroundPosition = "center";
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { id: 'main', className: 'main' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: '', style: { 'textAlign': 'center', 'paddingTop': '50%' } },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'button',
+                        {
+                            className: 'btn btn-default', style: { 'color': 'white', 'zIndex': '50000' },
+                            onClick: this.flash },
+                        'Activar Flash'
+                    )
+                )
+            );
+        }
+    }]);
+>>>>>>> 84b84cb143de2fe56557321234b1c9119ce52fb8
 
-        return Inicio;
+    return Inicio;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Inicio);
@@ -98837,11 +99282,11 @@ var Inicio = function (_Component) {
 
 if (document.getElementById('inicio')) {
 
-        var element = document.getElementById('inicio');
+    var element = document.getElementById('inicio');
 
-        var props = Object.assign({}, element.dataset);
+    var props = Object.assign({}, element.dataset);
 
-        __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Inicio, props), element);
+    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Inicio, props), element);
 }
 
 /***/ }),
