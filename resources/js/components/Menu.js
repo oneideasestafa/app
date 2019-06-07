@@ -6,6 +6,7 @@ import { faSync } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import swal from "sweetalert2";
 import CambiarDatos from "./Perfil/CambiarDatos";
+import CambiarClave from "./CambiarClave";
 
 library.add( faSync);
 
@@ -52,16 +53,17 @@ export default class Menu extends Component {
 
     handleMenuClick(e) {
         e.preventDefault();
-
         const target_id = e.target.id
         const element = document.getElementById('inicio');
         const props = Object.assign({}, element.dataset);
-        
-        if(target_id == "perfil"){
-            ReactDOM.render(<CambiarDatos {...props} />, element);
-        }
-        
 
+        if(target_id == "show"){
+            element.innerHTML="";
+        }else if(target_id == "perfil"){
+            ReactDOM.render(<CambiarDatos {...props} />, element);
+        }else if(target_id == "cambiar-password"){
+            ReactDOM.render(<CambiarClave {...props} />, element);
+        }
     }
 
     render() {
@@ -83,7 +85,7 @@ export default class Menu extends Component {
             <ul className="navdrawer-nav roboto-condensed">
 
                 <li className="nav-item">
-                    <a className="nav-link" href="#"><i
+                    <a className="nav-link" id="show" href="#" onClick={this.handleMenuClick}><i
                         className="fas fa-home fa-lg"></i>&nbsp;&nbsp; Show</a>
                 </li>
                  <li className="nav-item">
@@ -111,9 +113,10 @@ export default class Menu extends Component {
                     <a className="nav-link" href="#" onClick={this.getDetener}><i
                         className="fas fa-power-off fa-lg"></i>&nbsp;&nbsp; Detener</a>
                 </li>
-
-                { changePassword }
-
+                <li className="nav-item">
+                    <a className="nav-link" href="#" id="cambiar-password" onClick={this.handleMenuClick}>
+                        <i className="fas fa-lock fa-lg"></i>&nbsp;&nbsp; Contraseña</a>
+                </li>;
                 <li className="nav-item">
                     <a className="nav-link" href="#" onClick={this.handleLogout}><i
                         className="fas fa-sign-out-alt fa-lg"></i>&nbsp;&nbsp; Salir</a>
