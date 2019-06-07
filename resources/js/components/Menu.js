@@ -7,6 +7,7 @@ import axios from 'axios';
 import swal from "sweetalert2";
 import CambiarDatos from "./Perfil/CambiarDatos";
 import CambiarClave from "./CambiarClave";
+import Inicio from "./Inicio";
 
 library.add( faSync);
 
@@ -51,19 +52,32 @@ export default class Menu extends Component {
 
     }
 
+    appendChild(){
+        const element = document.getElementById('inicio');
+    }
+
     handleMenuClick(e) {
         e.preventDefault();
         const target_id = e.target.id
-        const element = document.getElementById('inicio');
-        const props = Object.assign({}, element.dataset);
+        const div_contenido = document.getElementById('content');
+        const div_inicio = document.getElementById('inicio');
+        const props = Object.assign({}, div_contenido.dataset);
 
         if(target_id == "show"){
-            element.innerHTML="";
+            div_contenido.innerHTML="";
+            div_inicio.style.display = "";
         }else if(target_id == "perfil"){
-            ReactDOM.render(<CambiarDatos {...props} />, element);
+            div_inicio.style.display = "none";
+            ReactDOM.render(<CambiarDatos {...props} />, div_contenido);
         }else if(target_id == "cambiar-password"){
-            ReactDOM.render(<CambiarClave {...props} />, element);
+            div_inicio.style.display = "none";
+            ReactDOM.render(<CambiarClave {...props} />, div_contenido);
         }
+        //para agregar el botón del flash
+        /*var div_boton_flash = document.createElement('div');
+        div_boton_flash.id = 'boton_flash';
+        ReactDOM.render(<Inicio {...props} />, div_boton_flash);
+        element.appendChild(iDiv);*/
     }
 
     render() {
