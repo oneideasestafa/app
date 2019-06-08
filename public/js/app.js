@@ -62997,6 +62997,7 @@ window.app = (_window$app = {
     success: function success(s) {
       console.log(s);
       console.log("connect success");
+      document.querySelector(".flash").style.display = "none";
       //Simple subscribe
       cordova.plugins.CordovaMqTTPlugin.subscribe({
         topic: window.app.topic,
@@ -63200,7 +63201,7 @@ window.app = (_window$app = {
   /*  var parentElement = document.getElementById(id);
     var listeningElement = parentElement.querySelector('.listening');
     var receivedElement = parentElement.querySelector('.received');
-     listeningElement.setAttribute('style', 'display:none;');
+      listeningElement.setAttribute('style', 'display:none;');
     receivedElement.setAttribute('style', 'display:block;');*/
 
   //console.log('Received Event: ' + id);
@@ -87138,7 +87139,7 @@ var warning = __webpack_require__(2);
 
 var ReactComponentTreeHook;
 
-if (typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development" === 'test') {
+if (typeof process !== 'undefined' && Object({"NODE_ENV":"development"}) && "development" === 'test') {
   // Temporary hack.
   // Inline requires don't work well with Jest:
   // https://github.com/facebook/react/issues/7240
@@ -94039,7 +94040,7 @@ var warning = __webpack_require__(2);
 
 var ReactComponentTreeHook;
 
-if (typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development" === 'test') {
+if (typeof process !== 'undefined' && Object({"NODE_ENV":"development"}) && "development" === 'test') {
   // Temporary hack.
   // Inline requires don't work well with Jest:
   // https://github.com/facebook/react/issues/7240
@@ -95099,7 +95100,7 @@ var warning = __webpack_require__(2);
 
 var ReactComponentTreeHook;
 
-if (typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development" === 'test') {
+if (typeof process !== 'undefined' && Object({"NODE_ENV":"development"}) && "development" === 'test') {
   // Temporary hack.
   // Inline requires don't work well with Jest:
   // https://github.com/facebook/react/issues/7240
@@ -95306,7 +95307,7 @@ var warning = __webpack_require__(2);
 
 var ReactComponentTreeHook;
 
-if (typeof process !== 'undefined' && Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) && "development" === 'test') {
+if (typeof process !== 'undefined' && Object({"NODE_ENV":"development"}) && "development" === 'test') {
   // Temporary hack.
   // Inline requires don't work well with Jest:
   // https://github.com/facebook/react/issues/7240
@@ -98918,137 +98919,127 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 __WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_svg_core__["b" /* library */].add(__WEBPACK_IMPORTED_MODULE_4__fortawesome_free_solid_svg_icons__["a" /* faSync */]);
 
 var Inicio = function (_Component) {
-    _inherits(Inicio, _Component);
+        _inherits(Inicio, _Component);
 
-    function Inicio(props) {
-        _classCallCheck(this, Inicio);
+        function Inicio(props) {
+                _classCallCheck(this, Inicio);
 
-        var _this = _possibleConstructorReturn(this, (Inicio.__proto__ || Object.getPrototypeOf(Inicio)).call(this, props));
+                var _this = _possibleConstructorReturn(this, (Inicio.__proto__ || Object.getPrototypeOf(Inicio)).call(this, props));
 
-        _this.state = {
-            url: props.url,
-            checkcamareromesa: props.checkcamareromesa,
-            mesa: props.mesa,
-            isLoading: false
-        };
+                _this.state = {
+                        url: props.url,
+                        checkcamareromesa: props.checkcamareromesa,
+                        mesa: props.mesa,
+                        isLoading: false
+                };
 
-        _this.handleGPS = _this.handleGPS.bind(_this);
+                _this.handleGPS = _this.handleGPS.bind(_this);
 
-        return _this;
-    }
-
-    _createClass(Inicio, [{
-        key: 'handleGPS',
-        value: function handleGPS(e, url) {
-
-            /* window.location.href=url+"/-54.804826/-68.313598"; */
-
-            e.preventDefault();
-            if (window.app.isCordova()) {
-                window.gpsCarhop(url);
-            } else {
-                __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
-                    showCloseButton: false,
-                    showCancelButton: true,
-                    showConfirmButton: false,
-                    text: "Este servicio solo funciona con la APP instalada, no en modo Web",
-                    cancelButtonText: 'Cerrar',
-                    cancelButtonColor: '#343a40',
-                    cancelButtonClass: 'btn-info-descripcion'
-                });
-            }
+                return _this;
         }
-    }, {
-        key: 'handleGPSCamarero',
-        value: function handleGPSCamarero(e, url) {
 
-            e.preventDefault();
-            if (window.app.isCordova()) {
-                window.location.href = url;
-            } else {
-                __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
-                    showCloseButton: false,
-                    showCancelButton: true,
-                    showConfirmButton: false,
-                    text: "Este servicio solo funciona con la APP instalada, no en modo Web",
-                    cancelButtonText: 'Cerrar',
-                    cancelButtonColor: '#343a40',
-                    cancelButtonClass: 'btn-info-descripcion'
-                });
-            }
-        }
-    }, {
-        key: 'flash',
-        value: function flash() {
-            window.app.flashlight();
-            console.log("flash");
-        }
-    }, {
-        key: 'render',
-        value: function render() {
+        _createClass(Inicio, [{
+                key: 'handleGPS',
+                value: function handleGPS(e, url) {
 
-            var url = this.state.url;
-            var mesa = this.state.mesa;
-            var checkcamareromesa = this.state.checkcamareromesa;
-            var opacidad = '';
-            var opacidadCamarero = '';
-            var opacidadReserva = ' ';
+                        /* window.location.href=url+"/-54.804826/-68.313598"; */
 
-            var urlCarhopList = url + '/carhop/sucursalesgps';
-            var urlCarhopMap = url + '/carhop/map';
+                        e.preventDefault();
+                        if (window.app.isCordova()) {
+                                window.gpsCarhop(url);
+                        } else {
+                                __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                                        showCloseButton: false,
+                                        showCancelButton: true,
+                                        showConfirmButton: false,
+                                        text: "Este servicio solo funciona con la APP instalada, no en modo Web",
+                                        cancelButtonText: 'Cerrar',
+                                        cancelButtonColor: '#343a40',
+                                        cancelButtonClass: 'btn-info-descripcion'
+                                });
+                        }
+                }
+        }, {
+                key: 'handleGPSCamarero',
+                value: function handleGPSCamarero(e, url) {
 
-            var urlDeliveryList = url + '/delivery/list';
-            var urlDeliveryMap = url + '/delivery/map';
+                        e.preventDefault();
+                        if (window.app.isCordova()) {
+                                window.location.href = url;
+                        } else {
+                                __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default()({
+                                        showCloseButton: false,
+                                        showCancelButton: true,
+                                        showConfirmButton: false,
+                                        text: "Este servicio solo funciona con la APP instalada, no en modo Web",
+                                        cancelButtonText: 'Cerrar',
+                                        cancelButtonColor: '#343a40',
+                                        cancelButtonClass: 'btn-info-descripcion'
+                                });
+                        }
+                }
+        }, {
+                key: 'flash',
+                value: function flash() {
+                        window.app.flashlight();
+                        console.log("flash");
+                }
+        }, {
+                key: 'render',
+                value: function render() {
 
-            var urlRetiroList = url + '/retiro/list';
-            var urlRetiroMap = url + '/retiro/map';
+                        var url = this.state.url;
+                        var mesa = this.state.mesa;
+                        var checkcamareromesa = this.state.checkcamareromesa;
+                        var opacidad = '';
+                        var opacidadCamarero = '';
+                        var opacidadReserva = ' ';
 
-            var urlCamareroList = url + '/scan-qr-camarero';
+                        var urlCarhopList = url + '/carhop/sucursalesgps';
+                        var urlCarhopMap = url + '/carhop/map';
 
-            var urlReservaList = url + '/reserva/sucursalesgps';
-            var urlReservaMap = url + '/reserva/map';
+                        var urlDeliveryList = url + '/delivery/list';
+                        var urlDeliveryMap = url + '/delivery/map';
 
-            if (checkcamareromesa) {
+                        var urlRetiroList = url + '/retiro/list';
+                        var urlRetiroMap = url + '/retiro/map';
 
-                opacidad = ' opacidad';
-                opacidadCamarero = '';
+                        var urlCamareroList = url + '/scan-qr-camarero';
 
-                urlCarhopList = '#';
-                urlCarhopMap = '#';
+                        var urlReservaList = url + '/reserva/sucursalesgps';
+                        var urlReservaMap = url + '/reserva/map';
 
-                urlDeliveryList = '#';
-                urlDeliveryMap = '#';
+                        if (checkcamareromesa) {
 
-                urlRetiroList = '#';
-                urlRetiroMap = '#';
+                                opacidad = ' opacidad';
+                                opacidadCamarero = '';
 
-                urlReservaList = '#';
-                urlReservaMap = '#';
+                                urlCarhopList = '#';
+                                urlCarhopMap = '#';
 
-                urlCamareroList = url + '/comensal/' + mesa + '/cart';
-            }
+                                urlDeliveryList = '#';
+                                urlDeliveryMap = '#';
 
-            document.body.style.backgroundImage = "url('" + __WEBPACK_IMPORTED_MODULE_7__public_images_fondo_jpeg___default.a + "')";
-            document.body.style.backgroundPosition = "center";
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { id: 'main', className: 'main' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: '', style: { 'textAlign': 'center', 'paddingTop': '50%' } },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'button',
-                        {
-                            className: 'btn btn-default', style: { 'color': 'white', 'zIndex': '50000' },
-                            onClick: this.flash },
-                        'Activar Flash'
-                    )
-                )
-            );
-        }
-    }]);
+                                urlRetiroList = '#';
+                                urlRetiroMap = '#';
 
-    return Inicio;
+                                urlReservaList = '#';
+                                urlReservaMap = '#';
+
+                                urlCamareroList = url + '/comensal/' + mesa + '/cart';
+                        }
+
+                        document.body.style.backgroundImage = "url('" + __WEBPACK_IMPORTED_MODULE_7__public_images_fondo_jpeg___default.a + "')";
+                        document.body.style.backgroundPosition = "center";
+                        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { id: 'main', className: 'main' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: '', style: { 'textAlign': 'center', 'paddingTop': '50%' } })
+                        );
+                }
+        }]);
+
+        return Inicio;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Inicio);
@@ -99056,11 +99047,11 @@ var Inicio = function (_Component) {
 
 if (document.getElementById('inicio')) {
 
-    var element = document.getElementById('inicio');
+        var element = document.getElementById('inicio');
 
-    var props = Object.assign({}, element.dataset);
+        var props = Object.assign({}, element.dataset);
 
-    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Inicio, props), element);
+        __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Inicio, props), element);
 }
 
 /***/ }),
