@@ -59,17 +59,27 @@ export default class Menu extends Component {
         e.preventDefault();
         const target_id = e.target.id
         const div_contenido = document.getElementById('content');
-        const div_inicio = document.getElementById('inicio');
+        const boton = document.getElementById('inicio');
         const props = Object.assign({}, div_contenido.dataset);
 
         if(target_id == "show"){
+            // se limpia la pantalla al seleccionar Show en el menú
             div_contenido.innerHTML="";
-            div_inicio.style.display = "";
+            // se muestra el botón Activar Flash
+            boton.style.display = "block";
         }else if(target_id == "perfil"){
-            div_inicio.style.display = "none";
+            // se oculta el botón al mostrar el componente CambiarDatos
+            boton.style.display = "none";
+            // se oculta el menú al mostrar el componente CambiarDatos
+            $('.navbar-toggler').click();
+            // se renderiza el componente CambiarDatos
             ReactDOM.render(<CambiarDatos {...props} />, div_contenido);
         }else if(target_id == "cambiar-password"){
-            div_inicio.style.display = "none";
+            // se oculta el botón al mostrar el componente CambiarClave
+            boton.style.display = "none";
+            // se oculta el menú al mostrar el componente CambiarClave
+            $('.navbar-toggler').click();
+            // se renderiza el componente CambiarClave
             ReactDOM.render(<CambiarClave {...props} />, div_contenido);
         }
     }
