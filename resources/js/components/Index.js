@@ -19,6 +19,7 @@ library.add( faSync);
 export default class Index extends Component {
 
     constructor(props) {
+        alert('Constructor');
         super(props);
         this.state = {
             url: props.url,
