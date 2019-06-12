@@ -63293,9 +63293,9 @@ window.app = (_window$app = {
   var efecto = animacion[i].split("..");
   console.log(efecto);
 
-  //  document.body.style.backgroundColor = efecto[0];
-  // document.querySelector('.navbar-toggler-icon').style.color =  efecto[0];
-  // document.body.style.backgroundImage = "none";
+  document.body.style.backgroundColor = efecto[0];
+  document.querySelector('.navbar-toggler-icon').style.color = efecto[0];
+  document.body.style.backgroundImage = "none";
   //efecto[0]
   var existe = false;
   for (var i = window.app.imagenes.length - 1; i >= 0; i--) {
