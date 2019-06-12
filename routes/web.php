@@ -75,11 +75,7 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function(){
         Route::post('/sincronizado', 'PerfilController@ajaxPostSync')->name('sync');
 
         
-        //ruta eventos
-    Route::get('/ajax-eventos/{id}','EventoController@getEvento');
 
     });
-
-    
 
 });

@@ -9,7 +9,7 @@
 
     <div class="centrado-absoluto" style="min-height: 60vh">
 
-        <div id="invitacion-component" data-url="{{ url('/') }}" data-invitaciones="{{ json_encode($invitaciones) }}"></div>
+        <div id="invitacion" data-url="{{ url('/') }}" data-invitaciones="{{ json_encode($invitaciones) }}"></div>
 
     </div>
 
