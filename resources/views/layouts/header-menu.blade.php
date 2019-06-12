@@ -20,8 +20,7 @@
             <a class="navbar-brand px-0" href="javascript:void(0)" style="margin-right: 0.1rem;"> <img src="{{ url('/') }}/images/logo-one.png" style="height: 1rem;" /></a><p style="display: inline;font-size: 1rem;"></p>
         </div>
 
-        <div id="menu" data-menuapp="[]"  data-tipocuenta="{{ Auth::user()->TipoCuenta }}"  data-pais="{{ (string)(Auth::user()->Pais_id) }}" data-url="{{ url('/') }}" ></div>
-
+        <div id="menu" data-tipocuenta="{{ Auth::user()->TipoCuenta }}"  data-pais="{{ (string)(Auth::user()->Pais_id) }}" data-url="{{ url('/') }}" ></div>
     </div>
 </div>
                     @else

@@ -13,7 +13,7 @@
         </div>
 
         <div id="menu" data-menuapp="[]" data-tipocuenta="{{ Auth::user()->TipoCuenta }}" data-url="{{ url('/') }}" ></div>
-
+        
     </div>
 </div>
 
