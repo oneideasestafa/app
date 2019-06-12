@@ -216,7 +216,6 @@ cordova.plugins.CordovaMqTTPlugin.connect({
     success:function(s){
     	console.log(s);
         console.log("connect success");
-        document.querySelector(".flash").style.display="none";
         //Simple subscribe
             cordova.plugins.CordovaMqTTPlugin.subscribe({
                topic:window.app.topic,
@@ -465,16 +464,25 @@ cordova.plugins.CordovaMqTTPlugin.publish({
           if(i>=window.app.animacion.length){
             return false;
           }
+          var local=window.app.gtm.replace(" GMT","");
           var today = new Date();
+          var hora=today.getUTCHours();
+          var horasumar=parseInt(s.substring(1,3));
+          var signo=s.substring(0,1);
+          if(signo=='+'){
+            hora=hora+horasumar;
+          }else{
+            hora=hora-horasumar;
+          }
           if(!window.app.animacionInicioVivo){
           //cargar fecha
             var fin=window.app.animacionFin.split(':');
             var inicio=window.app.animacionInicio.split(':');
             //validar tiempo
-            if(today.getHours()>=parseInt(fin[0])&&today.getMinutes()>=parseInt(fin[1])&&today.getSeconds()>=parseInt(fin[0])){
+            if(hora>=parseInt(fin[0])&&today.getMinutes()>=parseInt(fin[1])&&today.getSeconds()>=parseInt(fin[0])){
               return false;
             }
-            if(today.getHours()<parseInt(inicio[0])&&today.getMinutes()<parseInt(inicio[1])&&today.getSeconds()<parseInt(inicio[0])){
+            if(hora<parseInt(inicio[0])&&today.getMinutes()<parseInt(inicio[1])&&today.getSeconds()<parseInt(inicio[0])){
               return false;
             }
           }else{
@@ -507,16 +515,25 @@ cordova.plugins.CordovaMqTTPlugin.publish({
           if(i>=window.app.animacionMUL.length){
             return false;
           }
+          var local=window.app.gtm.replace(" GMT","");
           var today = new Date();
+          var hora=today.getUTCHours();
+          var horasumar=parseInt(s.substring(1,3));
+          var signo=s.substring(0,1);
+          if(signo=='+'){
+            hora=hora+horasumar;
+          }else{
+            hora=hora-horasumar;
+          }
           if(!window.app.animacionInicioVivoMUL){
           //cargar fecha
             var fin=window.app.animacionFinMUL.split(':');
             var inicio=window.app.animacionInicioMUL.split(':');
             //validar tiempo
-            if(today.getHours()>=parseInt(fin[0])&&today.getMinutes()>=parseInt(fin[1])&&today.getSeconds()>=parseInt(fin[0])){
+            if(hora>=parseInt(fin[0])&&today.getMinutes()>=parseInt(fin[1])&&today.getSeconds()>=parseInt(fin[0])){
               return false;
             }
-            if(today.getHours()<parseInt(inicio[0])&&today.getMinutes()<parseInt(inicio[1])&&today.getSeconds()<parseInt(inicio[0])){
+            if(hora<parseInt(inicio[0])&&today.getMinutes()<parseInt(inicio[1])&&today.getSeconds()<parseInt(inicio[0])){
               return false;
             }
           }else{
@@ -559,13 +576,22 @@ cordova.plugins.CordovaMqTTPlugin.publish({
        if(window.app.animacionFinFLHEstado>2){
         return false;
        }
-       var today = new Date();
+       var local=window.app.gtm.replace(" GMT","");
+          var today = new Date();
+          var hora=today.getUTCHours();
+          var horasumar=parseInt(s.substring(1,3));
+          var signo=s.substring(0,1);
+          if(signo=='+'){
+            hora=hora+horasumar;
+          }else{
+            hora=hora-horasumar;
+          }
        if(!window.app.animacionInicioVivoFLH){
             //carga de tiempo
             var fin=window.app.animacionFinFLH.split(':');
             var inicio=window.app.animacionInicioFLH.split(':');
             //validacion de tiempo valido
-            if(today.getHours()>=parseInt(inicio[0])&&today.getHours()<=parseInt(fin[0])){
+            if(hora>=parseInt(inicio[0])&&hora<=parseInt(fin[0])){
               if(today.getMinutes()>=parseInt(inicio[1])){
                 if(today.getSeconds()>=parseInt(inicio[2])){
                  // return true;//entra
@@ -579,7 +605,7 @@ cordova.plugins.CordovaMqTTPlugin.publish({
               return false;
             }
             //validacion de tiempo valido
-            if(today.getHours()<=parseInt(fin[0])){
+            if(hora<=parseInt(fin[0])){
               if(today.getMinutes()<=parseInt(fin[1])){
                 if(today.getSeconds()<=parseInt(fin[2])){
                   //return true;
