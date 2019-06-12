@@ -63293,9 +63293,9 @@ window.app = (_window$app = {
   var efecto = animacion[i].split("..");
   console.log(efecto);
 
-  document.body.style.backgroundColor = efecto[0];
-  document.querySelector('.navbar-toggler-icon').style.color = efecto[0];
-  document.body.style.backgroundImage = "none";
+  //document.body.style.backgroundColor = efecto[0];
+  //document.querySelector('.navbar-toggler-icon').style.color =  efecto[0];
+  // document.body.style.backgroundImage = "none";
   //efecto[0]
   var existe = false;
   for (var i = window.app.imagenes.length - 1; i >= 0; i--) {
@@ -63641,7 +63641,8 @@ window.app = (_window$app = {
       if (file.type.split("/")[0] == "image") {
         var div = document.createElement("div");
         var x = document.createElement("img");
-        /*var url =window.URL.createObjectURL(blob);
+        var url = window.URL.createObjectURL(blob);
+        /*
         x.setAttribute("src",url );
         x.setAttribute("class","completo" );
         div.setAttribute("class","caja" );
