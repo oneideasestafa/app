@@ -63220,8 +63220,8 @@ window.app = (_window$app = {
   var local = window.app.gtm.replace(" GMT", "");
   var today = new Date();
   var hora = today.getUTCHours();
-  var horasumar = parseInt(s.substring(1, 3));
-  var signo = s.substring(0, 1);
+  var horasumar = parseInt(local.substring(1, 3));
+  var signo = local.substring(0, 1);
   if (signo == '+') {
     hora = hora + horasumar;
   } else {
@@ -63269,8 +63269,8 @@ window.app = (_window$app = {
   var local = window.app.gtm.replace(" GMT", "");
   var today = new Date();
   var hora = today.getUTCHours();
-  var horasumar = parseInt(s.substring(1, 3));
-  var signo = s.substring(0, 1);
+  var horasumar = parseInt(local.substring(1, 3));
+  var signo = local.substring(0, 1);
   if (signo == '+') {
     hora = hora + horasumar;
   } else {
@@ -63324,8 +63324,8 @@ window.app = (_window$app = {
   var local = window.app.gtm.replace(" GMT", "");
   var today = new Date();
   var hora = today.getUTCHours();
-  var horasumar = parseInt(s.substring(1, 3));
-  var signo = s.substring(0, 1);
+  var horasumar = parseInt(local.substring(1, 3));
+  var signo = local.substring(0, 1);
   if (signo == '+') {
     hora = hora + horasumar;
   } else {
