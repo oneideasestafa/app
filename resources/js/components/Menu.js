@@ -23,6 +23,7 @@ export default class Menu extends Component {
         };
         this.handleLogout = this.handleLogout.bind(this);
         this.getDetener = this.getDetener.bind(this);
+        localStorage.setItem("menusAdicionales", []);
     }
 
     //cargo antes de renderi ar los menus adicionales asociadas al evento
