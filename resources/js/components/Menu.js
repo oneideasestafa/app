@@ -23,7 +23,7 @@ export default class Menu extends Component {
         };
         this.handleLogout = this.handleLogout.bind(this);
         this.getDetener = this.getDetener.bind(this);
-        localStorage.setItem("menusAdicionales", []);
+        //localStorage.setItem("menusAdicionales", []);
     }
 
     //cargo antes de renderi ar los menus adicionales asociadas al evento
@@ -37,9 +37,9 @@ export default class Menu extends Component {
                     arrayMenu.push(res.data.MenuApp[i].$oid);
                 }
                 //eliminando de cache los menusAdicionales
-                localStorage.removeItem("menusAdicionales");
+                //localStorage.removeItem("menusAdicionales");
                 //guardando en cache los menus adicionales
-                localStorage.setItem("menusAdicionales", arrayMenu);
+                //localStorage.setItem("menusAdicionales", arrayMenu);
                 console.log(arrayMenu);
                 this.setState({ menuApp: arrayMenu });
             })
