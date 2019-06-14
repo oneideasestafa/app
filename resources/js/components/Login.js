@@ -11,6 +11,7 @@ import logoGoogle from '../../../public/images/social/google-icon.svg';
 import logoTwitter from '../../../public/images/social/twitter-icon.svg';
 import logoInstagram from '../../../public/images/social/instagram-icon.svg';
 library.add( faSync);
+import QuestionEvent from "./QuestionEvent";
 
 export default class Login extends Component {
 
@@ -40,15 +41,16 @@ export default class Login extends Component {
 
         let self = this;
 
-        self.setState({
+        /*self.setState({
             isLoading: true
-        });
+        });*/
 
         let urlInicio = this.state.url+'/question-event';
         let {correo, pass} = this.state;
 
         e.preventDefault();
 
+        console.log(this.state.url);
         axios.post(this.state.url+'/ajax-post-login', {correo, pass})
             .then(res => {
 
@@ -64,7 +66,11 @@ export default class Login extends Component {
 
                     if(r.tipo == 'one'){
                         //localStorage.setItem('cache','true');
-                        window.location.href = urlInicio;
+                        //window.location.href = urlInicio;
+                        const div_index = document.getElementById('index');
+                        const props = Object.assign({}, div_index.dataset);
+                        // se renderiza el componente Inicio
+                        ReactDOM.render(<QuestionEvent {...props} />, div_index);                   
                     }
 
                 }else if(r.code == undefined){
@@ -88,8 +94,18 @@ export default class Login extends Component {
                 }
 
             })
-            .catch(function (error) {
+            /*.catch(function (error) {
 
+                self.setState({
+                    isLoading: false
+                });
+
+                swal({
+                    title: '<i class="fas fa-exclamation-circle"></i>',
+                    text: error,
+                    confirmButtonColor: '#343a40',
+                    confirmButtonText: 'Ok'
+                });                
                 if (error.response.status == 422){
 
                     self.setState({
@@ -105,7 +121,7 @@ export default class Login extends Component {
 
                 }
 
-            });
+            });*/
 
     }
 

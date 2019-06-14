@@ -15,7 +15,8 @@ export default class QuestionEvent extends Component {
         super(props);
         this.state = {
             url: props.url,
-            eventos: JSON.parse(props.eventos),
+            //eventos: JSON.parse(props.eventos),
+            eventos: [],
             evento: '',
             idevento: '',
             sector: '',
@@ -33,6 +34,16 @@ export default class QuestionEvent extends Component {
         this.handleUbicacion = this.handleUbicacion.bind(this);
 
     }
+
+    componentDidMount() {
+        axios.post(this.state.url+'/ajax-eventos')
+            .then(res => {
+                console.log(res);
+                const eventos = res.data.eventos;
+                this.setState({ eventos });
+            })
+    }
+
 
     handleChange(e) {
 

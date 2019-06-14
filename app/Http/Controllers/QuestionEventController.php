@@ -29,6 +29,17 @@ class QuestionEventController extends Controller
         return view('question-event', $data);
     }
 
+
+    // Ajax que retorna en orden ascendente todos los eventos que no hayan sido borrados 
+    // y que esten activos
+    public function ajaxEventos(){
+
+        $eventos = Evento::borrado(false)->activo(true)->app(true)->orderBy('Nombre', 'asc')->get();
+
+        //devuelve un objeto json con todos los eventos
+        return response()->json(['code' => 200, 'eventos' => $eventos ? $eventos : [] ]);
+    }
+
     //metodo para procesar el login por ajax
     public function ajaxContinuar(ValidateQuestionEvent $request)
     {
