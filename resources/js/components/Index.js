@@ -13,6 +13,7 @@ import logoInstagram from '../../../public/images/social/instagram-icon.svg';
 //import logoGooglePlay from '../../../../public/images/others/download-google-play.png';
 //import logoAppleStore from '../../../../public/images/others/download-app-store.png';
 //import {isMobile,isMobileOnly,isAndroid,isIOS,isChrome,isFirefox,isSafari,isMobileSafari,osVersion,osName,browserName, } from 'react-device-detect';
+import Login from "./Login";
 
 library.add( faSync);
 
@@ -54,6 +55,17 @@ export default class Index extends Component {
         return os;
     }
 
+    handleClick(e) {
+        e.preventDefault();
+        const elemento_evento = e.target.id;
+        const div_index = document.getElementById('index');
+        const props = Object.assign({}, div_index.dataset);
+        if(elemento_evento == "ingresar"){
+            // se renderiza el componente Inicio
+            ReactDOM.render(<Login {...props} />, div_index);            
+        }
+    }
+
     render() {
 
         let url = this.state.url;
@@ -83,8 +95,8 @@ export default class Index extends Component {
                     </div>
 
                     <div className="text-center">
-                        <a href={urlIngresar}>
-                            <div className="btn btn-negro btn-box-index">Ingresar</div>
+                        <a href="#">
+                            <div className="btn btn-negro btn-box-index" onClick={this.handleClick} id="ingresar">Ingresar</div>
                         </a>
                     </div>
 

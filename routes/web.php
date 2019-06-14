@@ -50,6 +50,7 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function(){
     Route::get('/logout', 'LoginController@logout')->name('logout');
 
     Route::get('/question-event', 'QuestionEventController@index')->name('question-event');
+    Route::post('/ajax-eventos', 'QuestionEventController@ajaxEventos')->name('ajax-eventos');
     Route::post('/ajax-continuar', 'QuestionEventController@ajaxContinuar')->name('ajax-continuar');
     Route::post('/ajax-post-check-ubicacion-evento', 'QuestionEventController@ajaxEventoCheckUbicacion');
 

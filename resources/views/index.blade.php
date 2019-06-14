@@ -2,7 +2,8 @@
 
 @section('content')
 
-    <div id="index" data-url="{{ url('/') }}" data-googleplay="{{ config('app.url-google-play') }}" data-applestore="{{ config('app.url-app-store') }}" ></div>
+    <div id="index" data-url="{{ url('/') }}" data-googleplay="{{ config('app.url-google-play') }}" data-applestore="{{ config('app.url-app-store') }}" >
+    </div>
 
 @endsection
 
