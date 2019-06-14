@@ -79,7 +79,9 @@ export default class Menu extends Component {
         e.preventDefault();
         const target_id = e.target.id;
         const div_contenido = document.getElementById("content");
+        console.log(div_contenido);
         const boton = document.getElementById("inicio");
+        console.log(div_contenido.dataset);
         const props = Object.assign({}, div_contenido.dataset);
 
         if (target_id == "show") {
@@ -93,21 +95,14 @@ export default class Menu extends Component {
             // se oculta el menú al mostrar el componente CambiarDatos
             $(".navbar-toggler").click();
             // se renderiza el componente CambiarDatos
-            ReactDOM.render(<CambiarDatos {...props} />, div_contenido);
+            ReactDOM.render(<CambiarDatos/>);
         } else if (target_id == "cambiar-password") {
             // se oculta el botón al mostrar el componente CambiarClave
             boton.style.display = "none";
             // se oculta el menú al mostrar el componente CambiarClave
             $(".navbar-toggler").click();
             // se renderiza el componente CambiarClave
-            ReactDOM.render(<CambiarClave {...props} />, div_contenido);
-        } else if (target_id == "invitacion") {
-            // se oculta el botón al mostrar el componente CambiarClave
-            boton.style.display = "none";
-            // se oculta el menú al mostrar el componente CambiarClave
-            $(".navbar-toggler").click();
-            // se renderiza el componente CambiarClave
-            ReactDOM.render(<Invitacion {...props} />, div_contenido);
+            ReactDOM.render(<CambiarClave {...props} />, div_contenido.dataset);
         }
     }
 
@@ -161,12 +156,8 @@ export default class Menu extends Component {
                     </a>
                 </li>
                 <li className="nav-item">
-                    <a
-                        className="nav-link"
-                        id="perfil"
-                        href="#"
-                        onClick={this.handleMenuClick}
-                    >
+                    <a id="perfil" href="#"
+                        onClick={this.handleMenuClick}>
                         <i className="fas fa-cog fa-lg" />
                         &nbsp;&nbsp; Perfil
                     </a>

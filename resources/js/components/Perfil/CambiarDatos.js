@@ -551,9 +551,12 @@ export default class CambiarDatos extends Component {
     }
 }
 
-if (document.getElementById('cambiar-datos-perfil')) {
+console.log(document.getElementById('cambiar-datos-perfil'))
 
-    const element = document.getElementById('cambiar-datos-perfil');
+if (document.getElementById('cambiar-datos-perfil')) {
+    
+
+    const element = document.getElementById("cambiar-datos-perfil");
 
     const props = Object.assign({}, element.dataset);
 
