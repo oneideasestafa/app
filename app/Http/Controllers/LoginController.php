@@ -30,9 +30,9 @@ class LoginController extends Controller
     }
 
     //metodo para procesar el login por ajax
-    public function ajaxPostLogin($request)
+    public function ajaxPostLogin(ValidateLogin $request)
     {
-        dd($request);
+    
         $input = $request->all();
 
         $credenciales = [
@@ -108,6 +108,4 @@ class LoginController extends Controller
 
 
 }
-
-
 

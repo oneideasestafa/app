@@ -74,7 +74,7 @@ export default class RegistroCliente extends React.Component {
             google: 'auth/google',
             isLoading: false,
             clubs:[],
-            estadosciviles:  ["Soltero","Casado","Divorciado"],
+            estadosciviles:  [{id:1,name:"Casado"},{id:2,name:"Divorciado"},{id:3,name:"Viudo"}],
             civil: '',
             time: new Date(),
             isOpen: false,
@@ -92,6 +92,19 @@ export default class RegistroCliente extends React.Component {
         this.handleThemeToggle = this.handleThemeToggle.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
 
+    }
+
+    componentWillMount() {
+        /*axios
+            .get("/api/estadosCiviles")
+            .then(res => {
+                this.state.isLoading = "false";
+                console.log(res.data)
+                this.setState({estadosciviles : res.data.eventos})
+            })
+            .catch(function(error) {
+                console.log(error);
+            });*/
     }
 
     handleChange(e) {
@@ -258,10 +271,6 @@ export default class RegistroCliente extends React.Component {
                 }
 
             });
-    }
-
-    componentDidMount(){
-
     }
 
     handleToggle(isOpen) {
@@ -507,9 +516,14 @@ export default class RegistroCliente extends React.Component {
                     </div>
 
                     <div className="text-center">
-                        <a href="./">
-                            <button type="button" className="btn btn-rojo btn-box-index">Volver</button>
-                        </a>
+                    <Link to="/">
+                            <button
+                                type="button"
+                                className="btn btn-rojo btn-box-index"
+                            >
+                                Volver
+                            </button>
+                        </Link>
                     </div>
 
                    

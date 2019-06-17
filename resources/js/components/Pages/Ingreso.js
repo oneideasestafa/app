@@ -77,7 +77,12 @@ export default class Ingreso extends Component {
                         />
                     </div>
                     <div className="text-center">
-                        <Link to="/login">
+                        <Link
+                            to={{
+                                pathname: "/login",
+                                state: { url: "/" }
+                            }}
+                        >
                             <div className="btn btn-negro btn-box-index">
                                 Ingresar
                             </div>

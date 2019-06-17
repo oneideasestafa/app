@@ -14,10 +14,10 @@ import logoInstagram from "../../../../public/images/social/instagram-icon.svg";
 library.add(faSync);
 
 export default class Login extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            url: "/login",
+            url: window.location.origin.toString(),
             correo: "",
             pass: "",
             isLoading: false
@@ -44,15 +44,16 @@ export default class Login extends Component {
         let { correo, pass } = this.state;
 
         e.preventDefault();
-        console.log(correo + " +" + pass);
 
         axios
-            .post(this.state.url + "/loginprueba", { correo, pass })
+            .post(this.state.url + "/api/loginprueba", {
+                correo,
+                pass
+            })
             .then(res => {
                 let r = res.data;
-
-                if (r.code === 200) {
-                    self.setState({
+                if (r.code == 200) {
+                    this.setState({
                         correo: "",
                         pass: "",
                         isLoading: false
@@ -65,8 +66,8 @@ export default class Login extends Component {
                     }
                 } else if (r.code == undefined) {
                     //window.location.href = window.app.url+'/logisticas';
-                } else if (r.code === 600) {
-                    self.setState({
+                } else if (r.code == 600) {
+                    this.setState({
                         isLoading: false
                     });
 
@@ -80,7 +81,7 @@ export default class Login extends Component {
             })
             .catch(function(error) {
                 if (error.response.status == 422) {
-                    self.setState({
+                    this.setState({
                         isLoading: false
                     });
 
