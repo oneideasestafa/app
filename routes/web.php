@@ -83,3 +83,5 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function(){
     
 
 });
+
+?>

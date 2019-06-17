@@ -44,9 +44,10 @@ export default class Login extends Component {
         let { correo, pass } = this.state;
 
         e.preventDefault();
+        console.log(correo + " +" + pass);
 
         axios
-            .post(this.state.url + "/ajax-post-login", { correo, pass })
+            .post(this.state.url + "/loginprueba", { correo, pass })
             .then(res => {
                 let r = res.data;
 
@@ -59,7 +60,8 @@ export default class Login extends Component {
 
                     if (r.tipo == "one") {
                         //localStorage.setItem('cache','true');
-                        window.location.href = urlInicio;
+                        //window.location.href = urlInicio;
+                        this.props.history.push("/inicio");
                     }
                 } else if (r.code == undefined) {
                     //window.location.href = window.app.url+'/logisticas';

@@ -58,8 +58,8 @@ function convertDate(date, formate) {
 }
 export default class RegistroCliente extends React.Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             nombre: '',
             apellido: '',
@@ -69,12 +69,12 @@ export default class RegistroCliente extends React.Component {
             edad:'',
             sexo:'',
             equipo:'',
-            url: props.url,
-            facebook: props.facebook,
-            google: props.google,
+            url: '/',
+            facebook: 'auth/facebook',
+            google: 'auth/google',
             isLoading: false,
             clubs:[],
-            estadosciviles: JSON.parse(props.estadosciviles),
+            estadosciviles:  ["Soltero","Casado","Divorciado"],
             civil: '',
             time: new Date(),
             isOpen: false,
@@ -522,20 +522,5 @@ export default class RegistroCliente extends React.Component {
     }
 }
 
-if (document.getElementById('registro-cliente')) {
-
-    const element = document.getElementById('registro-cliente');
-
-    const props = Object.assign({}, element.dataset);
-
-    ReactDOM.render(<RegistroCliente {...props} />, element);
-
-}
 
 
-
-/*
-
- 
-                    
-*/

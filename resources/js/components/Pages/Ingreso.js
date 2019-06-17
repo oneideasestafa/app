@@ -60,6 +60,11 @@ export default class Ingreso extends Component {
         let urlGooglePlay = this.state.urlGooglePlay;
         let urlAppleStore = this.state.urlAppleStore;
 
+        let token = document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute("content");
+        console.log(token);
+
         //console.log(osName,osVersion,browserName, this.getOS());
 
         return (

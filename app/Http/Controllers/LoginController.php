@@ -25,14 +25,14 @@ class LoginController extends Controller
 
     //metodo que crea la vista
     public function index(){
-
         //devuelve la vista asociada
         return view('login');
     }
 
     //metodo para procesar el login por ajax
-    public function ajaxPostLogin(ValidateLogin $request)
+    public function ajaxPostLogin($request)
     {
+        dd($request);
         $input = $request->all();
 
         $credenciales = [
@@ -108,3 +108,6 @@ class LoginController extends Controller
 
 
 }
+
+
+
