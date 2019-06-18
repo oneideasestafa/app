@@ -1,0 +1,19 @@
+.boton-fecha {
+    border: 1px solid #fff;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 88%;
+    color: #dadada;
+}
+
+.icono-fecha {
+    font-size: 1.714em;
+}
+
+.contenedor-imagen-equipo {
+    margin-bottom: 15px;
+}
+
+.imagen-equipo {
+    height: 4rem;
+}

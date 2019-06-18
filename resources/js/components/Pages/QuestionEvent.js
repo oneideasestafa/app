@@ -38,9 +38,11 @@ export default class QuestionEvent extends Component {
         axios
             .get("/api/eventos")
             .then(res => {
-                this.state.isLoading = "false";
                 console.log(res.data)
-                this.setState({eventos : res.data.eventos})
+                this.setState({
+                    eventos : res.data,
+                    isLoading: false
+                });
             })
             .catch(function(error) {
                 console.log(error);
@@ -127,7 +129,7 @@ export default class QuestionEvent extends Component {
         let evento = event;
         let idevento = idevent;
 
-        axios.post('/ajax-post-check-ubicacion-evento', {evento, idevento})
+        axios.post('api/ubicacion-evento', {evento, idevento})
             .then(res => {
 
                 let r = res.data;
@@ -197,12 +199,13 @@ export default class QuestionEvent extends Component {
         });
 
         let urlInicio = this.state.url+'/inicio';
-        let {evento, idevento, sector, fila, asiento, eventoUbicacionManual, manual, ideventobad} = this.state;
+        let {evento, sector, fila, asiento, eventoUbicacionManual, manual, ideventobad} = this.state;
 
         e.preventDefault();
 
+        //AQUI DEBO CREAR LA RUTA PARA VALIDAR EVENTO SI UTILI O ID EVENTO
         if(ideventobad == true){
-
+            //AQUI DEBO CREAR LA RUTA PARA VALIDAR EVENTO
             self.setState({
                 isLoading: false
             });
@@ -215,63 +218,10 @@ export default class QuestionEvent extends Component {
             });
 
         }else{
-
-            axios.post('/ajax-continuar', {evento, idevento, sector, fila, asiento, manual, ideventobad, eventoUbicacionManual})
-                .then(res => {
-
-                    let r = res.data;
-
-                    if(r.code === 200){
-
-                        self.setState({
-                            evento: '',
-                            idevento: '',
-                            sector: '',
-                            fila: '',
-                            asiento: '',
-                            eventoUbicacionManual: false,
-                            manual: false,
-                            ideventobad: false,
-                            isLoading: false
-                        });
-
-                        window.location.href = urlInicio;
-
-                    }else if(r.code === 600){
-
-                        self.setState({
-                            isLoading: false
-                        });
-
-                        swal({
-                            title: '<i class="fas fa-exclamation-circle"></i>',
-                            text: r.msj,
-                            confirmButtonColor: '#343a40',
-                            confirmButtonText: 'Ok'
-                        });
-
-                    }
-
-                })
-                .catch(function (error) {
-
-                    if (error.response.status == 422){
-
-                        self.setState({
-                            isLoading: false
-                        });
-
-                        swal({
-                            title: '<i class="fas fa-exclamation-circle"></i>',
-                            text: error.response.data,
-                            confirmButtonColor: '#343a40',
-                            confirmButtonText: 'Ok'
-                        });
-
-                    }
-
-                });
-
+            this.props.history.push({
+                pathname: '/inicio',
+                state: {evento, sector, fila, asiento, manual, ideventobad, eventoUbicacionManual}
+              })
         }
 
     }

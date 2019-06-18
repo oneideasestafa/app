@@ -7,24 +7,40 @@ import axios from "axios";
 import swal from "sweetalert2";
 import fondo from "../../../../public/images/fondo.jpeg";
 import Menu from "../components/Menu";
+import Invitacion from "../components/MenuApps/Invitacion";
+import CambiarClave from "../components/MenuApps/CambiarClave";
+import CambiarDatos from "../components/MenuApps/CambiarDatos";
+
 library.add(faSync);
+
+import logo from "../../../../public/images/logo-one.png";
+
+//importando estilos
+import "./css/Inicio.css";
 
 export default class Inicio extends Component {
     constructor(props) {
+        const stateQuestionEvent = props.location.state;
         super(props);
         this.state = {
             url: props.url,
+            eventoid: stateQuestionEvent.evento,
+            sector: stateQuestionEvent.sector,
+            fila: stateQuestionEvent.fila,
+            asiento: stateQuestionEvent.asiento,
+            manual: stateQuestionEvent.manual,
+            eventoUbicacionManual: stateQuestionEvent.eventoUbicacionManual,
             checkcamareromesa: props.checkcamareromesa,
             mesa: props.mesa,
+            seccion: "show",
             isLoading: false
         };
 
         this.handleGPS = this.handleGPS.bind(this);
+        this.handleMenuClick = this.handleMenuClick.bind(this);
     }
 
     handleGPS(e, url) {
-        /* window.location.href=url+"/-54.804826/-68.313598"; */
-
         e.preventDefault();
         if (window.app.isCordova()) {
             window.gpsCarhop(url);
@@ -58,12 +74,28 @@ export default class Inicio extends Component {
             });
         }
     }
+
     flash() {
         window.app.flashlight();
         console.log("flash");
     }
 
+    handleMenuClick(e) {
+        let seccion = document.getElementById("seccion");
+        let opcionMenu = $("#" + e.target.id).text();
+        this.setState({ seccion: opcionMenu });
+        console.log(e.target.id);
+        if (e.target.id == "perfil") {
+            console.log("estoy en perfil");
+            ReactDOM.render(<CambiarDatos />, seccion);
+        } else if (e.target.id == " cambiar-contraseña") {
+            console.log("estoy aqui contrasena");
+            ReactDOM.render(<CambiarClave />, seccion);
+        }
+    }
+
     render() {
+        console.log(this.state);
         let url = this.state.url;
         let mesa = this.state.mesa;
         let checkcamareromesa = this.state.checkcamareromesa;
@@ -108,12 +140,51 @@ export default class Inicio extends Component {
         document.body.style.backgroundPosition = "center";
         return (
             <div id="main" className="main">
+                <header className="navbar navbar-dark fixed-top navbar-full bg-rojo">
+                    <button
+                        aria-controls="navdrawerDefault"
+                        aria-expanded="false"
+                        aria-label="Toggle Navdrawer"
+                        className="navbar-toggler"
+                        data-target="#navdrawerDefault"
+                        data-toggle="navdrawer"
+                    >
+                        <span className="navbar-toggler-icon" />
+                    </button>
+                    <span className="navbar-brand mr-auto">
+                        {this.state.seccion}
+                    </span>
+                </header>
+
                 <div
+                    aria-hidden="true"
+                    className="navdrawer"
+                    id="navdrawerDefault"
+                    tabIndex="-1"
+                >
+                    <div className="navdrawer-content">
+                        <div className="navdrawer-header roboto-condensed">
+                            <a
+                                className="navbar-brand px-0 boton-logo"
+                                href="javascript:void(0)"
+                            >
+                                {" "}
+                                <img className="logo-imagen" src={logo} />
+                            </a>
+                            <p className="parrafo-menu" />
+                        </div>
+
+                        <Menu
+                            onClick={this.handleMenuClick}
+                            eventoid={this.state.eventoid}
+                        />
+                    </div>
+                </div>
+                <div
+                    id="seccion"
                     className=""
                     style={{ textAlign: "center", paddingTop: "50%" }}
-                >
-                    <Menu />
-                </div>
+                />
             </div>
         );
     }

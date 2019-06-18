@@ -60,9 +60,7 @@ export default class Login extends Component {
                     });
 
                     if (r.tipo == "one") {
-                        //localStorage.setItem('cache','true');
-                        //window.location.href = urlInicio;
-                        this.props.history.push("/inicio");
+                        this.props.history.push("/questionEvent");
                     }
                 } else if (r.code == undefined) {
                     //window.location.href = window.app.url+'/logisticas';
@@ -80,6 +78,7 @@ export default class Login extends Component {
                 }
             })
             .catch(function(error) {
+                console.log(error);
                 if (error.response.status == 422) {
                     this.setState({
                         isLoading: false

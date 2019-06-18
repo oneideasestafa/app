@@ -19,6 +19,12 @@ class EventoController extends Controller
         $data = Evento::find($id);
         return response()->json($data);
     }
+
+    public function getEventos(){
+        $data = Evento::all();
+        return response()->json($data);
+    }
+
 }
 
 ?>
