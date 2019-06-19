@@ -36,7 +36,7 @@ export default class Menu extends Component {
      */
     componentWillMount() {
         axios
-            .get("api/evento/" + this.state.eventoid)
+            .get("api/eventos/id/" + this.state.eventoid)
             .then(res => {
                 let arrayMenu = [];
                 for (var i = 0; i < res.data.MenuApp.length; i++) {
@@ -422,7 +422,9 @@ export default class Menu extends Component {
                     <a
                         className="nav-link"
                         href="#"
-                        onClick={this.handleLogout}
+                        id="salir"
+                        //onClick={this.handleLogout}
+                        onClick={this.handleMenuClick}
                     >
                         <i className="fas fa-sign-out-alt fa-lg" />
                         &nbsp;&nbsp; Salir

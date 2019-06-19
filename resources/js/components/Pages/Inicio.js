@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import { Redirect } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSync } from "@fortawesome/free-solid-svg-icons";
@@ -24,6 +25,7 @@ export default class Inicio extends Component {
         super(props);
         this.state = {
             url: props.url,
+            usuarioid: stateQuestionEvent.idUsuario,
             eventoid: stateQuestionEvent.evento,
             sector: stateQuestionEvent.sector,
             fila: stateQuestionEvent.fila,
@@ -82,16 +84,25 @@ export default class Inicio extends Component {
 
     handleMenuClick(e) {
         let seccion = document.getElementById("seccion");
+        console.log(seccion);
         let opcionMenu = $("#" + e.target.id).text();
         this.setState({ seccion: opcionMenu });
         console.log(e.target.id);
         if (e.target.id == "perfil") {
             console.log("estoy en perfil");
-            ReactDOM.render(<CambiarDatos />, seccion);
+            ReactDOM.render(
+                <CambiarDatos usuarioid={this.state.usuarioid} />,
+                seccion
+            );
         } else if (e.target.id == " cambiar-contraseña") {
             console.log("estoy aqui contrasena");
             ReactDOM.render(<CambiarClave />, seccion);
+        } else if (e.target.id == "show") {
+            ReactDOM.render(<div />, seccion);
+        } else if (e.target.id == "salir") {
+            ReactDOM.render(<Redirect to="/" />);
         }
+        $(".navbar-toggler-icon").click();
     }
 
     render() {
@@ -180,11 +191,7 @@ export default class Inicio extends Component {
                         />
                     </div>
                 </div>
-                <div
-                    id="seccion"
-                    className=""
-                    style={{ textAlign: "center", paddingTop: "50%" }}
-                />
+                <div id="seccion" className="centrado-absoluto" />
             </div>
         );
     }

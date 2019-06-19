@@ -46,7 +46,7 @@ export default class Login extends Component {
         e.preventDefault();
 
         axios
-            .post(this.state.url + "/api/loginprueba", {
+            .post(this.state.url + "/api/user/login", {
                 correo,
                 pass
             })
@@ -60,7 +60,10 @@ export default class Login extends Component {
                     });
 
                     if (r.tipo == "one") {
-                        this.props.history.push("/questionEvent");
+                        this.props.history.push({
+                            pathname: "/questionEvent",
+                            state: { idUsuario: r.userid }
+                        });
                     }
                 } else if (r.code == undefined) {
                     //window.location.href = window.app.url+'/logisticas';

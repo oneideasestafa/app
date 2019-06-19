@@ -29,9 +29,19 @@ class QuestionEventController extends Controller
         return view('question-event', $data);
     }
 
+
+    // Ajax que retorna en orden ascendente todos los eventos que no hayan sido borrados 
+    // y que esten activos
+    public function ajaxEventos(){
+
+        $eventos = Evento::borrado(false)->activo(true)->app(true)->orderBy('Nombre', 'asc')->get();
+
+        //devuelve un objeto json con todos los eventos
+        return response()->json(['code' => 200, 'eventos' => $eventos ? $eventos : [] ]);
+    }
+
     //metodo para procesar el login por ajax
-    public function ajaxContinuar(ValidateQuestionEvent $request)
-    {
+    public function ajaxContinuar(ValidateQuestionEvent $request){
         $input = $request->all();
 
         $credenciales = [
@@ -49,26 +59,15 @@ class QuestionEventController extends Controller
         $validoEvento = $this->isEventoValido($evento, $idevento, Auth::user()->_id, $credenciales);
 
         if($validoEvento){
-
             $user = Cliente::find(Auth::user()->_id);
             $user->QuestionEvent = false;
-
             if($user->save()){
-
                 return response()->json(['code' => 200, 'msj' => 'exito' ]);
-
-            }else{
-                return response()->json(['code' => 600, 'msj' => 'Ocurrio un error al seleccionar el evento. Consulte al administrador']);
-
             }
-
-        }else{
-            return response()->json(['code' => 600, 'msj' => 'Codigo de evento invalido' ]);
+            return response()->json(['code' => 600, 'msj' => 'Ocurrio un error al seleccionar el evento. Consulte al administrador']);
         }
-
+        return response()->json(['code' => 600, 'msj' => 'Codigo de evento invalido' ]);
     }
-
-
 
     public function isEventoValido($evento, $idevento, $user, $data){
 
@@ -77,33 +76,27 @@ class QuestionEventController extends Controller
             $ev = Evento::borrado(false)->activo(true)->where('IDEvento', $idevento)->first();
 
             if($ev){
-
                 $c = Cliente::find($user);
                 $c->Evento_id = new ObjectId($ev->_id);
                 $c->Empresa_id = new ObjectId($ev->Empresa_id);
+                
                 $pais = Pais::find($ev->Pais_id);
                 $c->GTM = $pais->GTM;
-                $c->Archivos = array( $ev->Torrent );
+                $c->Archivos = array($ev->Torrent);
 
                 if($c->save()){
                     Auth::guard('web')->login($c);
                     $this->saveAsistenteEvento($user, $data);
-                    //echo $c->Archivos;
                     return true;
-                }else{
-                    return false;
                 }
-
-            }else{
                 return false;
             }
-
+            return false;
         }else{
             $bibliotecas = Bibliotecas::where('Evento_id', new ObjectId($evento))->get();
             $ev = Evento::find($evento);
 
             if($ev){
-
                 $c = Cliente::find($user);
                 $c->Evento_id = new ObjectId($ev->_id);
                 $c->Empresa_id = new ObjectId($ev->Empresa_id);
@@ -112,21 +105,13 @@ class QuestionEventController extends Controller
                 $c->Archivos = array( $ev->Torrent );
 
                 if($c->save()){
-
                     $this->saveAsistenteEvento($user, $data);
-                   // echo var_export($c->Archivos);
                     return true;
-                }else{
-                    return false;
                 }
-
-            }else{
                 return false;
             }
-
+            return false;
         }
-
-
     }
 
     //metodo para revisar si el evento tiene ubicacion

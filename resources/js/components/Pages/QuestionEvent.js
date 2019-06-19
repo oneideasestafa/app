@@ -11,10 +11,11 @@ library.add( faSync);
 
 export default class QuestionEvent extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             url: window.location.origin.toString(),
+            idUsuario : props.location.state.idUsuario,
             eventos: [],
             evento: '',
             idevento: '',
@@ -40,7 +41,7 @@ export default class QuestionEvent extends Component {
             .then(res => {
                 console.log(res.data)
                 this.setState({
-                    eventos : res.data,
+                    eventos : res.data.eventos,
                     isLoading: false
                 });
             })
@@ -129,7 +130,7 @@ export default class QuestionEvent extends Component {
         let evento = event;
         let idevento = idevent;
 
-        axios.post('api/ubicacion-evento', {evento, idevento})
+        axios.post('api/eventos/check_ubicacion', {evento, idevento})
             .then(res => {
 
                 let r = res.data;
@@ -199,7 +200,7 @@ export default class QuestionEvent extends Component {
         });
 
         let urlInicio = this.state.url+'/inicio';
-        let {evento, sector, fila, asiento, eventoUbicacionManual, manual, ideventobad} = this.state;
+        let {idUsuario,evento, sector, fila, asiento, eventoUbicacionManual, manual, ideventobad} = this.state;
 
         e.preventDefault();
 
@@ -220,7 +221,7 @@ export default class QuestionEvent extends Component {
         }else{
             this.props.history.push({
                 pathname: '/inicio',
-                state: {evento, sector, fila, asiento, manual, ideventobad, eventoUbicacionManual}
+                state: {idUsuario,evento, sector, fila, asiento, manual, ideventobad, eventoUbicacionManual}
               })
         }
 

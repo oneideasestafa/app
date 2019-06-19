@@ -66,7 +66,7 @@ class LoginController extends Controller
                         //genero el log de inicio de sesion
                         //$log = generateLog('inicio', 'web');
 
-                        return response()->json(['code' => 200, 'msj' => 'exito', 'tipo' => 'one' ]);
+                        return response()->json(['code' => 200, 'msj' => 'exito', 'tipo' => 'one' , 'userid' => $user->_id]);
 
                     }else{
                         return response()->json(['code' => 600, 'msj' => 'Error al iniciar sesión. Consulte al administrador' ]);

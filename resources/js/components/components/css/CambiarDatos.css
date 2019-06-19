@@ -2,7 +2,7 @@
     border: 1px solid #fff;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    width: 88%;
+    width: 87%;
     color: #dadada;
 }
 
@@ -16,4 +16,10 @@
 
 .imagen-equipo {
     height: 4rem;
+}
+
+.form-inside {
+    width: 320px;
+    background: #202020;
+    border-radius: 5px;
 }

@@ -44,6 +44,7 @@ export default class CambiarDatos extends Component {
         super(props);
         this.state = {
             url: props.url,
+            idUsuario: props.usuarioid,
             nombre: '',
             apellido: '',
             sexo: '',
@@ -73,6 +74,50 @@ export default class CambiarDatos extends Component {
         this.handleThemeToggle = this.handleThemeToggle.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
 
+    }
+
+    componentWillMount() {
+        axios
+            .get("api/user/id/" + this.state.idUsuario)
+            .then(res => {
+                console.log(res.data)
+                let r = res.data;
+                    if(r.code === 200){
+                        this.setState({
+                            nombre: this.verificarNull(r.cliente.Nombre),
+                            apellido: this.verificarNull(r.cliente.Apellido),
+                            correo: this.verificarNull(r.cliente.Correo),
+                            sexo: this.verificarNull(r.cliente.Sexo),
+                            equipo: this.verificarNull(r.cliente.Equipo),
+                            fechaNacimiento: this.verificarNull(moment(r.cliente.FechaNacimiento, 'DD/MM/YYYY').toDate()),
+                            civil: this.verificarNull(r.cliente.EstadoCivil_id),
+                            cuenta: this.verificarNull(r.cliente.TipoCuenta),
+                            pais: this.verificarNull(r.cliente.Pais_id),
+                            estadosciviles: this.verificarNull(r.civiles),
+                            telefono: this.verificarNull(r.cliente.Telefono),
+                            foto: this.verificarNull(r.cliente.Foto)
+                        });
+
+                        if(r.cliente.Pais_id){
+                            this.clubs2(r.cliente.Pais_id);
+                        }
+
+                    }else if(r.code === 500){
+
+                        console.log(r.msj);
+
+                    }
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+    }
+
+    verificarNull(cadena){
+        if(cadena == null){
+            return "";
+        }
+        return cadena;
     }
 
     handleChange(e) {
@@ -119,9 +164,9 @@ export default class CambiarDatos extends Component {
 
         let pais = e.target.value;
 
-        axios.post('/ajax-post-clubs-perfil', { pais })
+        axios.post('api/user/clubs-perfil', { pais })
             .then(res => {
-
+                console.log(res.data)
 
                 let r = res.data;
 
@@ -160,9 +205,9 @@ export default class CambiarDatos extends Component {
 
         let self = this;
 
-        axios.post('/ajax-post-clubs-perfil', { pais })
+        axios.post('api/user/clubs-perfil', { pais })
             .then(res => {
-
+                console.log(res.data)
                 let r = res.data;
 
                 if(r.code === 200){
@@ -220,11 +265,11 @@ export default class CambiarDatos extends Component {
             isLoading: true
         });
 
-        let {pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, url, fotonew, tipofoto} = this.state;
-
-        axios.post('/ajax-post-perfil', { pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, fotonew, tipofoto})
+        let {idUsuario,pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, url, fotonew, tipofoto} = this.state;
+        console.log({ idUsuario,pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, fotonew, tipofoto})
+        axios.post('api/user/editar/perfil/', { idUsuario,pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, fotonew, tipofoto})
             .then(res => {
-
+                console.log(res)
                 self.setState({
                     isLoading: false
                 });
@@ -244,7 +289,7 @@ export default class CambiarDatos extends Component {
 
                             this.getPerfil();
 
-                            window.location.href= url + '/inicio';
+                            //window.location.href= url + '/inicio';
 
                         }
                     });
@@ -281,60 +326,12 @@ export default class CambiarDatos extends Component {
             });
     }
 
-    getPerfil(){
-
-        let self = this;
-
-        axios.post('/ajax-get-perfil', {
-        })
-            .then(res => {
-                if(res){
-
-                    let r = res.data;
-
-                    if(r.code === 200){
-
-                        self.setState({
-                            nombre: r.cliente.Nombre,
-                            apellido: r.cliente.Apellido,
-                            correo: r.cliente.Correo,
-                            sexo: r.cliente.Sexo,
-                            equipo: r.cliente.Equipo,
-                            fechaNacimiento: moment(r.cliente.FechaNacimiento, 'DD/MM/YYYY').toDate(),
-                            civil: r.cliente.EstadoCivil_id,
-                            cuenta: r.cliente.TipoCuenta,
-                            pais: r.cliente.Pais_id,
-                            estadosciviles: r.civiles,
-                            telefono: r.cliente.Telefono,
-                            foto: r.cliente.Foto
-                        });
-
-                        if(r.cliente.Pais_id){
-                            this.clubs2(r.cliente.Pais_id);
-                        }
-
-                    }else if(r.code === 500){
-
-                        console.log(r.msj);
-
-                    }
-
-                }
-            })
-            .catch(function (error) {
-
-            });
-
-    }
-
-    componentDidMount(){
-        this.getPerfil();
-    }
 
     render() {
 
         let tagClass;
         let {nombre, apellido, correo, cuenta, pais, telefono, sexo, civil, equipo, foto, fotonew, tipofoto} = this.state;
+        let hoy = new Date();
 
         if(cuenta == 'ONE'){
             tagClass = 'badge badge-one';
@@ -343,12 +340,14 @@ export default class CambiarDatos extends Component {
         }else if(cuenta == 'Google'){
             tagClass = 'badge badge-google';
         }
-
+        
+        console.log("estoy antes del return del render");
+        console.log(this.state)
         return (
 
-            <div className="mt-4">
+            <div className="mt-5">
 
-                <form method="POST" onSubmit={this.handleSubmit} className="form-inside">
+                <form method="POST" onSubmit={this.handleSubmit} className="form-inside pr-3 pl-3 pt-4">
 
                     {foto != '' ?
 
@@ -380,13 +379,13 @@ export default class CambiarDatos extends Component {
                         <a
                             className="boton-fecha select-btn sm" 
                             onClick={this.handleThemeToggle}>
-                            {this.state.fechaNacimiento=='' ?'Ingrese su Fecha de Nacimiento':this.state.fechaNacimiento.getDate()+'/'+(this.state.fechaNacimiento.getMonth() + 1) +'/'+this.state.fechaNacimiento.getFullYear()}
+                            {this.state.fechaNacimiento=='' ?'Ingrese su Fecha de Nacimiento':hoy.getDate()+'/'+(hoy.getMonth() + 1) +'/'+hoy.getFullYear()}
                         </a>
                         <Datepicker
                             showCaption={true}
                             showHeader={true}
                             headerFormat={'DD/MM/YYYY'}
-                            value={this.state. fechaNacimiento}
+                            value={this.state.fechaNacimiento}
                             theme={this.state.theme}
                             isOpen={this.state.isOpen}
                             onSelect={this.handleSelect}
