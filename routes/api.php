@@ -20,6 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/loginprueba', 'LoginController@ajaxPostLogin');
 Route::get('/eventos', 'EventoController@getEventos');
 Route::post('/ubicacion-evento', 'QuestionEventController@ajaxEventoCheckUbicacion');
-Route::get('/evento/:id', 'EventoController@getEvento');
+Route::get('/evento/{id}', 'EventoController@getEvento');
 
 
