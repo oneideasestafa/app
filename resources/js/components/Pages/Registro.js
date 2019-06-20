@@ -16,6 +16,8 @@ import imgCL from '../../../../public/images/countrys/es.png';
 import reactMobileDatePicker from 'react-mobile-datepicker';
 import iconCivil from '../../../../public/images/EstadoCivil01.png';
 
+import "./css/Login.css"
+
 library.add( faSync);
 
 

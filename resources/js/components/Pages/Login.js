@@ -13,6 +13,8 @@ import logoTwitter from "../../../../public/images/social/twitter-icon.svg";
 import logoInstagram from "../../../../public/images/social/instagram-icon.svg";
 library.add(faSync);
 
+import "./css/Login.css"
+
 export default class Login extends Component {
     constructor(props) {
         super(props);

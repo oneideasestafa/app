@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import { Link } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSync } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
@@ -20,7 +21,6 @@ export default class Menu extends Component {
             props: this.props,
             fotoproducto: props.fotoproducto == "1" ? true : false
         };
-
         /**
          * las siguientes funciones las declaro de esta manera para poder hacer uso de
          * los props y el state en ellas
@@ -419,14 +419,8 @@ export default class Menu extends Component {
                     </a>
                 </li>
                 <li className="nav-item">
-                    <a
-                        className="nav-link"
-                        href="#"
-                        id="salir"
-                        //onClick={this.handleLogout}
-                        onClick={this.handleMenuClick}
-                    >
-                        <i className="fas fa-sign-out-alt fa-lg" />
+                    <a className="nav-link" href="/">
+                    <i className="fas fa-sign-out-alt fa-lg" />
                         &nbsp;&nbsp; Salir
                     </a>
                 </li>

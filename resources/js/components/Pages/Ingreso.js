@@ -9,6 +9,8 @@ import logoGoogle from "../../../../public/images/social/google-icon.svg";
 import logoTwitter from "../../../../public/images/social/twitter-icon.svg";
 import logoInstagram from "../../../../public/images/social/instagram-icon.svg";
 
+import "./css/Ingreso.css";
+
 library.add(faSync);
 
 export default class Ingreso extends Component {
@@ -66,6 +68,10 @@ export default class Ingreso extends Component {
         console.log(token);
 
         //console.log(osName,osVersion,browserName, this.getOS());
+
+        document.body.style.backgroundImage = "none";
+        document.body.style.backgroundPosition = "center";
+        document.body.style.background = "#313131";
 
         return (
             <div className="abs-center roboto-condensed">

@@ -99,8 +99,6 @@ export default class Inicio extends Component {
             ReactDOM.render(<CambiarClave />, seccion);
         } else if (e.target.id == "show") {
             ReactDOM.render(<div />, seccion);
-        } else if (e.target.id == "salir") {
-            ReactDOM.render(<Redirect to="/" />);
         }
         $(".navbar-toggler-icon").click();
     }
