@@ -13,7 +13,7 @@ import logoTwitter from "../../../../public/images/social/twitter-icon.svg";
 import logoInstagram from "../../../../public/images/social/instagram-icon.svg";
 library.add(faSync);
 
-import "./css/Login.css"
+import "./css/Login.css";
 
 export default class Login extends Component {
     constructor(props) {
@@ -48,7 +48,7 @@ export default class Login extends Component {
         e.preventDefault();
 
         axios
-            .post(this.state.url + "/api/user/login", {
+            .post(this.state.url + "/api/usuarios/login", {
                 correo,
                 pass
             })

@@ -17,20 +17,28 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//defifinir los puntos de entrada para los endpoints de usuarios
+Route::group(['prefix' => 'usuarios'], function() {
+	Route::post('/login', 'LoginController@ajaxPostLogin');
+    //rutas de autenticacion con google y facebook
+    Route::get('auth/{provider}', 'SocialAuthController@redirect');
+    Route::get('auth/{provider}/callback', 'SocialAuthController@callback');
 
-
-Route::group(['prefix' => 'user'], function() {
-        Route::post('/login', 'LoginController@ajaxPostLogin');
-        //EL METODO DE ABAJO ES SOLO UNA PRUEBA PARA TRAER EL CLIENTE
-        //LA IDEA ES TRAERLO POR TOKEN
-        Route::get('/id/{id}', 'ClienteController@getCliente');
-
-        Route::post('/clubs-perfil', 'PerfilController@ajaxPostClubs');
-        Route::post('/editar/perfil', 'ClienteController@editarCliente');
+    //LA IDEA ES TRAERLO POR TOKEN
+    Route::get('/id/{id}', 'ClienteController@getCliente');
+    Route::post('/clubs-perfil', 'PerfilController@ajaxPostClubs');
+    Route::post('/editar/perfil', 'ClienteController@editarCliente');
 });
 
+// Permite difinir los puntos de entrada para los endpoints de eventos
 Route::group(['prefix' => 'eventos'], function() {
-    Route::get('/', 'EventoController@index');
-    Route::get('/id/{id}', 'EventoController@show');
+    Route::get('/', 'EventoController@evento');
     Route::post('/check_ubicacion', 'QuestionEventController@ajaxEventoCheckUbicacion');
+});
+
+// Permite difinir los puntos de entrada para los endpoints de eventos
+Route::group(['prefix' => 'clientes'], function() {
+		Route::get('/estado-civil', 'RegistroController@estado_civil');
+    Route::post('/registro', 'RegistroController@ajaxPostRegistro');
+    Route::post('/club', 'RegistroController@ajaxPostClubs');
 });
