@@ -18,13 +18,23 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-
-Route::group(['prefix' => 'user'], function() {
+// Permite difinir los puntos de entrada para los endpoints de usuarios
+Route::group(['prefix' => 'usuarios'], function() {
 		Route::post('/login', 'LoginController@ajaxPostLogin');
+    //rutas de autenticacion con google y facebook
+    Route::get('auth/{provider}', 'SocialAuthController@redirect');
+    Route::get('auth/{provider}/callback', 'SocialAuthController@callback');
 });
 
+// Permite difinir los puntos de entrada para los endpoints de eventos
 Route::group(['prefix' => 'eventos'], function() {
-    Route::get('/', 'EventoController@index');
-    Route::get('/id/{id}', 'EventoController@show');
+    Route::get('/', 'EventoController@evento');
     Route::post('/check_ubicacion', 'QuestionEventController@ajaxEventoCheckUbicacion');
+});
+
+// Permite difinir los puntos de entrada para los endpoints de eventos
+Route::group(['prefix' => 'clientes'], function() {
+		Route::get('/estado-civil', 'RegistroController@estado_civil');
+    Route::post('/registro', 'RegistroController@ajaxPostRegistro');
+    Route::post('/club', 'RegistroController@ajaxPostClubs');
 });

@@ -25,6 +25,15 @@ class RegistroController extends Controller
         return view('registro', $data);
     }
 
+    //Retorna la lista de estados civiles
+    public function estado_civil(){
+
+        $estado_civil = EstadoCivil::borrado(false)->activo(true)->orderBy('Nombre', 'asc')->get();
+
+        // Retorna un objeto json con los valores del estado civil
+        return response()->json(['code' => 200, 'estado_civil' => $estado_civil]);
+    }
+
     //metodo para registrar cliente
     public function ajaxPostRegistro(ValidateRegistro $request){
 
@@ -58,8 +67,6 @@ class RegistroController extends Controller
             }
 
         }
-
-
 
         //capturo los datos y los acomodo en un arreglo
         $data = [
@@ -107,28 +114,25 @@ class RegistroController extends Controller
         }
 
     }
-        //metodo para registrar cliente con clubs
+    //metodo para registrar cliente con clubs
     public function ajaxPostClubs(Request $request){
 
         $input = $request->all();
 
         //capturo los datos y los acomodo en un arreglo
         $data = [
-            'idpais'              => $input['pais']
+            'idpais' => $input['pais']
         ];
 
         $registro = Clubs::borrado(false)->activo(true)->where('Pais',new ObjectId($data['idpais']) )->orderBy('Nombre', 'asc')->get();
         $clubs = [];
         if($registro){
-
             foreach ($registro as $club) {
                 $clubs[]=$club;
             }
-
             return response()->json(['code' => 200, 'msj' => 'Registrado exitosamente','datos'=>$clubs]);
-        }else{
-           return response()->json(['code' => 500, 'msj' => 'Error al registrar. Consulte al administrador']);
-        }
+
+        return response()->json(['code' => 500, 'msj' => 'Error al registrar. Consulte al administrador']);
 
     }
 
