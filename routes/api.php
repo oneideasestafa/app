@@ -21,9 +21,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Permite difinir los puntos de entrada para los endpoints de usuarios
 Route::group(['prefix' => 'usuarios'], function() {
 		Route::post('/login', 'LoginController@ajaxPostLogin');
-    //rutas de autenticacion con google y facebook
-    Route::get('auth/{provider}', 'SocialAuthController@redirect');
-    Route::get('auth/{provider}/callback', 'SocialAuthController@callback');
 });
 
 // Permite difinir los puntos de entrada para los endpoints de eventos
