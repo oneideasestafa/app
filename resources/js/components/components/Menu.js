@@ -1,36 +1,42 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import { Link } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSync, faDigitalTachograph } from "@fortawesome/free-solid-svg-icons";
+import { faSync } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import swal from "sweetalert2";
-import CambiarDatos from "./Perfil/CambiarDatos";
-import CambiarClave from "./CambiarClave";
-import Invitacion from "./menuApps/Invitacion";
 
 library.add(faSync);
 
 export default class Menu extends Component {
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
             tipocuenta: props.tipocuenta,
+            eventoid:props.eventoid,
             pais: props.pais,
             menuApp: [],
             url: props.url,
+            props: this.props,
             fotoproducto: props.fotoproducto == "1" ? true : false
         };
-        this.handleLogout = this.handleLogout.bind(this);
+        /**
+         * las siguientes funciones las declaro de esta manera para poder hacer uso de
+         * los props y el state en ellas
+         */
+        //this.handleLogout = this.handleLogout.bind(this);
         this.getDetener = this.getDetener.bind(this);
-        //localStorage.setItem("menusAdicionales", []);
+        this.handleMenuClick = this.handleMenuClick.bind(this);
     }
 
-    //cargo antes de renderi ar los menus adicionales asociadas al evento
+    /**
+     * Luego que se renderi a el componente hago un llamado a la ruta para traer todas las
+     * opciones adicionales del menu segun el evento
+     */
     componentWillMount() {
-        let eventoid = window.Laravel.evento;
         axios
-            .get("/ajax-eventos/" + eventoid)
+            .get("api/eventos/id/" + this.state.eventoid)
             .then(res => {
                 let arrayMenu = [];
                 for (var i = 0; i < res.data.MenuApp.length; i++) {
@@ -46,6 +52,15 @@ export default class Menu extends Component {
             .catch(function(error) {
                 console.log(error);
             });
+    }
+
+    /**
+     * Esta funcion se comunica con el componente padre(inicio) a traves de los props recibidos
+     * @param {* esta variable recibe el evento al dar click en una opcion del menu} e
+     */
+    handleMenuClick(e) {
+        e.preventDefault();
+        this.props.onClick(e);
     }
 
     getDetener() {
@@ -64,70 +79,27 @@ export default class Menu extends Component {
         );
     }
 
+    /*
+
     handleLogout(e) {
         let urlLogout = this.state.url + "/logout";
         e.preventDefault();
         localStorage.setItem("cache", "false");
         window.location.href = urlLogout;
-    }
-
-    appendChild() {
-        const element = document.getElementById("inicio");
-    }
-
-    handleMenuClick(e) {
-        e.preventDefault();
-        const target_id = e.target.id;
-        const div_contenido = document.getElementById("content");
-        const boton = document.getElementById("inicio");
-        const props = Object.assign({}, div_contenido.dataset);
-
-        if (target_id == "show") {
-            // se limpia la pantalla al seleccionar Show en el menú
-            div_contenido.innerHTML = "";
-            // se muestra el botón Activar Flash
-            boton.style.display = "block";
-        } else if (target_id == "perfil") {
-            // se oculta el botón al mostrar el componente CambiarDatos
-            boton.style.display = "none";
-            // se oculta el menú al mostrar el componente CambiarDatos
-            $(".navbar-toggler").click();
-            // se renderiza el componente CambiarDatos
-            ReactDOM.render(<CambiarDatos {...props} />, div_contenido);
-        } else if (target_id == "cambiar-password") {
-            // se oculta el botón al mostrar el componente CambiarClave
-            boton.style.display = "none";
-            // se oculta el menú al mostrar el componente CambiarClave
-            $(".navbar-toggler").click();
-            // se renderiza el componente CambiarClave
-            ReactDOM.render(<CambiarClave {...props} />, div_contenido);
-        } else if (target_id == "invitacion") {
-            // se oculta el botón al mostrar el componente CambiarClave
-            boton.style.display = "none";
-            // se oculta el menú al mostrar el componente CambiarClave
-            $(".navbar-toggler").click();
-            // se renderiza el componente CambiarClave
-            ReactDOM.render(<Invitacion {...props} />, div_contenido);
-        }
-    }
+    }*/
 
     render() {
         let url = this.state.url;
-        let urlInicio = url + "/";
-        let urlPerfil = url + "/cliente/perfil";
-        let urlCambiarClave = url + "/cliente/cambiar/password";
-        let urlChatSoporte = url + "/chat/soporte";
-        let urlInvitacion = url + "/invitacion";
 
         let changePassword = (
             <li className="nav-item">
-                <a className="nav-link" href={urlCambiarClave}>
+                <a className="nav-link" href="#" onClick={this.handleMenuClick}>
                     <i className="fas fa-lock fa-lg" />
                     &nbsp;&nbsp; Contraseña
                 </a>
             </li>
         );
-
+        //id de todas las opciones adicionales en bd:
         //5cc47bc79630550a4fd23c8d Agenda
         //5cc47c569630550a4fd23c9a Encuesta y voto
         //5cc47c929630550a4fd23c9d Guardaropas
@@ -172,7 +144,7 @@ export default class Menu extends Component {
                     </a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="#">
+                    <a className="nav-link" id="notificaciones" href="#" onClick={this.handleMenuClick}>
                         <i className="fab fa-weixin fa-lg" />
                         &nbsp;&nbsp; Notificaciones
                     </a>
@@ -189,7 +161,7 @@ export default class Menu extends Component {
                     .getItem("menusAdicionales")
                     .includes("5cc47b4af39c6a0a4f6a4de4") ? (
                     <li className="nav-item">
-                        <a className="nav-link" href={urlInvitacion}>
+                        <a className="nav-link" id="invitacion" href="#" onClick={this.handleMenuClick}>
                             <i className="fas fa-user-friends fa-lg" />
                             &nbsp;&nbsp; Invitación
                         </a>
@@ -203,7 +175,7 @@ export default class Menu extends Component {
                     .getItem("menusAdicionales")
                     .includes("5cc47bc79630550a4fd23c8d ") ? (
                     <li className="nav-item">
-                        <a className="nav-link" href={urlInvitacion}>
+                        <a className="nav-link" id="agenda" href="#" onClick={this.handleMenuClick} >
                             <i className="fas fa-address-book" />
                             &nbsp;&nbsp; Agenda
                         </a>
@@ -216,7 +188,7 @@ export default class Menu extends Component {
                     .getItem("menusAdicionales")
                     .includes("5cc47c569630550a4fd23c9a ") ? (
                     <li className="nav-item">
-                        <a className="nav-link" href={urlInvitacion}>
+                        <a className="nav-link" id="Encuesta-y-voto" href="#" onClick={this.handleMenuClick} >
                             <i className="fas fa-vote-yea" />
                             &nbsp;&nbsp; Encuesta y voto
                         </a>
@@ -229,7 +201,7 @@ export default class Menu extends Component {
                     .getItem("menusAdicionales")
                     .includes("5cc47c929630550a4fd23c9d ") ? (
                     <li className="nav-item">
-                        <a className="nav-link" href={urlInvitacion}>
+                        <a className="nav-link" id="guardaropas" href="#" onClick={this.handleMenuClick} >
                             <i className="fas fa-tshirt" />
                             &nbsp;&nbsp; Guardaropas
                         </a>
@@ -242,7 +214,7 @@ export default class Menu extends Component {
                     .getItem("menusAdicionales")
                     .includes("5cc47c929630550a4fd23c9d ") ? (
                     <li className="nav-item">
-                        <a className="nav-link" href={urlInvitacion}>
+                        <a className="nav-link" id="menu" href="#" onClick={this.handleMenuClick} >
                             <i className="fas fa-file-alt" />
                             &nbsp;&nbsp; Menú
                         </a>
@@ -255,7 +227,7 @@ export default class Menu extends Component {
                     .getItem("menusAdicionales")
                     .includes("5cc47bdc9630550a4fd23c8f ") ? (
                     <li className="nav-item">
-                        <a className="nav-link" href={urlInvitacion}>
+                        <a className="nav-link" id="gastronomico" href="#" onClick={this.handleMenuClick} >
                             <i className="fas fa-drumstick-bite" />
                             &nbsp;&nbsp; Gastronómico
                         </a>
@@ -268,7 +240,7 @@ export default class Menu extends Component {
                     .getItem("menusAdicionales")
                     .includes("5cc47be79630550a4fd23c90 ") ? (
                     <li className="nav-item">
-                        <a className="nav-link" href={urlInvitacion}>
+                        <a className="nav-link" id="servicios" href="#" onClick={this.handleMenuClick} >
                             <i className="fas fa-concierge-bell" />
                             &nbsp;&nbsp; Servicios
                         </a>
@@ -281,7 +253,7 @@ export default class Menu extends Component {
                     .getItem("menusAdicionales")
                     .includes("5cc47bf29630550a4fd23c91 ") ? (
                     <li className="nav-item">
-                        <a className="nav-link" href={urlInvitacion}>
+                        <a className="nav-link" id="book-digital" href="#" onClick={this.handleMenuClick} >
                             <i className="fas fa-book" />
                             &nbsp;&nbsp; Book Digital
                         </a>
@@ -294,7 +266,7 @@ export default class Menu extends Component {
                     .getItem("menusAdicionales")
                     .includes("5cc47bfe9630550a4fd23c92 ") ? (
                     <li className="nav-item">
-                        <a className="nav-link" href={urlInvitacion}>
+                        <a className="nav-link" id="photo-call" href="#" onClick={this.handleMenuClick} >
                             <i className="fas fa-camera" />
                             &nbsp;&nbsp; Photo Call
                         </a>
@@ -307,7 +279,7 @@ export default class Menu extends Component {
                     .getItem("menusAdicionales")
                     .includes("5cc47c099630550a4fd23c93 ") ? (
                     <li className="nav-item">
-                        <a className="nav-link" href={urlInvitacion}>
+                        <a className="nav-link" id="show-de-luces" href="#" onClick={this.handleMenuClick} >
                             <i className="fas fa-lightbulb" />
                             &nbsp;&nbsp; Show de luces
                         </a>
@@ -320,7 +292,7 @@ export default class Menu extends Component {
                     .getItem("menusAdicionales")
                     .includes("5cc47c149630550a4fd23c94 ") ? (
                     <li className="nav-item">
-                        <a className="nav-link" href={urlInvitacion}>
+                        <a className="nav-link" id="instagram" href="#" onClick={this.handleMenuClick} >
                             <i className="fab fa-instagram" />
                             &nbsp;&nbsp; Instagram
                         </a>
@@ -333,8 +305,8 @@ export default class Menu extends Component {
                     .getItem("menusAdicionales")
                     .includes("5cc47c1f9630550a4fd23c95 ") ? (
                     <li className="nav-item">
-                        <a className="nav-link" href={urlInvitacion}>
-                            <i className="fab fa-instagram" />
+                        <a className="nav-link" id="twitter" href="#" onClick={this.handleMenuClick} >
+                            <i className="fab fa-twitter" />
                             &nbsp;&nbsp; Twitter
                         </a>
                     </li>
@@ -346,7 +318,7 @@ export default class Menu extends Component {
                     .getItem("menusAdicionales")
                     .includes("5cc47c2e9630550a4fd23c96 ") ? (
                     <li className="nav-item">
-                        <a className="nav-link" href={urlInvitacion}>
+                        <a className="nav-link" id="album" href="#" onClick={this.handleMenuClick} >
                             <i className="fas fa-images" />
                             &nbsp;&nbsp; Álbum
                         </a>
@@ -359,7 +331,7 @@ export default class Menu extends Component {
                     .getItem("menusAdicionales")
                     .includes("5cc47c369630550a4fd23c97 ") ? (
                     <li className="nav-item">
-                        <a className="nav-link" href={urlInvitacion}>
+                        <a className="nav-link" id="juegos" href="#" onClick={this.handleMenuClick} >
                             <i className="fas fa-gamepad" />
                             &nbsp;&nbsp; Juegos
                         </a>
@@ -372,7 +344,7 @@ export default class Menu extends Component {
                     .getItem("menusAdicionales")
                     .includes("5cc47c419630550a4fd23c98 ") ? (
                     <li className="nav-item">
-                        <a className="nav-link" href={urlInvitacion}>
+                        <a className="nav-link" id="cancion" href="#" onClick={this.handleMenuClick} >
                             <i className="fas fa-music" />
                             &nbsp;&nbsp; Canción
                         </a>
@@ -385,7 +357,7 @@ export default class Menu extends Component {
                     .getItem("menusAdicionales")
                     .includes("5cc47c729630550a4fd23c9b ") ? (
                     <li className="nav-item">
-                        <a className="nav-link" href={urlInvitacion}>
+                        <a className="nav-link" id="historia" href="#" onClick={this.handleMenuClick} >
                             <i className="fas fa-landmark" />
                             &nbsp;&nbsp; Historia
                         </a>
@@ -398,7 +370,7 @@ export default class Menu extends Component {
                     .getItem("menusAdicionales")
                     .includes("5cc47ba29630550a4fd23c8c ") ? (
                     <li className="nav-item">
-                        <a className="nav-link" href={urlInvitacion}>
+                        <a className="nav-link" id="regalos" href="#" onClick={this.handleMenuClick} >
                             <i className="fas fa-gift" />
                             &nbsp;&nbsp; Regalos
                         </a>
@@ -411,7 +383,7 @@ export default class Menu extends Component {
                     .getItem("menusAdicionales")
                     .includes("5cc47c4c9630550a4fd23c99 ") ? (
                     <li className="nav-item">
-                        <a className="nav-link" href={urlInvitacion}>
+                        <a className="nav-link" id="deseada" href="#" onClick={this.handleMenuClick} >
                             <i className="fas fa-laugh" />
                             &nbsp;&nbsp; Deseada
                         </a>
@@ -424,7 +396,7 @@ export default class Menu extends Component {
                     .getItem("menusAdicionales")
                     .includes("5cc47c7b9630550a4fd23c9c") ? (
                     <li className="nav-item">
-                        <a className="nav-link" href={urlInvitacion}>
+                        <a className="nav-link" id="opiniones-y-valoraciones" href="#" onClick={this.handleMenuClick} >
                             <i className="fas fa-star-half-alt" />
                             &nbsp;&nbsp; Opiniones y Valoraciones
                         </a>
@@ -436,7 +408,7 @@ export default class Menu extends Component {
                     <a
                         className="nav-link"
                         href="#"
-                        id="cambiar-password"
+                        id="cambiar-contraseña"
                         onClick={this.handleMenuClick}
                     >
                         <i className="fas fa-lock fa-lg" />
@@ -444,12 +416,8 @@ export default class Menu extends Component {
                     </a>
                 </li>
                 <li className="nav-item">
-                    <a
-                        className="nav-link"
-                        href="#"
-                        onClick={this.handleLogout}
-                    >
-                        <i className="fas fa-sign-out-alt fa-lg" />
+                    <a className="nav-link" href="/">
+                    <i className="fas fa-sign-out-alt fa-lg" />
                         &nbsp;&nbsp; Salir
                     </a>
                 </li>

@@ -4,20 +4,24 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
-import InputMask from 'react-input-mask';
 import swal from "sweetalert2";
-import imgAR from '../../../../public/images/countrys/ar.png';
-import imgCL from '../../../../public/images/countrys/es.png';
+import imgAR from '../../../../../public/images/countrys/ar.png';
+import imgCL from '../../../../../public/images/countrys/es.png';
 import reactMobileDatePicker from 'react-mobile-datepicker';
-import iconCivil from '../../../../public/images/EstadoCivil01.png';
+import iconCivil from '../../../../../public/images/EstadoCivil01.png';
 import moment from 'moment';
 
+/** Importando estilos css del componente */
+import "../css/CambiarDatos.css"
 
 library.add( faSync);
 
 
 const Datepicker = reactMobileDatePicker;
 
+/**
+ * Creando el json para trabajar con las fechas
+ */
 const dateConfig = {
     'year': {
         format: 'YYYY',
@@ -43,10 +47,11 @@ export default class CambiarDatos extends Component {
         super(props);
         this.state = {
             url: props.url,
+            idUsuario: props.usuarioid,
             nombre: '',
             apellido: '',
             sexo: '',
-            fechan: '',
+            FechaNacimiento: '',
             equipo: '',
             civil: '',
             clubs:[],
@@ -61,7 +66,7 @@ export default class CambiarDatos extends Component {
             foto: '',
             fotonew:'',
             flagPais: '',
-            isLoading: false
+            isLoading: true
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -74,6 +79,68 @@ export default class CambiarDatos extends Component {
 
     }
 
+    /**
+     * Componente que se carga al renderi ar por primera ve
+     * aqui traigo la informacion del usuario logeado
+     */
+    componentWillMount() {
+        axios
+            .get("api/clientes/id/" + this.state.idUsuario)
+            .then(res => {
+                let r = res.data;
+                    if(r.code === 200){
+                        this.setState({
+                            nombre: this.verificarNull(r.cliente.Nombre),
+                            apellido: this.verificarNull(r.cliente.Apellido),
+                            correo: this.verificarNull(r.cliente.Correo),
+                            sexo: this.verificarNull(r.cliente.Sexo),
+                            equipo: this.verificarNull(r.cliente.Equipo),
+                            fechaNacimiento: this.verificarNull(moment(r.cliente.FechaNacimiento, 'DD/MM/YYYY').toDate()),
+                            civil: this.verificarNull(r.cliente.EstadoCivil_id),
+                            cuenta: this.verificarNull(r.cliente.TipoCuenta),
+                            pais: this.verificarNull(r.cliente.Pais_id),
+                            estadosciviles: this.verificarNull(r.civiles),
+                            telefono: this.verificarNull(r.cliente.Telefono),
+                            foto: this.verificarNull(r.cliente.Foto),
+                            isLoading: false
+                        });
+        
+                        let hoy = new Date();
+              
+                        if(r.cliente.Pais_id){
+                            this.clubs2(r.cliente.Pais_id);
+                        }
+
+                    }else if(r.code === 500){
+
+                        console.log(r.msj);
+
+                    }
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+    }
+
+    /**
+     * Esta funcion recibe una cadena y verifica que no sea null
+     * esto con el objetivo de que podamos trabajar con ella en el componente
+     * como " " y no como null
+     * @param {string} cadena 
+     */
+    verificarNull(cadena){
+        if(cadena == null){
+            return "";
+        }
+        return cadena;
+    }
+
+    /**
+     * Este evento se ejecuta al cambiar la foto del usuario
+     * estoy con el objetivo de guardar la url de la misma 
+     * para posteriormente ser guardada en bd
+     * @param {evento} e 
+     */
     handleChange(e) {
 
         if(e.target.name == 'fileFoto'){
@@ -107,6 +174,11 @@ export default class CambiarDatos extends Component {
 
     }
 
+    /**
+     * esta funcioncion se ejecuta al cargar por los componentes
+     * trae como resultado la lista de clubs de espa;a/argentina
+     * @param {evento} e 
+     */
     clubs(e) {
 
         this.setState({
@@ -118,9 +190,8 @@ export default class CambiarDatos extends Component {
 
         let pais = e.target.value;
 
-        axios.post('/ajax-post-clubs-perfil', { pais })
+        axios.post('api/clientes/clubs-perfil', { pais })
             .then(res => {
-
 
                 let r = res.data;
 
@@ -155,13 +226,17 @@ export default class CambiarDatos extends Component {
             });
     }
 
+    /**
+     * esta funcioncion se ejecuta al cargar por los componentes
+     * trae como resultado la lista de clubs de espa;a/argentina
+     * @param {evento} pais 
+     */
     clubs2(pais) {
 
         let self = this;
 
-        axios.post('/ajax-post-clubs-perfil', { pais })
+        axios.post('api/clientes/clubs-perfil', { pais })
             .then(res => {
-
                 let r = res.data;
 
                 if(r.code === 200){
@@ -195,20 +270,35 @@ export default class CambiarDatos extends Component {
             });
     }
 
-
+    /**
+     * Esta funcion se activa al dar click fuera del modal de fecha
+     * @param {*} isOpen 
+     */
     handleToggle(isOpen) {
         this.setState({ isOpen });
     };
 
+    /**
+     * Esta funcion abre el modal de fechas al dar click en fecha
+     */
     handleThemeToggle() {
         var theme='android-dark';
         this.setState({ theme, isOpen: true });
     };
 
+    /**
+     * Esta funcion recibe la fecha al seleccionar en el modal de fechas
+     * @param {fecha} time 
+     */
     handleSelect(time){
-        this.setState({ time, isOpen: false, fechan:time });
+        this.setState({ time, isOpen: false, FechaNacimiento:time });
     };
 
+    /**
+     * Esta funcion se encarga de enviar la peticion API
+     * para actuali ar el perfil del cliente
+     * @param {evento} e 
+     */
     handleSubmit(e) {
 
         e.preventDefault();
@@ -219,11 +309,9 @@ export default class CambiarDatos extends Component {
             isLoading: true
         });
 
-        let {pais, telefono, fechan, equipo, sexo, civil, nombre, apellido, url, fotonew, tipofoto} = this.state;
-
-        axios.post('/ajax-post-perfil', { pais, telefono, fechan, equipo, sexo, civil, nombre, apellido, fotonew, tipofoto})
+        let {idUsuario,pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, url, fotonew, tipofoto} = this.state;
+        axios.post('api/clientes/editar/perfil/', { idUsuario,pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, fotonew, tipofoto})
             .then(res => {
-
                 self.setState({
                     isLoading: false
                 });
@@ -243,7 +331,7 @@ export default class CambiarDatos extends Component {
 
                             this.getPerfil();
 
-                            window.location.href= url + '/inicio';
+                            //window.location.href= url + '/inicio';
 
                         }
                     });
@@ -280,60 +368,12 @@ export default class CambiarDatos extends Component {
             });
     }
 
-    getPerfil(){
-
-        let self = this;
-
-        axios.post('/ajax-get-perfil', {
-        })
-            .then(res => {
-                if(res){
-
-                    let r = res.data;
-
-                    if(r.code === 200){
-
-                        self.setState({
-                            nombre: r.cliente.Nombre,
-                            apellido: r.cliente.Apellido,
-                            correo: r.cliente.Correo,
-                            sexo: r.cliente.Sexo,
-                            equipo: r.cliente.Equipo,
-                            fechan: moment(r.cliente.FechaNacimiento, 'DD/MM/YYYY').toDate(),
-                            civil: r.cliente.EstadoCivil_id,
-                            cuenta: r.cliente.TipoCuenta,
-                            pais: r.cliente.Pais_id,
-                            estadosciviles: r.civiles,
-                            telefono: r.cliente.Telefono,
-                            foto: r.cliente.Foto
-                        });
-
-                        if(r.cliente.Pais_id){
-                            this.clubs2(r.cliente.Pais_id);
-                        }
-
-                    }else if(r.code === 500){
-
-                        console.log(r.msj);
-
-                    }
-
-                }
-            })
-            .catch(function (error) {
-
-            });
-
-    }
-
-    componentDidMount(){
-        this.getPerfil();
-    }
 
     render() {
 
         let tagClass;
         let {nombre, apellido, correo, cuenta, pais, telefono, sexo, civil, equipo, foto, fotonew, tipofoto} = this.state;
+        let hoy = new Date();
 
         if(cuenta == 'ONE'){
             tagClass = 'badge badge-one';
@@ -342,12 +382,19 @@ export default class CambiarDatos extends Component {
         }else if(cuenta == 'Google'){
             tagClass = 'badge badge-google';
         }
+        
 
-        return (
+        if(this.state.isLoading){
+            return(
+                <div className="abs-center">
+                    <FontAwesomeIcon icon="sync" size="lg" spin />
+                </div>
+            );
+        }else {
+            return (
+            <div className="mt-5">
 
-            <div className="mt-4">
-
-                <form method="POST" onSubmit={this.handleSubmit} className="form-inside">
+                <form method="POST" onSubmit={this.handleSubmit} className="form-inside pr-3 pl-3 pt-4">
 
                     {foto != '' ?
 
@@ -374,18 +421,18 @@ export default class CambiarDatos extends Component {
 
                     <div className="input-group mb-4 mt-4">
                         <div className="input-group-prepend">
-                            <i className="fas fa-calendar-alt fa-lg" style={{fontSize: '1.714em'}}></i>
+                            <i className="fas fa-calendar-alt fa-lg icono-fecha"></i>
                         </div>
                         <a
-                            className="select-btn sm" style={{'border': '1px solid #fff','padding-top': '0.5rem','padding-bottom': '0.5rem','width': '88%','color': '#dadada'}}
+                            className="boton-fecha select-btn sm" 
                             onClick={this.handleThemeToggle}>
-                            {this.state.fechan==''?'Ingrese su Fecha de Nacimiento':this.state.fechan.getDate()+'/'+(this.state.fechan.getMonth() + 1) +'/'+this.state.fechan.getFullYear()}
+                            {this.state.fechaNacimiento==''?'Ingrese su Fecha de Nacimiento':this.state.fechaNacimiento.getDate()+'/'+(this.state.fechaNacimiento.getMonth() + 1) +'/'+this.state.fechaNacimiento.getFullYear()}
                         </a>
                         <Datepicker
                             showCaption={true}
                             showHeader={true}
                             headerFormat={'DD/MM/YYYY'}
-                            value={this.state.fechan}
+                            value={this.state.fechaNacimiento}
                             theme={this.state.theme}
                             isOpen={this.state.isOpen}
                             onSelect={this.handleSelect}
@@ -530,8 +577,8 @@ export default class CambiarDatos extends Component {
                     </div>
 
                     { this.state.equipo!='' ?
-                        <div className="text-center" style={{'margin-bottom': '15px'}}>
-                            <img src={'/images/clubs/'+this.state.equipo+'.png'} style={{'height': '4rem'}}/>
+                        <div className="text-center contenedor-imagen-equipo" >
+                            <img className="imagen-equipo" src={'/images/clubs/'+this.state.equipo+'.png'} />
                         </div>
                         :''
                     }
@@ -547,16 +594,9 @@ export default class CambiarDatos extends Component {
                 </form>
 
             </div>
-        );
+            );
+        }
     }
 }
 
-if (document.getElementById('cambiar-datos-perfil')) {
 
-    const element = document.getElementById('cambiar-datos-perfil');
-
-    const props = Object.assign({}, element.dataset);
-
-    ReactDOM.render(<CambiarDatos {...props} />, element);
-
-}

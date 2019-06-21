@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\ValidateRegistro;
 use App\Http\Requests\ValidatePerfil;
 use App\Models\MongoDB\Cliente;
 use App\Models\MongoDB\Clubs;

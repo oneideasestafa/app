@@ -17,8 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-// Permite difinir los puntos de entrada para los endpoints de usuarios
+//defifinir los puntos de entrada para los endpoints de usuarios
 Route::group(['prefix' => 'usuarios'], function() {
 		Route::post('/login', 'LoginController@ajaxPostLogin');
 });
@@ -26,12 +25,21 @@ Route::group(['prefix' => 'usuarios'], function() {
 // Permite difinir los puntos de entrada para los endpoints de eventos
 Route::group(['prefix' => 'eventos'], function() {
     Route::get('/', 'EventoController@evento');
-    Route::post('/check_ubicacion', 'QuestionEventController@ajaxEventoCheckUbicacion');
+    Route::get('/id/{id}','EventoController@getEvento');
+    Route::post('/check_ubicacion', 'EventoController@eventoCheckUbicacion');
+    Route::get('/invitacion/{id}','EventoController@getInvitacionEvento');
 });
 
 // Permite difinir los puntos de entrada para los endpoints de eventos
 Route::group(['prefix' => 'clientes'], function() {
-		Route::get('/estado-civil', 'RegistroController@estado_civil');
-    Route::post('/registro', 'RegistroController@ajaxPostRegistro');
-    Route::post('/club', 'RegistroController@ajaxPostClubs');
+    //LA IDEA ES TRAERLO POR TOKEN
+    Route::get('/id/{id}', 'ClienteController@getCliente');
+    Route::post('/clubs-perfil', 'ClienteController@getClubsPais');
+    Route::post('/editar/perfil', 'ClienteController@editarCliente');
+    Route::post('/editar/cambiar-clave', 'ClienteController@cambiarClave');
+
+
+	Route::get('/estado-civil', 'ClienteController@estado_civil');
+    Route::post('/registro', 'ClienteController@crearCliente');
+    //Route::post('/club', 'RegistroController@ajaxPostClubs');
 });
