@@ -252,7 +252,7 @@ export default class RegistroCliente extends React.Component {
 
         var pais = e.target.value;
         var url = this.state.url;
-        axios.post('api/usuarios/clubs-perfil', { pais })
+        axios.post('api/clientes/clubs-perfil', { pais })
             .then(res => {
 
 

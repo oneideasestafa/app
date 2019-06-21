@@ -85,7 +85,7 @@ export default class CambiarDatos extends Component {
      */
     componentWillMount() {
         axios
-            .get("api/usuarios/id/" + this.state.idUsuario)
+            .get("api/clientes/id/" + this.state.idUsuario)
             .then(res => {
                 let r = res.data;
                     if(r.code === 200){
@@ -190,7 +190,7 @@ export default class CambiarDatos extends Component {
 
         let pais = e.target.value;
 
-        axios.post('api/usuarios/clubs-perfil', { pais })
+        axios.post('api/clientes/clubs-perfil', { pais })
             .then(res => {
 
                 let r = res.data;
@@ -235,7 +235,7 @@ export default class CambiarDatos extends Component {
 
         let self = this;
 
-        axios.post('api/usuarios/clubs-perfil', { pais })
+        axios.post('api/clientes/clubs-perfil', { pais })
             .then(res => {
                 let r = res.data;
 
@@ -310,7 +310,7 @@ export default class CambiarDatos extends Component {
         });
 
         let {idUsuario,pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, url, fotonew, tipofoto} = this.state;
-        axios.post('api/usuarios/editar/perfil/', { idUsuario,pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, fotonew, tipofoto})
+        axios.post('api/clientes/editar/perfil/', { idUsuario,pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, fotonew, tipofoto})
             .then(res => {
                 self.setState({
                     isLoading: false

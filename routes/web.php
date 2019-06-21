@@ -16,7 +16,7 @@ Route::middleware(['guest'])->group(function(){
 
     //ruta inicial
     Route::get('/', 'IndexController@index')->name('index1');
-    //ruta inicial
+   /* //ruta inicial
     Route::get('/index', 'IndexController@index')->name('index');
 
     //ruta del login
@@ -39,10 +39,10 @@ Route::middleware(['guest'])->group(function(){
     Route::post('/reset-password/{token}', 'RecoveryPasswordController@resetPassword')->name('reset-password');
 
     //ruta visitante
-    Route::get('/demo', 'DemoController@login')->name('login-demo');
+    Route::get('/demo', 'DemoController@login')->name('login-demo');*/
 
 });
-
+/*
 //'prevent-back-history'
 Route::middleware(['auth', 'prevent-back-history'])->group(function(){
 
@@ -83,6 +83,6 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function(){
 
     
 
-});
+});*/
 
 ?>

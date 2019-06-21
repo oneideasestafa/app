@@ -61,7 +61,7 @@ export default class CambiarClave extends Component {
         } = this.state;
 
         axios
-            .post("/api/usuarios/editar/cambiar-clave/", {
+            .post("/api/clientes/editar/cambiar-clave/", {
                 oldpassword,
                 newpassword,
                 repeatpassword,
