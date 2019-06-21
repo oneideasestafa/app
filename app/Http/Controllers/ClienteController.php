@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\ValidatePerfil;
+Use App\Http\Requests\ValidateCambiarPassword;
 use Illuminate\Http\Request;
 use App\Models\MongoDB\Cliente;
 use App\Models\MongoDB\EstadoCivil;
@@ -61,7 +62,7 @@ class ClienteController extends Controller
         public function editarCliente(ValidatePerfil $request){
     
                 $input = $request->all();
-                //dd($input);
+                
                 $fnac = Carbon::parse($input['fechaNacimiento'])->format('d/m/Y');
     
                 $tipofoto = $input['tipofoto'];
@@ -130,6 +131,42 @@ class ClienteController extends Controller
                     return response()->json(['code' => 500, 'msj' => 'Error al Actualizar data']);
                 }
     
+            }
+
+            public function cambiarClave(ValidateCambiarPassword $request){
+
+                $input = $request->all();
+                
+                //capturo los datos y los acomodo en un arreglo
+                $data = [
+                    'old'  => $input['oldpassword'],
+                    'new'  => $input['newpassword']
+                ];
+        
+                
+        
+                    //ubico el password actual del usuario
+                    $user = Cliente::find($input['idUsuario']);
+        
+                    //verifico que conicida con el ingresado, sino mando un error
+                    if(Hash::check($data['old'], $user->Password)){
+        
+                        //guardo el nuevo password en la bd
+                        $user->Password = Hash::make($data['new']);
+        
+                        //verifico que fue guardado
+                        if($user->save()){
+                            return response()->json(['code' => 200, 'msj' => 'Clave cambiada exitosamente']);
+                        }else{
+                            return response()->json(['code' => 500, 'msj' => 'Ocurrio un problema al cambiar la clave']);
+                        }
+        
+                    }else{
+                        return response()->json(['code' => 600, 'msj' => 'Clave actual incorrecta']);
+                    }
+        
+                
+        
             }
 
 }

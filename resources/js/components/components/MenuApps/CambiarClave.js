@@ -6,16 +6,20 @@ import { faSync } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import swal from "sweetalert2";
 
+/**Importando estilos del componente */
+import "../css/CambiarClave.css";
+
 library.add(faSync);
 
 export default class CambiarClave extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             url: window.location.origin.toString(),
             oldpassword: "",
             newpassword: "",
             repeatpassword: "",
+            idUsuario: this.props.usuarioid,
             isLoading: false
         };
 
@@ -23,12 +27,22 @@ export default class CambiarClave extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    /**
+     * Esta funcion capta el cambio del input mientras se va modificando su valor
+     * @param {evento} e
+     */
     handleChange(e) {
         this.setState({
             [e.target.name]: e.target.value
         });
     }
 
+    /**
+     * Este evento se manda al dar click en actuali ar
+     * se mandara la peticion API al servidor para poder cambiar la clave
+     * del cliente
+     * @param {evento} e
+     */
     handleSubmit(e) {
         e.preventDefault();
 
@@ -38,13 +52,20 @@ export default class CambiarClave extends Component {
             isLoading: true
         });
 
-        let { oldpassword, newpassword, repeatpassword, url } = this.state;
+        let {
+            oldpassword,
+            newpassword,
+            repeatpassword,
+            url,
+            idUsuario
+        } = this.state;
 
         axios
-            .post("/ajax-post-cambiar-clave", {
+            .post("/api/usuarios/editar/cambiar-clave/", {
                 oldpassword,
                 newpassword,
-                repeatpassword
+                repeatpassword,
+                idUsuario
             })
             .then(res => {
                 self.setState({
@@ -68,7 +89,7 @@ export default class CambiarClave extends Component {
                         confirmButtonText: "Ok"
                     }).then(result => {
                         if (result.value) {
-                            window.location.href = url + "/inicio";
+                            //window.location.href = url + "/inicio";
                         }
                     });
                 } else if (r.code === 500) {
@@ -107,11 +128,11 @@ export default class CambiarClave extends Component {
         let { oldpassword, newpassword, repeatpassword } = this.state;
 
         return (
-            <div>
+            <div className="contenedor-cambiar-contrasena">
                 <form
                     method="POST"
                     onSubmit={this.handleSubmit}
-                    className="form-inside"
+                    className="form-inside form-cambiar-contrasena"
                 >
                     <div className="input-group mb-4">
                         <div className="input-group-prepend">

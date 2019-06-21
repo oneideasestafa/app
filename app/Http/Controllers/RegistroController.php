@@ -13,8 +13,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Image, Storage, File;
 
-class RegistroController extends Controller
-{
+class RegistroController extends Controller{
 
     //metodo que crea la vista
     public function index(){
@@ -29,7 +28,7 @@ class RegistroController extends Controller
     public function estado_civil(){
 
         $estado_civil = EstadoCivil::borrado(false)->activo(true)->orderBy('Nombre', 'asc')->get();
-
+        
         // Retorna un objeto json con los valores del estado civil
         return response()->json(['code' => 200, 'estado_civil' => $estado_civil]);
     }
@@ -134,6 +133,7 @@ class RegistroController extends Controller
 
         return response()->json(['code' => 500, 'msj' => 'Error al registrar. Consulte al administrador']);
 
+        }
     }
 
 }

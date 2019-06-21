@@ -13,6 +13,7 @@ import logoTwitter from "../../../../public/images/social/twitter-icon.svg";
 import logoInstagram from "../../../../public/images/social/instagram-icon.svg";
 library.add(faSync);
 
+/**Importando estilos del componente */
 import "./css/Login.css";
 
 export default class Login extends Component {
@@ -29,12 +30,22 @@ export default class Login extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
+    /**
+     * Esta funcion va cambiando el state mientras modificamos los inputs
+     * @param {evento} e
+     */
     handleChange(e) {
         this.setState({
             [e.target.name]: e.target.value
         });
     }
 
+    /**
+     * Esta funcion se dispara al dar submit en login
+     * aqui se verificara las credenciales del sistema y se procedera a un login satisfactorio
+     * o erroneo
+     * @param {evento} e
+     */
     handleLogin(e) {
         let self = this;
 
@@ -42,7 +53,6 @@ export default class Login extends Component {
             isLoading: true
         });
 
-        let urlInicio = this.state.url + "/question-event";
         let { correo, pass } = this.state;
 
         e.preventDefault();

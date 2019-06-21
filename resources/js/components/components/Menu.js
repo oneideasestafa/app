@@ -79,20 +79,17 @@ export default class Menu extends Component {
         );
     }
 
+    /*
+
     handleLogout(e) {
         let urlLogout = this.state.url + "/logout";
         e.preventDefault();
         localStorage.setItem("cache", "false");
         window.location.href = urlLogout;
-    }
+    }*/
 
     render() {
         let url = this.state.url;
-        let urlInicio = url + "/";
-        let urlPerfil = url + "/cliente/perfil";
-        let urlCambiarClave = url + "/cliente/cambiar/password";
-        let urlChatSoporte = url + "/chat/soporte";
-        let urlInvitacion = url + "/invitacion";
 
         let changePassword = (
             <li className="nav-item">

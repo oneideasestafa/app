@@ -28,11 +28,13 @@ Route::group(['prefix' => 'usuarios'], function() {
     Route::get('/id/{id}', 'ClienteController@getCliente');
     Route::post('/clubs-perfil', 'PerfilController@ajaxPostClubs');
     Route::post('/editar/perfil', 'ClienteController@editarCliente');
+    Route::post('/editar/cambiar-clave', 'ClienteController@cambiarClave');
 });
 
 // Permite difinir los puntos de entrada para los endpoints de eventos
 Route::group(['prefix' => 'eventos'], function() {
     Route::get('/', 'EventoController@evento');
+    Route::get('/id/{id}','EventoController@getEvento');
     Route::post('/check_ubicacion', 'QuestionEventController@ajaxEventoCheckUbicacion');
 });
 

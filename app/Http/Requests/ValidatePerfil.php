@@ -38,7 +38,7 @@ class ValidatePerfil extends FormRequest
         $rules = [
             'nombre'      => 'required',
             'apellido'    => 'required',
-            'fechan'      => 'required',
+            'fechaNacimiento'      => 'required',
             'sexo'        => 'required',
             'fotonew'     => $foto,
             'pais'        => 'required',
@@ -54,7 +54,7 @@ class ValidatePerfil extends FormRequest
             'nombre.required'    => 'El nombre es requerido',
             'apellido.required'  => 'El apellido es requerido',
             'sexo.required'  => 'El sexo es requerido',
-            'fechan.required'  => 'La fecha de nacimiento es requerido',
+            'fechaNacimiento.required'  => 'La fecha de nacimiento es requerido',
             'equipo.required'  => 'El equipo es requerido',
             'pais.required'    => 'El pais es requerido',
             'fotonew.required' => 'La imagen o foto es requerida',

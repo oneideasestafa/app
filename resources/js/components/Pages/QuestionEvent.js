@@ -35,6 +35,10 @@ export default class QuestionEvent extends Component {
 
     }
 
+    /**
+     * Esta funcion se dispara al renderi ar por primera ve y es una consulta
+     * para traer todos los eventos de bd
+     */
     componentWillMount() {
         axios
             .get("/api/eventos")
@@ -50,6 +54,11 @@ export default class QuestionEvent extends Component {
             });
     }
 
+    /**
+     * esta funcion se emite al cambiar entre las opciones de los eventos y su funcion
+     * es de cambiar el valor del state
+     * @param {evento} e 
+     */
     handleChange(e) {
 
         let name = e.target.name;
@@ -123,6 +132,11 @@ export default class QuestionEvent extends Component {
 
     }
 
+    /**
+     * 
+     * @param {string} event 
+     * @param {integer} idevent 
+     */
     handleUbicacion(event, idevent){
 
         let self = this;
@@ -191,6 +205,11 @@ export default class QuestionEvent extends Component {
     }
 
 
+    /**
+     * Esta funcion se ejecuta al dar submit al seleccionar evento
+     * se procede a validar las credenciales 
+     * @param {evento} e 
+     */
     handleContinuar(e){
 
         let self = this;
@@ -199,7 +218,6 @@ export default class QuestionEvent extends Component {
             isLoading: true
         });
 
-        let urlInicio = this.state.url+'/inicio';
         let {idUsuario,evento, sector, fila, asiento, eventoUbicacionManual, manual, ideventobad} = this.state;
 
         e.preventDefault();

@@ -82,6 +82,13 @@ export default class Inicio extends Component {
         console.log("flash");
     }
 
+    /**
+     * Esta funcion se ejecuta en un evento click sobre el menu
+     * desde aqui se maneja la redireccion de los componentes a
+     * renderi ar en el contenedor "seccion"
+     * esto leyendo el id de la opcion del menu al que se le dio click
+     * @param {evento} e
+     */
     handleMenuClick(e) {
         let seccion = document.getElementById("seccion");
         console.log(seccion);
@@ -89,14 +96,15 @@ export default class Inicio extends Component {
         this.setState({ seccion: opcionMenu });
         console.log(e.target.id);
         if (e.target.id == "perfil") {
-            console.log("estoy en perfil");
             ReactDOM.render(
                 <CambiarDatos usuarioid={this.state.usuarioid} />,
                 seccion
             );
-        } else if (e.target.id == " cambiar-contraseña") {
-            console.log("estoy aqui contrasena");
-            ReactDOM.render(<CambiarClave />, seccion);
+        } else if (e.target.id == "cambiar-contraseña") {
+            ReactDOM.render(
+                <CambiarClave usuarioid={this.state.usuarioid} />,
+                seccion
+            );
         } else if (e.target.id == "show") {
             ReactDOM.render(<div />, seccion);
         }
@@ -104,7 +112,6 @@ export default class Inicio extends Component {
     }
 
     render() {
-        console.log(this.state);
         let url = this.state.url;
         let mesa = this.state.mesa;
         let checkcamareromesa = this.state.checkcamareromesa;

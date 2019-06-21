@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
+import { Link } from "react-router-dom";
 import axios from 'axios';
 import swal from "sweetalert2";
 import logoOne from '../../../../public/images/logo-one.png';
@@ -16,6 +16,7 @@ import imgCL from '../../../../public/images/countrys/es.png';
 import reactMobileDatePicker from 'react-mobile-datepicker';
 import iconCivil from '../../../../public/images/EstadoCivil01.png';
 
+/**Importando estilos del componente */
 import "./css/Login.css"
 
 library.add( faSync);
@@ -23,6 +24,7 @@ library.add( faSync);
 
 const Datepicker = reactMobileDatePicker;
 
+/**formato JSON de las fechas */
 const dateConfig = {
     'year': {
         format: 'YYYY',
@@ -76,7 +78,7 @@ export default class RegistroCliente extends React.Component {
             google: 'auth/google',
             isLoading: false,
             clubs:[],
-            estadosciviles:  [{id:1,name:"Casado"},{id:2,name:"Divorciado"},{id:3,name:"Viudo"}],
+            estadosciviles:  [],
             civil: '',
             time: new Date(),
             isOpen: false,
@@ -96,19 +98,26 @@ export default class RegistroCliente extends React.Component {
 
     }
 
+    /**
+     * Esta funcion se ejecuta al renderi ar por primera ve
+     * y tre por ruta api, los estados civiles
+     */
     componentWillMount() {
-        /*axios
-            .get("/api/estadosCiviles")
+        axios
+            .get("/api/clientes/estado-civil")
             .then(res => {
-                this.state.isLoading = "false";
                 console.log(res.data)
-                this.setState({estadosciviles : res.data.eventos})
+                this.setState({estadosciviles : res.data.estado_civil, isLoading:false})
             })
             .catch(function(error) {
                 console.log(error);
-            });*/
+            });
     }
 
+    /**
+     * Esta funcion se dispara al modificar cada input del form
+     * @param {Evento} e 
+     */
     handleChange(e) {
 
         if(e.target.name == 'fileFoto'){
@@ -141,6 +150,11 @@ export default class RegistroCliente extends React.Component {
 
     }
 
+    /**
+     * Esta funcion se emite al dar submit del form
+     * a continuacion se procede a validar todas las credenciales dadas
+     * @param {evento} e 
+     */
     handleSubmit(e) {
 
         e.preventDefault();
@@ -155,7 +169,7 @@ export default class RegistroCliente extends React.Component {
 
         edad=time;
 
-        axios.post(url+'/ajax-post-registro', { nombre, apellido, correo, password, pais, edad, sexo, equipo , telefono, civil, tipofoto, foto})
+        axios.post('/api/clientes/registro', { nombre, apellido, correo, password, pais, edad, sexo, equipo , telefono, civil, tipofoto, foto})
             .then(res => {
 
                 self.setState({
@@ -188,7 +202,7 @@ export default class RegistroCliente extends React.Component {
                     }).then((result) => {
                         if (result.value) {
 
-                            window.location.href= url + '/login';
+                            this.props.history.push("/");
 
                         }
                     });
@@ -238,7 +252,7 @@ export default class RegistroCliente extends React.Component {
 
         var pais = e.target.value;
         var url = this.state.url;
-        axios.post(url+'/ajax-post-clubs', { pais })
+        axios.post('api/usuarios/clubs-perfil', { pais })
             .then(res => {
 
 
@@ -275,15 +289,27 @@ export default class RegistroCliente extends React.Component {
             });
     }
 
+    /**
+     * Esta funcion cambia el state para denotar que el modal de fehca esta open
+     * @param {*} isOpen 
+     */
     handleToggle(isOpen) {
             this.setState({ isOpen });
         };
 
+        /**
+         * Esta funcion abre el modal de fecha
+         */
         handleThemeToggle() {
             var theme='android-dark';
             this.setState({ theme, isOpen: true });
         };
 
+        /**
+         * Esta funcion se emite al elegir una fecha
+         * y cambia el state de la variable
+         * @param {fecha} time 
+         */
         handleSelect(time){
             this.setState({ time, isOpen: false, edad:time });
         };
@@ -299,241 +325,244 @@ export default class RegistroCliente extends React.Component {
         let urlInstagram      = url + '/auth/instagram';
  
         return (
-            <div className='box'>
+            <div className="abs-center roboto-condensed">
+                <div className='box'>
 
-                <div className="">
-                    <img src={logoOne} className="img-fluid logo-box-registro" />
-                </div>
+<div className="">
+    <img src={logoOne} className="img-fluid logo-box-registro" />
+</div>
 
-                <div className="text-center">
-                    <h2>Registro</h2>
-                </div>
+<div className="text-center">
+    <h2>Registro</h2>
+</div>
 
-                <form method="POST" onSubmit={this.handleSubmit}>
+<form method="POST" onSubmit={this.handleSubmit}>
 
-                    <div className="input-group mb-4 mt-4">
-                        <div className="input-group-prepend">
-                            <i className="fa fa-address-card fa-lg"></i>
-                        </div>
-                        <input type="text" id="nombre" name="nombre" value={nombre} onChange={this.handleChange} className="form-control" placeholder="Ingrese su nombre" />
-                    </div>
+    <div className="input-group mb-4 mt-4">
+        <div className="input-group-prepend">
+            <i className="fa fa-address-card fa-lg"></i>
+        </div>
+        <input type="text" id="nombre" name="nombre" value={nombre} onChange={this.handleChange} className="form-control" placeholder="Ingrese su nombre" />
+    </div>
 
-                    <div className="input-group mb-4 mt-4">
-                        <div className="input-group-prepend">
-                            <i className="fa fa-address-card fa-lg"></i>
-                        </div>
-                        <input type="text" id="apellido" name="apellido" value={apellido} onChange={this.handleChange} className="form-control" placeholder="Ingrese su apellido" />
-                    </div>
-                    <div className="input-group mb-4 mt-4">
-                        <div className="input-group-prepend">
-                            <i className="fas fa-calendar-alt fa-lg" style={{fontSize: '1.714em'}}></i>
-                        </div>
-                       <a
-                            className="select-btn sm" style={{'border': '1px solid #fff','padding-top': '0.5rem','padding-bottom': '0.5rem','width': '88%','color': '#dadada'}}
-                            onClick={this.handleThemeToggle}>
-                            {this.state.edad==''?'Ingrese su Fecha de Nacimiento (Opcional)':this.state.time.getDate()+'/'+(this.state.time.getMonth() + 1) +'/'+this.state.time.getFullYear()}
-                        </a>   
-                        <Datepicker
-                        showCaption={true}
-                        showHeader={true}
-                        headerFormat={'DD/MM/YYYY'}
-                        value={this.state.time}
-                        theme={this.state.theme}
-                        isOpen={this.state.isOpen}
-                        onSelect={this.handleSelect}
-                        onCancel={(e) => this.handleToggle(false)} 
-                        confirmText="Seleccionar"
-                        cancelText="Cancelar"
-                        max={new Date()}
-                        dateConfig={dateConfig}
-                        />
-                    </div>
-                    <div className="input-group mb-4 mt-4" style={{'display':'none'}}>
-                        <div className="input-group-prepend">
-                            <i className="fab fa-ello fa-lg"></i>
-                        </div>
-                            <div className="form-check form-check-inline">
-                            <input className="form-check-input" onChange={this.handleChange} type="radio" name="sexo" id="inlineRadio1x" value="m" checked={sexo === 'm'}  />
-                            <label className="form-check-label" htmlFor="inlineRadio1x">Masculino</label>
-                        </div>
+    <div className="input-group mb-4 mt-4">
+        <div className="input-group-prepend">
+            <i className="fa fa-address-card fa-lg"></i>
+        </div>
+        <input type="text" id="apellido" name="apellido" value={apellido} onChange={this.handleChange} className="form-control" placeholder="Ingrese su apellido" />
+    </div>
+    <div className="input-group mb-4 mt-4">
+        <div className="input-group-prepend">
+            <i className="fas fa-calendar-alt fa-lg icono-calendario" ></i>
+        </div>
+       <a
+            className="select-btn sm boton-fecha" 
+            onClick={this.handleThemeToggle}>
+            {this.state.edad==''?'Ingrese su Fecha de Nacimiento (Opcional)':this.state.time.getDate()+'/'+(this.state.time.getMonth() + 1) +'/'+this.state.time.getFullYear()}
+        </a>   
+        <Datepicker
+        showCaption={true}
+        showHeader={true}
+        headerFormat={'DD/MM/YYYY'}
+        value={this.state.time}
+        theme={this.state.theme}
+        isOpen={this.state.isOpen}
+        onSelect={this.handleSelect}
+        onCancel={(e) => this.handleToggle(false)} 
+        confirmText="Seleccionar"
+        cancelText="Cancelar"
+        max={new Date()}
+        dateConfig={dateConfig}
+        />
+    </div>
+    <div className="input-group mb-4 mt-4 contenedor-genero" >
+        <div className="input-group-prepend">
+            <i className="fab fa-ello fa-lg"></i>
+        </div>
+            <div className="form-check form-check-inline">
+            <input className="form-check-input" onChange={this.handleChange} type="radio" name="sexo" id="inlineRadio1x" value="m" checked={sexo === 'm'}  />
+            <label className="form-check-label" htmlFor="inlineRadio1x">Masculino</label>
+        </div>
 
-                        <div className="form-check form-check-inline">
-                            <input className="form-check-input" onChange={this.handleChange} type="radio" name="sexo" id="inlineRadio2x" value="f" checked={sexo === 'f'}  />
-                            <label className="form-check-label" htmlFor="inlineRadio2x">Femenino</label>
-                        </div>
+        <div className="form-check form-check-inline">
+            <input className="form-check-input" onChange={this.handleChange} type="radio" name="sexo" id="inlineRadio2x" value="f" checked={sexo === 'f'}  />
+            <label className="form-check-label" htmlFor="inlineRadio2x">Femenino</label>
+        </div>
 
-                    </div>
+    </div>
 
-                    <div className="input-group mb-4 mt-4">
-                        <div className="input-group-prepend">
-                            <i className="fa fa-envelope fa-lg"></i>
-                        </div>
-                        <input type="text" id="correo" name="correo" value={correo} onChange={this.handleChange} className="form-control" placeholder="Ingrese su correo" />
-                    </div>
+    <div className="input-group mb-4 mt-4">
+        <div className="input-group-prepend">
+            <i className="fa fa-envelope fa-lg"></i>
+        </div>
+        <input type="text" id="correo" name="correo" value={correo} onChange={this.handleChange} className="form-control" placeholder="Ingrese su correo" />
+    </div>
 
-                    <div className="input-group mb-4 mt-4">
-                        <div className="input-group-prepend">
-                            <i className="fas fa-phone fa-lg"></i>
-                        </div>
-                        <input type="number" min="0" max="99999999999" maxLength="11" id="telefono" name="telefono" value={telefono} onChange={this.handleChange} className="form-control" placeholder="Ingrese su telefono (Opcional)" />
-                    </div>
+    <div className="input-group mb-4 mt-4">
+        <div className="input-group-prepend">
+            <i className="fas fa-phone fa-lg"></i>
+        </div>
+        <input type="number" min="0" max="99999999999" maxLength="11" id="telefono" name="telefono" value={telefono} onChange={this.handleChange} className="form-control" placeholder="Ingrese su telefono (Opcional)" />
+    </div>
 
-                    <div className="input-group mb-4 mt-4">
-                        <div className="input-group-prepend input-civil">
-                            <img src={iconCivil} className="icon-civil" />
-                        </div>
-                        <select className="form-control" value={civil} name="civil" id="civil" onChange={this.handleChange}>
-                            <option  key="0" value=''>Ingrese Estado Civil (Opcional)</option>
-                            {this.state.estadosciviles.map(function(item){
-                                return <option  key={item._id} value={item._id}>{item.Nombre}</option>
-                            })}
-                        </select>
-                    </div>
-
-
-                    <div className="input-group mb-4 mt-4">
-                        <div className="input-group-prepend">
-                            <i className="fas fa-portrait fa-lg"></i>
-                        </div>
-
-                        <select className="form-control" id="inputGroupSelect02" value={tipofoto} name="tipofoto" onChange={this.handleChange}>
-                            <option value=''>Seleccione Tipo de foto (Opcional)</option>
-                            <option value='upload'>Subir Imagen</option>
-                            <option value='camera'>Tomar Foto</option>
-                        </select>
-                    </div>
-
-                    {tipofoto == 'upload' ?
+    <div className="input-group mb-4 mt-4">
+        <div className="input-group-prepend input-civil">
+            <img src={iconCivil} className="icon-civil" />
+        </div>
+        <select className="form-control" value={civil} name="civil" id="civil" onChange={this.handleChange}>
+            <option  key="0" value=''>Ingrese Estado Civil (Opcional)</option>
+            {this.state.estadosciviles.map(function(item){
+                return <option  key={item._id} value={item._id}>{item.Nombre}</option>
+            })}
+        </select>
+    </div>
 
 
-                        <div className="input-group mb-4 mt-4">
-                            <div className="input-group-prepend mr-3">
-                                <i className="far fa-image fa-lg"></i>
-                            </div>
+    <div className="input-group mb-4 mt-4">
+        <div className="input-group-prepend">
+            <i className="fas fa-portrait fa-lg"></i>
+        </div>
 
-                            <div className="custom-file">
-                                <input type="file" name="fileFoto" onChange={(e) => this.handleChange(e)}
-                                       className="custom-file-input" id="customFileLang"/>
-                                <label className="custom-file-label"
-                                       htmlFor="customFileLang">{this.state.fileName}</label>
-                            </div>
+        <select className="form-control" id="inputGroupSelect02" value={tipofoto} name="tipofoto" onChange={this.handleChange}>
+            <option value=''>Seleccione Tipo de foto (Opcional)</option>
+            <option value='upload'>Subir Imagen</option>
+            <option value='camera'>Tomar Foto</option>
+        </select>
+    </div>
 
-                        </div>
-
-                        : ''
-
-                    }
-
-                    {tipofoto == 'camera' ?
+    {tipofoto == 'upload' ?
 
 
-                        <div className="input-group mb-4 mt-4">
-                            <div className="input-group-prepend mr-3">
-                                <i className="fas fa-camera fa-lg"></i>
-                            </div>
-                            <span className="badge badge-warning">En construccion</span>
-
-                        </div>
-
-                        : ''
-
-                    }
-
-                    <div className="input-group mb-4 mt-4">
-                        <div className="input-group-prepend mr-3">
-                            <i className="fa fa-key fa-lg"></i>
-                        </div>
-                        <input type="password" id="password" name="password" value={password} onChange={this.handleChange} className="form-control" placeholder="Ingrese su password" />
-                    </div>
-
-                    <div className="input-group mb-4 mt-4">
-                        <div className="input-group-prepend">
-                            <label className="input-group-text"><i className="fa fa-globe-americas fa-lg"></i></label>
-                        </div>
-
-                        <div className="form-check form-check-inline">
-                            <input className="form-check-input" onChange={this.clubs} type="radio" name="pais" id="inlineRadio1" value="5caf334dff6eff0ae30e450b" checked={pais === '5caf334dff6eff0ae30e450b'}  />
-                            <label className="form-check-label" htmlFor="inlineRadio1"><img src={imgAR} className="img-country" /></label>
-                        </div>
-
-                        <div className="form-check form-check-inline">
-                            <input className="form-check-input" onChange={this.clubs} type="radio" name="pais" id="inlineRadio2" value="5caf37adff6eff0ae30e450d" checked={pais === '5caf37adff6eff0ae30e450d'}  />
-                            <label className="form-check-label" htmlFor="inlineRadio2"><img src={imgCL} className="img-country" /></label>
-                        </div>
-                         <div className="form-check form-check-inline">
-                            <label className="form-check-label" htmlFor="inlineRadio2">(Opcional)</label>
-                        </div>
-
-                    </div>
-                    <div className="input-group mb-4 mt-4">
-                        <div className="input-group-prepend">
-                            <i className="fas fa-futbol fa-lg"></i>
-                        </div>
-
-                          <select className="form-control" id="inputGroupSelect02" value={equipo} name="equipo" id="equipo" onChange={this.handleChange}>
-                            <option  key="-1" value=''>Equipos de futbol (Opcional)</option>
-                              { this.state.clubs.length > 0 ?
-                                  <option  key="0" value='1000'>Ninguno</option>
-                                  : ''
-                              }
-                            {this.state.clubs.map(function(item){
-                                return <option  key={item.id} value={item.id}>{item.Nombre}</option>
-                            })}
-                          </select>
-                    </div>
-
-
-                    { this.state.equipo!='' ?
-                        <div className="text-center" style={{'margin-bottom': '15px'}}>
-                        <img src={'/images/clubs/'+this.state.equipo+'.png'} style={{'height': '4rem'}}/>
-                    </div>
-                    :''}
-                    <div className="text-center">
-                        <button type="submit" className="btn btn-negro black btn-box-index">
-                            { this.state.isLoading ? <FontAwesomeIcon icon="sync" size="lg" spin /> : '' }
-                            &nbsp;&nbsp; Registrar
-                        </button>
-                    </div>
-                     <div className="text-center roboto-condensed text-can-login-social">
-                        <p style={{'color':'rgb(146, 143, 143)'}}>o puedes registrarte con</p>
-                    </div>
-
-                   <div className="text-center mb-4">
-
-                        <a href={urlFacebook}>
-                            <img src={logoFacebook} className="img-fluid icon-social mr-3" />
-                        </a>
-
-                        <a href={urlGoogle}>
-                            <img src={logoGoogle} className="img-fluid icon-social mr-3" />
-                        </a>
-                        <a href={urlTwitter}>
-                            <img src={logoTwitter} className="img-fluid icon-social mr-3" />
-                        </a>
-
-                        <a href={urlInstagram}>
-                            <img src={logoInstagram} className="img-fluid icon-social" />
-                        </a>
-
-                    </div>
-
-                    <div className="text-center">
-                    <Link to="/">
-                            <button
-                                type="button"
-                                className="btn btn-rojo btn-box-index"
-                            >
-                                Volver
-                            </button>
-                        </Link>
-                    </div>
-
-                   
-
-
-                </form>
-
+        <div className="input-group mb-4 mt-4">
+            <div className="input-group-prepend mr-3">
+                <i className="far fa-image fa-lg"></i>
             </div>
+
+            <div className="custom-file">
+                <input type="file" name="fileFoto" onChange={(e) => this.handleChange(e)}
+                       className="custom-file-input" id="customFileLang"/>
+                <label className="custom-file-label"
+                       htmlFor="customFileLang">{this.state.fileName}</label>
+            </div>
+
+        </div>
+
+        : ''
+
+    }
+
+    {tipofoto == 'camera' ?
+
+
+        <div className="input-group mb-4 mt-4">
+            <div className="input-group-prepend mr-3">
+                <i className="fas fa-camera fa-lg"></i>
+            </div>
+            <span className="badge badge-warning">En construccion</span>
+
+        </div>
+
+        : ''
+
+    }
+
+    <div className="input-group mb-4 mt-4">
+        <div className="input-group-prepend mr-3">
+            <i className="fa fa-key fa-lg"></i>
+        </div>
+        <input type="password" id="password" name="password" value={password} onChange={this.handleChange} className="form-control" placeholder="Ingrese su password" />
+    </div>
+
+    <div className="input-group mb-4 mt-4">
+        <div className="input-group-prepend">
+            <label className="input-group-text"><i className="fa fa-globe-americas fa-lg"></i></label>
+        </div>
+
+        <div className="form-check form-check-inline">
+            <input className="form-check-input" onChange={this.clubs} type="radio" name="pais" id="inlineRadio1" value="5caf334dff6eff0ae30e450b" checked={pais === '5caf334dff6eff0ae30e450b'}  />
+            <label className="form-check-label" htmlFor="inlineRadio1"><img src={imgAR} className="img-country" /></label>
+        </div>
+
+        <div className="form-check form-check-inline">
+            <input className="form-check-input" onChange={this.clubs} type="radio" name="pais" id="inlineRadio2" value="5caf37adff6eff0ae30e450d" checked={pais === '5caf37adff6eff0ae30e450d'}  />
+            <label className="form-check-label" htmlFor="inlineRadio2"><img src={imgCL} className="img-country" /></label>
+        </div>
+         <div className="form-check form-check-inline">
+            <label className="form-check-label" htmlFor="inlineRadio2">(Opcional)</label>
+        </div>
+
+    </div>
+    <div className="input-group mb-4 mt-4">
+        <div className="input-group-prepend">
+            <i className="fas fa-futbol fa-lg"></i>
+        </div>
+
+          <select className="form-control" id="inputGroupSelect02" value={equipo} name="equipo" id="equipo" onChange={this.handleChange}>
+            <option  key="-1" value=''>Equipos de futbol (Opcional)</option>
+              { this.state.clubs.length > 0 ?
+                  <option  key="0" value='1000'>Ninguno</option>
+                  : ''
+              }
+            {this.state.clubs.map(function(item){
+                return <option  key={item.id} value={item.id}>{item.Nombre}</option>
+            })}
+          </select>
+    </div>
+
+
+    { this.state.equipo!='' ?
+        <div className="text-center input-equipo">
+        <img src={'/images/clubs/'+this.state.equipo+'.png'} className="imagen-equipo"/>
+    </div>
+    :''}
+    <div className="text-center">
+        <button type="submit" className="btn btn-negro black btn-box-index">
+            { this.state.isLoading ? <FontAwesomeIcon icon="sync" size="lg" spin /> : '' }
+            &nbsp;&nbsp; Registrar
+        </button>
+    </div>
+     <div className="text-center roboto-condensed text-can-login-social">
+        <p  className="alternativo-registro">o puedes registrarte con</p>
+    </div>
+
+   <div className="text-center mb-4">
+
+        <a href={urlFacebook}>
+            <img src={logoFacebook} className="img-fluid icon-social mr-3" />
+        </a>
+
+        <a href={urlGoogle}>
+            <img src={logoGoogle} className="img-fluid icon-social mr-3" />
+        </a>
+        <a href={urlTwitter}>
+            <img src={logoTwitter} className="img-fluid icon-social mr-3" />
+        </a>
+
+        <a href={urlInstagram}>
+            <img src={logoInstagram} className="img-fluid icon-social" />
+        </a>
+
+    </div>
+
+    <div className="text-center">
+    <Link to="/">
+            <button
+                type="button"
+                className="btn btn-rojo btn-box-index"
+            >
+                Volver
+            </button>
+        </Link>
+    </div>
+
+   
+
+
+</form>
+
+</div>
+            </div>
+            
         );
     }
 }
