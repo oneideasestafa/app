@@ -107,6 +107,11 @@ export default class Inicio extends Component {
             );
         } else if (e.target.id == "show") {
             ReactDOM.render(<div />, seccion);
+        } else if (e.target.id == "invitacion") {
+            ReactDOM.render(
+                <Invitacion eventoid={this.state.eventoid} />,
+                seccion
+            );
         }
         $(".navbar-toggler-icon").click();
     }

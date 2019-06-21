@@ -25,7 +25,7 @@ export default class Menu extends Component {
          * las siguientes funciones las declaro de esta manera para poder hacer uso de
          * los props y el state en ellas
          */
-        this.handleLogout = this.handleLogout.bind(this);
+        //this.handleLogout = this.handleLogout.bind(this);
         this.getDetener = this.getDetener.bind(this);
         this.handleMenuClick = this.handleMenuClick.bind(this);
     }

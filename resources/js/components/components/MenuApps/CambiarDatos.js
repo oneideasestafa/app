@@ -4,7 +4,6 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
-import InputMask from 'react-input-mask';
 import swal from "sweetalert2";
 import imgAR from '../../../../../public/images/countrys/ar.png';
 import imgCL from '../../../../../public/images/countrys/es.png';

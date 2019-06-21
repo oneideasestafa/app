@@ -36,11 +36,12 @@ Route::group(['prefix' => 'eventos'], function() {
     Route::get('/', 'EventoController@evento');
     Route::get('/id/{id}','EventoController@getEvento');
     Route::post('/check_ubicacion', 'QuestionEventController@ajaxEventoCheckUbicacion');
+    Route::get('/invitacion/{id}','EventoController@getInvitacionEvento');
 });
 
 // Permite difinir los puntos de entrada para los endpoints de eventos
 Route::group(['prefix' => 'clientes'], function() {
-		Route::get('/estado-civil', 'RegistroController@estado_civil');
+	Route::get('/estado-civil', 'RegistroController@estado_civil');
     Route::post('/registro', 'RegistroController@ajaxPostRegistro');
     Route::post('/club', 'RegistroController@ajaxPostClubs');
 });

@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Http\Requests\ValidateEvento;
 use App\Models\MongoDB\Evento;
+use App\Models\MongoDB\Invitacion;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use DB, DataTables, Image, Storage, File, Auth, Mail, QrCode;
@@ -43,6 +43,40 @@ class EventoController extends Controller {
         return response()->json($data);
     }
 
+    public function getInvitacionEvento($id){
+
+        $result = [];
+
+        $eve = $id;
+
+        $invitacion = Invitacion::where('Evento_id', new ObjectId($eve))->get();
+
+        foreach ($invitacion as $i){
+
+            if($i->Modo == 'HORIZONTAL'){
+
+                $result[0] = [
+                    'PathImg' => $i->PathImg,
+                    'PathPdf' => $i->PathPdf
+                ];
+
+            }else if($i->Modo == 'VERTICAL'){
+
+                $result[1] = [
+                    'PathImg' => $i->PathImg,
+                    'PathPdf' => $i->PathPdf
+                ];
+
+            }
+
+        }
+
+        $data['invitaciones'] = $result;
+
+        //devuleve la vista
+        return response()->json(['code'=>200,'invitaciones'=>$data]);
+    }
+
 }
 
-?>
+
