@@ -14,36 +14,26 @@ use Illuminate\Support\Str;
 //controlador encargado de la seccion de eventos
 class EventoController extends Controller {
 
-
-    public function evento(Request $request){
-
-        // Si se envía el parámetro id, se obtiene el detalle del evento (antes getEvento)
-        $id = $request->id;
-        if($request->id){
-            $data = Evento::find($id);
-            return response()->json($data);
-        }
-
-        // En otro caso, se retorna en orden ascendente todos los eventos que no hayan sido borrados 
-        // y que esten activos (antes QuestionEventController:ajaxEventos)
+    // Retorna en orden ascendente todos los eventos que no hayan sido borrados y que esten activos
+    public function getEventosNoBorradosActivos(Request $request){
         $eventos = Evento::borrado(false)->activo(true)->app(true)->orderBy('Nombre', 'asc')->get();
-        //devuelve un objeto json con todos los eventos
         return response()->json(['code'=>200,'eventos'=>$eventos ? $eventos : []]);
     }
 
-
-    //metodo para retornar la informacion del evento
+    // Retorna el evento basado en su id
     public function getEvento($id){
         $data = Evento::find($id);
         return response()->json($data);
     }
 
-    public function getEventos(){
+    // Retorna todos los eventos presentes en la base de datos
+    public function getTodosLosEventos(){
         $data = Evento::all();
         return response()->json($data);
     }
 
-    public function getInvitacionEvento($id){
+    // Retorna las invitaciones de un evento
+    public function getInvitacion($id){
 
         $result = [];
 
@@ -73,7 +63,7 @@ class EventoController extends Controller {
 
         $data['invitaciones'] = $result;
 
-        //devuleve la vista
+        // Retorna una lista de invitaciones
         return response()->json(['code'=>200,'invitaciones'=>$data]);
     }
 
@@ -100,11 +90,13 @@ class EventoController extends Controller {
             if($user->save()){
                 return response()->json(['code' => 200, 'msj' => 'exito' ]);
             }
+            // En caso contrario retorna un mensaje de error al usuario
             return response()->json(['code' => 600, 'msj' => 'Ocurrio un error al seleccionar el evento. Consulte al administrador']);
         }
         return response()->json(['code' => 600, 'msj' => 'Codigo de evento invalido' ]);
     }
 
+    // Verifica si un evento es valido
     public function isEventoValido($evento, $idevento, $user, $data){
 
         if($evento AND $idevento){
@@ -150,8 +142,8 @@ class EventoController extends Controller {
         }
     }
 
-    //metodo para revisar si el evento tiene ubicacion
-    public function eventoCheckUbicacion(Request $request)
+    // Metodo para revisar si el evento tiene ubicacion
+    public function checkUbicacion(Request $request)
     {
         $input = $request->all();
 
@@ -174,10 +166,9 @@ class EventoController extends Controller {
 
                 }
 
-            }else{
-
-                return response()->json(['code' => 700, 'msj' => 'Codigo de evento invalido', 'ubicacion' => false ]);
             }
+            // En caso contrario retorna un mensaje de error al usuario
+            return response()->json(['code' => 700, 'msj' => 'Codigo de evento invalido', 'ubicacion' => false ]);
 
         }else{
 
@@ -195,10 +186,9 @@ class EventoController extends Controller {
 
                 }
 
-            }else{
-
-                return response()->json(['code' => 600, 'msj' => 'Error al consultar Evento. Consulte al administrador', 'ubicacion' => false ]);
             }
+            // En caso contrario retorna un mensaje de error al usuario
+            return response()->json(['code' => 600, 'msj' => 'Error al consultar Evento. Consulte al administrador', 'ubicacion' => false ]);
 
         }
 

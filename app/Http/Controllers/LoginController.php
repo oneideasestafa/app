@@ -29,8 +29,8 @@ class LoginController extends Controller
         return view('login');
     }
 
-    //metodo para procesar el login por ajax
-    public function ajaxPostLogin(ValidateLogin $request)
+    // Verifica si un usuario es válido
+    public function login(ValidateLogin $request)
     {
     
         $input = $request->all();
@@ -68,30 +68,25 @@ class LoginController extends Controller
 
                         return response()->json(['code' => 200, 'msj' => 'exito', 'tipo' => 'one' , 'userid' => $user->_id]);
 
-                    }else{
-                        return response()->json(['code' => 600, 'msj' => 'Error al iniciar sesión. Consulte al administrador' ]);
-
                     }
+                    // En caso contrario retorna un mensaje de error al usuario
+                    return response()->json(['code' => 600, 'msj' => 'Error al iniciar sesión. Consulte al administrador' ]);
 
-
-                }else{
-
-                    return response()->json(['code' => 600, 'msj' => 'Correo y/o Contraseña incorrectos' ]);
                 }
+                // En caso contrario retorna un mensaje de error al usuario
+                return response()->json(['code' => 600, 'msj' => 'Correo y/o Contraseña incorrectos' ]);
 
-           }else{
-                return response()->json(['code' => 600, 'msj' => 'Usuario inactivo' ]);
-           }
+            }
+            // En caso contrario retorna un mensaje de error al usuario
+            return response()->json(['code' => 600, 'msj' => 'Usuario inactivo' ]);
 
-        }else{
-
-            return response()->json(['code' => 600, 'msj' => 'Usuario no registrado' ]);
         }
-
+        // En caso contrario retorna un mensaje de error al usuario
+        return response()->json(['code' => 600, 'msj' => 'Usuario no registrado' ]);
     }
 
 
-    //metodo para cerrar la session
+    // Permite cerrar la session
     public function logout(Request $request){
 
         $cuenta = $this->auth->user()->TipoCuenta;
