@@ -106,7 +106,6 @@ export default class RegistroCliente extends React.Component {
         axios
             .get("/api/clientes/estado-civil")
             .then(res => {
-                console.log(res.data)
                 this.setState({estadosciviles : res.data.estado_civil, isLoading:false})
             })
             .catch(function(error) {

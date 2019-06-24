@@ -91,10 +91,8 @@ export default class Inicio extends Component {
      */
     handleMenuClick(e) {
         let seccion = document.getElementById("seccion");
-        console.log(seccion);
         let opcionMenu = $("#" + e.target.id).text();
         this.setState({ seccion: opcionMenu });
-        console.log(e.target.id);
         if (e.target.id == "perfil") {
             ReactDOM.render(
                 <CambiarDatos usuarioid={this.state.usuarioid} />,

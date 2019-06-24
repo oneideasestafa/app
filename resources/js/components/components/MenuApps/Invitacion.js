@@ -24,7 +24,6 @@ export default class Invitacion extends Component {
         axios
             .get("api/eventos/invitacion/" + this.state.idEvento)
             .then(res => {
-                console.log(res.data.invitaciones.invitaciones);
                 let r = res.data;
                 if (r.code === 200) {
                     this.setState({
@@ -41,8 +40,6 @@ export default class Invitacion extends Component {
         let { invitaciones } = this.state;
 
         //var prueba = invitaciones[0].PathImg.split("http://localhost:8000");
-        console.log("estoy renderi ando");
-        console.log(invitaciones);
         return (
             <div className="centrado-absoluto contenedor-invitacion">
                 <div className="container-fluid">
@@ -51,7 +48,6 @@ export default class Invitacion extends Component {
                             orientation="landscape"
                             alwaysRender={false}
                         >
-                            {console.log("estoy cambiando vertical")}
                             {invitaciones[0] ? (
                                 <div>
                                     <div className="row">
@@ -100,7 +96,6 @@ export default class Invitacion extends Component {
                             orientation="portrait"
                             alwaysRender={false}
                         >
-                            {console.log("estoy cambiando hori ontal")}
                             {invitaciones[1] ? (
                                 <div>
                                     <div className="row">
