@@ -310,7 +310,7 @@ export default class CambiarDatos extends Component {
         });
 
         let {idUsuario,pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, url, fotonew, tipofoto} = this.state;
-        console.log("abajo se envia un axios.post de api/clientes/editar/perfil/");
+        console.log("abajo se envia un axios.post de api/clientes/editar/perfil");
         /*axios.post('api/clientes/editar/perfil/', { idUsuario,pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, fotonew, tipofoto})
             .then(res => {
                 self.setState({
@@ -365,7 +365,7 @@ export default class CambiarDatos extends Component {
 
             });*/
 
-        axios.post('api/clientes/editar/perfil/', { idUsuario,pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, fotonew, tipofoto}).then( res =>{
+        axios.post('api/clientes/editar/perfil', { idUsuario,pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, fotonew, tipofoto}).then( res =>{
             self.setState({
                 isLoading: false
             });
