@@ -7,17 +7,8 @@ namespace App\Http\Controllers;
 class IndexController extends Controller
 {
 
-    //metodo que crea la vista
+    // Método que se usa como punto de entrada a la aplicación
     public function index(){
-        //devuelve la vista asociada
-        //return view('index');
         return view('index');
     }
-    //metodo que crea la vista
-    public function inicio(){
-        //devuelve la vista asociada
-        //return view('index');
-        return view('inicio');
-    }
-
 }

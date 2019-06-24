@@ -33,8 +33,8 @@ class ClienteController extends Controller
         return redirect('car')->with('success', 'Car has been successfully added');
     }
 
-       // Permite registrar cliente
-       public function crearCliente(ValidateRegistro $request){
+    // Permite registrar cliente
+    public function crearCliente(ValidateRegistro $request){
 
         $input = $request->all();
 

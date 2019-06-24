@@ -90,7 +90,7 @@ export default class Menu extends Component {
 
     render() {
         let url = this.state.url;
-
+        console.log(this.state.menuApp);
         let changePassword = (
             <li className="nav-item">
                 <a className="nav-link" href="#" onClick={this.handleMenuClick}>

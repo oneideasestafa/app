@@ -23,11 +23,6 @@ class LoginController extends Controller
         $this->auth = $auth;
     }
 
-    //metodo que crea la vista
-    public function index(){
-        //devuelve la vista asociada
-        return view('login');
-    }
 
     // Verifica si un usuario es válido
     public function login(ValidateLogin $request)

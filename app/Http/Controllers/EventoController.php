@@ -194,6 +194,44 @@ class EventoController extends Controller {
 
     }
 
+    public function saveAsistenteEvento($cliente, $data){
+
+        $ubicacion = 'GPS';
+
+        if($data['manual'] == true){
+            $ubicacion = 'MANUAL';
+        }
+
+        if($data['evento'] AND $data['idevento']){
+
+            $ev = Evento::borrado(false)->activo(true)->where('IDEvento', $data['idevento'])->first();
+
+            $evento = $ev->_id;
+
+        }else{
+            $evento = $data['evento'];
+        }
+
+        $registro = new AsistenteEvento;
+        $registro->Evento_id = new ObjectId($evento);
+        $registro->Cliente_id = new ObjectId($cliente);
+        $registro->Latitud = '';
+        $registro->Longitud = '';
+        $registro->Sector = $data['sector'];
+        $registro->Fila = $data['fila'];
+        $registro->Asiento = $data['asiento'];
+        $registro->Fecha = Carbon::now();
+        $registro->Ubicacion = $ubicacion;
+        $registro->Activo = true;
+        $registro->Borrado = false;
+
+        if($registro->save()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
 
 
