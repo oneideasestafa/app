@@ -39,7 +39,7 @@ Route::group(['prefix' => 'clientes'], function() {
     Route::post('/editar/cambiar-clave', 'ClienteController@cambiarClave');
 
 
-		Route::get('/estado-civil', 'ClienteController@getEstadoCivil');
+	Route::get('/estado-civil', 'ClienteController@getEstadoCivil');
     Route::post('/registro', 'ClienteController@crearCliente');
     //Route::post('/club', 'RegistroController@ajaxPostClubs');
 });

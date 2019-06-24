@@ -328,10 +328,7 @@ export default class CambiarDatos extends Component {
                         confirmButtonText: 'Ok',
                     }).then((result) => {
                         if (result.value) {
-
-                            this.getPerfil();
-
-                            //window.location.href= url + '/inicio';
+                            this.componentWillMount();
 
                         }
                     });
