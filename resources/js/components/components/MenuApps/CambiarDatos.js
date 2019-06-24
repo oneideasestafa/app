@@ -311,7 +311,7 @@ export default class CambiarDatos extends Component {
 
         let {idUsuario,pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, url, fotonew, tipofoto} = this.state;
         console.log("abajo se envia un axios.post de api/clientes/editar/perfil/");
-        axios.post('api/clientes/editar/perfil/', { idUsuario,pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, fotonew, tipofoto})
+        /*axios.post('api/clientes/editar/perfil/', { idUsuario,pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, fotonew, tipofoto})
             .then(res => {
                 self.setState({
                     isLoading: false
@@ -363,7 +363,41 @@ export default class CambiarDatos extends Component {
 
                 }
 
+            });*/
+
+        axios.post('api/clientes/editar/perfil/', { idUsuario,pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, fotonew, tipofoto}).then( res =>{
+            self.setState({
+                isLoading: false
             });
+
+            let r = res.data;
+
+            if(r.code === 200){
+
+                swal.fire({
+                    title: '<i class="fa fa-check-circle"></i>',
+                    text: r.msj,
+                    showCancelButton: false,
+                    confirmButtonColor: '#343a40',
+                    confirmButtonText: 'Ok',
+                }).then((result) => {
+                    if (result.value) {
+                        this.componentWillMount();
+
+                    }
+                });
+
+            }else if(r.code === 500){
+
+                swal({
+                    title: '<i class="fas fa-exclamation-circle"></i>',
+                    text: r.msj,
+                    confirmButtonColor: '#343a40',
+                    confirmButtonText: 'Ok'
+                });
+
+            }
+        })
     }
 
 
