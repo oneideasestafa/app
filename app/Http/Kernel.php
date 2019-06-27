@@ -63,7 +63,7 @@ class Kernel extends HttpKernel
         'role' => \App\Http\Middleware\CheckRole::class,
         'check-question-event' => \App\Http\Middleware\CheckQuestionEvent::class,
         'prevent-back-history' => \App\Http\Middleware\PreventBackHistory::class,
-
+        'ApiToken' => \App\Http\Middleware\ApiToken::class,
     ];
 
     /**

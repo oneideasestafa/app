@@ -19,20 +19,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //defifinir los puntos de entrada para los endpoints de usuarios
 Route::group(['prefix' => 'usuarios'], function() {
-		Route::post('/login', 'LoginController@login');
+	//Route::post('/login', 'LoginController@login');
+    Route::post('/login','Api\AuthController@postLogin');
 });
 
 // Permite difinir los puntos de entrada para los endpoints de eventos
-Route::group(['prefix' => 'eventos', 'middleware' => 'auth:api'], function() {
+Route::group(['prefix' => 'eventos', 'middleware' => 'ApiToken'], function() {
     Route::get('/', 'EventoController@getEventosNoBorradosActivos');
     Route::get('/id/{id}','EventoController@getEvento');
     Route::post('/check-ubicacion', 'EventoController@checkUbicacion');
     Route::get('/invitacion/{id}','EventoController@getInvitacion');
 });
 
-// Permite difinir los puntos de entrada para los endpoints de eventos
-Route::group(['prefix' => 'clientes'], function() {
-    //LA IDEA ES TRAERLO POR TOKEN
+// Permite difinir los puntos de entrada para los endpoints de clientes
+Route::group(['prefix' => 'clientes','middleware' => 'ApiToken'], function() {
     Route::get('/id/{id}', 'ClienteController@getCliente');
     Route::post('/clubs-perfil', 'ClienteController@getClubsPais');
     Route::post('/editar/perfil', 'ClienteController@editarCliente');
