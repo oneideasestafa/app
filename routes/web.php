@@ -16,6 +16,9 @@ Route::middleware(['guest'])->group(function(){
     // Ruta de entrada principal a la aplicación
     Route::get('/', 'IndexController@index')->name('index');
 
+    // Ruta de entrada principal a la aplicación
+    Route::get('/login', 'LoginController@login')->name('login');   
+
     // Rutas usadas por el pluging oauth autenticacion con Google y Facebook
     Route::get('auth/{provider}', 'SocialAuthController@redirect');
     Route::get('auth/{provider}/callback', 'SocialAuthController@callback');

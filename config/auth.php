@@ -43,7 +43,9 @@ return [
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'Clientes',
+            //'provider' => 'Clientes',
+            'provider' => 'users',
+            'hash' => true,
         ],
         'usuarios' => [
             'driver' => 'session',
@@ -83,10 +85,10 @@ return [
             'model' => App\Models\MongoDB\Usuario::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'users' => [
+             'driver' => 'database',
+             'table' => 'users',
+         ],
     ],
 
     /*

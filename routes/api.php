@@ -23,7 +23,7 @@ Route::group(['prefix' => 'usuarios'], function() {
 });
 
 // Permite difinir los puntos de entrada para los endpoints de eventos
-Route::group(['prefix' => 'eventos'], function() {
+Route::group(['prefix' => 'eventos', 'middleware' => 'auth:api'], function() {
     Route::get('/', 'EventoController@getEventosNoBorradosActivos');
     Route::get('/id/{id}','EventoController@getEvento');
     Route::post('/check-ubicacion', 'EventoController@checkUbicacion');
