@@ -21,7 +21,7 @@ Route::group(['prefix' => 'usuarios'], function() {
 	Route::post('/login', 'LoginController@login');
     Route::post('/login-new','Api\AuthController@postLogin');
     Route::post('/registro','Api\AuthController@postRegister');
-    Route::post('/logout','Api\AuthController@postLogout');
+    Route::post('/logout','LoginController@logout');
 });
 
 // Permite difinir los puntos de entrada para los endpoints de eventos

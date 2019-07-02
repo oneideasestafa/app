@@ -28,8 +28,8 @@ class ValidateLogin extends FormRequest
     {
 
         $rules = [
-            'correo'  => 'required',
-            'pass'    => 'required'
+            'email'  => 'required',
+            'password'    => 'required'
 
         ];
 
@@ -39,9 +39,9 @@ class ValidateLogin extends FormRequest
     public function messages()
     {
         return [
-            'correo.required'    => 'El correo es requerido',
+            'email.required'    => 'El correo es requerido',
             //'correo.email'       => 'Formato de correo inválido',
-            'pass.required'      => 'El password es requerido'
+            'password.required'      => 'El password es requerido'
         ];
     }
 

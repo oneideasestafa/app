@@ -13,13 +13,15 @@ use Illuminate\Contracts\Auth\Guard;
 use Hash;
 use MongoDB\BSON\ObjectId;
 
-//controlador encargado del login
-
+// Controlador encargado del login y logout de usuarios
 class LoginController extends Controller
 {
+    private $apiToken;
 
     public function __construct(Guard $auth)
     {
+        // Unique Token
+        $this->apiToken = uniqid(base64_encode(str_random(60)));
         $this->auth = $auth;
     }
 
@@ -31,19 +33,19 @@ class LoginController extends Controller
         $input = $request->all();
 
         $credenciales = [
-            'correo'   => strtolower($input['correo']),
-            'password' => $input['pass']
+            'email'   => strtolower($input['email']),
+            'password' => $input['password']
         ];
 
-        $domain   = substr($credenciales['correo'], strpos($credenciales['correo'], '@') + 1);
-        $nameMail = substr($credenciales['correo'], 0, strpos($credenciales['correo'], '@') + 1 );
+        $domain   = substr($credenciales['email'], strpos($credenciales['email'], '@') + 1);
+        $nameMail = substr($credenciales['email'], 0, strpos($credenciales['email'], '@') + 1 );
 
         if($domain == 'camarero'){
             $user = Usuario::where('Correo', 'like', $nameMail.'%')->where('Rol_id', new ObjectId('5c5aa4306e894211f963ea4a'))->first();
         }else if($domain == 'repartidor'){
             $user = Usuario::where('Correo', 'like', $nameMail.'%')->where('Rol_id', new ObjectId('5c9e401e1f37ef19f46c13ce'))->first();
         }else{
-            $user = Cliente::where('Correo', $credenciales['correo'])->first();
+            $user = Cliente::where('Correo', $credenciales['email'])->first();
         }
 
         if($user){
@@ -58,10 +60,20 @@ class LoginController extends Controller
 
                         $exito = Auth::guard('web')->login($user);
 
+                        // Se actualiza el token
+                        $postArray = ['api_token' => $this->apiToken];
+                        $login = Cliente::where('Correo',$credenciales['email'])->update($postArray);
+
                         //genero el log de inicio de sesion
                         //$log = generateLog('inicio', 'web');
 
-                        return response()->json(['code' => 200, 'msj' => 'exito', 'tipo' => 'one' , 'userid' => $user->_id]);
+                        return response()->json([
+                            'code' => 200, 
+                            'msj' => 'exito', 
+                            'tipo' => 'one' , 
+                            'userid' => $user->_id, 
+                            'access_token' => $this->apiToken
+                        ]);
 
                     }
                     // En caso contrario retorna un mensaje de error al usuario
@@ -80,22 +92,28 @@ class LoginController extends Controller
         return response()->json(['code' => 600, 'msj' => 'Usuario no registrado' ]);
     }
 
-
     // Permite cerrar la session
-    public function logout(Request $request){
-
-        $cuenta = $this->auth->user()->TipoCuenta;
-
-        //genero log de cierre de sesion
-        //$log = generateLog('cierre', 'web');
-
-        //invoca al metodo de cierre de session
-        $this->auth->logout();
-
-        //redirecciono de nuevo al login
-        return redirect()->route('index');
+    public function logout(Request $request)
+    {
+        $token = $request->bearerToken();
+        $user = Cliente::where('api_token',$token)->first();
+        if($user) {
+            //se establece el token como null            
+            $postArray = ['api_token' => null];
+            $logout = Cliente::where('_id',$user->id)->update($postArray);
+            if($logout) {
+                return response()->json([
+                  'message' => 'User Logged Out',
+                ]);
+            }
+            return response()->json([
+              'message' => 'Logged Out Problem',
+            ]);            
+        }
+        return response()->json([
+            'message' => 'User not found',
+        ]);
     }
-
 
 }
 
