@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\User;
+use \Illuminate\Http\Request as Request;
 use App\Models\MongoDB\Cliente;
 
 class ApiToken
@@ -15,9 +16,10 @@ class ApiToken
    * @param  \Closure  $next
    * @return mixed
    */
-  public function handle($request, Closure $next)
+  public function handle(Request $request, Closure $next)
   {
     $token = $request->header('Authorization'); 
+    dd($token);
     if($token){
       $user = Cliente::where('api_token',$token)->first();
       if($user) {
