@@ -41,6 +41,7 @@ export default class QuestionEvent extends Component {
      * para traer todos los eventos de bd
      */
     componentWillMount() {
+        console.log(this.state.api_token)
         axios
             .get("/api/eventos",{
                 headers: {
@@ -149,6 +150,7 @@ export default class QuestionEvent extends Component {
         let evento = event;
         let idevento = idevent;
 
+        console.log(this.state.api_token)
         axios.post('api/eventos/check-ubicacion', {evento, idevento},{
             headers: {
                 Authorization: this.state.api_token
