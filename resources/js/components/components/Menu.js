@@ -16,6 +16,7 @@ export default class Menu extends Component {
             tipocuenta: props.tipocuenta,
             eventoid:props.eventoid,
             pais: props.pais,
+            api_token: localStorage.getItem("api_token"),
             menuApp: [],
             url: props.url,
             props: this.props,
@@ -36,7 +37,11 @@ export default class Menu extends Component {
      */
     componentWillMount() {
         axios
-            .get("api/eventos/id/" + this.state.eventoid)
+            .get("api/eventos/id/" + this.state.eventoid,{
+                headers: {
+                    Authorization: this.state.api_token
+                }
+            })
             .then(res => {
                 let arrayMenu = [];
                 for (var i = 0; i < res.data.MenuApp.length; i++) {

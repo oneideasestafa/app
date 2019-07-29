@@ -29,6 +29,7 @@ export default class Inicio extends Component {
             eventoid: stateQuestionEvent.evento,
             sector: stateQuestionEvent.sector,
             fila: stateQuestionEvent.fila,
+            api_token: localStorage.getItem("api_token"),
             asiento: stateQuestionEvent.asiento,
             manual: stateQuestionEvent.manual,
             eventoUbicacionManual: stateQuestionEvent.eventoUbicacionManual,
@@ -115,6 +116,7 @@ export default class Inicio extends Component {
     }
 
     render() {
+        this.flash();
         let url = this.state.url;
         let mesa = this.state.mesa;
         let checkcamareromesa = this.state.checkcamareromesa;

@@ -16,6 +16,7 @@ export default class QuestionEvent extends Component {
         this.state = {
             url: window.location.origin.toString(),
             idUsuario : props.location.state.idUsuario,
+            api_token: props.location.state.api_token,
             eventos: [],
             evento: '',
             idevento: '',
@@ -41,7 +42,11 @@ export default class QuestionEvent extends Component {
      */
     componentWillMount() {
         axios
-            .get("/api/eventos")
+            .get("/api/eventos",{
+                headers: {
+                    Authorization: this.state.api_token
+                }
+            })
             .then(res => {
                 console.log(res.data)
                 this.setState({
@@ -144,7 +149,11 @@ export default class QuestionEvent extends Component {
         let evento = event;
         let idevento = idevent;
 
-        axios.post('api/eventos/check-ubicacion', {evento, idevento})
+        axios.post('api/eventos/check-ubicacion', {evento, idevento},{
+            headers: {
+                Authorization: this.state.api_token
+            }
+        })
             .then(res => {
 
                 let r = res.data;

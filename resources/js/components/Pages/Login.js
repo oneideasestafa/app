@@ -54,15 +54,19 @@ export default class Login extends Component {
         });
 
         let { correo, pass } = this.state;
+        console.log(correo);
+        const email = correo;
+        const password = pass;
 
         e.preventDefault();
 
         axios
             .post(this.state.url + "/api/usuarios/login", {
-                correo,
-                pass
+                email,
+                password
             })
             .then(res => {
+                console.log(res);
                 let r = res.data;
                 if (r.code == 200) {
                     this.setState({
@@ -72,9 +76,13 @@ export default class Login extends Component {
                     });
 
                     if (r.tipo == "one") {
+                        localStorage.setItem("api_token", r.access_token);
                         this.props.history.push({
                             pathname: "/questionEvent",
-                            state: { idUsuario: r.userid }
+                            state: {
+                                idUsuario: r.userid,
+                                api_token: r.access_token
+                            }
                         });
                     }
                 } else if (r.code == undefined) {

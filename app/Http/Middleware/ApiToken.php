@@ -17,7 +17,7 @@ class ApiToken
    */
   public function handle($request, Closure $next)
   {
-    $token = $request->bearerToken();
+    $token = $request->header('Authorization'); 
     if($token){
       $user = Cliente::where('api_token',$token)->first();
       if($user) {

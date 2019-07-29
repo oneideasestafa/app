@@ -58,6 +58,7 @@ export default class CambiarDatos extends Component {
             estadosciviles: [],
             correo: '',
             cuenta: '',
+            api_token: localStorage.getItem("api_token"),
             pais: '',
             paises: [],
             telefono: '',
@@ -85,7 +86,11 @@ export default class CambiarDatos extends Component {
      */
     componentWillMount() {
         axios
-            .get("api/clientes/id/" + this.state.idUsuario)
+            .get("api/clientes/id/" + this.state.idUsuario,{
+                headers: {
+                    Authorization: this.state.api_token
+                }
+            })
             .then(res => {
                 let r = res.data;
                     if(r.code === 200){

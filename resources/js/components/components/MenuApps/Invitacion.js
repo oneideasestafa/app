@@ -15,6 +15,7 @@ export default class Invitacion extends Component {
         this.state = {
             url: props.url,
             invitaciones: [],
+            api_token: localStorage.getItem("api_token"),
             idEvento: this.props.eventoid,
             isLoading: false
         };
@@ -22,7 +23,11 @@ export default class Invitacion extends Component {
 
     componentWillMount() {
         axios
-            .get("api/eventos/invitacion/" + this.state.idEvento)
+            .get("api/eventos/invitacion/" + this.state.idEvento, {
+                headers: {
+                    Authorization: this.state.api_token
+                }
+            })
             .then(res => {
                 let r = res.data;
                 if (r.code === 200) {

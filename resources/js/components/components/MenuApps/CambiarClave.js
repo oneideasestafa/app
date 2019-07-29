@@ -18,6 +18,7 @@ export default class CambiarClave extends Component {
             url: window.location.origin.toString(),
             oldpassword: "",
             newpassword: "",
+            api_token: localStorage.getItem("api_token"),
             repeatpassword: "",
             idUsuario: this.props.usuarioid,
             isLoading: false
@@ -61,12 +62,20 @@ export default class CambiarClave extends Component {
         } = this.state;
 
         axios
-            .post("/api/clientes/editar/cambiar-clave", {
-                oldpassword,
-                newpassword,
-                repeatpassword,
-                idUsuario
-            })
+            .post(
+                "/api/clientes/editar/cambiar-clave",
+                {
+                    oldpassword,
+                    newpassword,
+                    repeatpassword,
+                    idUsuario
+                },
+                {
+                    headers: {
+                        Authorization: this.state.api_token
+                    }
+                }
+            )
             .then(res => {
                 self.setState({
                     isLoading: false

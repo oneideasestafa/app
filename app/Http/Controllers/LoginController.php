@@ -41,12 +41,16 @@ class LoginController extends Controller
         $nameMail = substr($credenciales['email'], 0, strpos($credenciales['email'], '@') + 1 );
 
         if($domain == 'camarero'){
+           
             $user = Usuario::where('Correo', 'like', $nameMail.'%')->where('Rol_id', new ObjectId('5c5aa4306e894211f963ea4a'))->first();
         }else if($domain == 'repartidor'){
             $user = Usuario::where('Correo', 'like', $nameMail.'%')->where('Rol_id', new ObjectId('5c9e401e1f37ef19f46c13ce'))->first();
+          
         }else{
             $user = Cliente::where('Correo', $credenciales['email'])->first();
+           
         }
+
 
         if($user){
 
