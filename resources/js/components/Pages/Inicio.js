@@ -79,9 +79,11 @@ export default class Inicio extends Component {
     }
 
     flash() {
-        console.log(window.app);
-        window.app.flashlight();
-        console.log("flash");
+        /**
+         * aca abajo hago uso de bootstrap.js y las librerias de cordoba
+         * en el cual uso la funcion .flashligth perfectamente
+         */
+        //window.app.flashlight();
     }
 
     /**
