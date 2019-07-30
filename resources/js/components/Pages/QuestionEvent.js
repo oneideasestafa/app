@@ -42,13 +42,12 @@ export default class QuestionEvent extends Component {
      */
     componentWillMount() {
         console.log(this.state.api_token)
-        axios
-            .get("api/eventos", {
-                headers: {
-                    Authorization: this.state.api_token
-                }
-            })
-            .then(res => {
+        console.log({
+            headers: {
+                Authorization: this.state.api_token
+            }
+        })
+        axios.get("api/eventos", {headers: {Authorization: this.state.api_token}}).then(res => {
                 console.log(res.data)
                 this.setState({
                     eventos : res.data.eventos,

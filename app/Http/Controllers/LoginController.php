@@ -60,7 +60,7 @@ class LoginController extends Controller
                 if(Hash::check($credenciales['password'], $user->Password)){
 
                     $user->QuestionEvent = true;
-                    $user->api_token = Str::random(60);
+                    $user->api_token = Str::random(50);
                     $apiToken =  $user->api_token;
                     
                     if($user->save()){
