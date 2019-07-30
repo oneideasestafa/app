@@ -44,7 +44,7 @@ export default class QuestionEvent extends Component {
         console.log(this.state.api_token)
         console.log({
             headers: {
-                Authorization: this.state.api_token
+                apiToken: this.state.api_token
             }
         })
         axios.get("api/eventos", {headers: {Authorization: this.state.api_token}}).then(res => {
