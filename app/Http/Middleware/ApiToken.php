@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\User;
-use \Illuminate\Http\Request as Request;
+use Illuminate\Http\Request;
 use App\Models\MongoDB\Cliente;
 
 class ApiToken
@@ -20,7 +20,7 @@ class ApiToken
   {
     
     $token = $request->bearerToken();
-    if($token){
+    /*if($token){
       $user = Cliente::where('api_token',$token)->first();
       if($user) {
         return $next($request);
@@ -28,9 +28,9 @@ class ApiToken
       return response()->json([
         'message' => 'Not a valid access token.','request'=>$request,'token'=>$token
       ]);        
-    }
+    }*/
     return response()->json([
-      'message' => 'Not a valid api request.'
+      'message' => 'Not a valid api request.','prueba'=>$request->headers->all()
     ]);
   }
 }
