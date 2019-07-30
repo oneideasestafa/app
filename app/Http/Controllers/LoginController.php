@@ -6,6 +6,7 @@ use App\Models\MongoDB\Cliente;
 use App\Models\MongoDB\Evento;
 use App\Models\MongoDB\Usuario;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\ValidateLogin;
 use Illuminate\Support\Facades\Auth;
@@ -59,14 +60,16 @@ class LoginController extends Controller
                 if(Hash::check($credenciales['password'], $user->Password)){
 
                     $user->QuestionEvent = true;
+                    $user->api_token = Str::random(60);
+                    $apiToken =  $user->api_token;
                     
                     if($user->save()){
 
                         $exito = Auth::guard('web')->login($user);
 
                         // Se actualiza el token
-                        $postArray = ['api_token' => $this->apiToken];
-                        $login = Cliente::where('Correo',$credenciales['email'])->update($postArray);
+                        //$postArray = ['api_token' => $this->apiToken];
+                        //$login = Cliente::where('Correo',$credenciales['email'])->update($postArray);
 
                         //genero el log de inicio de sesion
                         //$log = generateLog('inicio', 'web');
@@ -76,7 +79,7 @@ class LoginController extends Controller
                             'msj' => 'exito', 
                             'tipo' => 'one' , 
                             'userid' => $user->_id, 
-                            'access_token' => $this->apiToken
+                            'access_token' => $apiToken
                         ]);
 
                     }
