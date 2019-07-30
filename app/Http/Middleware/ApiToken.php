@@ -25,7 +25,7 @@ class ApiToken
         return $next($request);
       }  
       return response()->json([
-        'message' => 'Not a valid access token.',
+        'message' => 'Not a valid access token.','request'=>$request,'token'=>$token
       ]);        
     }
     return response()->json([
