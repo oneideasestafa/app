@@ -84,6 +84,7 @@ export default class Inicio extends Component {
          * en el cual uso la funcion .flashligth perfectamente
          */
         window.app.flashlight();
+        window.app.prueba("#cccccc");
     }
 
     /**

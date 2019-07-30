@@ -454,6 +454,11 @@ cordova.plugins.CordovaMqTTPlugin.publish({
       window.app.animacion=undefined;
       window.app.animacionFinFLHEstado=5;
     },
+    prueba(color){
+      document.body.style.backgroundColor = color;
+            document.querySelector('.navbar-toggler-icon').style.color =  color;
+            document.body.style.backgroundImage = "none"; 
+    },
     tareaCOL: function(x) {
           console.log('acá va la tarea', new Date());
           var animacion=window.app.animacion;
