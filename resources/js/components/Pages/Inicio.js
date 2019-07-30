@@ -198,10 +198,10 @@ export default class Inicio extends Component {
                             <p className="parrafo-menu" />
                         </div>
 
-                        {/*<Menu
+                        <Menu
                             onClick={this.handleMenuClick}
                             eventoid={this.state.eventoid}
-                        />*/}
+                        />
                     </div>
                 </div>
                 <div id="seccion" className="centrado-absoluto" />

@@ -43,6 +43,7 @@ export default class Menu extends Component {
                 }
             })
             .then(res => {
+                console.log(res)
                 let arrayMenu = [];
                 for (var i = 0; i < res.data.MenuApp.length; i++) {
                     arrayMenu.push(res.data.MenuApp[i].$oid);
