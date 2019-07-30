@@ -120,7 +120,7 @@ export default class Inicio extends Component {
 
     render() {
         //this.flash();
-        /*let url = this.state.url;
+        let url = this.state.url;
         let mesa = this.state.mesa;
         let checkcamareromesa = this.state.checkcamareromesa;
         let opacidad = "";
@@ -161,7 +161,7 @@ export default class Inicio extends Component {
         }
 
         document.body.style.backgroundImage = "url('" + fondo + "')";
-        document.body.style.backgroundPosition = "center";*/
+        document.body.style.backgroundPosition = "center";
         return (
             <div id="main" className="main">
                 <header className="navbar navbar-dark fixed-top navbar-full bg-rojo">
@@ -198,10 +198,10 @@ export default class Inicio extends Component {
                             <p className="parrafo-menu" />
                         </div>
 
-                        <Menu
+                        {/*<Menu
                             onClick={this.handleMenuClick}
                             eventoid={this.state.eventoid}
-                        />
+                        />*/}
                     </div>
                 </div>
                 <div id="seccion" className="centrado-absoluto" />
