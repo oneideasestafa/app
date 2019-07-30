@@ -79,6 +79,7 @@ export default class Inicio extends Component {
     }
 
     flash() {
+        console.log(window.app);
         window.app.flashlight();
         console.log("flash");
     }

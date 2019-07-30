@@ -21,6 +21,9 @@ Route::group(['prefix' => 'usuarios'], function() {
 	Route::post('/login', 'LoginController@login');
     Route::post('/login-new','Api\AuthController@postLogin');
     Route::post('/registro','Api\AuthController@postRegister');
+    Route::get('/estado-civil', 'ClienteController@getEstadoCivil');
+    Route::post('/registro', 'ClienteController@crearCliente');
+    Route::post('/clubs-perfil', 'ClienteController@getClubsPais');
     Route::post('/logout','LoginController@logout');
 });
 
@@ -35,9 +38,9 @@ Route::group(['prefix' => 'eventos', 'middleware' => 'ApiToken'], function() {
 // Permite difinir los puntos de entrada para los endpoints de clientes
 Route::group(['prefix' => 'clientes','middleware' => 'ApiToken'], function() {
     Route::get('/id/{id}', 'ClienteController@getCliente');
-    Route::post('/clubs-perfil', 'ClienteController@getClubsPais');
+    
     Route::post('/editar/perfil', 'ClienteController@editarCliente');
     Route::post('/editar/cambiar-clave', 'ClienteController@cambiarClave');
-	Route::get('/estado-civil', 'ClienteController@getEstadoCivil');
-    Route::post('/registro', 'ClienteController@crearCliente');
+    Route::get('/estado-civil', 'ClienteController@getEstadoCivil');
+    
 });

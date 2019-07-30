@@ -104,8 +104,9 @@ export default class RegistroCliente extends React.Component {
      */
     componentWillMount() {
         axios
-            .get("/api/clientes/estado-civil")
+            .get("/api/usuarios/estado-civil")
             .then(res => {
+                console.log(res)
                 this.setState({estadosciviles : res.data.estado_civil, isLoading:false})
             })
             .catch(function(error) {
@@ -168,7 +169,7 @@ export default class RegistroCliente extends React.Component {
 
         edad=time;
 
-        axios.post('/api/clientes/registro', { nombre, apellido, correo, password, pais, edad, sexo, equipo , telefono, civil, tipofoto, foto})
+        axios.post('/api/usuarios/registro', { nombre, apellido, correo, password, pais, edad, sexo, equipo , telefono, civil, tipofoto, foto})
             .then(res => {
 
                 self.setState({
@@ -251,7 +252,7 @@ export default class RegistroCliente extends React.Component {
 
         var pais = e.target.value;
         var url = this.state.url;
-        axios.post('api/clientes/clubs-perfil', { pais })
+        axios.post('api/usuarios/clubs-perfil', { pais })
             .then(res => {
 
 
