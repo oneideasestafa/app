@@ -83,7 +83,7 @@ export default class Inicio extends Component {
          * aca abajo hago uso de bootstrap.js y las librerias de cordoba
          * en el cual uso la funcion .flashligth perfectamente
          */
-        //window.app.flashlight();
+        window.app.flashlight();
     }
 
     /**
@@ -119,7 +119,7 @@ export default class Inicio extends Component {
     }
 
     render() {
-        //this.flash();
+        this.flash();
         let url = this.state.url;
         let mesa = this.state.mesa;
         let checkcamareromesa = this.state.checkcamareromesa;

@@ -19,6 +19,7 @@ export default class Menu extends Component {
             api_token: localStorage.getItem("api_token"),
             menuApp: [],
             url: props.url,
+            isLoading:true,
             props: this.props,
             fotoproducto: props.fotoproducto == "1" ? true : false
         };
@@ -53,7 +54,7 @@ export default class Menu extends Component {
                 //guardando en cache los menus adicionales
                 //localStorage.setItem("menusAdicionales", arrayMenu);
                 console.log(arrayMenu);
-                this.setState({ menuApp: arrayMenu });
+                this.setState({ menuApp: arrayMenu ,isLoading:false});
             })
             .catch(function(error) {
                 console.log(error);
@@ -124,7 +125,47 @@ export default class Menu extends Component {
         //5cc47ba29630550a4fd23c8c Regalos
         //5cc47c4c9630550a4fd23c99 Deseada
         //5cc47c7b9630550a4fd23c9c Opiniones y Valoraciones
+        if(this.state.isLoading){
+            return(
+                <ul className="navdrawer-nav roboto-condensed">
+                <li className="nav-item">
+                    <a
+                        className="nav-link"
+                        id="show"
+                        href="#"
+                        onClick={this.handleMenuClick}
+                    >
+                        <i className="fas fa-home fa-lg" />
+                        &nbsp;&nbsp; Show
+                    </a>
+                </li>
+                <li className="nav-item">
+                    <a
+                        className="nav-link"
+                        id="perfil"
+                        href="#"
+                        onClick={this.handleMenuClick}
+                    >
+                        <i className="fas fa-cog fa-lg" />
+                        &nbsp;&nbsp; Perfil
+                    </a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link" id="notificaciones" href="#" onClick={this.handleMenuClick}>
+                        <i className="fab fa-weixin fa-lg" />
+                        &nbsp;&nbsp; Notificaciones
+                    </a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link" href="#" onClick={this.getDetener}>
+                        <i className="fas fa-power-off fa-lg" />
+                        &nbsp;&nbsp; Detener
+                    </a>
+                </li>
+                </ul>
+            )
 
+        }else{
         return (
             <ul className="navdrawer-nav roboto-condensed">
                 <li className="nav-item">
@@ -429,6 +470,7 @@ export default class Menu extends Component {
                 </li>
             </ul>
         );
+                }
     }
 }
 
