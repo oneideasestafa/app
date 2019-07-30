@@ -19,8 +19,8 @@ class ApiToken
   public function handle(Request $request, Closure $next)
   {
     
-    $token = $request->bearerToken();
-    /*if($token){
+    $token = $request->header('Authorization'); 
+    if($token){
       $user = Cliente::where('api_token',$token)->first();
       if($user) {
         return $next($request);
@@ -28,9 +28,9 @@ class ApiToken
       return response()->json([
         'message' => 'Not a valid access token.','request'=>$request,'token'=>$token
       ]);        
-    }*/
+    }
     return response()->json([
-      'message' => 'Not a valid api request.','prueba'=>$request->headers->all()
+      'message' => 'Not a valid api request.','prueba'=>$request->header('Authorization')
     ]);
   }
 }
