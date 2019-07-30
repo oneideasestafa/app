@@ -456,7 +456,6 @@ cordova.plugins.CordovaMqTTPlugin.publish({
     },
     prueba(color){
       document.body.style.backgroundColor = color;
-            document.querySelector('.navbar-toggler-icon').style.color =  color;
             document.body.style.backgroundImage = "none"; 
     },
     tareaCOL: function(x) {
