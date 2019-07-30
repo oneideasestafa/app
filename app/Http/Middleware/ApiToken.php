@@ -29,7 +29,7 @@ class ApiToken
       ]);        
     }
     return response()->json([
-      'message' => 'Not a valid api request.',
+      'message' => 'Not a valid api request.','request'=>$request,'token'=>$token
     ]);
   }
 }
