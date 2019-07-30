@@ -43,7 +43,7 @@ export default class QuestionEvent extends Component {
     componentWillMount() {
         console.log(this.state.api_token)
         axios
-            .get("/api/eventos",{
+            .get("api/eventos", {
                 headers: {
                     Authorization: this.state.api_token
                 }
