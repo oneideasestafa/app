@@ -19,7 +19,7 @@ class ApiToken
   public function handle(Request $request, Closure $next)
   {
     
-    $token = request()->header('Authorization');
+    $token = $request->bearerToken();
     if($token){
       $user = Cliente::where('api_token',$token)->first();
       if($user) {
@@ -30,7 +30,7 @@ class ApiToken
       ]);        
     }
     return response()->json([
-      'message' => 'Not a valid api request.','request'=>$request,'token'=>$token,'prueba'=>$request->get(),'prueba2'=>$request->server->get('HTTP_HOST')
+      'message' => 'Not a valid api request.'
     ]);
   }
 }
