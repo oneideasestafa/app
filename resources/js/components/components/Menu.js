@@ -18,6 +18,7 @@ export default class Menu extends Component {
             pais: props.pais,
             api_token: localStorage.getItem("api_token"),
             menuApp: [],
+            menuCache: (localStorage.getItem("menusAdicionales")) ? (localStorage.getItem("menusAdicionales")) : [],
             url: props.url,
             isLoading:true,
             props: this.props,
@@ -87,7 +88,6 @@ export default class Menu extends Component {
     }
 
     /*
-
     handleLogout(e) {
         let urlLogout = this.state.url + "/logout";
         e.preventDefault();
@@ -204,8 +204,7 @@ export default class Menu extends Component {
                 </li>
 
                 {this.state.menuApp.includes("5cc47b4af39c6a0a4f6a4de4") ||
-                localStorage
-                    .getItem("menusAdicionales")
+                this.state.menuCache
                     .includes("5cc47b4af39c6a0a4f6a4de4") ? (
                     <li className="nav-item">
                         <a className="nav-link" id="invitacion" href="#" onClick={this.handleMenuClick}>
@@ -218,8 +217,7 @@ export default class Menu extends Component {
                 )}
 
                 {this.state.menuApp.includes("5cc47bc79630550a4fd23c8d") ||
-                localStorage
-                    .getItem("menusAdicionales")
+                this.state.menuCache
                     .includes("5cc47bc79630550a4fd23c8d ") ? (
                     <li className="nav-item">
                         <a className="nav-link" id="agenda" href="#" onClick={this.handleMenuClick} >
@@ -231,8 +229,7 @@ export default class Menu extends Component {
                     ""
                 )}
                 {this.state.menuApp.includes("5cc47c569630550a4fd23c9a") ||
-                localStorage
-                    .getItem("menusAdicionales")
+                this.state.menuCache
                     .includes("5cc47c569630550a4fd23c9a ") ? (
                     <li className="nav-item">
                         <a className="nav-link" id="Encuesta-y-voto" href="#" onClick={this.handleMenuClick} >
@@ -244,8 +241,7 @@ export default class Menu extends Component {
                     ""
                 )}
                 {this.state.menuApp.includes("5cc47c929630550a4fd23c9d") ||
-                localStorage
-                    .getItem("menusAdicionales")
+                this.state.menuCache
                     .includes("5cc47c929630550a4fd23c9d ") ? (
                     <li className="nav-item">
                         <a className="nav-link" id="guardaropas" href="#" onClick={this.handleMenuClick} >
@@ -257,8 +253,7 @@ export default class Menu extends Component {
                     ""
                 )}
                 {this.state.menuApp.includes("5cc47c929630550a4fd23c9d") ||
-                localStorage
-                    .getItem("menusAdicionales")
+                this.state.menuCache
                     .includes("5cc47c929630550a4fd23c9d ") ? (
                     <li className="nav-item">
                         <a className="nav-link" id="menu" href="#" onClick={this.handleMenuClick} >
@@ -270,8 +265,7 @@ export default class Menu extends Component {
                     ""
                 )}
                 {this.state.menuApp.includes("5cc47bdc9630550a4fd23c8f") ||
-                localStorage
-                    .getItem("menusAdicionales")
+                this.state.menuCache
                     .includes("5cc47bdc9630550a4fd23c8f ") ? (
                     <li className="nav-item">
                         <a className="nav-link" id="gastronomico" href="#" onClick={this.handleMenuClick} >
@@ -283,8 +277,7 @@ export default class Menu extends Component {
                     ""
                 )}
                 {this.state.menuApp.includes("5cc47be79630550a4fd23c90") ||
-                localStorage
-                    .getItem("menusAdicionales")
+                this.state.menuCache
                     .includes("5cc47be79630550a4fd23c90 ") ? (
                     <li className="nav-item">
                         <a className="nav-link" id="servicios" href="#" onClick={this.handleMenuClick} >
@@ -296,8 +289,7 @@ export default class Menu extends Component {
                     ""
                 )}
                 {this.state.menuApp.includes("5cc47bf29630550a4fd23c91") ||
-                localStorage
-                    .getItem("menusAdicionales")
+                this.state.menuCache
                     .includes("5cc47bf29630550a4fd23c91 ") ? (
                     <li className="nav-item">
                         <a className="nav-link" id="book-digital" href="#" onClick={this.handleMenuClick} >
@@ -309,8 +301,7 @@ export default class Menu extends Component {
                     ""
                 )}
                 {this.state.menuApp.includes("5cc47bfe9630550a4fd23c92") ||
-                localStorage
-                    .getItem("menusAdicionales")
+                this.state.menuCache
                     .includes("5cc47bfe9630550a4fd23c92 ") ? (
                     <li className="nav-item">
                         <a className="nav-link" id="photo-call" href="#" onClick={this.handleMenuClick} >
@@ -322,8 +313,7 @@ export default class Menu extends Component {
                     ""
                 )}
                 {this.state.menuApp.includes("5cc47c099630550a4fd23c93") ||
-                localStorage
-                    .getItem("menusAdicionales")
+                this.state.menuCache
                     .includes("5cc47c099630550a4fd23c93 ") ? (
                     <li className="nav-item">
                         <a className="nav-link" id="show-de-luces" href="#" onClick={this.handleMenuClick} >
@@ -335,8 +325,7 @@ export default class Menu extends Component {
                     ""
                 )}
                 {this.state.menuApp.includes("5cc47c149630550a4fd23c94") ||
-                localStorage
-                    .getItem("menusAdicionales")
+                this.state.menuCache
                     .includes("5cc47c149630550a4fd23c94 ") ? (
                     <li className="nav-item">
                         <a className="nav-link" id="instagram" href="#" onClick={this.handleMenuClick} >
@@ -348,8 +337,7 @@ export default class Menu extends Component {
                     ""
                 )}
                 {this.state.menuApp.includes("5cc47c1f9630550a4fd23c95") ||
-                localStorage
-                    .getItem("menusAdicionales")
+                this.state.menuCache
                     .includes("5cc47c1f9630550a4fd23c95 ") ? (
                     <li className="nav-item">
                         <a className="nav-link" id="twitter" href="#" onClick={this.handleMenuClick} >
@@ -361,8 +349,7 @@ export default class Menu extends Component {
                     ""
                 )}
                 {this.state.menuApp.includes("5cc47c2e9630550a4fd23c96") ||
-                localStorage
-                    .getItem("menusAdicionales")
+                this.state.menuCache
                     .includes("5cc47c2e9630550a4fd23c96 ") ? (
                     <li className="nav-item">
                         <a className="nav-link" id="album" href="#" onClick={this.handleMenuClick} >
@@ -374,8 +361,7 @@ export default class Menu extends Component {
                     ""
                 )}
                 {this.state.menuApp.includes("5cc47c369630550a4fd23c97") ||
-                localStorage
-                    .getItem("menusAdicionales")
+                this.state.menuCache
                     .includes("5cc47c369630550a4fd23c97 ") ? (
                     <li className="nav-item">
                         <a className="nav-link" id="juegos" href="#" onClick={this.handleMenuClick} >
@@ -387,8 +373,7 @@ export default class Menu extends Component {
                     ""
                 )}
                 {this.state.menuApp.includes("5cc47c419630550a4fd23c98") ||
-                localStorage
-                    .getItem("menusAdicionales")
+                this.state.menuCache
                     .includes("5cc47c419630550a4fd23c98 ") ? (
                     <li className="nav-item">
                         <a className="nav-link" id="cancion" href="#" onClick={this.handleMenuClick} >
@@ -400,8 +385,7 @@ export default class Menu extends Component {
                     ""
                 )}
                 {this.state.menuApp.includes("5cc47c729630550a4fd23c9b") ||
-                localStorage
-                    .getItem("menusAdicionales")
+                this.state.menuCache
                     .includes("5cc47c729630550a4fd23c9b ") ? (
                     <li className="nav-item">
                         <a className="nav-link" id="historia" href="#" onClick={this.handleMenuClick} >
@@ -413,8 +397,7 @@ export default class Menu extends Component {
                     ""
                 )}
                 {this.state.menuApp.includes("5cc47ba29630550a4fd23c8c") ||
-                localStorage
-                    .getItem("menusAdicionales")
+                this.state.menuCache
                     .includes("5cc47ba29630550a4fd23c8c ") ? (
                     <li className="nav-item">
                         <a className="nav-link" id="regalos" href="#" onClick={this.handleMenuClick} >
@@ -426,8 +409,7 @@ export default class Menu extends Component {
                     ""
                 )}
                 {this.state.menuApp.includes("5cc47c4c9630550a4fd23c99") ||
-                localStorage
-                    .getItem("menusAdicionales")
+                this.state.menuCache
                     .includes("5cc47c4c9630550a4fd23c99 ") ? (
                     <li className="nav-item">
                         <a className="nav-link" id="deseada" href="#" onClick={this.handleMenuClick} >
@@ -439,8 +421,7 @@ export default class Menu extends Component {
                     ""
                 )}
                 {this.state.menuApp.includes("5cc47c7b9630550a4fd23c9c") ||
-                localStorage
-                    .getItem("menusAdicionales")
+                this.state.menuCache
                     .includes("5cc47c7b9630550a4fd23c9c") ? (
                     <li className="nav-item">
                         <a className="nav-link" id="opiniones-y-valoraciones" href="#" onClick={this.handleMenuClick} >

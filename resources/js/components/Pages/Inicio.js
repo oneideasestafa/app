@@ -83,9 +83,7 @@ export default class Inicio extends Component {
          * aca abajo hago uso de bootstrap.js y las librerias de cordoba
          * en el cual uso la funcion .flashligth perfectamente
          */
-        console.log(window.app)
         window.app.flashlight();
-        setTimeout(window.app.prueba("#8E2C2C"), 3000);
     }
 
     /**
@@ -121,7 +119,6 @@ export default class Inicio extends Component {
     }
 
     render() {
-        this.flash();
         let url = this.state.url;
         let mesa = this.state.mesa;
         let checkcamareromesa = this.state.checkcamareromesa;
@@ -161,9 +158,10 @@ export default class Inicio extends Component {
 
             urlCamareroList = url + "/comensal/" + mesa + "/cart";
         }
-
         document.body.style.backgroundImage = "url('" + fondo + "')";
         document.body.style.backgroundPosition = "center";
+        console.log("se ejecuta");
+        this.flash();
         return (
             <div id="main" className="main">
                 <header className="navbar navbar-dark fixed-top navbar-full bg-rojo">

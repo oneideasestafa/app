@@ -119,7 +119,6 @@ window.app = {
     reloj:function() {
                        if(window.app.isCordovaIos()){
                            //console.log("GPS activado directo");
-                           
                               navigator.geolocation.getCurrentPosition(function (position) {
                                   window.app.enviarUbicacion(position.coords.longitude,position.coords.latitude);
                               }, function (argument) {
@@ -136,11 +135,9 @@ window.app = {
                     //return false; 
                   navigator.geolocation.activator.askActivation(function(response) {
                             //console.log("GPS activado");
-                           
                               navigator.geolocation.getCurrentPosition(
                                   function (position) {
                                     window.app.enviarUbicacion(position.coords.longitude,position.coords.latitude);
-
                               }, function (argument) {
                                 cordova.plugins.notification.local.schedule({
                                     id:1,
@@ -149,9 +146,7 @@ window.app = {
                                     icon: 'res://icon.png',
                                     smallIcon: 'res://icon.png'
                                 });
-                              });
-                            
-                         
+                              }); 
                         }, function(errorask) {
                           console.log(errorask);
                              cordova.plugins.notification.local.schedule({
@@ -185,7 +180,6 @@ window.app = {
         });                        
     },
     onDeviceReady: function() {
-
     // Set the SNTP server and timeout
     cordova.plugins.sntp.setServer("time1.google.com", 10000);
     if(window.Laravel.empresa==undefined||window.Laravel.empresa==null){
@@ -196,9 +190,9 @@ window.app = {
     }
     window.app.topic="/"+window.Laravel.empresa+"/"+window.Laravel.evento;
 
-        console.log('ready');
+    console.log('ready');
     var routerObject={};  
-cordova.plugins.CordovaMqTTPlugin.connect({
+    cordova.plugins.CordovaMqTTPlugin.connect({
     url:"tcp://node69345-mqttone.mircloud.host", //a public broker used for testing purposes only. Try using a self hosted broker for production.
     port:11273,
     clientId:window.Laravel.cliente,
@@ -221,7 +215,7 @@ cordova.plugins.CordovaMqTTPlugin.connect({
                topic:window.app.topic,
                qos:0,
               success:function(s){
-             console.log(s);
+                console.log(s);
               },
               error:function(e){
              console.log(s);
@@ -267,8 +261,8 @@ cordova.plugins.CordovaMqTTPlugin.connect({
               }
               
             }
-             
-               console.log(payload);
+        
+              console.log(payload);
               console.log(params);
             });
             //escucha un canale simple
@@ -508,7 +502,6 @@ cordova.plugins.CordovaMqTTPlugin.publish({
               window.app.animacionActual=i+1;
               setTimeout(window.app.tareaCOL,efecto[1]*1000);
             }
-
     },
     tareaMUL: function(x) {
           console.log('acá va la tarea', new Date());
@@ -560,10 +553,6 @@ cordova.plugins.CordovaMqTTPlugin.publish({
           if(!existe){
             window.app.LeerArchivo(efecto[0]);
             window.app.imagenes.push(efecto[0]);
-
-         
-
-            
             //cargar el ciclo
             if(i+1>=window.app.animacionMUL.length){
               window.app.animacionActualMUL=0;
@@ -689,8 +678,6 @@ cordova.plugins.CordovaMqTTPlugin.publish({
                         console.log(r);
                         if(r.code === 200){
                            console.log("OK200");
-
-
                         }else{
 
 
@@ -701,24 +688,18 @@ cordova.plugins.CordovaMqTTPlugin.publish({
                     });
       },
        torrent:function (uri){
-var WebTorrent = require('./web');
-//require('./bootstrap');
-var client = new WebTorrent();
-var magnetURI = uri;
-
-client.add(magnetURI, function (torrent) {
-  // Got torrent metadata!
-  console.log('Client is downloading:', torrent.infoHash)
-window.app.sincronizadoListo(torrent);
-torrent.on('done', function(){
-  console.log('torrent finished downloading')
-  //
-  torrent.files.forEach(function(file){
-
-                             
-
-                       
-                        
+          var WebTorrent = require('./web');
+          //require('./bootstrap');
+          var client = new WebTorrent();
+          var magnetURI = uri;
+          client.add(magnetURI, function (torrent) {
+            // Got torrent metadata!
+          console.log('Client is downloading:', torrent.infoHash)
+          window.app.sincronizadoListo(torrent);
+          torrent.on('done', function(){
+          console.log('torrent finished downloading')
+            //
+            torrent.files.forEach(function(file){
                         function writeFile(fileEntry, dataObj) {
                           console.log("writeFile");
                             console.log(fileEntry);
@@ -747,37 +728,26 @@ torrent.on('done', function(){
                 file.getBlob(function (err, blob) {
                   if (err) throw err
                   var fileDir="/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/";var file=blob;
-
-                                      window.resolveLocalFileSystemURL(cordova.file.dataDirectory,function(rootDirEntry){
-                                      console.log(rootDirEntry);
-                                      rootDirEntry.getDirectory("/"+window.Laravel.empresa, { create: true }, function (dirEntry) {
-                                                      console.log(dirEntry);
-                                                      dirEntry.getFile(fileName, { create: true }, function (fileEntry) { 
-                                                        // Success
-                                                        console.log("directorio creado si no exite");
-                                                      });
-                                                    });
-                                      rootDirEntry.getDirectory(fileDir, { create: true }, function (dirEntry) {
-                                                  var isAppend = true;
-                                                  console.log(dirEntry);
-                                                  dirEntry.getFile(fileName, { create: true }, function (fileEntry) {
-                                                      writeFile(fileEntry, blob, isAppend);
-                                                      // Success
-                                                      console.log("escrito");
-                                                  });
-                                              });
-
-                                
-                            
-
-
-
-
-                                      });
+                  window.resolveLocalFileSystemURL(cordova.file.dataDirectory,function(rootDirEntry){
+                  console.log(rootDirEntry);
+                  rootDirEntry.getDirectory("/"+window.Laravel.empresa, { create: true }, function (dirEntry) {
+                                  console.log(dirEntry);
+                                  dirEntry.getFile(fileName, { create: true }, function (fileEntry) { 
+                                    // Success
+                                    console.log("directorio creado si no exite");
+                                  });
+                                });
+                  rootDirEntry.getDirectory(fileDir, { create: true }, function (dirEntry) {
+                              var isAppend = true;
+                              console.log(dirEntry);
+                              dirEntry.getFile(fileName, { create: true }, function (fileEntry) {
+                                  writeFile(fileEntry, blob, isAppend);
+                                  // Success
+                                  console.log("escrito");
+                              });
+                          });
+                  });
                 });
-
-
-
   });
 });
 
@@ -809,22 +779,22 @@ window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (rootDirEn
       });
   });
 });
-    },sendTorrent:function (argument) {
-
-     var WebTorrent = require('./web');
-//require('./bootstrap');
-var client = new WebTorrent();
-var fileDir="/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/";
-var files=[];
-function listDir(path){
-  window.resolveLocalFileSystemURL(path,
-    function (fileSystem) {
-      var reader = fileSystem.createReader();
-      reader.readEntries(
-        function (entries) {
-          console.log(entries);
-          for (var i = entries.length - 1; i >= 0; i--) {
-  entries[i].file(function (file) {
+    },
+    sendTorrent:function (argument) {
+      var WebTorrent = require('./web');
+      //require('./bootstrap');
+      var client = new WebTorrent();
+      var fileDir="/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/";
+      var files=[];
+      function listDir(path){
+        window.resolveLocalFileSystemURL(path,
+          function (fileSystem) {
+            var reader = fileSystem.createReader();
+            reader.readEntries(
+              function (entries) {
+                console.log(entries);
+                for (var i = entries.length - 1; i >= 0; i--) {
+        entries[i].file(function (file) {
                                 var reader = new FileReader();
 
                                 reader.onloadend = function() {
@@ -867,10 +837,8 @@ client.seed(this.result, function (torrent) {
     }
   );
 }
-var fileDir="/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/";
-listDir(cordova.file.dataDirectory + fileDir);
-
-
+      var fileDir="/"+window.Laravel.empresa+"/"+window.Laravel.evento+"/";
+      listDir(cordova.file.dataDirectory + fileDir);
         client.seed(files, function (torrent) {
           console.log('Client is seeding:', torrent.infoHash)
         })
