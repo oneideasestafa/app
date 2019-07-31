@@ -455,8 +455,9 @@ cordova.plugins.CordovaMqTTPlugin.publish({
       window.app.animacionFinFLHEstado=5;
     },
     prueba(color){
-      document.body.style.backgroundColor = color;
-            document.body.style.backgroundImage = "none"; 
+      document.body.style.backgroundImage = "none"; 
+      document.body.style.background = color;
+      
     },
     tareaCOL: function(x) {
           console.log('acá va la tarea', new Date());
