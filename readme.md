@@ -7,6 +7,31 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## Ejecutar la aplicación desde tu telefono en local
+
+### Paso 1
+Ejecuta el servidor de laravel con el siguiente comando:
+
+    php artisan serve --host 0.0.0.0
+
+### Paso 2
+Una vez iniciado el servidor, abre la línea de comandos y (para el caso de windows) ejecuta el comando
+
+    ipconfig
+
+### Paso 3
+Observa la dirección IPv4 del equipo donde está corriendo el servidor de laravel
+
+### Paso 4
+Accede a dicha IP en el navegador desde tu teléfono junto con el puerto que indica el servidor de laravel, por ejemplo:
+
+    192.168.1.3:8000
+
+Luego de eso ya deberías ser capaz de ver la aplicación en tu dispositivo móvil.
+
+## Debuggear la aplicación desde el navegador
+Una vez abierta la aplicación web desde tu dispositivo móvil, puedes seguir los pasos que se explican [aquí](https://developers.google.com/web/tools/chrome-devtools/remote-debugging/?utm_source=dcc&utm_medium=redirect&utm_campaign=2016q3) para debuggear la aplicación desde el navegador en tu PC.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
@@ -69,8 +94,6 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-
 
 #plugin cordova
 de.appplant.cordova.plugin.local-notification
