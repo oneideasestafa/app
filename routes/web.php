@@ -11,18 +11,17 @@
 |
 */
 
-Route::middleware(['guest'])->group(function(){
-
-    // Ruta de entrada principal a la aplicación
-    Route::get('/', 'IndexController@index')->name('index');
-
-    // Ruta de entrada principal a la aplicación
-    //Route::get('/login', 'LoginController@login')->name('login');   
-
+Route::middleware(['guest'])->group(function () {
     // Rutas usadas por el pluging oauth autenticacion con Google y Facebook
     Route::get('auth/{provider}', 'SocialAuthController@redirect');
     Route::get('auth/{provider}/callback', 'SocialAuthController@callback');
-
+    
+    // Ruta de entrada principal a la aplicación
+    //Route::get('/login', 'LoginController@login')->name('login');   
+    
+    
+    // Ruta de entrada principal a la aplicación
+    Route::fallback('IndexController@index')->name('index');
     /*
     //rutas del recovery password
     Route::get('/recovery-password', 'RecoveryPasswordController@index')->name('recovery-password');
@@ -30,6 +29,7 @@ Route::middleware(['guest'])->group(function(){
     Route::get('/reset-password/{token}', 'RecoveryPasswordController@showPasswordResetForm')->name('show-password-reset-form');
     Route::post('/reset-password/{token}', 'RecoveryPasswordController@resetPassword')->name('reset-password');*/
 });
+
 /*
 //'prevent-back-history'
 Route::middleware(['auth', 'prevent-back-history'])->group(function(){
