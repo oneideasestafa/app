@@ -6,18 +6,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSync } from "@fortawesome/free-solid-svg-icons";
 import swal from "sweetalert2";
 import fondo from "../../../../public/images/fondo.jpeg";
-import Menu from "../components/Menu";
-import Invitacion from "../components/MenuApps/Invitacion";
-import CambiarClave from "../components/MenuApps/CambiarClave";
-import CambiarDatos from "../components/MenuApps/CambiarDatos";
+import Menu from "../organisms/Menu";
+import Invitacion from "../organisms/Invitacion";
+import CambiarClave from "../organisms/CambiarClave";
+import CambiarDatos from "../organisms/CambiarDatos";
 import { connect } from 'react-redux';
+import { toggleNavigationMenu } from './../../redux/actions/navigation';
 
 library.add(faSync);
 
 import logo from "../../../../public/images/logo-one.png";
 
 //importando estilos
-import "./css/Inicio.css";
+import "./../../../css/pages/Inicio.css";
 
 class Inicio extends Component {
     constructor(props) {
@@ -162,18 +163,11 @@ class Inicio extends Component {
         document.body.style.backgroundImage = "url('" + fondo + "')";
         document.body.style.backgroundPosition = "center";
         console.log("se ejecuta");
-        this.flash();
+        // this.flash();
         return (
             <div id="main" className="main">
                 <header className="navbar navbar-dark fixed-top navbar-full bg-rojo">
-                    <button
-                        aria-controls="navdrawerDefault"
-                        aria-expanded="false"
-                        aria-label="Toggle Navdrawer"
-                        className="navbar-toggler"
-                        data-target="#navdrawerDefault"
-                        data-toggle="navdrawer"
-                    >
+                    <button className="navbar-toggler" onClick={this.props.toggleNavigationMenu}>
                         <span className="navbar-toggler-icon" />
                     </button>
                     <span className="navbar-brand mr-auto">
@@ -198,7 +192,6 @@ class Inicio extends Component {
                             </a>
                             <p className="parrafo-menu" />
                         </div>
-
                         <Menu
                             onClick={this.handleMenuClick}
                             eventoid={this.props.event._id}
@@ -215,4 +208,8 @@ const mapStateToProps = state => ({
   event: state.events.current
 });
 
-export default connect(mapStateToProps)(Inicio);
+const mapDispatchToProps = dispatch => ({
+  toggleNavigationMenu: () => dispatch(toggleNavigationMenu()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Inicio);

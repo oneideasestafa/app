@@ -25,21 +25,21 @@ mix.styles([
 
 
 //compilar los archivos js
-mix.babel([
-    'node_modules/jquery/dist/jquery.min.js',
-    'node_modules/popper.js/dist/umd/popper.js',
-    'node_modules/bootstrap/dist/js/bootstrap.min.js',
-    'node_modules/daemonite-material/js/material.min.js',
-    'node_modules/axios/dist/axios.min.js',
-    'node_modules/sweetalert2/dist/sweetalert2.min.js',
-    'node_modules/location-picker/dist/location-picker.min.js',
-    'node_modules/rangetouch/dist/rangetouch.js',
-    //'node_modules/inputmask/dist/min/jquery.inputmask.bundle.min.js',
-    //'node_modules/moment/min/moment.min.js',
-    //'node_modules/moment/min/moment-with-locales.min.js',
-    'node_modules/howler/dist/howler.min.js',
-    'resources/js/main.js'
-], 'public/js/vendor.js');
+// mix.babel([
+//     'node_modules/jquery/dist/jquery.min.js',
+//     'node_modules/popper.js/dist/umd/popper.js',
+//     'node_modules/bootstrap/dist/js/bootstrap.min.js',
+//     'node_modules/daemonite-material/js/material.min.js',
+//     'node_modules/axios/dist/axios.min.js',
+//     'node_modules/sweetalert2/dist/sweetalert2.min.js',
+//     'node_modules/location-picker/dist/location-picker.min.js',
+//     'node_modules/rangetouch/dist/rangetouch.js',
+//     //'node_modules/inputmask/dist/min/jquery.inputmask.bundle.min.js',
+//     //'node_modules/moment/min/moment.min.js',
+//     //'node_modules/moment/min/moment-with-locales.min.js',
+//     'node_modules/howler/dist/howler.min.js',
+//     'resources/js/main.js'
+// ], 'public/js/vendor.js');
 
 
 //copiar la carpeta de webfonts de fontawesome 5 de la libreria al directorio public

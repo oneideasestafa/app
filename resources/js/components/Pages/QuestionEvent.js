@@ -8,7 +8,7 @@ import swal from "sweetalert2";
 import InputMask from 'react-input-mask';
 import logoOne from '../../../../public/images/logo-one.png';
 import { connect } from 'react-redux';
-import { getEvents, selectEvent } from './../redux/actions/events';
+import { getEvents, selectEvent } from './../../redux/actions/events';
 
 library.add(faSync);
 
@@ -211,7 +211,7 @@ class QuestionEvent extends Component {
      */
     handleContinuar(e){
       e.preventDefault();
-      
+
       this.setState({
           isLoading: true
       });
@@ -255,8 +255,6 @@ class QuestionEvent extends Component {
 
       const { evento, idevento, url, fila, asiento, sector, eventoUbicacionManual, isLoading } = this.state;
       let urlLogout    = url + '/logout';
-
-      console.log('events', this.props.events);
 
       if (isLoading)
         return (

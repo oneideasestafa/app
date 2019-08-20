@@ -17,7 +17,7 @@ import reactMobileDatePicker from 'react-mobile-datepicker';
 import iconCivil from '../../../../public/images/EstadoCivil01.png';
 
 /**Importando estilos del componente */
-import "./css/Login.css"
+import "./../../../css/pages/Login.css"
 
 library.add( faSync);
 
