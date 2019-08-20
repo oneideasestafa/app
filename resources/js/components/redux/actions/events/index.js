@@ -14,6 +14,13 @@ export function getEvents (apiToken) {
   }
 }
 
+export function selectEvent (id) {
+  return {
+    type: SELECTED_CURRENT_EVENT,
+    payload: { id }
+  };
+}
+
 export function saveEvents (events) {
   return {
     type: FETCHED_EVENTS,

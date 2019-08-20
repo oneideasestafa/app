@@ -18,7 +18,7 @@ export default function (state = initialState, action) {
     case SELECTED_CURRENT_EVENT:
       return {
         ...state,
-        current: action.payload
+        current: state.events.find(event => event._id === action.payload.id)
       };
     default:
       return state;

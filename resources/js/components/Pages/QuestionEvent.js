@@ -8,9 +8,9 @@ import swal from "sweetalert2";
 import InputMask from 'react-input-mask';
 import logoOne from '../../../../public/images/logo-one.png';
 import { connect } from 'react-redux';
-import { getEvents } from './../redux/actions/events';
+import { getEvents, selectEvent } from './../redux/actions/events';
 
-library.add( faSync);
+library.add(faSync);
 
 class QuestionEvent extends Component {
 
@@ -210,38 +210,45 @@ class QuestionEvent extends Component {
      * @param {evento} e 
      */
     handleContinuar(e){
+      e.preventDefault();
+      
+      this.setState({
+          isLoading: true
+      });
 
-        let self = this;
+      let {idUsuario,evento, sector, fila, asiento, eventoUbicacionManual, manual, ideventobad} = this.state;
 
-        self.setState({
-            isLoading: true
-        });
+      //AQUI DEBO CREAR LA RUTA PARA VALIDAR EVENTO SI UTILI O ID EVENTO
+      if(ideventobad == true){
+          //AQUI DEBO CREAR LA RUTA PARA VALIDAR EVENTO
+          this.setState({
+              isLoading: false
+          });
 
-        let {idUsuario,evento, sector, fila, asiento, eventoUbicacionManual, manual, ideventobad} = this.state;
+          swal({
+              title: '<i class="fas fa-exclamation-circle"></i>',
+              text: 'El codigo del evento es invalido',
+              confirmButtonColor: '#343a40',
+              confirmButtonText: 'Ok'
+          });
 
-        e.preventDefault();
+      } else {
 
-        //AQUI DEBO CREAR LA RUTA PARA VALIDAR EVENTO SI UTILI O ID EVENTO
-        if(ideventobad == true){
-            //AQUI DEBO CREAR LA RUTA PARA VALIDAR EVENTO
-            self.setState({
-                isLoading: false
-            });
+        this.props.selectEvent(evento);
 
-            swal({
-                title: '<i class="fas fa-exclamation-circle"></i>',
-                text: 'El codigo del evento es invalido',
-                confirmButtonColor: '#343a40',
-                confirmButtonText: 'Ok'
-            });
-
-        }else{
-            this.props.history.push({
-                pathname: '/inicio',
-                state: {idUsuario,evento, sector, fila, asiento, manual, ideventobad, eventoUbicacionManual}
-              })
-        }
-
+        this.props.history.push({
+          pathname: '/inicio',
+          state: { 
+            idUsuario, 
+            sector, 
+            fila, 
+            asiento, 
+            manual, 
+            ideventobad, 
+            eventoUbicacionManual
+          }
+        })
+      }
     }
 
     render() {
@@ -272,13 +279,13 @@ class QuestionEvent extends Component {
                           <i className="fas fa-calendar-week fa-lg"></i>
                       </div>
                       <select className="form-control" id="inputGroupSelect02" value={evento} name="evento" id="evento" onChange={this.handleChange}>
-                          <option  key="0" value=''>Seleccione Evento</option>
-                          <option  key="100" value='idevento'>ID Evento</option>
-                          {
-                              this.props.events.map(function(item){
-                                  return <option  key={item._id} value={item._id}>{item.Nombre}</option>
-                              })
-                          }
+                          <option value=''>Seleccione Evento</option>
+                          <option value='idevento'>ID Evento</option>
+                          {this.props.events.map((item) => (
+                            <option key={item._id} value={item._id}>
+                              {item.Nombre}
+                            </option>
+                          ))}
                       </select>
                   </div>
                   { evento == 'idevento' &&
@@ -335,7 +342,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getEvents: (apiToken) => dispatch(getEvents(apiToken))
+  getEvents: (apiToken) => dispatch(getEvents(apiToken)),
+  selectEvent: (id) => dispatch(selectEvent(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionEvent);

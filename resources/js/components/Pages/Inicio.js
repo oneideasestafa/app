@@ -4,13 +4,13 @@ import { Redirect } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSync } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
 import swal from "sweetalert2";
 import fondo from "../../../../public/images/fondo.jpeg";
 import Menu from "../components/Menu";
 import Invitacion from "../components/MenuApps/Invitacion";
 import CambiarClave from "../components/MenuApps/CambiarClave";
 import CambiarDatos from "../components/MenuApps/CambiarDatos";
+import { connect } from 'react-redux';
 
 library.add(faSync);
 
@@ -19,28 +19,29 @@ import logo from "../../../../public/images/logo-one.png";
 //importando estilos
 import "./css/Inicio.css";
 
-export default class Inicio extends Component {
+class Inicio extends Component {
     constructor(props) {
-        const stateQuestionEvent = props.location.state;
         super(props);
+
+        const stateQuestionEvent = props.location.state;
+        
         this.state = {
-            url: props.url,
-            usuarioid: stateQuestionEvent.idUsuario,
-            eventoid: stateQuestionEvent.evento,
-            sector: stateQuestionEvent.sector,
-            fila: stateQuestionEvent.fila,
-            api_token: localStorage.getItem("api_token"),
-            asiento: stateQuestionEvent.asiento,
-            manual: stateQuestionEvent.manual,
-            eventoUbicacionManual: stateQuestionEvent.eventoUbicacionManual,
-            checkcamareromesa: props.checkcamareromesa,
-            mesa: props.mesa,
-            seccion: "show",
-            isLoading: false
+          url: props.url,
+          usuarioid: stateQuestionEvent.idUsuario,
+          sector: stateQuestionEvent.sector,
+          fila: stateQuestionEvent.fila,
+          api_token: localStorage.getItem("api_token"),
+          asiento: stateQuestionEvent.asiento,
+          manual: stateQuestionEvent.manual,
+          eventoUbicacionManual: stateQuestionEvent.eventoUbicacionManual,
+          checkcamareromesa: props.checkcamareromesa,
+          mesa: props.mesa,
+          seccion: "show",
+          isLoading: false
         };
 
-        this.handleGPS = this.handleGPS.bind(this);
-        this.handleMenuClick = this.handleMenuClick.bind(this);
+      this.handleGPS = this.handleGPS.bind(this);
+      this.handleMenuClick = this.handleMenuClick.bind(this);
     }
 
     handleGPS(e, url) {
@@ -111,7 +112,7 @@ export default class Inicio extends Component {
             ReactDOM.render(<div />, seccion);
         } else if (e.target.id == "invitacion") {
             ReactDOM.render(
-                <Invitacion eventoid={this.state.eventoid} />,
+                <Invitacion eventoid={this.props.event._id} />,
                 seccion
             );
         }
@@ -200,7 +201,7 @@ export default class Inicio extends Component {
 
                         <Menu
                             onClick={this.handleMenuClick}
-                            eventoid={this.state.eventoid}
+                            eventoid={this.props.event._id}
                         />
                     </div>
                 </div>
@@ -209,3 +210,9 @@ export default class Inicio extends Component {
         );
     }
 }
+
+const mapStateToProps = state => ({
+  event: state.events.current
+});
+
+export default connect(mapStateToProps)(Inicio);
