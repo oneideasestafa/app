@@ -5,7 +5,7 @@ import {
 
 const initialState = {
   isMenuOpen: false,
-  current: 'show',
+  current: 'Show',
 };
 
 export default function (state = initialState, action) {
