@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-
+import { Provider } from 'react-redux';
+import store from './../redux';
 /**
  * A continuacion se importan todos los componentes que seran
  * utili ados como paginas y rutas del front end
@@ -13,6 +14,7 @@ import Inicio from "../Pages/Inicio";
 
 function App() {
     return (
+      <Provider store={store}>
         <BrowserRouter>
             <Switch>
                 {/**A continuacion se presentan todas las rutas registradas del front end
@@ -24,6 +26,7 @@ function App() {
                 <Route exact path="/inicio" component={Inicio} />
             </Switch>
         </BrowserRouter>
+      </Provider>
     );
 }
 

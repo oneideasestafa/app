@@ -7,9 +7,12 @@ import axios from 'axios';
 import swal from "sweetalert2";
 import InputMask from 'react-input-mask';
 import logoOne from '../../../../public/images/logo-one.png';
+import { connect } from 'react-redux';
+import { getEvents } from './../redux/actions/events';
+
 library.add( faSync);
 
-export default class QuestionEvent extends Component {
+class QuestionEvent extends Component {
 
     constructor(props) {
         super(props);
@@ -17,7 +20,6 @@ export default class QuestionEvent extends Component {
             url: window.location.origin.toString(),
             idUsuario : props.location.state.idUsuario,
             api_token: props.location.state.api_token,
-            eventos: [],
             evento: '',
             idevento: '',
             sector: '',
@@ -41,22 +43,9 @@ export default class QuestionEvent extends Component {
      * para traer todos los eventos de bd
      */
     componentWillMount() {
-        console.log(this.state.api_token)
-        console.log({
-            headers: {
-                Authorization: this.state.api_token
-            }
-        })
-        axios.get("api/eventos", {headers: {Authorization: this.state.api_token}}).then(res => {
-                console.log(res.data)
-                this.setState({
-                    eventos : res.data.eventos,
-                    isLoading: false
-                });
-            })
-            .catch(function(error) {
-                console.log(error);
-            });
+      this.props.getEvents(this.state.api_token)
+        .then(() => this.setState({ isLoading: false }))
+        .catch(e => console.log(e));
     }
 
     /**
@@ -257,124 +246,96 @@ export default class QuestionEvent extends Component {
 
     render() {
 
-        let evento = this.state.evento;
-        let idevento = this.state.idevento;
-        let url = this.state.url;
+      const { evento, idevento, url, fila, asiento, sector, eventoUbicacionManual, isLoading } = this.state;
+      let urlLogout    = url + '/logout';
 
-        let {fila, asiento, sector, eventoUbicacionManual} = this.state;
+      console.log('events', this.props.events);
 
-        let urlLogout    = url + '/logout';
+      if (isLoading)
+        return (
+          <div className="abs-center">
+            <FontAwesomeIcon icon="sync" size="lg" spin />
+          </div>
+        );
 
-        if(this.state.isLoading){
-            return(
-                <div className="abs-center">
-                    <FontAwesomeIcon icon="sync" size="lg" spin />
-                </div>
-            );
-        }else{
-            return (
-
-                <div className="abs-center">
-    
-                    <form method="POST" onSubmit={this.handleContinuar} className="form-loginy">
-    
-                        <div className="">
-                            <img src={logoOne} className="img-fluid logo-box-registro mb-4" />
-                        </div>
-    
-                        <div className="text-center">
-                            <h2>Ubicación</h2>
-                        </div>
-    
-                        <div className="input-group mb-4 mt-4">
-                            <div className="input-group-prepend">
-                                <i className="fas fa-calendar-week fa-lg"></i>
-                            </div>
-    
-                            <select className="form-control" id="inputGroupSelect02" value={evento} name="evento" id="evento" onChange={this.handleChange}>
-                                <option  key="0" value=''>Seleccione Evento</option>
-                                <option  key="100" value='idevento'>ID Evento</option>
-                                {
-                                    this.state.eventos.map(function(item){
-                                        return <option  key={item._id} value={item._id}>{item.Nombre}</option>
-                                    })
-                                }
-                            </select>
-                        </div>
-    
-                        { evento == 'idevento' ?
-    
-                            <div className="input-group mb-4 mt-4">
-                                <div className="input-group-prepend">
-                                    <i className="fa fa-lock fa-lg"></i>
-                                </div>
-    
-                                <InputMask mask="******" maskChar={null} value={idevento} name="idevento" onChange={this.handleChange} className="form-control" placeholder="Ingrese el codigo del evento" />;
-    
-                            </div>
-    
-                            : ''
-                        }
-    
-                        { eventoUbicacionManual == true ?
-    
-                            <div>
-    
-                                <div className="input-group mb-4 mt-4">
-                                    <div className="input-group-prepend">
-                                        <i className="fas fa-vector-square fa-lg"></i>
-                                    </div>
-                                    <InputMask mask="********" maskChar={null} value={sector} name="sector" onChange={this.handleChange} className="form-control" placeholder="Ingrese el sector" />;
-                                </div>
-    
-                                <div className="input-group mb-4 mt-4">
-                                    <div className="input-group-prepend">
-                                        <i className="fas fa-arrows-alt-h fa-lg"></i>
-                                    </div>
-                                    <InputMask mask="********" maskChar={null} value={fila} name="fila" onChange={this.handleChange} className="form-control" placeholder="Ingrese la fila" />;
-                                </div>
-    
-                                <div className="input-group mb-4 mt-4">
-                                    <div className="input-group-prepend">
-                                        <i className="fa fa-chair fa-lg"></i>
-                                    </div>
-                                    <InputMask mask="********" maskChar={null} value={asiento} name="asiento" onChange={this.handleChange} className="form-control" placeholder="Ingrese el asiento" />;
-                                </div>
-    
-                            </div>
-    
-                            : ''
-                        }
-    
-    
-                        { this.state.isLoadButton == true ?
-    
-                            <div className="text-center mt-4">
-                                <button type="submit" className="btn btn-negro btn-box-index">
-                                    { this.state.isLoading ? <FontAwesomeIcon icon="sync" size="lg" spin /> : '' }
-                                    &nbsp;&nbsp; Continuar
-                                </button>
-                            </div>
-    
-                            : ''
-                        }
-    
-    
-                        <div className="text-center">
-                            <a href={urlLogout}>
-                                <button type="button" className="btn btn-rojo btn-box-index">Salir</button>
-                            </a>
-                        </div>
-    
-    
-                    </form>
-    
-                </div>
-            );
-        }
-
-       
+      return (
+          <div className="abs-center">
+              <form method="POST" onSubmit={this.handleContinuar} className="form-loginy">
+                  <div className="">
+                      <img src={logoOne} className="img-fluid logo-box-registro mb-4" />
+                  </div>
+                  <div className="text-center">
+                      <h2>Ubicación</h2>
+                  </div>
+                  <div className="input-group mb-4 mt-4">
+                      <div className="input-group-prepend">
+                          <i className="fas fa-calendar-week fa-lg"></i>
+                      </div>
+                      <select className="form-control" id="inputGroupSelect02" value={evento} name="evento" id="evento" onChange={this.handleChange}>
+                          <option  key="0" value=''>Seleccione Evento</option>
+                          <option  key="100" value='idevento'>ID Evento</option>
+                          {
+                              this.props.events.map(function(item){
+                                  return <option  key={item._id} value={item._id}>{item.Nombre}</option>
+                              })
+                          }
+                      </select>
+                  </div>
+                  { evento == 'idevento' &&
+                      <div className="input-group mb-4 mt-4">
+                          <div className="input-group-prepend">
+                              <i className="fa fa-lock fa-lg"></i>
+                          </div>
+                          <InputMask mask="******" maskChar={null} value={idevento} name="idevento" onChange={this.handleChange} className="form-control" placeholder="Ingrese el codigo del evento" />;
+                      </div>
+                  }
+                  { eventoUbicacionManual == true &&
+                      <div>
+                          <div className="input-group mb-4 mt-4">
+                              <div className="input-group-prepend">
+                                  <i className="fas fa-vector-square fa-lg"></i>
+                              </div>
+                              <InputMask mask="********" maskChar={null} value={sector} name="sector" onChange={this.handleChange} className="form-control" placeholder="Ingrese el sector" />;
+                          </div>
+                          <div className="input-group mb-4 mt-4">
+                              <div className="input-group-prepend">
+                                  <i className="fas fa-arrows-alt-h fa-lg"></i>
+                              </div>
+                              <InputMask mask="********" maskChar={null} value={fila} name="fila" onChange={this.handleChange} className="form-control" placeholder="Ingrese la fila" />;
+                          </div>
+                          <div className="input-group mb-4 mt-4">
+                              <div className="input-group-prepend">
+                                  <i className="fa fa-chair fa-lg"></i>
+                              </div>
+                              <InputMask mask="********" maskChar={null} value={asiento} name="asiento" onChange={this.handleChange} className="form-control" placeholder="Ingrese el asiento" />;
+                          </div>
+                      </div>
+                  }
+                  { this.state.isLoadButton == true &&
+                    <div className="text-center mt-4">
+                        <button type="submit" className="btn btn-negro btn-box-index">
+                            { this.state.isLoading ? <FontAwesomeIcon icon="sync" size="lg" spin /> : '' }
+                            &nbsp;&nbsp; Continuar
+                        </button>
+                    </div>
+                  }    
+                  <div className="text-center">
+                      <a href={urlLogout}>
+                          <button type="button" className="btn btn-rojo btn-box-index">Salir</button>
+                      </a>
+                  </div>
+              </form>
+          </div>
+      );       
     }
 }
 
+const mapStateToProps = state => ({
+  events: state.events.events
+})
 
+const mapDispatchToProps = dispatch => ({
+  getEvents: (apiToken) => dispatch(getEvents(apiToken))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionEvent);
