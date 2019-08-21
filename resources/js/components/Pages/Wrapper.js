@@ -1,7 +1,10 @@
 import React from 'react';
 import SideMenu from './../organisms/SideMenu';
 import Header from './../organisms/Header';
-import { Switch, Router } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
+
+// Pages
+import CambiarDatos from './../organisms/CambiarDatos';
 
 class Wrapper extends React.Component {
   constructor (props) {
@@ -13,8 +16,9 @@ class Wrapper extends React.Component {
       <div>
         <SideMenu />
         <Header />
-        {/* <Switch>
-        </Switch> */}
+        <Switch>
+          <Route exact path="/profile" component={CambiarDatos} />
+        </Switch>
       </div>
     );
   }

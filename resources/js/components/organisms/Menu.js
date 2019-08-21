@@ -37,8 +37,6 @@ class Menu extends Component {
      * opciones adicionales del menu segun el evento
      */
     componentWillMount() {
-      console.log('event', this.props.event);
-
       const menu = this.props.event.MenuApp.map(ma => ma.$oid);
       
       this.setState({ menuApp: menu, isLoading: false });

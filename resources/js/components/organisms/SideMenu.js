@@ -18,7 +18,6 @@ class SideMenu extends React.Component {
 
     this.props.toggleNavigationMenu();
 
-
     this.props.setCurrentPage(e.target.dataset.name);
     this.props.history.push(e.target.dataset.route);
   }

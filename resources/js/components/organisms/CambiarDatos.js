@@ -10,6 +10,7 @@ import imgCL from '../../../../public/images/countrys/es.png';
 import iconCivil from '../../../../public/images/EstadoCivil01.png';
 import reactMobileDatePicker from 'react-mobile-datepicker';
 import moment from 'moment';
+import { connect } from 'react-redux';
 
 /** Importando estilos css del componente */
 import "../../../css/components/CambiarDatos.css"
@@ -40,14 +41,11 @@ const dateConfig = {
     }
 };
 
-
-export default class CambiarDatos extends Component {
-
+class CambiarDatos extends Component {
     constructor(props) {
         super(props);
         this.state = {
             url: props.url,
-            idUsuario: props.usuarioid,
             nombre: '',
             apellido: '',
             sexo: '',
@@ -85,8 +83,9 @@ export default class CambiarDatos extends Component {
      * aqui traigo la informacion del usuario logeado
      */
     componentWillMount() {
+      console.log('props', this.props);
         axios
-            .get("api/clientes/id/" + this.state.idUsuario,{
+            .get("api/clientes/id/" + this.props.userId,{
                 headers: {
                     Authorization: this.state.api_token
                 }
@@ -314,9 +313,9 @@ export default class CambiarDatos extends Component {
             isLoading: true
         });
 
-        let {idUsuario,pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, url, fotonew, tipofoto} = this.state;
+        let { pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, url, fotonew, tipofoto } = this.state;
     
-        axios.post('api/clientes/editar/perfil', { idUsuario,pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, fotonew, tipofoto})
+        axios.post('api/clientes/editar/perfil', { idUsuario: this.props.userId ,pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, fotonew, tipofoto})
             .then(res => {
                 self.setState({
                     isLoading: false
@@ -606,4 +605,8 @@ export default class CambiarDatos extends Component {
     }
 }
 
+const mapDispatchToProps = state => ({
+  userId: state.auth.user.id,
+});
 
+export default connect(mapDispatchToProps)(CambiarDatos);

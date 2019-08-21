@@ -3,9 +3,10 @@ import {
   LOG_USER_OUT
 } from './types';
 
-export function login () {
+export function login (uid, apiToken) {
   return {
-    type: LOG_USER_IN
+    type: LOG_USER_IN,
+    payload: { uid, apiToken }
   }
 }
 

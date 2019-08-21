@@ -4,7 +4,9 @@ import {
 } from '../../actions/auth/types';
 
 const initialState = {
-  isLoggedIn: false
+  isLoggedIn: false,
+  user: null,
+  apiToken: '',
 };
 
 export default function (state = initialState, action) {
@@ -12,12 +14,16 @@ export default function (state = initialState, action) {
     case LOG_USER_IN:
       return {
         ...state,
-        isLoggedIn: true
+        isLoggedIn: true,
+        user: { id: action.payload.uid },
+        apiToken: action.payload.token
       };
     case LOG_USER_OUT:
       return {
         ...state,
-        isLoggedIn: false
+        isLoggedIn: false,
+        user: null,
+        apiToken: '',
       };
     default:
       return state;

@@ -80,7 +80,9 @@ class Login extends Component {
                     if (r.tipo == "one") {
                         localStorage.setItem("api_token", r.access_token);
 
-                        this.props.login();
+                        console.log('data', r);
+
+                        this.props.login(r.userid, r.access_token);
 
                         this.props.history.push({
                             pathname: "/questionEvent",
@@ -250,7 +252,7 @@ class Login extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  login: () => dispatch(login()),
+  login: (uid, apiToken) => dispatch(login(uid, apiToken)),
 });
 
 export default connect(null, mapDispatchToProps)(Login);
