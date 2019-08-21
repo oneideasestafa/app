@@ -10,7 +10,7 @@ import logoTwitter from "../../../../public/images/social/twitter-icon.svg";
 import logoInstagram from "../../../../public/images/social/instagram-icon.svg";
 
 /**Importando estilos de la aplicacion */
-import "./css/Ingreso.css";
+import "./../../../css/pages/Ingreso.css";
 
 library.add(faSync);
 

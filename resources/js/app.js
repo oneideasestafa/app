@@ -138,16 +138,16 @@ require("./bootstrap");
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-require("./components/components/App");
-require("./components/Pages/Registro");
-require("./components/Pages/Login");
-require("./components/Pages/Ingreso");
-require("./components/Pages/Inicio");
-require("./components/components/Menu");
-require("./components/Index");
-require("./components/Pages/QuestionEvent");
-require("./components/components/MenuApps/CambiarClave");
-require("./components/components/MenuApps/CambiarDatos");
-require("./components/components/MenuApps/Invitacion");
-require("./cache");
+require("./index.js");
+// require("./components/components/App");
+// require("./components/Pages/Registro");
+// require("./components/Pages/Login");
+// require("./components/Pages/Ingreso");
+// require("./components/Pages/Inicio");
+// require("./components/components/Menu");
+// require("./components/Index");
+// require("./components/Pages/QuestionEvent");
+// require("./components/components/MenuApps/CambiarClave");
+// require("./components/components/MenuApps/CambiarDatos");
+// require("./components/components/MenuApps/Invitacion");
+// require("./cache");

@@ -5,6 +5,8 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSync } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import { connect } from 'react-redux';
+import { login } from '../../redux/actions/auth';
 import swal from "sweetalert2";
 import logoOne from "../../../../public/images/logo-one.png";
 import logoFacebook from "../../../../public/images/social/facebook-icon.svg";
@@ -14,9 +16,9 @@ import logoInstagram from "../../../../public/images/social/instagram-icon.svg";
 library.add(faSync);
 
 /**Importando estilos del componente */
-import "./css/Login.css";
+import "./../../../css/pages/Login.css";
 
-export default class Login extends Component {
+class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -77,6 +79,9 @@ export default class Login extends Component {
 
                     if (r.tipo == "one") {
                         localStorage.setItem("api_token", r.access_token);
+
+                        this.props.login(r.userid, r.access_token);
+
                         this.props.history.push({
                             pathname: "/questionEvent",
                             state: {
@@ -100,7 +105,7 @@ export default class Login extends Component {
                     });
                 }
             })
-            .catch(function(error) {
+            .catch(error => {
                 console.log(error);
                 if (error.response.status == 422) {
                     this.setState({
@@ -243,3 +248,9 @@ export default class Login extends Component {
         );
     }
 }
+
+const mapDispatchToProps = dispatch => ({
+  login: (uid, apiToken) => dispatch(login(uid, apiToken)),
+});
+
+export default connect(null, mapDispatchToProps)(Login);
