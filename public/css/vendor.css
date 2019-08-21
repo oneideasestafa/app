@@ -2807,3 +2807,9 @@ display: block;
     top: 0;
     width: 100%;
 }
+
+.sticky-top {
+  position: sticky;
+  top: 0;
+  left: 0;
+}

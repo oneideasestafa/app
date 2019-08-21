@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 
 // Pages
 import CambiarDatos from './../organisms/CambiarDatos';
+import Show from './Show';
 
 class Wrapper extends React.Component {
   constructor (props) {
@@ -17,6 +18,7 @@ class Wrapper extends React.Component {
         <SideMenu />
         <Header />
         <Switch>
+          <Route exact path="/show" component={Show} />
           <Route exact path="/profile" component={CambiarDatos} />
         </Switch>
       </div>

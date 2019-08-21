@@ -80,8 +80,6 @@ class Login extends Component {
                     if (r.tipo == "one") {
                         localStorage.setItem("api_token", r.access_token);
 
-                        console.log('data', r);
-
                         this.props.login(r.userid, r.access_token);
 
                         this.props.history.push({

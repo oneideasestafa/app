@@ -216,7 +216,7 @@ class QuestionEvent extends Component {
           isLoading: true
       });
 
-      let {idUsuario,evento, sector, fila, asiento, eventoUbicacionManual, manual, ideventobad} = this.state;
+      let {idUsuario, evento, sector, fila, asiento, eventoUbicacionManual, manual, ideventobad} = this.state;
 
       //AQUI DEBO CREAR LA RUTA PARA VALIDAR EVENTO SI UTILI O ID EVENTO
       if(ideventobad == true){
@@ -237,7 +237,7 @@ class QuestionEvent extends Component {
         this.props.selectEvent(evento);
 
         this.props.history.push({
-          pathname: '/inicio',
+          pathname: '/show',
           state: { 
             idUsuario, 
             sector, 
