@@ -1,55 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSpring, animated } from 'react-spring';
 import { connect } from 'react-redux';
 import Paho from 'paho-mqtt';
 import uuidv4 from 'uuid/v4';
 
-class Show extends React.Component {
-  constructor (props) {
-    super(props);
+function Show (props) {
+  const [color, setColor] = useState('transparent');
+  const spring = useSpring({ 
+    height: color === 'transparent' ? '0vh' : '100vh',
+  });
+  const mqttHost = '192.168.1.3';
+  const mqttPort = 9001;
+  const mqttClientId = uuidv4();
+  const mqttClient = new Paho.Client(mqttHost, mqttPort, mqttClientId);
+  
+  useEffect(() => {
+    function onMessageArrived (message) {
+      const [type, payload, ...params] = message.payloadString.split(',');
+      setColor(payload);
+    }
 
-    this.state = {
-      message: ''
-    };
+    function onMqttConnection () {
+      let { Empresa_id, _id } = props.event;
+      mqttClient.subscribe(`/${Empresa_id}/${_id}`);
+    }
 
-    // Class functions
-    this.onMessageArrived = this.onMessageArrived.bind(this);
-    this.onMqttConnection = this.onMqttConnection.bind(this);
-
-    // MQTT attributes
-    this.mqttClient = null;
-    this.mqttHost = '192.168.1.3';
-    this.mqttPort = 9001;
-    this.mqttClientId = uuidv4();
-  }
-
-  componentDidMount () {
-    this.mqttClient = new Paho.Client(this.mqttHost, this.mqttPort, this.mqttClientId);
-    this.mqttClient.onMessageArrived = this.onMessageArrived;
-
-    this.mqttClient.connect({
-      onSuccess: this.onMqttConnection,
+    mqttClient.connect({
+      onSuccess: onMqttConnection
     })
-  }
 
-  onMqttConnection () {
-    const { Empresa_id, _id } = this.props.event;
-    this.mqttClient.subscribe(`/${Empresa_id}/${_id}`);
-  }
+    mqttClient.onMessageArrived = onMessageArrived;
 
-  onMessageArrived (message) {
-    const [ type, payload, ...params] = message.payloadString.split(',');
+    return () => mqttClient.disconnect();
+  }, [])
 
-    if (type === 'COL')
-      return 
-  }
-
-  componentWillUnmount () {
-    this.mqttClient.disconnect();
-  }
-
-  render () {
-    return <h1>{this.state.message}</h1>;
-  }
+  return (
+    <animated.div style={{backgroundColor: color, width: '100%', ...spring}}>
+    </animated.div>
+  );
 }
 
 const mapStateToProps = state => ({

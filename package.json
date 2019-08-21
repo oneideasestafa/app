@@ -14,8 +14,8 @@
         "cross-env": "^5.1",
         "laravel-mix": "^2.0",
         "lodash": "^4.17.4",
-        "react": "^15.6.2",
-        "react-dom": "^15.6.2",
+        "react": "^16.9.0",
+        "react-dom": "^16.9.0",
         "sw-precache-webpack-plugin": "^0.11.5"
     },
     "dependencies": {
@@ -64,6 +64,7 @@
         "react-router-dom": "^5.0.1",
         "react-screen-orientation": "0.0.3",
         "react-select": "^2.1.2",
+        "react-spring": "^8.0.27",
         "react-text-mask": "^5.4.3",
         "react-toastify": "^4.4.0",
         "redux": "^4.0.4",
