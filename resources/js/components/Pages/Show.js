@@ -1,87 +1,32 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSpring, animated } from 'react-spring';
+import { 
+  setLastShow, 
+  setNextShow, 
+  setShowRightNow,
+  turnShowOff 
+} from './../../redux/actions/show'
 import { connect } from 'react-redux';
 import Paho from 'paho-mqtt';
 import uuidv4 from 'uuid/v4';
 
-const initialState = { 
-  isOpen: false,
-  isFlashOn: false,
-  color: '#313131',
-  jobs: []
-};
-
-function reducer (state, action) {
-  console.log('action', action);
-
-  switch (action.type) {
-    case 'SET_COLOR_SHOW':
-      return {
-        ...state,
-        isOpen: true,
-        color: action.payload.job.payload,
-        jobs: [...state.jobs, action.payload.job]
-      }
-    case 'TURN_FLASH_ON':
-      return {
-        ...state,
-        isFlashOn: true,
-        jobs: [...state.jobs, action.payload.job]
-      }
-    case 'TURN_JOB_OFF':
-      const job = state.jobs.find(j => j.id === action.payload.id);
-      
-      if (job.type === 'FLH')
-        window.plugins.flashlight.switchOff();
-      
-      return {
-        ...state,
-        isOpen: job.type === 'COL' ? false : state.isOpen,
-        color: job.type === 'COL' ? '#313131' : state.color,
-        isFlashOn: job.type === 'FLH' ? false : state.isFlashOn,
-        jobs: state.jobs.filter(j => j.id !== job.id)
-      }
-    default:
-      return state;
-  }
-}
-
 function Show (props) {
-  const [show, dispatch] = useReducer(reducer, initialState);
-  
+  const { colors, flash } = props.show;
   const spring = useSpring({ 
-    height: show.isOpen ? '100vh' : '0vh',
-    backgroundColor: show.color
+    height: colors.current ? '100vh' : '0vh',
+    backgroundColor: colors.current ? colors.current.payload : '#313131'
   });
   
   const mqttHost = '192.168.1.3';
   const mqttPort = 9001;
   const mqttClientId = uuidv4();
   const mqttClient = new Paho.Client(mqttHost, mqttPort, mqttClientId);
+  const trackers = { colors: null, flash: null };
   
-  function onMessageArrived (message) {
-    const [type, id, payload, ...params] = message.payloadString.split(',');
-    const job = { id, type, payload };
-
-    switch (type) {
-      case 'COL':
-        dispatch({type: 'SET_COLOR_SHOW', payload: { job }});
-        break;
-      case 'FLH':
-        window.plugins.flashlight.switchOn(() => {
-          dispatch({type: 'TURN_FLASH_ON', payload: { job }})
-        });
-        break;
-      case 'REMOVE':
-        dispatch({type: 'TURN_JOB_OFF', payload: { id: job.id }});
-        break;
-      default:
-        return;
-    }
-  }
-
+  /**
+   * Connection to mqtt broker
+   */
   useEffect(() => {
-
     function onMqttConnection () {
       let { Empresa_id, _id } = props.event;
       mqttClient.subscribe(`/${Empresa_id}/${_id}`);
@@ -96,6 +41,75 @@ function Show (props) {
     return () => mqttClient.disconnect();
   }, [])
 
+  /**
+   * Time Tracker
+   */
+  useEffect(() => {
+    if (colors.current) {
+      if (trackers.colors) 
+        clearInterval(trackers.colors)
+      trackers.colors = setInterval(checkCurrentShow, 1000, colors.current, 'colors');
+    }
+
+    if (flash.current) {
+      if (trackers.flash) 
+        clearInterval(trackers.flash)
+      trackers.flash = setInterval(checkCurrentShow, 1000, flash.current, 'flash');
+    }
+
+    return () => {
+      clearInterval(trackers.colors);
+      clearInterval(trackers.flash);
+    }
+  }, [colors, flash]);
+
+  /**
+   * Turning Flash ON/OFF 
+   */
+  useEffect(() => {
+    if (flash.current) {
+      window.plugins.flashlight.switchOn();
+    } else {
+      window.plugins.flashlight.switchOff();
+    }
+
+    return () => window.plugins.flashlight.switchOff();
+  }, [flash.current]);
+
+  /**
+   * Turning Event Off
+   */
+  function checkCurrentShow (job, type) {
+    let now = new Date();
+
+    console.log('now', now.getTime());
+    console.log('job', job.endTime);
+
+    if (now.getTime() >= parseInt(job.endTime)) {
+      console.log(`Stopping show ${job.type}`);
+      props.turnShowOff(job)
+      clearInterval(trackers[type]);
+    } else {
+      console.log(`Running show ${job.type}`);
+    }
+  }
+  
+  function onMessageArrived (message) {
+    const [type, momment, id, payload, startTime, endTime] = message.payloadString.split(',');
+    const job = { id, momment, type, payload, startTime, endTime };
+
+    switch (parseInt(momment)) {
+      case 1:
+        return props.setShowRightNow(job);
+      case 2:
+        return props.setNextShow(job);
+      case 3:
+        return props.setLastShow(job);
+      case 0:
+        return props.turnShowOff(job);
+    }
+  }
+
   return (
     <animated.div style={{width: '100%', ...spring}}>
     </animated.div>
@@ -103,7 +117,15 @@ function Show (props) {
 }
 
 const mapStateToProps = state => ({
-  event: state.events.current
+  event: state.events.current,
+  show: state.show,
 });
 
-export default connect(mapStateToProps)(Show);
+const mapDispatchToProps = dispatch => ({
+  setLastShow: (job) => dispatch(setLastShow(job)),
+  setNextShow: (job) => dispatch(setNextShow(job)),
+  setShowRightNow: (job) => dispatch(setShowRightNow(job)),
+  turnShowOff: (job) => dispatch(turnShowOff(job)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Show);

@@ -857,6 +857,7 @@ client.seed(this.result, function (torrent) {
     return new Blob([uInt8Array]);
 },
     sincronizarArchivos:function () {
+      console.log('window.Laravel', window.Laravel);
       var sync=false;
       if(window.Laravel.sincronizado!=null){
       for (var i2 = 0; i2 < window.Laravel.sincronizado.length; i2++) {
@@ -877,8 +878,6 @@ client.seed(this.result, function (torrent) {
           }
           var torrent=window.app.convertBase64ToBlob(data);
           window.app.torrent(torrent);
-
-
         }
         
       }
