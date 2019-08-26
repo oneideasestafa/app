@@ -7,3 +7,7 @@ export const SET_LAST_SHOW = 'SET_LAST_SHOW';
 export const TURN_JOB_OFF = 'TURN_JOB_OFF';
 
 export const EXECUTE_JOB = 'EXECUTE_JOB';
+
+export const WIPE_JOBS = 'WIPE_JOBS';
+
+export const GET_LATEST_JOBS = 'GET_LATEST_JOBS';

@@ -1,22 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSpring, animated } from 'react-spring';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faSync } from '@fortawesome/free-solid-svg-icons';
 import { 
   setLastShow, 
   setNextShow, 
   setShowRightNow,
   turnShowOff,
-  executeJob
+  executeJob,
+  wipeJobs,
+  fetchJobs
 } from './../../redux/actions/show'
 import { connect } from 'react-redux';
 import Paho from 'paho-mqtt';
 import uuidv4 from 'uuid/v4';
 
+library.add(faSync);
+
 function Show (props) {
   const { colors, flash } = props.show;
+  
   const spring = useSpring({ 
     height: colors.running ? '100vh' : '0vh',
     backgroundColor: colors.running ? colors.current.payload : '#313131'
   });
+
+  const [isLoading, setLoading] = useState(true);
   
   const mqttHost = '192.168.1.3';
   const mqttPort = 9001;
@@ -24,6 +34,16 @@ function Show (props) {
   const mqttClient = new Paho.Client(mqttHost, mqttPort, mqttClientId);
   const intervals = { colors: null, flash: null };
   const timeouts = { colors: null, flash: null };
+
+  /**
+   * Fetching jobs from database
+   */
+  useEffect(() => {
+    props.fetchJobs(props.event._id, new Date())
+      .then(() => setLoading(false));
+    
+    return () => props.wipeJobs();
+  }, [])
   
   /**
    * Connection to mqtt broker
@@ -133,6 +153,14 @@ function Show (props) {
     }
   }
 
+  if (isLoading) {
+    return (
+      <div className="abs-center">
+        <FontAwesomeIcon icon="sync" size="lg" spin />
+      </div>
+    );
+  }
+
   return (
     <animated.div style={{width: '100%', ...spring}}>
     </animated.div>
@@ -150,6 +178,8 @@ const mapDispatchToProps = dispatch => ({
   setShowRightNow: (job) => dispatch(setShowRightNow(job)),
   turnShowOff: (job) => dispatch(turnShowOff(job)),
   executeJob: (type) => dispatch(executeJob(type)),
+  wipeJobs: () => dispatch(wipeJobs()),
+  fetchJobs: (event, time, apiKey) => dispatch(fetchJobs(event, time, apiKey)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Show);

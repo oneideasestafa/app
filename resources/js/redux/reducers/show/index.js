@@ -3,7 +3,9 @@ import {
   SET_NEXT_SHOW,
   SET_LAST_SHOW,
   TURN_JOB_OFF,
-  EXECUTE_JOB
+  EXECUTE_JOB,
+  WIPE_JOBS,
+  GET_LATEST_JOBS
 } from './../../actions/show/types';
 
 const initialState = {
@@ -85,7 +87,35 @@ export default function (state = initialState, action) {
           ...state[show],
           running: true,
         }
-      }
+      };
+    case WIPE_JOBS:
+      return {
+        ...initialState
+      };
+    case GET_LATEST_JOBS: 
+      let colors = state.jobs
+        .find(job => job.type === 'colores')
+        .map(mapDatabaseToReducer)
+        .sort(sortQueue);
+
+      let flash = state.jobs
+        .find(job => job.type === 'flash')
+        .map(mapDatabaseToReducer)
+        .sort(sortQueue);
+    
+      return {
+        ...state,
+        colors: {
+          running: false,
+          current: colors[0],
+          queue: [...colors.splice(0, 1)]
+        },
+        flash: {
+          running: false,
+          current: flash[0],
+          queue: [...flash.splice(0, 1)]
+        }
+      };
     default:
       return state;
   }
@@ -112,4 +142,14 @@ function sortQueue (a, b) {
 
   if (startTimeA > startTimeB)
     return 1;
+}
+
+function mapDatabaseToReducer (job) {
+  return {
+    id: job._id,
+    type: job.Tipo === 'colores' ? 'COL' : 'FLH',
+    startTime: job.Inicio,
+    endTime: job.Fin,
+    payload: job.Parametro
+  };
 }

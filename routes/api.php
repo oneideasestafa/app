@@ -33,8 +33,10 @@ Route::group(['prefix' => 'eventos', 'middleware' => 'ApiToken'], function() {
     Route::get('/id/{id}','EventoController@getEvento');
     Route::post('/check-ubicacion', 'EventoController@checkUbicacion');
     Route::get('/invitacion/{id}','EventoController@getInvitacion');
-});
+    Route::get('/jobs/{event_id}/{current_time}', 'EventoController@getLatestJobs');
+  });
 
+  
 // Permite difinir los puntos de entrada para los endpoints de clientes
 Route::group(['prefix' => 'clientes','middleware' => 'ApiToken'], function() {
     Route::get('/id/{id}', 'ClienteController@getCliente');
