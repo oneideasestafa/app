@@ -2,15 +2,18 @@ import {
   SET_SHOW_RIGHT_NOW,
   SET_NEXT_SHOW,
   SET_LAST_SHOW,
-  TURN_JOB_OFF
+  TURN_JOB_OFF,
+  EXECUTE_JOB
 } from './../../actions/show/types';
 
 const initialState = {
   flash: {
+    running: false,
     current: null,
     queue: [],
   },
   colors: {
+    running: false,
     current: null,
     queue: [],
   },
@@ -57,16 +60,28 @@ export default function (state = initialState, action) {
       show = getShowType(action.payload.job.type);
       const isCurrent = state[show].current.id === action.payload.job.id;
       const next = state[show].queue[0];
+
       
       return {
         ...state,
         [show]: {
+          running: isCurrent ? false : true,
           current: isCurrent ? next : state[show].current,
           queue: isCurrent ? (
             state[show].queue.filter((_, i) => i !== 0)
             ) : (
             state[show].queue.filter(j => j.id !== action.payload.job.id)
           ),
+        }
+      }
+    case EXECUTE_JOB:
+      show = getShowType(action.payload.type);
+
+      return {
+        ...state,
+        [show]: {
+          ...state[show],
+          running: true,
         }
       }
     default:

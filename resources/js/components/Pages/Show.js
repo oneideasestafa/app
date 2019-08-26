@@ -4,7 +4,8 @@ import {
   setLastShow, 
   setNextShow, 
   setShowRightNow,
-  turnShowOff 
+  turnShowOff,
+  executeJob
 } from './../../redux/actions/show'
 import { connect } from 'react-redux';
 import Paho from 'paho-mqtt';
@@ -13,15 +14,16 @@ import uuidv4 from 'uuid/v4';
 function Show (props) {
   const { colors, flash } = props.show;
   const spring = useSpring({ 
-    height: colors.current ? '100vh' : '0vh',
-    backgroundColor: colors.current ? colors.current.payload : '#313131'
+    height: colors.running ? '100vh' : '0vh',
+    backgroundColor: colors.running ? colors.current.payload : '#313131'
   });
   
-  const mqttHost = 'mqtt.oneshow.com.ar';
-  const mqttPort = 11344;
+  const mqttHost = '192.168.1.3';
+  const mqttPort = 9001;
   const mqttClientId = uuidv4();
   const mqttClient = new Paho.Client(mqttHost, mqttPort, mqttClientId);
-  const trackers = { colors: null, flash: null };
+  const intervals = { colors: null, flash: null };
+  const timeouts = { colors: null, flash: null };
   
   /**
    * Connection to mqtt broker
@@ -46,35 +48,59 @@ function Show (props) {
    */
   useEffect(() => {
     if (colors.current) {
-      if (trackers.colors) 
-        clearInterval(trackers.colors)
-      trackers.colors = setInterval(checkCurrentShow, 1000, colors.current, 'colors');
+      clearInterval(intervals.colors)
+      clearTimeout(timeouts.colors)
+
+      let now = new Date();
+      let delay = colors.current.startTime - now.getTime();
+
+      if (delay > 0) {
+        timeouts.colors = setTimeout(props.executeJob, delay, colors.current.type);
+      } else {
+        props.executeJob(colors.current.type);
+      }
+      
+      intervals.colors = setInterval(checkCurrentShow, 1000, colors.current, 'colors');
     }
 
     if (flash.current) {
-      if (trackers.flash) 
-        clearInterval(trackers.flash)
-      trackers.flash = setInterval(checkCurrentShow, 1000, flash.current, 'flash');
+      clearInterval(intervals.flash);
+      clearTimeout(timeouts.flash);
+
+      let now = new Date();
+      let delay = flash.current.startTime - now.getTime();
+
+      if (delay > 0) {
+        timeouts.flash = setTimeout(props.executeJob, delay, flash.current.type);
+      } else {
+        props.executeJob(flash.current.type);
+      }
+      
+      intervals.flash = setInterval(checkCurrentShow, 1000, flash.current, 'flash');
     }
 
     return () => {
-      clearInterval(trackers.colors);
-      clearInterval(trackers.flash);
+      clearInterval(intervals.colors);
+      clearInterval(intervals.flash);
+      clearTimeout(timeouts.colors);
+      clearTimeout(timeouts.flash);
     }
-  }, [colors, flash]);
+  }, [colors.current, flash.current]);
 
   /**
    * Turning Flash ON/OFF 
    */
   useEffect(() => {
-    if (flash.current) {
-      window.plugins.flashlight.switchOn();
+    if (flash.running) {
+      console.log('switch on');
+      window.plugins.flashlight.switchOn(() => console.log('switced on'));
     } else {
+      console.log('switch on');
       window.plugins.flashlight.switchOff();
     }
 
     return () => window.plugins.flashlight.switchOff();
-  }, [flash.current]);
+  }, [flash.running]);
 
   /**
    * Turning Event Off
@@ -82,13 +108,10 @@ function Show (props) {
   function checkCurrentShow (job, type) {
     let now = new Date();
 
-    console.log('now', now.getTime());
-    console.log('job', job.endTime);
-
     if (now.getTime() >= parseInt(job.endTime)) {
       console.log(`Stopping show ${job.type}`);
       props.turnShowOff(job)
-      clearInterval(trackers[type]);
+      clearInterval(intervals[type]);
     } else {
       console.log(`Running show ${job.type}`);
     }
@@ -96,7 +119,7 @@ function Show (props) {
   
   function onMessageArrived (message) {
     const [type, momment, id, payload, startTime, endTime] = message.payloadString.split(',');
-    const job = { id, momment, type, payload, startTime, endTime };
+    const job = { id, momment, type, payload, startTime, endTime, running: false };
 
     switch (parseInt(momment)) {
       case 1:
@@ -106,7 +129,7 @@ function Show (props) {
       case 3:
         return props.setLastShow(job);
       case 0:
-        return props.turnShowOff(job);
+        return props.turnShowOff({...job, type: job.payload});
     }
   }
 
@@ -126,6 +149,7 @@ const mapDispatchToProps = dispatch => ({
   setNextShow: (job) => dispatch(setNextShow(job)),
   setShowRightNow: (job) => dispatch(setShowRightNow(job)),
   turnShowOff: (job) => dispatch(turnShowOff(job)),
+  executeJob: (type) => dispatch(executeJob(type)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Show);

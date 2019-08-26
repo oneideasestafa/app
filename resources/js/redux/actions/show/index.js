@@ -2,8 +2,16 @@ import {
   SET_SHOW_RIGHT_NOW,
   SET_NEXT_SHOW,
   SET_LAST_SHOW,
-  TURN_JOB_OFF
+  TURN_JOB_OFF,
+  EXECUTE_JOB
 } from './types';
+
+export function executeJob (type) {
+  return {
+    type: EXECUTE_JOB,
+    payload: { type }
+  }
+}
 
 export function setShowRightNow (job) {
   return {
