@@ -21,6 +21,8 @@ const initialState = {
 
 export default function (state = initialState, action) {
   let show = '';
+  let queue = [];
+  let orderedQueue = [];
 
   switch (action.type) {
     case SET_SHOW_RIGHT_NOW:
@@ -30,37 +32,37 @@ export default function (state = initialState, action) {
         [show]: {
           ...state[show],
           current: action.payload.job,
+          running: true,
         }
       };
     case SET_NEXT_SHOW:
       show = getShowType(action.payload.job.type);
+      queue = [action.payload.job, ...state[show].queue];
+      orderedQueue = queue.sort(sortQueue);
+
       return {
         ...state,
         [show]: {
           ...state[show],
-          queue: [
-            action.payload.job,
-            ...state[show].queue
-          ]
+          queue: orderedQueue
         }
       };
     case SET_LAST_SHOW:
       show = getShowType(action.payload.job.type);
+      queue = [...state[show].queue, action.payload.job];
+      orderedQueue = queue.sort(sortQueue);
+      
       return {
         ...state,
         [show]: {
           ...state[show],
-          queue: [
-            action.payload.job,
-            ...state[show].queue
-          ]
+          queue: orderedQueue
         }
       };
     case TURN_JOB_OFF:
       show = getShowType(action.payload.job.type);
       const isCurrent = state[show].current.id === action.payload.job.id;
       const next = state[show].queue[0];
-
       
       return {
         ...state,
@@ -96,4 +98,18 @@ function getShowType (type) {
     case 'FLH':
       return 'flash'  
   }
+}
+
+function sortQueue (a, b) {
+  let startTimeA = parseInt(a.startTime);
+  let startTimeB =parseInt(b.startTime);
+  
+  if (startTimeA < startTimeB)
+    return -1;
+
+  if (startTimeA === startTimeB)
+    return 0;
+
+  if (startTimeA > startTimeB)
+    return 1;
 }
