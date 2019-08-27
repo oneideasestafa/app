@@ -55,6 +55,7 @@ function Show (props) {
     }
 
     mqttClient.connect({
+      useSSL: true,
       onSuccess: onMqttConnection
     })
 
