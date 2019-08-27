@@ -81,6 +81,9 @@ function Show (props) {
       }
       
       intervals.colors = setInterval(checkCurrentShow, 1000, colors.current, 'colors');
+    } else {
+      clearInterval(intervals.colors)
+      clearTimeout(timeouts.colors)
     }
 
     if (flash.current) {
@@ -97,6 +100,9 @@ function Show (props) {
       }
       
       intervals.flash = setInterval(checkCurrentShow, 1000, flash.current, 'flash');
+    } else {
+      clearInterval(intervals.flash);
+      clearTimeout(timeouts.flash);
     }
 
     return () => {
@@ -112,10 +118,8 @@ function Show (props) {
    */
   useEffect(() => {
     if (flash.running) {
-      console.log('switch on');
       window.plugins.flashlight.switchOn(() => console.log('switced on'));
     } else {
-      console.log('switch on');
       window.plugins.flashlight.switchOff();
     }
 
@@ -127,7 +131,7 @@ function Show (props) {
    */
   function checkCurrentShow (job, type) {
     let now = new Date();
-
+    
     if (now.getTime() >= parseInt(job.endTime)) {
       console.log(`Stopping show ${job.type}`);
       props.turnShowOff(job)

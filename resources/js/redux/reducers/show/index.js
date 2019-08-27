@@ -93,13 +93,13 @@ export default function (state = initialState, action) {
         ...initialState
       };
     case GET_LATEST_JOBS: 
-      let colors = state.jobs
-        .find(job => job.type === 'colores')
+      let colors = action.payload.jobs
+        .filter(job => job.Tipo === 'colores')
         .map(mapDatabaseToReducer)
         .sort(sortQueue);
 
-      let flash = state.jobs
-        .find(job => job.type === 'flash')
+      let flash = action.payload.jobs
+        .filter(job => job.Tipo === 'flash')
         .map(mapDatabaseToReducer)
         .sort(sortQueue);
     
@@ -108,12 +108,12 @@ export default function (state = initialState, action) {
         colors: {
           running: false,
           current: colors[0],
-          queue: [...colors.splice(0, 1)]
+          queue: [...colors.slice(1)]
         },
         flash: {
           running: false,
           current: flash[0],
-          queue: [...flash.splice(0, 1)]
+          queue: [...flash.slice(1)]
         }
       };
     default:
