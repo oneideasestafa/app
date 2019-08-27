@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\ValidateEvento;
 use App\Models\MongoDB\Evento;
+use App\Models\MongoDB\Envio;
 use App\Models\MongoDB\Invitacion;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -232,6 +233,12 @@ class EventoController extends Controller {
         }
     }
 
+    public function getLatestJobs (Request $request) {
+      
+      $jobs = Envio::where('Evento', $request->event_id)->where('Fin', '>', (int) $request->current_time)->get();
+
+      return response()->json(['jobs' => $jobs]);
+    }
 }
 
 

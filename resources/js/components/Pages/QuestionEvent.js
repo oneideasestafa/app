@@ -42,7 +42,7 @@ class QuestionEvent extends Component {
      * Esta funcion se dispara al renderi ar por primera ve y es una consulta
      * para traer todos los eventos de bd
      */
-    componentWillMount() {
+    componentDidMount() {
       this.props.getEvents(this.state.api_token)
         .then(() => this.setState({ isLoading: false }))
         .catch(e => console.log(e));
