@@ -28,8 +28,8 @@ function Show (props) {
 
   const [isLoading, setLoading] = useState(true);
   
-  const mqttHost = '192.168.1.3';
-  const mqttPort = 9001;
+  const mqttHost = 'mqtt.oneshow.com.ar';
+  const mqttPort = 11344;
   const mqttClientId = uuidv4();
   const mqttClient = new Paho.Client(mqttHost, mqttPort, mqttClientId);
   const intervals = { colors: null, flash: null };
