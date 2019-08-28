@@ -11,6 +11,13 @@ const mix = require('laravel-mix');
  |
  */
 
+mix.webpackConfig({
+  target: 'web',
+  node: {
+    fs: 'empty'
+  }
+})
+
 //compilar archivos de react
 mix.react('resources/js/app.js', 'public/js/app.js');
 
@@ -40,7 +47,6 @@ mix.styles([
 //     'node_modules/howler/dist/howler.min.js',
 //     'resources/js/main.js'
 // ], 'public/js/vendor.js');
-
 
 //copiar la carpeta de webfonts de fontawesome 5 de la libreria al directorio public
 mix.copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/webfonts');
