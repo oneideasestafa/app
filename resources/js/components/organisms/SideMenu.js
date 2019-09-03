@@ -51,7 +51,18 @@ class SideMenu extends React.Component {
                   className="nav-link"
                   style={{backgroundColor: current === 'Show' ? '#000 !important' : ''}}
                 >
-                  <i className="fas fa-home fa-lg" /> {"   "} Show
+                  <i className="fas fa-home fa-lg" /> {"    "} Show
+                </a>
+              </li>
+              <li className="nav-item">
+                <a 
+                  onClick={this.navigate} 
+                  data-route="/downloads" 
+                  data-name="Descargas" 
+                  className="nav-link"
+                  style={{backgroundColor: current === 'Descargas' ? '#000 !important' : ''}}
+                >
+                  <i className="fas fa-arrow-down fa-lg" /> {"    "} Descargas
                 </a>
               </li>
               <li className="nav-item">
@@ -62,7 +73,7 @@ class SideMenu extends React.Component {
                   className="nav-link"
                   style={{backgroundColor: current === 'Perfil' ? '#000 !important' : ''}}
                 >
-                  <i className="fas fa-cog fa-lg" /> {"   "} Perfil
+                  <i className="fas fa-cog fa-lg" /> {"    "} Perfil
                 </a>
               </li>
               <li className="nav-item">
@@ -73,7 +84,7 @@ class SideMenu extends React.Component {
                   className="nav-link"
                   style={{backgroundColor: current === 'Notificación' ? '#000 !important' : ''}}
                 >
-                  <i className="fab fa-weixin fa-lg" /> {"   "} Notificaciones
+                  <i className="fab fa-weixin fa-lg" /> {"    "} Notificaciones
                 </a>
               </li>
               <li className="nav-item">
@@ -84,7 +95,7 @@ class SideMenu extends React.Component {
                   className="nav-link"
                   style={{backgroundColor: current === 'Detener' ? '#000 !important' : ''}}
                 >
-                  <i className="fas fa-power-off fa-lg" /> {"   "} Detener
+                  <i className="fas fa-power-off fa-lg" /> {"    "} Detener
                 </a>
               </li>
             </ul>

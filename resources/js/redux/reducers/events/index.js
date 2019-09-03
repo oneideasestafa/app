@@ -5,7 +5,8 @@ import {
 
 const initialState = {
   events: [],
-  current: {}
+  current: {},
+  downloads: [],
 };
 
 export default function (state = initialState, action) {
