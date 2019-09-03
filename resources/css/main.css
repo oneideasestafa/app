@@ -2805,3 +2805,32 @@ display: block;
   top: 0;
   left: 0;
 }
+
+.download-box {
+  border: 1px solid #6d6d6d;
+  padding: 0px;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.download-box .download-info {
+  flex-grow: 8;
+  padding: 10px;
+  border-right: 1px solid #6d6d6d;
+}
+
+.download-box > .download-info > .info-header {
+  margin-bottom: 5px;
+}
+
+.download-box > .download-info > .info-header label {
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 28px;
+  color: #fff;
+}
+
+.download-box > .download-actions {
+  flex-grow: 2;
+}

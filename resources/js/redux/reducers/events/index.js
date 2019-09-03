@@ -1,5 +1,6 @@
 import { 
   FETCHED_EVENTS,
+  FETCHED_EVENT_FILES,
   SELECTED_CURRENT_EVENT
 } from '../../actions/events/types';
 
@@ -21,6 +22,17 @@ export default function (state = initialState, action) {
         ...state,
         current: state.events.find(event => event._id === action.payload.id)
       };
+    case FETCHED_EVENT_FILES:
+      return {
+        ...state,
+        downloads: action.payload.files.map(file => ({
+          id: file._id,
+          name: file.NombreCompleto,
+          size: file.Size,
+          magnetURI: file.MagnetURI,
+          active: file.Activo,
+        }))
+      }
     default:
       return state;
   }
