@@ -2832,8 +2832,7 @@ display: block;
 }
 
 .download-box > .download-info > .info-header p {
-  display: inline-block;
-  margin: 0px 10px;
+  margin: 0px;
 }
 
 .download-box > .download-actions {
