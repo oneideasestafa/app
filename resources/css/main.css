@@ -2831,6 +2831,11 @@ display: block;
   color: #fff;
 }
 
+.download-box > .download-info > .info-header p {
+  display: inline-block;
+  margin: 0px 10px;
+}
+
 .download-box > .download-actions {
   flex-grow: 2;
 }
