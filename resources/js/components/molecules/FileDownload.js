@@ -4,11 +4,12 @@ import WebTorrent from 'webtorrent';
 
 function FileDownload (props) {
   const [ isReady, setReady ] = useState(false);
+  const [ isDownloaded, setDownloaded ] = useState(false);
   const [ error, setError ] = useState(null);
-  const [ info, setInfo ] = useState({ progress: 0, bytes: 0 });
+  const [ info, setInfo ] = useState({ progress: 0, size: 0 });
   const client = new WebTorrent();
 
-  useEffect(() => { 
+  useEffect(() => {
     if (!props.file.magnetURI)
       return;
     
@@ -18,16 +19,15 @@ function FileDownload (props) {
     
     torrent.on('error', error => setError(error));
     
-    torrent.on('download', bytes => setInfo({
-      downloadSpeed: torrent.downloadSpeed / 1000,
-      pieceLength: torrent.pieceLength / 1000,
-      progress: torrent.progress * 100,
-      bytes: bytes / 1000,
-    }));
-
-    torrent.on('done', () => {
-
+    torrent.on('download', bytes => {
+      setInfo({
+        progress: torrent.progress * 100,
+        downloaded: Math.round(torrent.downloaded / 1000),
+        downloadSpeed: Math.round(torrent.downloadSpeed / 1000),
+      })
     });
+
+    torrent.on('done', () => setDownloaded(true));
 
   }, [props.file.magnetURI]);
 
@@ -46,11 +46,14 @@ function FileDownload (props) {
           }
           {isReady &&
             <p>
-              {`${info.downloadSpeed}Kb/s - ${info.bytes}Kb de ${info.pieceLength}Kb`}
+              {`${info.downloadSpeed}Kb/s - ${info.downloaded}Kb de ${props.file.size}`}
+              {isDownloaded &&
+                <i className="fas fa-check fa-lg text-success mx-2"/>
+              }
             </p>
           }
         </div>
-        {props.file.magnetURI && 
+        {props.file.magnetURI &&
           <div className="info-progress">
             <Progress 
               color={color}
