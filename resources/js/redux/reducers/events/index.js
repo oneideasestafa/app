@@ -1,7 +1,8 @@
 import { 
   FETCHED_EVENTS,
   FETCHED_EVENT_FILES,
-  SELECTED_CURRENT_EVENT
+  SELECTED_CURRENT_EVENT,
+  FILE_FINISHED_DOWNLOADING
 } from '../../actions/events/types';
 
 const initialState = {
@@ -33,6 +34,21 @@ export default function (state = initialState, action) {
           downloading: action.payload.files.filter(file => file.exists === false),
         },
       }
+    case FILE_FINISHED_DOWNLOADING:
+      const file = state.files.downloading.find(file => file.id === action.payload.id);
+    
+      return {
+        ...state,
+        files: {
+          existing: [
+            file,
+            ...state.files.existing
+          ],
+          downloading: [
+            ...state.files.downloading.filter(file => file.id !== action.payload.id)
+          ]
+        }
+      };
     default:
       return state;
   }

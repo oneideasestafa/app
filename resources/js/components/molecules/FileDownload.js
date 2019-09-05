@@ -2,46 +2,42 @@ import React, { useState, useEffect } from 'react';
 import Progress from '../atoms/Progress';
 import WebTorrent from 'webtorrent';
 import { connect } from 'react-redux';
+import { fileFinishedDownloading } from './../../redux/actions/events';
 
 function FileDownload (props) {
   const [ isReady, setReady ] = useState(false);
   const [ isDownloaded, setDownloaded ] = useState(false);
   const [ error, setError ] = useState(null);
-  const [ info, setInfo ] = useState({});
+  const [ progress, setProgress ] = useState({});
   
   /**
    * Effect for connecting to peer and 
    * handle the download process
    */
   useEffect(() => {
-    // Check if file already exists in the device before downloading
-    requestFileSystem(LocalFileSystem.PERSISTENT, 0, fs => {
-      let path = `${props.event.Empresa_id}/${props.event._id}/${props.file.name}`;
-      
-      fs.root.getFile(path, { create: false }, fe => console.log('Exists!'), err => {
-        const client = new WebTorrent();
-        const torrent = client.add(props.file.magnetURI);
-        
-        // Executed when the .torrent file finished downloading
-        torrent.on('ready', () => setReady(true));
-        
-        // Executed when something happend at any time in the download process
-        torrent.on('error', error => setError(error));
-        
-        // Executed every time a new set of bytes are downloaded
-        torrent.on('download', bytes => setInfo({
-          progress: torrent.progress * 100,
-          downloaded: Math.round(torrent.downloaded / 1000),
-          downloadSpeed: Math.round(torrent.downloadSpeed / 1000),
-        }));
+    const client = new WebTorrent();
+    const torrent = client.add(props.file.magnetURI);
     
-        // Executed once the files from the torrent finish downloading
-        torrent.on('done', () => {
-          setDownloaded(true);
-          torrent.files.forEach(file => file.getBlob(saveDownloadedFile));
-        });
-      });
+    // Executed when the .torrent file finished downloading
+    torrent.on('ready', () => setReady(true));
+    
+    // Executed when something happend at any time in the download process
+    torrent.on('error', error => setError(error));
+    
+    // Executed every time a new set of bytes are downloaded
+    torrent.on('download', bytes => setProgress({
+      progress: torrent.progress * 100,
+      downloaded: Math.round(torrent.downloaded / 1000),
+      downloadSpeed: Math.round(torrent.downloadSpeed / 1000),
+    }));
+
+    // Executed once the files from the torrent finish downloading
+    torrent.on('done', () => {
+      setDownloaded(true);
+      torrent.files.forEach(file => file.getBlob(saveDownloadedFile));
     });
+
+    return () => client.destroy();
   }, [props.file.magnetURI]);
 
   /**
@@ -66,7 +62,7 @@ function FileDownload (props) {
           eventDir.getFile(`${name}`, { create: true, exclusive: false}, fe => {
             fe.createWriter(fw => {
               
-              fw.onwriteend = () => console.log('End!!');
+              fw.onwriteend = () => props.fileFinishedDownloading(props.file.id);
               fw.onerror = err => console.log('error:', err);
               fw.write(blob);
     
@@ -92,7 +88,7 @@ function FileDownload (props) {
           }
           {isReady &&
             <p>
-              {`${info.downloadSpeed}Kb/s - ${info.downloaded}Kb de ${props.file.size}`}
+              {`${progress.downloadSpeed}Kb/s - ${progress.downloaded}Kb de ${props.file.size}`}
               {isDownloaded &&
                 <i className="fas fa-check fa-lg text-success mx-2"/>
               }
@@ -103,14 +99,14 @@ function FileDownload (props) {
           <div className="info-progress">
             <Progress 
               color={color}
-              progress={info.progress}
+              progress={progress.progress}
             />
           </div>
         }
       </div>
-      <div className="download-actions">
+      {/* <div className="download-actions">
 
-      </div>
+      </div> */}
     </div>
   );
 }
@@ -119,4 +115,8 @@ const mapStateToProps = state => ({
   event: state.events.current
 });
 
-export default connect(mapStateToProps)(FileDownload);
+const mapDispatchToProps = dispatch => ({
+  fileFinishedDownloading: (id) => dispatch(fileFinishedDownloading(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FileDownload);

@@ -1,7 +1,8 @@
 import {
   FETCHED_EVENTS,
   FETCHED_EVENT_FILES,
-  SELECTED_CURRENT_EVENT
+  SELECTED_CURRENT_EVENT,
+  FILE_FINISHED_DOWNLOADING
 } from './types';
 import axios from 'axios';
 
@@ -67,5 +68,12 @@ export function saveDownloads (files) {
   return {
     type: FETCHED_EVENT_FILES,
     payload: { files }
+  };
+}
+
+export function fileFinishedDownloading (fileId) {
+  return {
+    type: FILE_FINISHED_DOWNLOADING,
+    payload: { id: fileId }
   };
 }
