@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getFilesFromEvent } from './../../redux/actions/events';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DownloadList from './../organisms/DownloadList';
+import SeedingList from './../organisms/SeedingList';
 import { connect } from 'react-redux';
 
 function Downloads (props) {
@@ -22,7 +23,7 @@ function Downloads (props) {
   return (
     <div>
       <DownloadList files={props.files.downloading} />
-      
+      <SeedingList files={props.files.existing} />
     </div>
   );
 }

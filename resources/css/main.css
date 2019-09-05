@@ -2831,10 +2831,20 @@ display: block;
   color: #fff;
 }
 
+.download-box.complete > .download-info > .info-header label {
+  color: rgba(255, 255, 255, 0.79);
+}
+
 .download-box > .download-info > .info-header p {
   margin: 0px;
 }
 
 .download-box > .download-actions {
   flex-grow: 2;
+}
+
+.hint {
+  font-family: Roboto;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.4);
 }
