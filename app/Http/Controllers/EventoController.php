@@ -1,15 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\ValidateEvento;
-use App\Models\MongoDB\Evento;
-use App\Models\MongoDB\Envio;
-use App\Models\MongoDB\Invitacion;
+
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use DB, DataTables, Image, Storage, File, Auth, Mail, QrCode;
 use MongoDB\BSON\ObjectID;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Models\MongoDB\Envio;
+use App\Models\MongoDB\Evento;
+use App\Models\MongoDB\Invitacion;
+use App\Models\MongoDB\Bibliotecas;
+use App\Http\Requests\ValidateEvento;
+use Illuminate\Support\Facades\Validator;
+use DB, DataTables, Image, Storage, File, Auth, Mail, QrCode;
 
 
 //controlador encargado de la seccion de eventos
@@ -238,6 +241,19 @@ class EventoController extends Controller {
       $jobs = Envio::where('Evento', $request->event_id)->where('Fin', '>', (int) $request->current_time)->get();
 
       return response()->json(['jobs' => $jobs]);
+    }
+
+    public function getFilesFromEvent (Request $request, $id) {      
+      Validator::make(['id'=> $id], [
+        'id' => 'required|exists:Eventos,_id'
+      ])->validate();
+
+      $files = Bibliotecas::select('_id', 'NombreCompleto', 'Size', 'Activo', 'MagnetURI')
+        ->where('Evento_id', new ObjectId($id))
+        ->where('Activo', true)
+        ->get();
+
+      return response()->json($files, 200);
     }
 }
 
