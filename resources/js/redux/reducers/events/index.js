@@ -7,7 +7,10 @@ import {
 const initialState = {
   events: [],
   current: {},
-  downloads: [],
+  files: {
+    existing: [],
+    downloading: [],
+  },
 };
 
 export default function (state = initialState, action) {
@@ -25,13 +28,10 @@ export default function (state = initialState, action) {
     case FETCHED_EVENT_FILES:
       return {
         ...state,
-        downloads: action.payload.files.map(file => ({
-          id: file._id,
-          name: file.NombreCompleto,
-          size: file.Size,
-          magnetURI: file.MagnetURI,
-          active: file.Activo,
-        }))
+        files: {
+          existing: action.payload.files.filter(file => file.exists === true),
+          downloading: action.payload.files.filter(file => file.exists === false),
+        },
       }
     default:
       return state;

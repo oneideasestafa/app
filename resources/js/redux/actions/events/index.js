@@ -7,7 +7,6 @@ import axios from 'axios';
 
 export function getEvents (apiToken) {
   return dispatch => {
-    
     return axios.get('api/eventos', {
       headers: { Authorization: apiToken }
     })
@@ -16,12 +15,37 @@ export function getEvents (apiToken) {
 }
 
 export function getFilesFromEvent (eventId) {
-  return dispatch => {
-    
+  return (dispatch, getState) => {
+    const { events: { current }  } = getState();
+
     return axios.get(`api/event/${eventId}/files`, {
       headers: { Authorization: localStorage.getItem('api_token') }
     })
-    .then(res => dispatch(saveDownloads(res.data)))
+    .then(res => {
+      const promises = res.data.map(file => ({
+        id: file._id,
+        name: file.NombreCompleto,
+        size: file.Size,
+        magnetURI: file.MagnetURI,
+        active: file.Activo,
+      }))
+      .map(event => new Promise((resolve, reject) => {
+        requestFileSystem(LocalFileSystem.PERSISTENT, 0, fs => {
+          let path = `${current.Empresa_id}/${current._id}/${event.name}`;
+          console.log('path', path);
+
+          fs.root.getFile(path, { create: false }, fe => {
+            resolve({...event, exists: true });
+          }, err => {
+            console.log('getFile:', err);
+            resolve({...event, exists: false });
+          })
+        })        
+      }));
+
+      return Promise.all(promises);
+    })
+    .then(events => dispatch(saveDownloads(events)));
   }
 }
 

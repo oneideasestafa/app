@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getFilesFromEvent } from './../../redux/actions/events';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import FileDownload from './../molecules/FileDownload';
+import DownloadList from './../organisms/DownloadList';
 import { connect } from 'react-redux';
 
 function Downloads (props) {
@@ -10,12 +10,6 @@ function Downloads (props) {
   useEffect(() => {
     props.getFilesFromEvent(props.event._id).then(() => setLoading(false));
   }, [])
-
-  const files = props.downloads.map(file => (
-    <FileDownload key={file.id} file={file}>
-      {file.name}
-    </FileDownload>
-  ));
 
   if (isLoading) {
     return (
@@ -26,15 +20,16 @@ function Downloads (props) {
   }
 
   return (
-    <div className="m-3">
-      {files}
+    <div>
+      <DownloadList files={props.files.downloading} />
+      
     </div>
   );
 }
 
 const mapStateToProps = state => ({
   event: state.events.current,
-  downloads: state.events.downloads
+  files: state.events.files
 });
 
 const mapDispatchToProps = dispatch => ({
