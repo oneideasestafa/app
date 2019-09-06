@@ -3,11 +3,18 @@ import { connect } from 'react-redux';
 
 function MusicPlayer (props) {
   const { audio } = props;
+  const tracker = { timeout: null, interval: null };
   
   useEffect(() => {
     let media = null;
     
     if (audio.current) {
+      clearInterval(tracker.interval);
+      clearTimeout(tracker.timeout);
+
+      let now = new Date();
+      let delay = colors.current.startTime - now.getTime();
+
       requestFileSystem(LocalFileSystem.PERSISTENT, 0, fs => {
         const { Empresa_id, _id } = props.event;
         const name = audio.current.payload;
@@ -20,6 +27,9 @@ function MusicPlayer (props) {
 
         }, err => console.log('getFile', err))
       })
+    } else {
+      clearInterval(tracker.interval);
+      clearTimeout(tracker.timeout);
     }
 
     return () => {
