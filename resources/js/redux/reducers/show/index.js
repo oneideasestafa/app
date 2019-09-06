@@ -19,6 +19,11 @@ const initialState = {
     current: null,
     queue: [],
   },
+  audio: {
+    running: false,
+    current: null,
+    queue: [],
+  },
 };
 
 export default function (state = initialState, action) {
@@ -102,6 +107,11 @@ export default function (state = initialState, action) {
         .filter(job => job.Tipo === 'flash')
         .map(mapDatabaseToReducer)
         .sort(sortQueue);
+
+      let audios = action.payload.jobs
+        .filter(job => job.Tipo === 'audio')
+        .map(mapDatabaseToReducer)
+        .sort(sortQueue);
     
       return {
         ...state,
@@ -114,6 +124,11 @@ export default function (state = initialState, action) {
           running: false,
           current: flash[0],
           queue: [...flash.slice(1)]
+        },
+        audio: {
+          running: false,
+          current: audios[0],
+          queue: [...audios.slice(1)]
         }
       };
     default:
@@ -124,9 +139,11 @@ export default function (state = initialState, action) {
 function getShowType (type) {
   switch (type) {
     case 'COL':
-      return 'colors'  
+      return 'colors';  
     case 'FLH':
-      return 'flash'  
+      return 'flash';
+    case 'AUD':
+      return 'audio';
   }
 }
 
@@ -145,9 +162,26 @@ function sortQueue (a, b) {
 }
 
 function mapDatabaseToReducer (job) {
+  let type = '';
+
+  switch (job.Tipo) {
+    case 'colores':
+      type = 'COL';
+      break;
+    case 'flash':
+      type = 'FLH';
+      break;
+    case 'audio':
+      type = 'AUD';
+      break;
+    default:
+      type = 'COL';
+      break;
+  }
+
   return {
     id: job._id,
-    type: job.Tipo === 'colores' ? 'COL' : 'FLH',
+    type: type,
     startTime: job.Inicio,
     endTime: job.Fin,
     payload: job.Parametro

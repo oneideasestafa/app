@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faSyncAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import NotAuthRoute from './atoms/NotAuthRoute';
 import PrivateRoute from './atoms/PrivateRoute';
 import store from './../redux';
@@ -13,6 +15,8 @@ import Login from "./pages/Login";
 import Registro from "./pages/Registro";
 import QuestionEvent from "./pages/QuestionEvent";
 import Wrapper from './pages/Wrapper';
+
+library.add(faSyncAlt, faTrashAlt);
 
 function App() {
     return (

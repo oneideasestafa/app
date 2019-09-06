@@ -2,9 +2,10 @@ import React from 'react';
 import FileSeeding from './../molecules/FileSeeding';
 
 function SeedingList (props) {
-  const files = props.files.map(file => (
-    <FileSeeding key={file.id} file={file} />
-  ));
+  const files = props.files.map(file =>{
+    console.log('file', file.id);    
+    return <FileSeeding key={file.id} file={file} />
+  });
 
   if (files.length === 0)
     return null;

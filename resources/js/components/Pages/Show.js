@@ -19,7 +19,7 @@ import uuidv4 from 'uuid/v4';
 library.add(faSync);
 
 function Show (props) {
-  const { colors, flash } = props.show;
+  const { colors, flash, audio } = props.show;
   
   const spring = useSpring({ 
     height: colors.running ? '100vh' : '0vh',
@@ -28,8 +28,8 @@ function Show (props) {
 
   const [isLoading, setLoading] = useState(true);
   
-  const mqttHost = 'mqtt.oneshow.com.ar';
-  const mqttPort = 11344;
+  const mqttHost = '192.168.1.3';
+  const mqttPort = 9001;
   const mqttClientId = uuidv4();
   const mqttClient = new Paho.Client(mqttHost, mqttPort, mqttClientId);
   const intervals = { colors: null, flash: null };
@@ -50,12 +50,13 @@ function Show (props) {
    */
   useEffect(() => {
     function onMqttConnection () {
+      console.log('Connected');
       let { Empresa_id, _id } = props.event;
       mqttClient.subscribe(`/${Empresa_id}/${_id}`);
     }
 
     mqttClient.connect({
-      useSSL: true,
+      // useSSL: true,
       onSuccess: onMqttConnection
     })
 
@@ -113,6 +114,23 @@ function Show (props) {
       clearTimeout(timeouts.flash);
     }
   }, [colors.current, flash.current]);
+
+  /**
+   * Audio Tracker
+   */
+  useEffect(() => {
+    if (audio.current) {
+      requestFileSystem(LocalFileSystem.PERSISTENT, 0, fs => {
+        const { Empresa_id, _id } = props.event;
+        const name = audio.current.payload;
+        const path = `${Empresa_id}/${_id}/${name}`;
+        
+        fs.root.getFile(path, { create: false }, fe => {
+          console.log('cdvfile', fe.toInternalURL());
+        }, err => console.log('getFile', err))
+      })
+    }
+  }, [audio.current])
 
   /**
    * Turning Flash ON/OFF 

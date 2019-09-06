@@ -76,7 +76,7 @@ function FileDownload (props) {
   const color = error ? 'danger' : 'success';
 
   return (
-    <div className="download-box">
+    <div className="download-box mb-2">
       <div className="download-info">
         <div className="info-header">
           <label>{props.file.name}</label>
