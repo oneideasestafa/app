@@ -3,6 +3,8 @@ import { useSpring, animated } from 'react-spring';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
+import MusicPlayer from './../organisms/MusicPlayer';
+import FlashHandler from './../organisms/FlashHandler';
 import { 
   setLastShow, 
   setNextShow, 
@@ -11,7 +13,7 @@ import {
   executeJob,
   wipeJobs,
   fetchJobs
-} from './../../redux/actions/show'
+} from './../../redux/actions/show';
 import { connect } from 'react-redux';
 import Paho from 'paho-mqtt';
 import uuidv4 from 'uuid/v4';
@@ -19,7 +21,7 @@ import uuidv4 from 'uuid/v4';
 library.add(faSync);
 
 function Show (props) {
-  const { colors, flash, audio } = props.show;
+  const { colors, flash } = props.show;
   
   const spring = useSpring({ 
     height: colors.running ? '100vh' : '0vh',
@@ -88,62 +90,45 @@ function Show (props) {
       clearTimeout(timeouts.colors)
     }
 
-    if (flash.current) {
-      clearInterval(intervals.flash);
-      clearTimeout(timeouts.flash);
+    // if (flash.current) {
+    //   clearInterval(intervals.flash);
+    //   clearTimeout(timeouts.flash);
 
-      let now = new Date();
-      let delay = flash.current.startTime - now.getTime();
+    //   let now = new Date();
+    //   let delay = flash.current.startTime - now.getTime();
 
-      if (delay > 0) {
-        timeouts.flash = setTimeout(props.executeJob, delay, flash.current.type);
-      } else {
-        props.executeJob(flash.current.type);
-      }
+    //   if (delay > 0) {
+    //     timeouts.flash = setTimeout(props.executeJob, delay, flash.current.type);
+    //   } else {
+    //     props.executeJob(flash.current.type);
+    //   }
       
-      intervals.flash = setInterval(checkCurrentShow, 1000, flash.current, 'flash');
-    } else {
-      clearInterval(intervals.flash);
-      clearTimeout(timeouts.flash);
-    }
+    //   intervals.flash = setInterval(checkCurrentShow, 1000, flash.current, 'flash');
+    // } else {
+    //   clearInterval(intervals.flash);
+    //   clearTimeout(timeouts.flash);
+    // }
 
     return () => {
       clearInterval(intervals.colors);
-      clearInterval(intervals.flash);
+      // clearInterval(intervals.flash);
       clearTimeout(timeouts.colors);
-      clearTimeout(timeouts.flash);
+      // clearTimeout(timeouts.flash);
     }
-  }, [colors.current, flash.current]);
-
-  /**
-   * Audio Tracker
-   */
-  useEffect(() => {
-    if (audio.current) {
-      requestFileSystem(LocalFileSystem.PERSISTENT, 0, fs => {
-        const { Empresa_id, _id } = props.event;
-        const name = audio.current.payload;
-        const path = `${Empresa_id}/${_id}/${name}`;
-        
-        fs.root.getFile(path, { create: false }, fe => {
-          console.log('cdvfile', fe.toInternalURL());
-        }, err => console.log('getFile', err))
-      })
-    }
-  }, [audio.current])
+  }, [colors.current /*, flash.current */]);
 
   /**
    * Turning Flash ON/OFF 
    */
-  useEffect(() => {
-    if (flash.running) {
-      window.plugins.flashlight.switchOn(() => console.log('switced on'));
-    } else {
-      window.plugins.flashlight.switchOff();
-    }
+  // useEffect(() => {
+  //   if (flash.running) {
+  //     window.plugins.flashlight.switchOn(() => console.log('switced on'));
+  //   } else {
+  //     window.plugins.flashlight.switchOff();
+  //   }
 
-    return () => window.plugins.flashlight.switchOff();
-  }, [flash.running]);
+  //   return () => window.plugins.flashlight.switchOff();
+  // }, [flash.running]);
 
   /**
    * Turning Event Off
@@ -185,8 +170,12 @@ function Show (props) {
   }
 
   return (
-    <animated.div style={{width: '100%', ...spring}}>
-    </animated.div>
+    <div>
+      <animated.div style={{width: '100%', ...spring}}>
+      </animated.div>
+      <FlashHandler />
+      <MusicPlayer />
+    </div>
   );
 }
 
