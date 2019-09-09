@@ -55,6 +55,7 @@ function Show (props) {
   }, [])
   
   function onMessageArrived (message) {
+    console.log('message arrived', message.payloadString);
     const [type, momment, id, payload, startTime, endTime] = message.payloadString.split(',');
     const job = { id, momment, type, payload, startTime, endTime, running: false };
 

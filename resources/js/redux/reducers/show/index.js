@@ -73,13 +73,17 @@ export default function (state = initialState, action) {
       };
     case TURN_JOB_OFF:
       show = getShowType(action.payload.job.type);
-      const isCurrent = state[show].current.id === action.payload.job.id;
+      const isCurrent = state[show].current && state[show].current.id === action.payload.job.id;
+      const isQueue = state[show].queue.find(job => job.id === action.payload.job.id);
       const next = state[show].queue[0];
+
+      if (!isCurrent && !isQueue)
+        return state;
       
       return {
         ...state,
         [show]: {
-          running: isCurrent ? false : true,
+          running: isCurrent ? false : state[show].running,
           current: isCurrent ? next : state[show].current,
           queue: isCurrent ? (
             state[show].queue.filter((_, i) => i !== 0)
