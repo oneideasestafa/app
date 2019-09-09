@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import SweetAlert from 'sweetalert2-react';
 import { 
   executeJob,
   turnShowOff,
@@ -9,6 +10,7 @@ import {
 function MusicPlayer (props) {
   const { audio } = props;
   const tracker = { timeout: null };
+  const [sweetAlert, setSweetAlert] = useState({title: '', text: '', show: false});
   let media = null;
   
   useEffect(() => {    
@@ -28,7 +30,6 @@ function MusicPlayer (props) {
     }
 
     return () => {
-      console.log('media in tracker', media);
       if (media) {
         media.release();
       }
@@ -37,26 +38,49 @@ function MusicPlayer (props) {
 
   useEffect(() => {
     if (audio.running) {
-      requestFileSystem(LocalFileSystem.PERSISTENT, 0, fs => {
-        const { Empresa_id, _id } = props.event;
-        const name = audio.current.payload;
-        const path = `${Empresa_id}/${_id}/${name}`;
-
-        fs.root.getFile(path, { create: false }, fe => {
-          media = new Media(fe.toInternalURL(), () => props.turnShowOff(audio.current));
-          
-          media.play();
-
-        }, err => console.log('getFile', err))
+      props.findFileInPhoneStorage(audio.current.payload).then(url => {
+        media = new Media(url, () => props.turnShowOff(audio.current), (err) => setSweetAlert({
+          title: 'Error', 
+          text: 'Algo ha ocurrido al intentar reproducir el audio', 
+          show: true
+        }));
+        
+        media.play();
+      })
+      .catch(err => {
+        switch (err.code) {
+          case 1:
+            setSweetAlert({ 
+              title: `${audio.current.payload} no encontrado`, 
+              text: 'Vaya a la pestaña de descargas y obtenga el archivo', 
+              show: true 
+            });
+          break;
+        }
       })
     } else {
-      console.log('media in player', media);
       if (media)
         media.release();
     }
+
+    return () => {
+      if (media) {
+        media.release();
+      }
+    }
   }, [audio.running]);  
   
-  return null;
+  return (
+    <div>
+      <SweetAlert
+        type="error"
+        show={sweetAlert.show}
+        title={sweetAlert.title}
+        text={sweetAlert.text}
+        onConfirm={() => setSweetAlert({title: '', text: '', show: false})}
+      />
+    </div>
+  );
 }
 
 const mapStateToProps = state => ({
