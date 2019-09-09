@@ -19,8 +19,8 @@ import uuidv4 from 'uuid/v4';
 
 function Show (props) {
   const [isLoading, setLoading] = useState(true);  
-  const mqttHost = '192.168.1.7';
-  const mqttPort = 9001;
+  const mqttHost = 'mqtt.oneshow.com.ar';
+  const mqttPort = 11344;
   const mqttClientId = uuidv4();
   const mqttClient = new Paho.Client(mqttHost, mqttPort, mqttClientId);
 
@@ -45,7 +45,7 @@ function Show (props) {
     }
 
     mqttClient.connect({
-      // useSSL: true,
+      useSSL: true,
       onSuccess: onMqttConnection
     })
 
