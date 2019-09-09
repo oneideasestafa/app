@@ -24,6 +24,11 @@ const initialState = {
     current: null,
     queue: [],
   },
+  video: {
+    running: false,
+    current: null,
+    queue: [],
+  },
 };
 
 export default function (state = initialState, action) {
@@ -112,6 +117,11 @@ export default function (state = initialState, action) {
         .filter(job => job.Tipo === 'audio')
         .map(mapDatabaseToReducer)
         .sort(sortQueue);
+      
+      let video = action.payload.jobs
+        .filter(job => job.Tipo === 'video')
+        .map(mapDatabaseToReducer)
+        .sort(sortQueue);
     
       return {
         ...state,
@@ -129,6 +139,11 @@ export default function (state = initialState, action) {
           running: false,
           current: audios[0],
           queue: [...audios.slice(1)]
+        },
+        video: {
+          running: false,
+          current: video[0],
+          queue: [...video.slice(1)]
         }
       };
     default:
@@ -144,6 +159,8 @@ function getShowType (type) {
       return 'flash';
     case 'AUD':
       return 'audio';
+    case 'VID':
+      return 'video';
   }
 }
 
@@ -174,8 +191,8 @@ function mapDatabaseToReducer (job) {
     case 'audio':
       type = 'AUD';
       break;
-    default:
-      type = 'COL';
+    case 'video':
+      type = 'VID';
       break;
   }
 

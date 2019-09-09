@@ -333,6 +333,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "window.Media"
       ]
+    },
+    {
+      "id": "cordova-plugin-streaming-media.StreamingMedia",
+      "file": "plugins/cordova-plugin-streaming-media/www/StreamingMedia.js",
+      "pluginId": "cordova-plugin-streaming-media",
+      "clobbers": [
+        "streamingMedia"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -349,6 +357,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-geolocation-android-activator": "1.1.2",
     "cordova-plugin-mqtt": "0.3.8",
     "de.appplant.cordova.plugin.local-notification": "0.8.5",
-    "cordova-plugin-media": "5.0.3"
+    "cordova-plugin-media": "5.0.3",
+    "cordova-plugin-streaming-media": "2.2.0"
   };
 });

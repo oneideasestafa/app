@@ -54,8 +54,6 @@ export function deleteFile (name) {
   return (dispatch, getState) => {
     const { events: { current } } = getState();
     const path = `${current.Empresa_id}/${current._id}/${name}`;
-    console.log('name', name);
-    console.log('path', path);
 
     const promise = new Promise((resolve, reject) => {
       requestFileSystem(LocalFileSystem.PERSISTENT, 0, fs => {

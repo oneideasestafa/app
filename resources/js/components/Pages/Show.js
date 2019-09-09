@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import MusicPlayer from './../organisms/MusicPlayer';
-import FlashHandler from './../organisms/FlashHandler';
-import ColorScreen from './../organisms/ColorScreen';
+import MusicEvent from '../organisms/MusicEvent';
+import FlashEvent from '../organisms/FlashEvent';
+import ColorEvent from '../organisms/ColorEvent';
+import VideoEvent from '../organisms/VideoEvent';
 import { 
   setLastShow, 
   setNextShow, 
@@ -18,7 +19,7 @@ import uuidv4 from 'uuid/v4';
 
 function Show (props) {
   const [isLoading, setLoading] = useState(true);  
-  const mqttHost = '192.168.1.3';
+  const mqttHost = '192.168.1.7';
   const mqttPort = 9001;
   const mqttClientId = uuidv4();
   const mqttClient = new Paho.Client(mqttHost, mqttPort, mqttClientId);
@@ -79,9 +80,10 @@ function Show (props) {
 
   return (
     <div>
-      <ColorScreen />
-      <FlashHandler />
-      <MusicPlayer />
+      <ColorEvent />
+      <FlashEvent />
+      <MusicEvent />
+      <VideoEvent />
     </div>
   );
 }
