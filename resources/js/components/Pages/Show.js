@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useSpring, animated } from 'react-spring';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSync } from '@fortawesome/free-solid-svg-icons';
+import MusicEvent from '../organisms/MusicEvent';
+import FlashEvent from '../organisms/FlashEvent';
+import ColorEvent from '../organisms/ColorEvent';
+import VideoEvent from '../organisms/VideoEvent';
 import { 
   setLastShow, 
   setNextShow, 
@@ -11,29 +12,17 @@ import {
   executeJob,
   wipeJobs,
   fetchJobs
-} from './../../redux/actions/show'
+} from './../../redux/actions/show';
 import { connect } from 'react-redux';
 import Paho from 'paho-mqtt';
 import uuidv4 from 'uuid/v4';
 
-library.add(faSync);
-
 function Show (props) {
-  const { colors, flash } = props.show;
-  
-  const spring = useSpring({ 
-    height: colors.running ? '100vh' : '0vh',
-    backgroundColor: colors.running ? colors.current.payload : '#313131'
-  });
-
-  const [isLoading, setLoading] = useState(true);
-  
-  const mqttHost = 'mqtt.oneshow.com.ar';
-  const mqttPort = 11344;
+  const [isLoading, setLoading] = useState(true);  
+  const mqttHost = '192.168.1.7';
+  const mqttPort = 9001;
   const mqttClientId = uuidv4();
   const mqttClient = new Paho.Client(mqttHost, mqttPort, mqttClientId);
-  const intervals = { colors: null, flash: null };
-  const timeouts = { colors: null, flash: null };
 
   /**
    * Fetching jobs from database
@@ -50,12 +39,13 @@ function Show (props) {
    */
   useEffect(() => {
     function onMqttConnection () {
+      console.log('Connected');
       let { Empresa_id, _id } = props.event;
       mqttClient.subscribe(`/${Empresa_id}/${_id}`);
     }
 
     mqttClient.connect({
-      useSSL: true,
+      // useSSL: true,
       onSuccess: onMqttConnection
     })
 
@@ -63,86 +53,9 @@ function Show (props) {
 
     return () => mqttClient.disconnect();
   }, [])
-
-  /**
-   * Time Tracker
-   */
-  useEffect(() => {
-    if (colors.current) {
-      clearInterval(intervals.colors)
-      clearTimeout(timeouts.colors)
-
-      let now = new Date();
-      let delay = colors.current.startTime - now.getTime();
-
-      if (delay > 0) {
-        timeouts.colors = setTimeout(props.executeJob, delay, colors.current.type);
-      } else {
-        props.executeJob(colors.current.type);
-      }
-      
-      intervals.colors = setInterval(checkCurrentShow, 1000, colors.current, 'colors');
-    } else {
-      clearInterval(intervals.colors)
-      clearTimeout(timeouts.colors)
-    }
-
-    if (flash.current) {
-      clearInterval(intervals.flash);
-      clearTimeout(timeouts.flash);
-
-      let now = new Date();
-      let delay = flash.current.startTime - now.getTime();
-
-      if (delay > 0) {
-        timeouts.flash = setTimeout(props.executeJob, delay, flash.current.type);
-      } else {
-        props.executeJob(flash.current.type);
-      }
-      
-      intervals.flash = setInterval(checkCurrentShow, 1000, flash.current, 'flash');
-    } else {
-      clearInterval(intervals.flash);
-      clearTimeout(timeouts.flash);
-    }
-
-    return () => {
-      clearInterval(intervals.colors);
-      clearInterval(intervals.flash);
-      clearTimeout(timeouts.colors);
-      clearTimeout(timeouts.flash);
-    }
-  }, [colors.current, flash.current]);
-
-  /**
-   * Turning Flash ON/OFF 
-   */
-  useEffect(() => {
-    if (flash.running) {
-      window.plugins.flashlight.switchOn(() => console.log('switced on'));
-    } else {
-      window.plugins.flashlight.switchOff();
-    }
-
-    return () => window.plugins.flashlight.switchOff();
-  }, [flash.running]);
-
-  /**
-   * Turning Event Off
-   */
-  function checkCurrentShow (job, type) {
-    let now = new Date();
-    
-    if (now.getTime() >= parseInt(job.endTime)) {
-      console.log(`Stopping show ${job.type}`);
-      props.turnShowOff(job)
-      clearInterval(intervals[type]);
-    } else {
-      console.log(`Running show ${job.type}`);
-    }
-  }
   
   function onMessageArrived (message) {
+    console.log('message arrived', message.payloadString);
     const [type, momment, id, payload, startTime, endTime] = message.payloadString.split(',');
     const job = { id, momment, type, payload, startTime, endTime, running: false };
 
@@ -167,8 +80,12 @@ function Show (props) {
   }
 
   return (
-    <animated.div style={{width: '100%', ...spring}}>
-    </animated.div>
+    <div>
+      <ColorEvent />
+      <FlashEvent />
+      <MusicEvent />
+      <VideoEvent />
+    </div>
   );
 }
 

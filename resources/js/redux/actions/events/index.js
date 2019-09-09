@@ -1,4 +1,5 @@
 import {
+  REMOVE_FILE,
   FETCHED_EVENTS,
   FETCHED_EVENT_FILES,
   SELECTED_CURRENT_EVENT,
@@ -30,24 +31,51 @@ export function getFilesFromEvent (eventId) {
         magnetURI: file.MagnetURI,
         active: file.Activo,
       }))
-      .map(event => new Promise((resolve, reject) => {
+      .map(file => new Promise((resolve, reject) => {
         requestFileSystem(LocalFileSystem.PERSISTENT, 0, fs => {
-          let path = `${current.Empresa_id}/${current._id}/${event.name}`;
-          console.log('path', path);
+          let path = `${current.Empresa_id}/${current._id}/${file.name}`;
 
           fs.root.getFile(path, { create: false }, fe => {
-            resolve({...event, exists: true });
+            resolve({...file, exists: true });
           }, err => {
             console.log('getFile:', err);
-            resolve({...event, exists: false });
+            resolve({...file, exists: false });
           })
         })        
       }));
 
       return Promise.all(promises);
     })
-    .then(events => dispatch(saveDownloads(events)));
+    .then(files => dispatch(saveDownloads(files)));
   }
+}
+
+export function deleteFile (name) {
+  return (dispatch, getState) => {
+    const { events: { current } } = getState();
+    const path = `${current.Empresa_id}/${current._id}/${name}`;
+
+    const promise = new Promise((resolve, reject) => {
+      requestFileSystem(LocalFileSystem.PERSISTENT, 0, fs => {
+        fs.root.getFile(path, { create: false }, fe => {
+          fe.remove(file => {
+            resolve();
+          }, err => reject(err))
+        }, err => reject(err))
+      }, err => reject(err))
+    });
+
+    return promise.then(() => {
+      dispatch(removeFile(name));
+    });
+  }
+}
+
+export function removeFile (name) {
+  return {
+    type: REMOVE_FILE,
+    payload: { name }
+  };
 }
 
 export function selectEvent (id) {

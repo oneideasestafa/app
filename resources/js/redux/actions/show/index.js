@@ -18,6 +18,22 @@ export function fetchJobs (eventId, time) {
   }
 }
 
+export function findFileInPhoneStorage (fileName) {
+  return (dispatch, getState) => {
+    const { events: { current } } = getState();
+    const path = `${current.Empresa_id}/${current._id}/${fileName}`;
+    
+    return new Promise((resolve, reject) => {
+      requestFileSystem(LocalFileSystem.PERSISTENT, 0, fs => {
+        fs.root.getFile(path, { create: false }, fe => {
+
+          resolve(fe.toURL());
+        }, err => reject(err))
+      }, err => reject(err));
+    });
+  }
+}
+
 export function saveJobs (jobs) {
   return {
     type: GET_LATEST_JOBS,

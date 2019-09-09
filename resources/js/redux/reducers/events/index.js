@@ -1,4 +1,5 @@
 import { 
+  REMOVE_FILE,
   FETCHED_EVENTS,
   FETCHED_EVENT_FILES,
   SELECTED_CURRENT_EVENT,
@@ -49,6 +50,14 @@ export default function (state = initialState, action) {
           ]
         }
       };
+    case REMOVE_FILE:
+      return {
+        ...state,
+        files: {
+          existing: state.files.existing.filter(file => file.name !== action.payload.name),
+          downloading: state.files.downloading
+        }
+      }
     default:
       return state;
   }
