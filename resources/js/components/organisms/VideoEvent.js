@@ -39,7 +39,7 @@ function VideoEvent (props) {
    */
   useEffect(() => {
     if (video.running) {
-      props.findFileInPhoneStorage(video.current.payload).then(url => {
+      props.findFileInPhoneStorage(video.current.payload).then(({ url }) => {
         window.plugins.streamingMedia.playVideo(url, {
           successCallback: () => props.turnShowOff(video.current),
           errorCallback: (err) => setSweetAlert({

@@ -27,7 +27,7 @@ export function findFileInPhoneStorage (fileName) {
       requestFileSystem(LocalFileSystem.PERSISTENT, 0, fs => {
         fs.root.getFile(path, { create: false }, fe => {
 
-          resolve(fe.toURL());
+          resolve({url: fe.toURL(), internalURL: fe.toInternalURL()});
         }, err => reject(err))
       }, err => reject(err));
     });

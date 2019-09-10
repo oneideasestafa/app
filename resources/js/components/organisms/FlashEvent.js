@@ -60,7 +60,7 @@ function FlashEvent (props) {
     if (now.getTime() >= parseInt(job.endTime)) {
       console.log(`Stopping show ${job.type}`);
       props.turnShowOff(job);
-      clearInterval(time.interval);
+      clearInterval(tracker.interval);
     } else {
       console.log(`Running show ${job.type}`);
     }

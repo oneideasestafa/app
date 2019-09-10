@@ -38,7 +38,7 @@ function MusicPlayer (props) {
 
   useEffect(() => {
     if (audio.running) {
-      props.findFileInPhoneStorage(audio.current.payload).then(url => {
+      props.findFileInPhoneStorage(audio.current.payload).then(({ url }) => {
         media = new Media(url, () => props.turnShowOff(audio.current), (err) => setSweetAlert({
           title: 'Error', 
           text: 'Algo ha ocurrido al intentar reproducir el audio', 

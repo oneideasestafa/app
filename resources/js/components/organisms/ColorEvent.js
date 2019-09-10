@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { useSpring, animated } from 'react-spring';
 import { 
   executeJob,
+  turnShowOff
 } from '../../redux/actions/show';
 
 function ColorEvent (props) {
@@ -51,7 +52,7 @@ function ColorEvent (props) {
     if (now.getTime() >= parseInt(job.endTime)) {
       console.log(`Stopping show ${job.type}`);
       props.turnShowOff(job);
-      clearInterval(time.interval);
+      clearInterval(tracker.interval);
     } else {
       console.log(`Running show ${job.type}`);
     }
