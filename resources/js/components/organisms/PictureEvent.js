@@ -48,6 +48,7 @@ function PictureEvent (props) {
         setSource(internalURL);
       })
       .catch(err => {
+        console.log('err', err);
         switch (err.code) {
           case 1:
             setSweetAlert({ 
@@ -77,13 +78,12 @@ function PictureEvent (props) {
       console.log(`Running show ${job.type}`);
     }
   }
-
-  if (source === '') 
-    return null;
   
   return (
     <div>
-      <img src={source} style={{width: '100%', marginTop: '50px'}}/>
+      {source !== '' && 
+        <img src={source} style={{width: '100%', marginTop: '50px'}}/>
+      }
       <SweetAlert
         type="error"
         show={sweetAlert.show}
