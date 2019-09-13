@@ -87,7 +87,13 @@ class SocialAuthController extends Controller
 
         }
 
-        return redirect()->to('/question-event');
+        return response()->json([
+            'code' => 200, 
+            'msj' => 'exito', 
+            'tipo' => 'one' , 
+            'userid' => $user->_id, 
+            'access_token' => $apiToken
+        ]);
 
     }
 
