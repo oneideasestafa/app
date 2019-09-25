@@ -12,8 +12,8 @@ use App\Models\MongoDB\Invitacion;
 use App\Models\MongoDB\Bibliotecas;
 use App\Http\Requests\ValidateEvento;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\Evento\ConsultarHashtags;
 use DB, DataTables, Image, Storage, File, Auth, Mail, QrCode;
-
 
 //controlador encargado de la seccion de eventos
 class EventoController extends Controller {
@@ -254,6 +254,30 @@ class EventoController extends Controller {
         ->get();
 
       return response()->json($files, 200);
+    }
+
+    /**
+     * Consultar Hashtags del Evento
+     * 
+     * @param ConsultarHashtags $request
+     * @return Response
+     */
+    public function consultarHashtagsDelEvento(ConsultarHashtags $request) 
+    {
+        $evento = Evento::find($request->eventoId);
+
+        if ($evento->HashtagsTwitter || $evento->HashtagsInstagram) {
+            return response()->json([
+                'hashtagsTwitter' => ($evento->HashtagsTwitter) ? json_encode($evento->HashtagsTwitter) : null,
+                'hashtagsInstagram' => ($evento->HashtagsInstagram) ? json_encode($evento->HashtagsInstagram) : null,
+                'existen' => true
+            ], 200);
+        }
+
+        return response()->json([
+            'mensaje' => 'No existen Hashtags registrados para el evento',
+            'existen' => false
+        ], 200);
     }
 }
 

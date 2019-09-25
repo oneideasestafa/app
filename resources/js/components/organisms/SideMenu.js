@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import logo from './../../../../public/images/logo-one.png';
 import { withRouter } from 'react-router-dom';
 import { toggleNavigationMenu, setCurrentPage } from '../../redux/actions/navigation';
+import ItemMenuTwitter from './../organisms/ItemMenuTwitter';
 
 class SideMenu extends React.Component {
   constructor (props) {
@@ -87,6 +88,7 @@ class SideMenu extends React.Component {
                   <i className="fab fa-weixin fa-lg" /> {"    "} Notificaciones
                 </a>
               </li>
+              <ItemMenuTwitter />
               <li className="nav-item">
                 <a 
                   onClick={this.navigate} 

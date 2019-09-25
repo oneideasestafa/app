@@ -10,11 +10,12 @@ import store from './../redux';
  * A continuacion se importan todos los componentes que seran
  * utili ados como paginas y rutas del front end
  */
-import Ingreso from "./pages/Ingreso";
-import Login from "./pages/Login";
-import Registro from "./pages/Registro";
-import QuestionEvent from "./pages/QuestionEvent";
-import Wrapper from './pages/Wrapper';
+import Ingreso from "./Pages/Ingreso";
+import Login from "./Pages/Login";
+import Registro from "./Pages/Registro";
+import QuestionEvent from "./Pages/QuestionEvent";
+import Wrapper from './Pages/Wrapper';
+import RedesSociales from './Pages/RedesSociales';
 
 library.add(faSyncAlt, faTrashAlt, faSync);
 

@@ -184,6 +184,16 @@ header a:active, a:focus, a:hover {
     color: #fff;
 }
 
+.btn-twitter {
+    background-color: #00acee;
+    color: #fff;
+}
+
+.btn-instagram {
+    background-color: #e1306c;
+    color: #fff;
+}
+
 .btn-negro:hover{
     background-color: #000000;
     color: #fff;

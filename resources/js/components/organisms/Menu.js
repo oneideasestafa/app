@@ -38,6 +38,7 @@ class Menu extends Component {
      */
     componentWillMount() {
       const menu = this.props.event.MenuApp.map(ma => ma.$oid);
+      console.log(menu);
       
       this.setState({ menuApp: menu, isLoading: false });
     }
@@ -180,6 +181,13 @@ class Menu extends Component {
                     <a className="nav-link" href="#" onClick={this.getDetener}>
                         <i className="fas fa-power-off fa-lg" />
                         &nbsp;&nbsp; Detener
+                    </a>
+                </li>
+                {/* Prueba Menu sin cargar */}
+                <li className="nav-item">
+                    <a className="nav-link" id="instagram" href="#" onClick={this.handleMenuClick} >
+                        <i className="fab fa-instagram" />
+                        &nbsp;&nbsp; Otro Instagram
                     </a>
                 </li>
 

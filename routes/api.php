@@ -37,6 +37,8 @@ Route::group(['prefix' => 'eventos', 'middleware' => 'ApiToken'], function() {
     Route::post('/check-ubicacion', 'EventoController@checkUbicacion');
     Route::get('/invitacion/{id}','EventoController@getInvitacion');
     Route::get('/jobs/{event_id}/{current_time}', 'EventoController@getLatestJobs');
+
+    Route::get('/redes-sociales/consultar','EventoController@consultarHashtagsDelEvento');
 });
 
 Route::group(['prefix' => 'event', 'middleware' => 'ApiToken'], function () {
