@@ -9,66 +9,68 @@ import {
 
 function MusicPlayer (props) {
   const { audio } = props;
-  const tracker = { timeout: null };
+  // const tracker = { timeout: null };
   const [sweetAlert, setSweetAlert] = useState({title: '', text: '', show: false});
+  let playing = '';
   let media = null;
   
-  useEffect(() => {    
-    if (audio.current) {
-      clearTimeout(tracker.timeout);
+  // useEffect(() => {    
+  //   if (audio.current) {
+  //     clearTimeout(tracker.timeout);
 
-      let now = new Date();
-      let delay = audio.current.startTime - now.getTime();
+  //     let now = new Date();
+  //     let delay = audio.current.startTime - now.getTime();
 
-      if (delay > 0) {
-        tracker.timeout = setTimeout(props.executeJob, delay, audio.current.type);
-      } else {
-        props.executeJob(audio.current.type);
-      }
-    } else {
-      clearTimeout(tracker.timeout);
-    }
+  //     if (delay > 0) {
+  //       tracker.timeout = setTimeout(props.executeJob, delay, audio.current.type);
+  //     } else {
+  //       props.executeJob(audio.current.type);
+  //     }
+  //   } else {
+  //     clearTimeout(tracker.timeout);
+  //   }
 
-    return () => {
-      if (media) {
-        media.release();
-      }
-    }
-  }, [audio.current]);
+  //   return () => {
+  //     if (media) {
+  //       media.release();
+  //     }
+  //   }
+  // }, [audio.current]);
 
   useEffect(() => {
-    if (audio.running) {
-      props.findFileInPhoneStorage(audio.current.payload).then(({ url }) => {
-        media = new Media(url, () => props.turnShowOff(audio.current), (err) => setSweetAlert({
-          title: 'Error', 
-          text: 'Algo ha ocurrido al intentar reproducir el audio', 
-          show: true
-        }));
-        
+    if (audio.current) {
+      if (playing !== audio.current.payload) {
+        props.findFileInPhoneStorage(audio.current.payload).then(({ url }) => {
+          media = new Media(url, () => null, (err) => setSweetAlert({
+            title: 'Error', 
+            text: 'Algo ha ocurrido al intentar reproducir el audio', 
+            show: true
+          }));
+
+          media.play()
+          
+          playing = audio.current.payload;
+        })
+        .catch(err => {
+          switch (err.code) {
+            case 1:
+              setSweetAlert({ 
+                title: `${audio.current.payload} no encontrado`, 
+                text: 'Vaya a la pestaña de descargas y obtenga el archivo', 
+                show: true 
+              });
+            break;
+          }
+        })
+      } else {
+        media.stop();
         media.play();
-      })
-      .catch(err => {
-        switch (err.code) {
-          case 1:
-            setSweetAlert({ 
-              title: `${audio.current.payload} no encontrado`, 
-              text: 'Vaya a la pestaña de descargas y obtenga el archivo', 
-              show: true 
-            });
-          break;
-        }
-      })
+      }      
     } else {
       if (media)
         media.release();
     }
-
-    return () => {
-      if (media) {
-        media.release();
-      }
-    }
-  }, [audio.running]);  
+  }, [audio.current]);  
   
   return (
     <div>
