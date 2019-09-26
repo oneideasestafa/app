@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Progress from '../atoms/Progress';
 import WebTorrent from 'webtorrent';
 import { connect } from 'react-redux';
-import { fileFinishedDownloading } from './../../redux/actions/events';
+import { fileFinishedDownloading } from './../../redux/actions/download';
 
 function FileDownload (props) {
   const [ isReady, setReady ] = useState(false);

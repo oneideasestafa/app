@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { getFilesFromEvent } from './../../redux/actions/events';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DownloadList from './../organisms/DownloadList';
 import SeedingList from './../organisms/SeedingList';
+import { getFilesFromEvent } from './../../redux/actions/download';
 import { connect } from 'react-redux';
 
 function Downloads (props) {
