@@ -51,6 +51,12 @@ function Wrapper (props) {
       });
     }
 
+    return () => {
+      if (client) {
+        client.destroy();
+      }
+    }
+
   }, [props.download]);
 
   /**

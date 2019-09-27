@@ -20,6 +20,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         current: next === undefined ? null : next,
+        progress: null,
         existing: [
           state.current,
           ...state.existing
