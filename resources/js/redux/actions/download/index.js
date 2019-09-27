@@ -39,6 +39,33 @@ export function getFilesFromEvent (eventId) {
   }
 }
 
+export function getFileObjectsFromStorage () {
+  return (dispatch, getState) => {
+    const { download: { existing }, events: { current }} = getState();
+
+    const promises = existing.map(file => new Promise((resolve, reject) => {
+      requestFileSystem(LocalFileSystem.PERSISTENT, 0, fs => {
+        let path = `${current.Empresa_id}/${current._id}/${file.name}`;
+
+        fs.root.getFile(path, { create: false }, fe => {
+          fe.file(f => {
+            return resolve(new Blob([f], { type: f.type }));
+            let reader = new FileReader();
+
+            reader.onloadend = function () {
+              resolve(new Blob(this.result, f.type))
+            }
+
+            reader.readAsArrayBuffer(f);
+          })
+        }, err => resolve(null))
+      })
+    }));
+
+    return Promise.all(promises);
+  }
+}
+
 export function deleteFile (name) {
   return (dispatch, getState) => {
     const { events: { current } } = getState();

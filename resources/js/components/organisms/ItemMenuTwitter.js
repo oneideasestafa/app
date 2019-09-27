@@ -41,7 +41,7 @@ class ItemMenuTwitter extends React.Component {
      * @return {void}
      */
     consultarHashtagsDisponibles() {
-        axios.get('api/eventos/redes-sociales/consultar?eventoId=' + this.state.eventoId, {
+        axios.get('api/eventos/redes-sociales/consultar?eventoId=' + this.eventoId, {
             headers: {
                 Authorization: this.state.api_token
             }

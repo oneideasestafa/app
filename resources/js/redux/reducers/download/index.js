@@ -16,7 +16,7 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case FILE_FINISHED_DOWNLOADING:
       const next = state.download.pop();
-    
+
       return {
         ...state,
         current: next === undefined ? null : next,
@@ -51,7 +51,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         download,
-        current: first,
+        current: first === undefined ? null : first,
         existing: action.payload.files.filter(file => file.exists === true),
       }
     default:

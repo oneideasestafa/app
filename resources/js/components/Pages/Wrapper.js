@@ -3,9 +3,10 @@ import SideMenu from './../organisms/SideMenu';
 import Header from './../organisms/Header';
 import { Switch, Route } from 'react-router-dom';
 import { 
-  getFilesFromEvent, 
+  getFilesFromEvent,
   setDownloadProgress,
-  fileFinishedDownloading 
+  fileFinishedDownloading,
+  getFileObjectsFromStorage
 } from './../../redux/actions/download';
 import { connect } from 'react-redux';
 
@@ -17,6 +18,7 @@ import WebTorrent from 'webtorrent';
 
 function Wrapper (props) {
   let client = null;
+  let seeder = null;
 
   /**
    * Effect to fetch the file needed
@@ -49,6 +51,10 @@ function Wrapper (props) {
       torrent.on('done', () => {
         torrent.files.forEach(file => file.getBlob(saveDownloadedFile));
       });
+    } else {
+      if (client) {
+        client.destroy();
+      }
     }
 
     return () => {
@@ -58,6 +64,35 @@ function Wrapper (props) {
     }
 
   }, [props.download]);
+
+  useEffect(() => {
+    if (props.download === null) {      
+      seeder = new WebTorrent();
+
+      props.getFileObjectsFromStorage().then(blobs => {
+        blobs.forEach((blob, i) => {
+          if (!blob)
+            return;
+                    
+          let { name } = props.existing[i];
+         
+          seeder.seed(blob, { 
+            name,
+            announce: [`ws://localhost:8000`], 
+          }, (torrent) => {
+            torrent.on('upload', bytes => console.log('uploading', bytes, 'from', name));
+          })
+        })
+      })
+    }
+
+    return () => {
+      if (seeder) {
+        seeder.destroy();
+      }
+    }
+
+  }, [props.download, props.existing])
 
   /**
    * Takes the downloaded file from torrent
@@ -108,10 +143,12 @@ function Wrapper (props) {
 const mapStateToProps = state => ({
   event: state.events.current,
   download: state.download.current,
+  existing: state.download.existing
 });
 
 const mapDispatchToProps = dispatch => ({
   getFilesFromEvent: (eventId) => dispatch(getFilesFromEvent(eventId)),
+  getFileObjectsFromStorage: () => dispatch(getFileObjectsFromStorage()),
   fileFinishedDownloading: (fileId) => dispatch(fileFinishedDownloading(fileId)),
   setDownloadProgress: (progress, downloaded, downloadSpeed) => dispatch(setDownloadProgress(progress, downloaded, downloadSpeed)),
 });
