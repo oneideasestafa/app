@@ -3,6 +3,7 @@ import React from 'react';
 /*
 - Obtener el eventoId
 - Verificar si esta en el Menu del Evento
+- Verificar si obtiene los hashtags
 - Asociar componente con Instagram
 - Enviar Foto a Instagram (Evaluar)
 */
@@ -13,7 +14,7 @@ class ItemMenuTwitter extends React.Component {
 
         this.eventoId = "5cbadeb1388f7c4c5e5910d2";
         this.hashtagsTwitter = ["#Yo"];
-        this.hashtagsInstagram = [];
+        this.hashtagsInstagram = ["#Tu"];
 
         this.state = {
             estaCargando: false,
@@ -81,8 +82,36 @@ class ItemMenuTwitter extends React.Component {
      * @return {void}
      */
     publicarEnInstagram() {
-        // Obtener imagen por Plugin Camara
-        // Enviar imagen a instagram por Plugin
+        console.log('Compartir en Instagram');
+
+        // No Mostrar Instagram si no esta instalado
+        /* Instagram.isInstalled((err, installed) => {
+            if (installed) {
+                console.log("Instagram is", installed);
+            } else {
+                console.log("Instagram is not installed");
+            }
+        }); */
+
+        // Funcion de camara
+        var options = {
+            quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL,
+            sourceType: 1,
+            encodingType: 0
+        };
+
+        navigator.camera.getPicture((imageData) => {
+            console.log(imageData);
+
+            // Funcion de compartir en Instagram
+            Instagram.share('data:image/jpeg;base64,' + imageData, 'Caption', (resultado) => (
+                console.log(resultado)
+            ));
+        },
+        (error) => {
+            console.log(error);
+        }, options);
     }
 
     /**
@@ -111,8 +140,7 @@ class ItemMenuTwitter extends React.Component {
                     { this.hashtagsInstagram.length > 0 &&
                         <li className="nav-item">
                             <a className="nav-link" onClick={this.publicarEnInstagram} >
-                                <i className="fab fa-instagram" />
-                                &nbsp;&nbsp; Instagram
+                                <i className="fab fa-instagram fg-lg" /> {"    "} Instagram
                             </a>
                         </li>
                     }
