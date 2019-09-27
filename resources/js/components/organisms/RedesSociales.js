@@ -1,24 +1,15 @@
 import React from 'react';
+import swal from "sweetalert2";
 
-/*
-- Obtener el eventoId
-- Verificar si esta en el Menu del Evento
-- Verificar si obtiene los hashtags
-- Asociar componente con Instagram
-- Enviar Foto a Instagram (Evaluar)
-*/
-
-class ItemMenuTwitter extends React.Component {
+class RedesSociales extends React.Component {
     constructor (props) {
         super(props);
 
-        this.eventoId = "5cbadeb1388f7c4c5e5910d2";
-        this.hashtagsTwitter = ["#Yo"];
-        this.hashtagsInstagram = ["#Tu"];
-
         this.state = {
             estaCargando: false,
-            api_token: localStorage.getItem("api_token")
+            api_token: localStorage.getItem("api_token"),
+            hashtagsTwitter: [],
+            hashtagsInstagram: []
         }
 
         this.consultarHashtagsDisponibles = this.consultarHashtagsDisponibles.bind(this);
@@ -33,7 +24,7 @@ class ItemMenuTwitter extends React.Component {
      * @return {void}
      */
     componentWillMount() {
-        this.consultarHashtagsDisponibles()
+        this.consultarHashtagsDisponibles();
     }
 
     /**
@@ -42,18 +33,17 @@ class ItemMenuTwitter extends React.Component {
      * @return {void}
      */
     consultarHashtagsDisponibles() {
-        axios.get('api/eventos/redes-sociales/consultar?eventoId=' + this.state.eventoId, {
+        axios.get('api/eventos/redes-sociales/consultar?eventoId=' + localStorage.getItem("eventoId"), {
             headers: {
                 Authorization: this.state.api_token
             }
         }).then(respuesta => {
             if (respuesta.status === 200) {
 
-                this.hashtagsTwitter = (respuesta.data.hashtagsTwitter) ? JSON.parse(respuesta.data.hashtagsTwitter) : [];
-                this.hashtagsInstagram = (respuesta.data.hashtagsInstagram) ? JSON.parse(respuesta.data.hashtagsInstagram) : [];
-
                 this.setState({
-                    estaCargando: false
+                    estaCargando: false,
+                    hashtagsTwitter: (respuesta.data.hashtagsTwitter) ? JSON.parse(respuesta.data.hashtagsTwitter) : [],
+                    hashtagsInstagram: (respuesta.data.hashtagsInstagram) ? JSON.parse(respuesta.data.hashtagsInstagram) : []
                 })
 
                 return
@@ -82,36 +72,31 @@ class ItemMenuTwitter extends React.Component {
      * @return {void}
      */
     publicarEnInstagram() {
-        console.log('Compartir en Instagram');
 
-        // No Mostrar Instagram si no esta instalado
-        /* Instagram.isInstalled((err, installed) => {
-            if (installed) {
-                console.log("Instagram is", installed);
-            } else {
-                console.log("Instagram is not installed");
-            }
-        }); */
-
-        // Funcion de camara
-        var options = {
+        // Opciones de camara
+        let opcionesDeCamara = {
             quality: 50,
             destinationType: Camera.DestinationType.DATA_URL,
             sourceType: 1,
             encodingType: 0
         };
 
-        navigator.camera.getPicture((imageData) => {
-            console.log(imageData);
-
-            // Funcion de compartir en Instagram
-            Instagram.share('data:image/jpeg;base64,' + imageData, 'Caption', (resultado) => (
-                console.log(resultado)
-            ));
+        navigator.camera.getPicture((imagenCodificada) => {
+            Instagram.isInstalled((err, installed) => {
+                if (installed) {
+                    Instagram.share('data:image/jpeg;base64,' + imagenCodificada, 'Caption', (resultado) => (console.log(resultado)));
+                } else {
+                    swal(
+                        "¡Instagram no esta instalado!",
+                        "error",
+                        "sweet"
+                    );
+                }
+            });
         },
         (error) => {
             console.log(error);
-        }, options);
+        }, opcionesDeCamara);
     }
 
     /**
@@ -121,7 +106,7 @@ class ItemMenuTwitter extends React.Component {
      * @return {void}
      */
     obtenerHashtags(redSocial) {
-        return this["hashtags" + redSocial]
+        return this.state["hashtags" + redSocial]
             .map((hashtag) => (hashtag.substring(1)))
             .join();
     }
@@ -130,14 +115,14 @@ class ItemMenuTwitter extends React.Component {
         if (!this.state.estaCargando) {
             return (
                 <div>
-                    { this.hashtagsTwitter.length > 0 &&
+                    { this.state.hashtagsTwitter.length > 0 &&
                         <li className="nav-item">
                             <a className="nav-link" onClick={this.publicarEnTwitter}>
                             <i className="fab fa-twitter fa-lg" /> {"    "} Twitter
                             </a>
                         </li>
                     }
-                    { this.hashtagsInstagram.length > 0 &&
+                    { this.state.hashtagsInstagram.length > 0 &&
                         <li className="nav-item">
                             <a className="nav-link" onClick={this.publicarEnInstagram} >
                                 <i className="fab fa-instagram fg-lg" /> {"    "} Instagram
@@ -152,4 +137,4 @@ class ItemMenuTwitter extends React.Component {
     }
 }
 
-export default ItemMenuTwitter;
+export default RedesSociales;

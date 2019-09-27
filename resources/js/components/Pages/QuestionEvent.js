@@ -56,8 +56,11 @@ class QuestionEvent extends Component {
     handleChange(e) {
 
         let name = e.target.name;
+        
 
         if(name == 'evento'){
+
+            localStorage.setItem("eventoId", e.target.value);
 
             if(e.target.value == ''){
 
