@@ -262,7 +262,7 @@ class EventoController extends Controller {
      * @param ConsultarHashtags $request
      * @return Response
      */
-    public function consultarHashtagsDelEvento(ConsultarHashtags $request) 
+    public function consultarHashtagsDelEvento(Request $request) 
     {
         $evento = Evento::find($request->eventoId);
 

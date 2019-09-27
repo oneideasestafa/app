@@ -15,7 +15,6 @@ import Login from "./Pages/Login";
 import Registro from "./Pages/Registro";
 import QuestionEvent from "./Pages/QuestionEvent";
 import Wrapper from './Pages/Wrapper';
-// import RedesSociales from './Pages/RedesSociales';
 
 library.add(faSyncAlt, faTrashAlt, faSync);
 
