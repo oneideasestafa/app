@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useSpring, animated } from 'react-spring';
 import { 
@@ -8,10 +8,32 @@ import {
 
 function ColorEvent (props) {
   const { colors } = props;
+
+  const [isBrightnessAtMax, setBrightness] = useState(false);
+  
   const spring = useSpring({ 
     height: colors.running ? '100vh' : '0vh',
     backgroundColor: colors.running ? colors.current.payload : '#313131'
   });
+  
+  /**
+   * When a color command is beign executed
+   * put brightness at maximum level
+   */
+  useEffect(() => {
+    if (colors.current && !isBrightnessAtMax) {
+      setBrightness(true);
+      
+      Cordova.exec(prevBright => {
+        Cordova.exec(() => {
+          console.log('Brightness change');
+        }, e => console.log(e), 'Brightness', 'setBrightness', [1]);      
+
+      }, e => console.log(e), 'Brightness', 'getBrightness', []);
+    } else if (colors.current === null) {
+      setBrightness(false);
+    }
+  }, [colors.current]);
   
   /**
    * Time Tracker

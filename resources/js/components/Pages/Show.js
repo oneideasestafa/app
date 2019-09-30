@@ -6,8 +6,8 @@ import ColorEvent from '../organisms/ColorEvent';
 import VideoEvent from '../organisms/VideoEvent';
 import PictureEvent from '../organisms/PictureEvent';
 import { 
-  setLastShow, 
-  setNextShow, 
+  setLastShow,
+  setNextShow,
   setShowRightNow,
   turnShowOff,
   executeJob,
