@@ -9,9 +9,25 @@ import {
 
 function VideoEvent (props) {
   const { video } = props;
-  const tracker = { timeout: null };
+  // const tracker = { timeout: null };
   const [sweetAlert, setSweetAlert] = useState({title: '', text: '', show: false});
+  const [isBrightnessAtMax, setBrightness] = useState(false);
   
+  useEffect(() => {
+    if (video.current && !isBrightnessAtMax) {
+      setBrightness(true);
+      
+      Cordova.exec(prevBright => {
+        Cordova.exec(() => {
+          console.log('Brightness change');
+        }, e => console.log(e), 'Brightness', 'setBrightness', [1]);      
+
+      }, e => console.log(e), 'Brightness', 'getBrightness', []);
+    } else if (video.current === null) {
+      setBrightness(false);
+    }
+  }, [video.current]);
+
   /**
    * Time Tracker
    */

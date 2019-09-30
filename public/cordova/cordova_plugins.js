@@ -341,6 +341,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "streamingMedia"
       ]
+    },
+    {
+      "id": "cordova-plugin-brightness.Brightness",
+      "file": "plugins/cordova-plugin-brightness/www/brightness.js",
+      "pluginId": "cordova-plugin-brightness",
+      "clobbers": [
+        "cordova.plugins.brightness"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -358,6 +366,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-mqtt": "0.3.8",
     "de.appplant.cordova.plugin.local-notification": "0.8.5",
     "cordova-plugin-media": "5.0.3",
-    "cordova-plugin-streaming-media": "2.2.0"
+    "cordova-plugin-streaming-media": "2.2.0",
+    "cordova-plugin-brightness": "0.1.5"
   };
 });
