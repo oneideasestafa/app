@@ -26,6 +26,10 @@ function VideoEvent (props) {
     } else if (video.current === null) {
       setBrightness(false);
     }
+
+    if (video.current && video.current.vibrate) {
+      navigator.vibrate(250);
+    }
   }, [video.current]);
 
   /**
