@@ -3,7 +3,7 @@ cordova.define("cordova-plugin-brightness.Brightness", function(require, exports
 
 var exec = require('cordova/exec');
 
-exports.getBrightness = function(success, error) {
+exports.getBrightness = function( success, error) {
   exec(success, error, 'Brightness', 'getBrightness', []);
 };
 
