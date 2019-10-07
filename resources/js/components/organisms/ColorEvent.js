@@ -33,6 +33,10 @@ function ColorEvent (props) {
     } else if (colors.current === null) {
       setBrightness(false);
     }
+
+    if (colors.current && colors.current.vibrate) {
+      navigator.vibrate(250);
+    }
   }, [colors.current]);
   
   /**

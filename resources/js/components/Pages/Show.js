@@ -57,8 +57,8 @@ function Show (props) {
   
   function onMessageArrived (message) {
     console.log('message arrived', message.payloadString);
-    const [type, momment, id, payload, startTime, endTime] = message.payloadString.split(',');
-    const job = { id, momment, type, payload, startTime, endTime, running: false };
+    const [type, momment, id, payload, vibrate] = message.payloadString.split(',');
+    const job = { id, momment, type, payload, vibrate: parseInt(vibrate) === 1 };
 
     switch (parseInt(momment)) {
       case 1:

@@ -63,6 +63,10 @@ function FlashEvent (props) {
     } else {
       window.plugins.flashlight.switchOff();
     }
+
+    if (flash.current && flash.current.vibrate) {
+      navigator.vibrate(250);
+    }
   }, [flash.current]);
 
   /**
