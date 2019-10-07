@@ -62,33 +62,31 @@
  
 <div id="app" data-url="{{ url('/') }}" data-googleplay="{{ config('app.url-google-play') }}" data-applestore="{{ config('app.url-app-store') }}" >
 </div>
-
-
-
-
     <script type="text/javascript">
-        /** detectar movil **/
-        function isCordova() {
-            return navigator.userAgent.match(/(Cordova)/);
+        /** detectar movil **/      
+        function isCordova () {
+          return navigator.userAgent.match(/(Cordova)/);
         }
-        function isCordovaIos() {
-            return navigator.userAgent.match(/(Ios)/);
+        
+        function isCordovaIos () {
+          return navigator.userAgent.match(/(Ios)/);
         }
-        // if(isCordova()){
-            if(isCordovaIos()){
-                var script = document.createElement( "script" );
-                script.type = "text/javascript";
-                //script.src = '/ONEShow/public/cordova/cordova.js';
-                script.src = window.location.protocol+'//'+window.location.host+'/cordovaios/cordova.js';
-                document.getElementsByTagName('head')[0].appendChild(script)
-            }else{
-                var script = document.createElement( "script" );
-                script.type = "text/javascript";
-                //script.src = '/ONEShow/public/cordova/cordova.js';
-                script.src = window.location.protocol+'//'+window.location.host+'/cordova_prueba/cordova.js';
-                document.getElementsByTagName('head')[0].appendChild(script)
-            }
-        // }
+
+        function isCordovaAndroid () {
+          return navigator.userAgent.match(/(Android)/);
+        }
+
+        if(isCordovaIos()){
+            var script = document.createElement( "script" );
+            script.type = "text/javascript";
+            script.src = window.location.protocol+'//'+window.location.host+'/cordovaios/cordova.js';
+            document.getElementsByTagName('head')[0].appendChild(script)
+        }else if (isCordovaAndroid()){
+            var script = document.createElement( "script" );
+            script.type = "text/javascript";
+            script.src = window.location.protocol+'//'+window.location.host+'/cordova_prueba/cordova.js';
+            document.getElementsByTagName('head')[0].appendChild(script)
+        }
     </script>
     <script class="jscache" src="{{ asset('js/app.js') }}"></script>
     <!-- <script src="{{ asset('js/vendor.js') }}"></script> -->
