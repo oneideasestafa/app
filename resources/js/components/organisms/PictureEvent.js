@@ -13,6 +13,30 @@ function PictureEvent (props) {
   // const tracker = { timeout: null, interval: null };
   const [ source, setSource ] = useState({ src: '', show: false });
   const [sweetAlert, setSweetAlert] = useState({title: '', text: '', show: false});
+  const [isBrightnessAtMax, setBrightness] = useState(false);
+
+  /**
+   * When a color command is beign executed
+   * put brightness at maximum level
+   */
+  useEffect(() => {
+    if (imagen.current && !isBrightnessAtMax) {
+      setBrightness(true);
+      
+      Cordova.exec(prevBright => {
+        Cordova.exec(() => {
+          console.log('Brightness change');
+        }, e => console.log(e), 'Brightness', 'setBrightness', [1]);
+
+      }, e => console.log(e), 'Brightness', 'getBrightness', []);
+    } else if (imagen.current === null) {
+      setBrightness(false);     
+    }
+
+    if (colors.current && colors.current.vibrate) {
+      navigator.vibrate(250);
+    }
+  }, [imagen.current]);
 
   // /**
   //  * Time Tracker
