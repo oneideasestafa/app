@@ -55,3 +55,8 @@ Route::group(['prefix' => 'clientes','middleware' => 'ApiToken'], function() {
     Route::get('/estado-civil', 'ClienteController@getEstadoCivil');
     
 });
+
+// Permite defifinir los puntos de entrada para los endpoints de preguntados
+Route::group(['prefix' => 'preguntados'], function() {
+	Route::get('/pregutas-respuestas', 'PreguntadosController@getPreguntas');
+});
