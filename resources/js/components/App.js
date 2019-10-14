@@ -16,6 +16,8 @@ import Registro from "./Pages/Registro";
 import QuestionEvent from "./Pages/QuestionEvent";
 import Wrapper from './Pages/Wrapper';
 
+import Asked from './Pages/Asked/Asked';
+
 library.add(faSyncAlt, faTrashAlt, faSync);
 
 function App() {
@@ -30,6 +32,7 @@ function App() {
               <NotAuthRoute exact path="/registro" component={Registro} />
               <NotAuthRoute exact path="/login" component={Login} />
               <PrivateRoute exact path="/questionEvent" component={QuestionEvent} />
+              <NotAuthRoute exact path="/asked" component={Asked} />
               <PrivateRoute path="/" component={Wrapper} />
           </Switch>
         </Router>
