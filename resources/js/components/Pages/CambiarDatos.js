@@ -80,7 +80,7 @@ class CambiarDatos extends Component {
      */
     componentWillMount() {
       axios
-        .get("api/clientes/id/" + this.props.userId,{
+        .get("api/clientes/id/" + this.props.userId, {
           headers: {
             Authorization: this.state.api_token
           }
@@ -222,7 +222,7 @@ class CambiarDatos extends Component {
 
         let pais = e.target.value;
 
-        axios.post('api/clientes/clubs-perfil', { pais })
+        axios.post('api/usuarios/clubs-perfil', { pais })
             .then(res => {
 
                 let r = res.data;
@@ -243,7 +243,7 @@ class CambiarDatos extends Component {
                 }
 
             })
-            .catch(function (error) {
+            .catch(error => {
 
                 if (error.response.status == 422){
 
@@ -267,7 +267,7 @@ class CambiarDatos extends Component {
 
         let self = this;
 
-        axios.post('api/clientes/clubs-perfil', { pais })
+        axios.post('api/usuarios/clubs-perfil', { pais })
             .then(res => {
                 let r = res.data;
 
@@ -332,74 +332,52 @@ class CambiarDatos extends Component {
      * @param {evento} e 
      */
     handleSubmit(e) {
+      e.preventDefault();
 
-        e.preventDefault();
+      this.setState({ isLoading: true });
 
-        let self = this;
+      const formData = new FormData();
 
-        self.setState({
-            isLoading: true
-        });
+      formData.append('userId', this.props.userId);
+      formData.append('countryId', this.state.pais);
+      formData.append('gender', this.state.sexo);
+      formData.append('phone', this.state.telefono);
+      formData.append('birthdate', this.state.fechaNacimiento);
+      formData.append('phone', this.state.telefono);
+      formData.append('teamId', this.state.equipo);
+      formData.append('maritalStatus', this.state.civil);
+      formData.append('name', this.state.nombre);
+      formData.append('lastname', this.state.apellido);
 
-        let { pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, url, fotonew, tipofoto } = this.state;
-    
-        axios.post('api/clientes/editar/perfil', { idUsuario: this.props.userId ,pais, telefono,  fechaNacimiento, equipo, sexo, civil, nombre, apellido, fotonew, tipofoto})
-            .then(res => {
-                self.setState({
-                    isLoading: false
-                });
-
-                let r = res.data;
-
-                if(r.code === 200){
-
-                    swal.fire({
-                        title: '<i class="fa fa-check-circle"></i>',
-                        text: r.msj,
-                        showCancelButton: false,
-                        confirmButtonColor: '#343a40',
-                        confirmButtonText: 'Ok',
-                    }).then((result) => {
-                        if (result.value) {
-                            this.componentWillMount();
-
-                        }
-                    });
-
-                }else if(r.code === 500){
-
-                    swal({
-                        title: '<i class="fas fa-exclamation-circle"></i>',
-                        text: r.msj,
-                        confirmButtonColor: '#343a40',
-                        confirmButtonText: 'Ok'
-                    });
-
-                }
-
-            })
-            .catch(function (error) {
-
-                if (error.response.status == 422){
-
-                    self.setState({
-                        isLoading: false
-                    });
-
-                    swal({
-                        title: '<i class="fas fa-exclamation-circle"></i>',
-                        text: error.response.data,
-                        confirmButtonColor: '#343a40',
-                        confirmButtonText: 'Ok'
-                    });
-
-                }
-
-            });
-
-       
-
+      if (this.state.foto !== '') {
+        window.resolveLocalFileSystemURL(this.state.foto, fileEntry => {
+          fileEntry.file(file => {
+            formData.append('image', file);
             
+            axios.post('api/clientes/editar/perfil', formData, {
+              headers: {
+                Authorization: localStorage.getItem('api_token')
+              }
+            })
+              .then(res => {
+                console.log('res', res);
+              })
+              .catch(err => {
+                console.log('err', err);
+              })
+              .then(() => this.setState({ isLoading: false }));
+          });  
+        });
+      } else {
+        axios.post('api/clientes/editar/perfil'. formData)
+          .then(res => {
+            console.log('res', res);
+          })
+          .catch(err => {
+            console.log('err', err);
+          })
+          .then(() => this.setState({ isLoading: false }))
+      }
     }
 
 
@@ -435,13 +413,27 @@ class CambiarDatos extends Component {
             <div className="input-group-prepend">
               <i className="fa fa-address-card fa-lg"></i>
             </div>
-            <input type="text" id="nombre" name="nombre" value={nombre} onChange={this.handleChange} className="form-control" />
+            <input 
+              type="text" 
+              name="nombre" 
+              value={nombre} 
+              className="form-control" 
+              onChange={this.handleChange}
+              required
+            />
           </div>
           <div className="input-group mb-4">
             <div className="input-group-prepend">
               <i className="fa fa-address-card fa-lg"></i>
             </div>
-            <input type="text" id="apellido" name="apellido" value={apellido} onChange={this.handleChange} className="form-control" />
+            <input 
+              type="text" 
+              name="apellido"
+              value={apellido} 
+              className="form-control" 
+              onChange={this.handleChange} 
+              required
+            />
           </div>
           <div className="input-group mb-4 mt-4">
             <div className="input-group-prepend">
@@ -453,6 +445,7 @@ class CambiarDatos extends Component {
               type="text" 
               name="fecha"
               style={{ borderStyle: 'solid' }}
+              onClick={this.handleThemeToggle}
               value={fechaNacimiento.getDate()+'/'+(fechaNacimiento.getMonth() + 1) +'/'+fechaNacimiento.getFullYear()} 
               className="form-control"
             />
@@ -499,11 +492,27 @@ class CambiarDatos extends Component {
               <i className="fab fa-ello fa-lg"></i>
             </div>
             <div className="form-check form-check-inline">
-              <input className="form-check-input" onChange={this.handleChange} type="radio" name="sexo" id="inlineRadio1x" value="m" checked={sexo === 'm'}  />
+              <input 
+                value="m" 
+                name="sexo" 
+                type="radio" 
+                id="inlineRadio1x" 
+                checked={sexo === 'm'}
+                className="form-check-input" 
+                onChange={this.handleChange} 
+              />
               <label className="form-check-label" htmlFor="inlineRadio1x">Masculino</label>
             </div>
             <div className="form-check form-check-inline">
-              <input className="form-check-input" onChange={this.handleChange} type="radio" name="sexo" id="inlineRadio2x" value="f" checked={sexo === 'f'}  />
+              <input 
+                value="f" 
+                name="sexo" 
+                type="radio"
+                id="inlineRadio2x" 
+                checked={sexo === 'f'}
+                className="form-check-input" 
+                onChange={this.handleChange} 
+              />
               <label className="form-check-label" htmlFor="inlineRadio2x">Femenino</label>
             </div>
           </div>

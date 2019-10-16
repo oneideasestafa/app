@@ -12,6 +12,7 @@ use App\Models\MongoDB\Pais;
 use Carbon\Carbon;
 use Image, Storage, File, Hash;
 use MongoDB\BSON\ObjectId;
+use Illuminate\Support\Facades\Validator;
 
 class ClienteController extends Controller
 {
@@ -137,20 +138,17 @@ class ClienteController extends Controller
     }
 
     // Permite guardar perfil
-    public function editarCliente(ValidatePerfil $request){
-    
+    public function editarCliente(ValidatePerfil $request) {    
         $input = $request->all();
-        
         $fnac = Carbon::parse($input['fechaNacimiento'])->format('d/m/Y');
-
+        
         $tipofoto = $input['tipofoto'];
         //guardo la imagen en una variable
         $image = $input['fotonew'];
         $base64 = '';
 
-        if($tipofoto == 'upload'){
-
-            if($image != ''){
+        if ($tipofoto == 'upload') {
+            if($image != '') {
 
                 //obtengo la extension
                 $type = explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
@@ -167,7 +165,6 @@ class ClienteController extends Controller
                 //elimino imagen temporal
                 File::delete($pathImgTemporal);
             }
-
         }
     
         //capturo los datos y los acomodo en un arreglo
@@ -272,5 +269,22 @@ class ClienteController extends Controller
 
         // En caso contrario retorna un mensaje de error al usuario
         return response()->json(['code' => 500, 'msj' => 'Error al registrar. Consulte al administrador']);
+    }
+
+    public function update (Request $request) {
+      Validator::make($request->all(), [
+        'name' => 'required|string',
+        'lastname' => 'required|string',
+        'gender' => 'required|string',
+        'phone' => 'nullable|string',
+        'birthdate' => 'required',
+        'profilePicture' => 'file',
+        'maritalStatus' => 'required|string',
+        'userId' => 'required|string',
+        'countryId' => 'required|string',
+        'teamId' => 'nullable|string',
+      ])->validate();
+
+      return 'success';
     }
 }

@@ -50,7 +50,7 @@ Route::group(['prefix' => 'event', 'middleware' => 'ApiToken'], function () {
 Route::group(['prefix' => 'clientes','middleware' => 'ApiToken'], function() {
     Route::get('/id/{id}', 'ClienteController@getCliente');
     
-    Route::post('/editar/perfil', 'ClienteController@editarCliente');
+    Route::post('/editar/perfil', 'ClienteController@update');
     Route::post('/editar/cambiar-clave', 'ClienteController@cambiarClave');
     Route::get('/estado-civil', 'ClienteController@getEstadoCivil');
     

@@ -4,9 +4,15 @@ import camera from './../../../images/camera.jpg';
 function ProfileImage (props) {
   const { size, image } = props;
   const background = image ? (
-    `#fff url(${image}) no-repeat center center`
+    {
+      background: `#fff url(${image}) no-repeat center center`,
+      backgroundSize: `${size}px`,
+    }
   ):(
-    `#fff url(${camera}) no-repeat center center`
+    {
+      background: `#fff url(${camera}) no-repeat center center`,
+      backgroundSize: `${size}px`,
+    }
   );
 
   return (
@@ -15,8 +21,7 @@ function ProfileImage (props) {
       style={{ 
         width: `${size}px`, 
         height: `${size}px`,
-        background,
-        backgroundSize: `${size}px`,
+        ...background
       }}
     >
     </div>

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSync } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { connect } from 'react-redux';
-import { login } from '../../redux/actions/auth';
+import { authenticate } from '../../redux/actions/auth';
 import swal from "sweetalert2";
 import logoOne from "../../../../public/images/logo-one.png";
 import logoFacebook from "../../../../public/images/social/facebook-icon.svg";
@@ -49,77 +49,67 @@ class Login extends Component {
      * @param {evento} e
      */
     handleLogin(e) {
-        let self = this;
+      e.preventDefault();
 
-        self.setState({
-            isLoading: true
-        });
+      this.setState({
+          isLoading: true
+      });
 
-        let { correo, pass } = this.state;
-        console.log(correo);
-        const email = correo;
-        const password = pass;
+      const email = this.state.correo;
+      const password = this.state.pass;
 
-        e.preventDefault();
+      this.props.authenticate(email, password)
+      .then(res => {
+          console.log(res);
+          let r = res.data;
+          if (r.code == 200) {
+              this.setState({
+                  correo: "",
+                  pass: "",
+                  isLoading: false
+              });
 
-        axios
-            .post(this.state.url + "/api/usuarios/login", {
-                email,
-                password
-            })
-            .then(res => {
-                console.log(res);
-                let r = res.data;
-                if (r.code == 200) {
-                    this.setState({
-                        correo: "",
-                        pass: "",
-                        isLoading: false
-                    });
+              if (r.tipo == "one") {
+                  localStorage.setItem("api_token", r.access_token);
 
-                    if (r.tipo == "one") {
-                        localStorage.setItem("api_token", r.access_token);
+                  this.props.history.push({
+                      pathname: "/questionEvent",
+                      state: {
+                          idUsuario: r.userid,
+                          api_token: r.access_token
+                      }
+                  });
+              }
+          } else if (r.code == undefined) {
+              //window.location.href = window.app.url+'/logisticas';
+          } else if (r.code == 600) {
+              this.setState({
+                  isLoading: false
+              });
 
-                        this.props.login(r.userid, r.access_token);
+              swal({
+                  title: '<i class="fas fa-exclamation-circle"></i>',
+                  text: r.msj,
+                  confirmButtonColor: "#343a40",
+                  confirmButtonText: "Ok"
+              });
+          }
+      })
+      .catch(error => {
+          console.log(error);
+          if (error.response.status == 422) {
+              this.setState({
+                  isLoading: false
+              });
 
-                        this.props.history.push({
-                            pathname: "/questionEvent",
-                            state: {
-                                idUsuario: r.userid,
-                                api_token: r.access_token
-                            }
-                        });
-                    }
-                } else if (r.code == undefined) {
-                    //window.location.href = window.app.url+'/logisticas';
-                } else if (r.code == 600) {
-                    this.setState({
-                        isLoading: false
-                    });
-
-                    swal({
-                        title: '<i class="fas fa-exclamation-circle"></i>',
-                        text: r.msj,
-                        confirmButtonColor: "#343a40",
-                        confirmButtonText: "Ok"
-                    });
-                }
-            })
-            .catch(error => {
-                console.log(error);
-                if (error.response.status == 422) {
-                    this.setState({
-                        isLoading: false
-                    });
-
-                    swal({
-                        title: '<i class="fas fa-exclamation-circle"></i>',
-                        text: error.response.data,
-                        confirmButtonColor: "#343a40",
-                        confirmButtonText: "Ok"
-                    });
-                }
-            });
+              swal({
+                  title: '<i class="fas fa-exclamation-circle"></i>',
+                  text: error.response.data,
+                  confirmButtonColor: "#343a40",
+                  confirmButtonText: "Ok"
+              });
+          }
+      });
     }
 
     render() {
@@ -253,7 +243,7 @@ class Login extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  login: (uid, apiToken) => dispatch(login(uid, apiToken)),
+  authenticate: (email, password) => dispatch(authenticate(email, password)),
 });
 
 export default connect(null, mapDispatchToProps)(Login);

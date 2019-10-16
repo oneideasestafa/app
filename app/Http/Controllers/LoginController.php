@@ -49,13 +49,10 @@ class LoginController extends Controller
           
         }else{
             $user = Cliente::where('Correo', $credenciales['email'])->first();
-           
         }
 
-
-        if($user){
-
-            if($user->Activo == true){
+        if ($user) {
+            if ($user->Activo == true) {
 
                 if(Hash::check($credenciales['password'], $user->Password)){
 
@@ -67,18 +64,11 @@ class LoginController extends Controller
 
                         $exito = Auth::guard('web')->login($user);
 
-                        // Se actualiza el token
-                        //$postArray = ['api_token' => $this->apiToken];
-                        //$login = Cliente::where('Correo',$credenciales['email'])->update($postArray);
-
-                        //genero el log de inicio de sesion
-                        //$log = generateLog('inicio', 'web');
-
                         return response()->json([
                             'code' => 200, 
                             'msj' => 'exito', 
-                            'tipo' => 'one' , 
-                            'userid' => $user->_id, 
+                            'tipo' => 'one' ,
+                            'user' => $user->_id, 
                             'access_token' => $apiToken
                         ]);
 
