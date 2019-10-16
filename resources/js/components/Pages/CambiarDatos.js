@@ -70,6 +70,7 @@ class CambiarDatos extends Component {
         this.handleToggle = this.handleToggle.bind(this);
         this.handleThemeToggle = this.handleThemeToggle.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
+        this.chooseImageSource = this.chooseImageSource.bind(this);
 
     }
 
@@ -127,6 +128,43 @@ class CambiarDatos extends Component {
             return "";
         }
         return cadena;
+    }
+
+    chooseImageSource (e) {
+      Cordova.exec(buttonIndex => {
+        if (buttonIndex === 0)
+          return;
+        
+        const source = buttonIndex === 2 ? (
+          navigator.camera.PictureSourceType.PHOTOLIBRARY
+        ) : (
+          navigator.camera.PictureSourceType.CAMERA
+        );
+
+        navigator.camera.getPicture(imageData => {
+          window.resolveLocalFileSystemURL(imageData, fileEntry => {
+            console.log("got file: " + fileEntry.fullPath);
+            console.log('cdvfile URI: ' + fileEntry.toInternalURL());
+
+            this.setState({
+              foto: fileEntry.toInternalURL(),
+            })
+          }, console.log);
+        }, console.log, {
+          sourceType: source,
+          allowEdit: true,
+          madiaType: navigator.camera.MediaType.PICTURE,
+          saveToPhotoAlbum: true,
+        });
+      }, null, 'Notification', 'confirm', [
+        '¿De donde desea sacar la imagen?',
+        'Buscar Foto',
+        ['Tomar Foto', 'Galería']
+      ])
+
+      // navigator.notification.confirm('¿De donde desea sacar la imagen?', buttonIndex => {
+      //   console.log('buttonIndex', buttonIndex);
+      // }, 'Buscar imagen', ['Galería', 'Tomar Foto']);
     }
 
     /**
@@ -387,12 +425,12 @@ class CambiarDatos extends Component {
     return (
       <div>
         <form method="POST" className="p-4" onSubmit={this.handleSubmit}>
-          <div className="text-center my-2">
+          <div className="text-center my-2" onClick={this.chooseImageSource}>
             <ProfileImage size={150} image={foto !== '' ? foto : null} />
           </div>
-          {foto != '' &&
+          {/* {foto != '' &&
             <img src={foto} className="rounded mx-auto d-block mb-5 profile-picture"/>
-          }
+          } */}
           <div className="input-group mb-4">
             <div className="input-group-prepend">
               <i className="fa fa-address-card fa-lg"></i>

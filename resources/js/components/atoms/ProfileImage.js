@@ -3,7 +3,11 @@ import camera from './../../../images/camera.jpg';
 
 function ProfileImage (props) {
   const { size, image } = props;
-  const background = image ? image : camera;
+  const background = image ? (
+    `#fff url(${image}) no-repeat center center`
+  ):(
+    `#fff url(${camera}) no-repeat center center`
+  );
 
   return (
     <div 
@@ -11,7 +15,7 @@ function ProfileImage (props) {
       style={{ 
         width: `${size}px`, 
         height: `${size}px`,
-        background: `#fff url(${background}) no-repeat center center`,
+        background,
         backgroundSize: `${size}px`,
       }}
     >
