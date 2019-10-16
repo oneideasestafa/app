@@ -33,7 +33,7 @@ function PictureEvent (props) {
       setBrightness(false);     
     }
 
-    if (colors.current && colors.current.vibrate) {
+    if (imagen.current && imagen.current.vibrate) {
       navigator.vibrate(250);
     }
   }, [imagen.current]);

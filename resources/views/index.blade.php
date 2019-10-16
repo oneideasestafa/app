@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="api-base-url" content="{{ url('/') }}" />
     <link rel="manifest" href="{{ url('/manifest.json') }}">
+    <link rel="alternate" href="android-app://ar.com.oneshow.app/http/192.168.1.4:8001" />
     <meta name="theme-color" content="#FFFFFF"/>
 
     {{-- checks for service worker support.if you have the push manager package then use this line

@@ -11,7 +11,7 @@ import {
 import { connect } from 'react-redux';
 
 // Pages
-import CambiarDatos from './../organisms/CambiarDatos';
+import CambiarDatos from './CambiarDatos';
 import Show from './Show';
 import Downloads from './Downloads';
 import WebTorrent from 'webtorrent';

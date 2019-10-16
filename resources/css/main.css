@@ -2897,3 +2897,9 @@ display: block;
   animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
   -webkit-animation-delay: 1.15s;
   animation-delay: 1.15s;
+}
+
+.oneshow-avatar {
+  display: inline-block;
+  border-radius: 50%;
+}

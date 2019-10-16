@@ -127,14 +127,17 @@ class Login extends Component {
         let pass = this.state.pass;
         let url = this.state.url;
 
-        let urlRecuperar = url + "/recovery-password";
-        let urlIndex = url + "/";
+        console.log('origin', window.location);
+        console.log('url', url);
 
-        let urlFacebook = url + "/auth/facebook";
-        let urlGoogle = url + "/auth/google";
+        let urlRecuperar = "/recovery-password";
+        let urlIndex = "/";
 
-        let urlTwitter = url + "/auth/twitter";
-        let urlInstagram = url + "/auth/instagram";
+        let urlFacebook = "/auth/facebook";
+        let urlGoogle = "/auth/google";
+
+        let urlTwitter = "/auth/twitter";
+        let urlInstagram = "/auth/instagram";
 
         return (
             <div className="abs-center roboto-condensed">

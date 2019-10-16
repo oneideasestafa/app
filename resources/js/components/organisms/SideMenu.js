@@ -58,17 +58,6 @@ class SideMenu extends React.Component {
               <li className="nav-item">
                 <a 
                   onClick={this.navigate} 
-                  data-route="/downloads" 
-                  data-name="Descargas" 
-                  className="nav-link"
-                  style={{backgroundColor: current === 'Descargas' ? '#000 !important' : ''}}
-                >
-                  <i className="fas fa-arrow-down fa-lg" /> {"    "} Descargas
-                </a>
-              </li>
-              <li className="nav-item">
-                <a 
-                  onClick={this.navigate} 
                   data-route="/profile" 
                   data-name="Perfil" 
                   className="nav-link"

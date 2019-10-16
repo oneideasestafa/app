@@ -1,8 +1,8 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSyncAlt, faTrashAlt, faSync } from '@fortawesome/free-solid-svg-icons';
+import { faSyncAlt, faTrashAlt, faSync, faCamera } from '@fortawesome/free-solid-svg-icons';
 import NotAuthRoute from './atoms/NotAuthRoute';
 import PrivateRoute from './atoms/PrivateRoute';
 import store from './../redux';
@@ -16,9 +16,7 @@ import Registro from "./Pages/Registro";
 import QuestionEvent from "./Pages/QuestionEvent";
 import Wrapper from './Pages/Wrapper';
 
-import Asked from './Pages/Asked/Asked';
-
-library.add(faSyncAlt, faTrashAlt, faSync);
+library.add(faSyncAlt, faTrashAlt, faSync, faCamera);
 
 function App() {
     return (
@@ -32,7 +30,6 @@ function App() {
               <NotAuthRoute exact path="/registro" component={Registro} />
               <NotAuthRoute exact path="/login" component={Login} />
               <PrivateRoute exact path="/questionEvent" component={QuestionEvent} />
-              <NotAuthRoute exact path="/asked" component={Asked} />
               <PrivateRoute path="/" component={Wrapper} />
           </Switch>
         </Router>

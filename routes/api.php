@@ -16,8 +16,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('auth/{provider}', 'SocialAuthController@redirect');
-Route::get('auth/{provider}/callback', 'SocialAuthController@callback');
+Route::get('auth/{provider}', 'SocialAuthController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'SocialAuthController@handleProviderCallback');
 
 // Permite defifinir los puntos de entrada para los endpoints de usuarios
 Route::group(['prefix' => 'usuarios'], function() {
