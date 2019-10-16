@@ -15,6 +15,7 @@ import CambiarDatos from './../organisms/CambiarDatos';
 import Show from './Show';
 import Downloads from './Downloads';
 import WebTorrent from 'webtorrent';
+import Asked from './Asked/Asked';
 
 function Wrapper (props) {
   let client = null;
@@ -135,6 +136,7 @@ function Wrapper (props) {
         <Route exact path="/show" component={Show} />
         <Route exact path="/profile" component={CambiarDatos} />
         <Route exact path="/downloads" component={Downloads} />
+        <Route exact path="/asked" component={Asked} />
       </Switch>
     </div>
   );
