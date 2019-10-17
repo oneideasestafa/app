@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSyncAlt, faTrashAlt, faSync, faCamera } from '@fortawesome/free-solid-svg-icons';
+import { faSyncAlt, faTrashAlt, faSync, faCamera, faTimes, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import NotAuthRoute from './atoms/NotAuthRoute';
 import PrivateRoute from './atoms/PrivateRoute';
 import store from './../redux';
@@ -16,7 +16,7 @@ import Registro from "./Pages/Registro";
 import QuestionEvent from "./Pages/QuestionEvent";
 import Wrapper from './Pages/Wrapper';
 
-library.add(faSyncAlt, faTrashAlt, faSync, faCamera);
+library.add(faSyncAlt, faTrashAlt, faSync, faCamera, faTimes, faTimesCircle);
 
 function App() {
     return (

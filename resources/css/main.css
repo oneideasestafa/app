@@ -426,7 +426,7 @@ control:focus {
     line-height: .583333em;
     text-rendering: optimizeLegibility;
     text-transform: none;
-    vertical-align: -.302198em;
+    /* vertical-align: -.302198em; */
     white-space: nowrap;
     word-wrap: normal;
 }
@@ -449,7 +449,7 @@ control:focus {
     line-height: .583333em;
     text-rendering: optimizeLegibility;
     text-transform: none;
-    vertical-align: -.302198em;
+    /* vertical-align: -.302198em; */
     white-space: nowrap;
     word-wrap: normal;
 }
@@ -468,7 +468,7 @@ control:focus {
     line-height: .583333em;
     text-rendering: optimizeLegibility;
     text-transform: none;
-    vertical-align: -.302198em;
+    /* vertical-align: -.302198em; */
     white-space: nowrap;
     word-wrap: normal;
 }
@@ -512,7 +512,7 @@ control:focus {
     line-height: .583333em;
     text-rendering: optimizeLegibility;
     text-transform: none;
-    vertical-align: -.302198em;
+    /* vertical-align: -.302198em; */
     white-space: nowrap;
     word-wrap: normal;
 }
@@ -661,7 +661,7 @@ control:focus {
 
 #floating-panel {
     position: absolute;
-    //top: 10px;
+    top: 10px;
     left: 25%;
     z-index: 5;
     background-color: #fff;
@@ -1637,9 +1637,9 @@ body {
   cursor: pointer;
 }*/
 
-input:hover {
- /* background: #ffd37c;*/
-}
+/* input:hover {
+ /* background: #ffd37c;
+} */
 
 input:focus {
   background: white;
@@ -2902,4 +2902,14 @@ display: block;
 .oneshow-avatar {
   display: inline-block;
   border-radius: 50%;
+  position: relative;
+}
+
+.oneshow-avatar-close {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  background-color: #fff;
+  border-radius: 50%;
+  z-index: 10;
 }

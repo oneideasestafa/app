@@ -280,8 +280,9 @@ class ClienteController extends Controller
         'maritalStatus' => 'nullable|string|exists:EstadosCiviles,_id',
         'profilePicture' => 'file|image',
         'phone' => 'nullable|string',
+        'avatarURL' => 'nullable|string',
         'countryId' => 'required|string|exists:Pais,_id',
-        'teamId' => 'nullable|string|exists:Club,id',
+        'teamId' => 'nullable|integer|exists:Club,id',
         'userId' => 'required|string|exists:Clientes,_id',
       ])->validate();
 
@@ -295,8 +296,16 @@ class ClienteController extends Controller
       $client->Telefono = $request->phone;
       $client->Pais_id = $request->countryId;
       $client->EstadoCivil_id = $request->maritalStatus;
+      
       if ($request->hasFile('profilePicture')) {
+        if ($client->Foto) 
+          Storage::disk('public')->delete($client->Foto);
+
         $client->Foto = $request->file('profilePicture')->store('avatars', 'public');
+      
+      } else if (!$request->avatarURL && $client->Foto) {
+        Storage::disk('public')->delete($client->Foto);
+        $client->Foto = '';
       }
 
       $client->save();
@@ -312,5 +321,5 @@ class ClienteController extends Controller
         'EstadoCivil_id' => $client->EstadoCivil_id,
         'Foto' => $client->Foto,
       ], 200);
-    }
+  }
 }
