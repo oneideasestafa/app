@@ -71,7 +71,7 @@ class CambiarDatos extends Component {
         this.handleThemeToggle = this.handleThemeToggle.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
         this.chooseImageSource = this.chooseImageSource.bind(this);
-
+        this.transferId = 1;
     }
 
     /**
@@ -323,6 +323,7 @@ class CambiarDatos extends Component {
      * @param {fecha} time 
      */
     handleSelect(time){
+      console.log('time', typeof time, time);
         this.setState({ fechaNacimiento: time, isOpen: false, FechaNacimiento:time });
     };
 
@@ -336,47 +337,66 @@ class CambiarDatos extends Component {
 
       this.setState({ isLoading: true });
 
-      const formData = new FormData();
+      const birthdate = this.state.fechaNacimiento;
+      const birthdateString = `${birthdate.getDate()}/${birthdate.getMonth() + 1}/${birthdate.getFullYear()}`;
 
-      formData.append('userId', this.props.userId);
-      formData.append('countryId', this.state.pais);
-      formData.append('gender', this.state.sexo);
-      formData.append('phone', this.state.telefono);
-      formData.append('birthdate', this.state.fechaNacimiento);
-      formData.append('phone', this.state.telefono);
-      formData.append('teamId', this.state.equipo);
-      formData.append('maritalStatus', this.state.civil);
-      formData.append('name', this.state.nombre);
-      formData.append('lastname', this.state.apellido);
+      const data = {
+        userId: this.props.userId,
+        countryId: this.state.pais,
+        gender: this.state.sexo,
+        phone: this.state.telefono,
+        birthdate: birthdateString,
+        phone: this.state.telefono,
+        teamId: this.state.equipo,
+        maritalStatus: this.state.civil,
+        name: this.state.nombre,
+        lastname: this.state.apellido,
+      };
 
       if (this.state.foto !== '') {
-        window.resolveLocalFileSystemURL(this.state.foto, fileEntry => {
-          fileEntry.file(file => {
-            formData.append('image', file);
-            
-            axios.post('api/clientes/editar/perfil', formData, {
-              headers: {
-                Authorization: localStorage.getItem('api_token')
-              }
-            })
-              .then(res => {
-                console.log('res', res);
-              })
-              .catch(err => {
-                console.log('err', err);
-              })
-              .then(() => this.setState({ isLoading: false }));
-          });  
-        });
-      } else {
-        axios.post('api/clientes/editar/perfil'. formData)
-          .then(res => {
+        const { foto } = this.state;
+        /**
+         * I use this sintaxis because of a bug where the
+         * FileTransfer constructor is undefined
+         */
+        Cordova.exec(
+          res => {
             console.log('res', res);
-          })
-          .catch(err => {
+          },
+          err => {
             console.log('err', err);
-          })
-          .then(() => this.setState({ isLoading: false }))
+          },
+          'FileTransfer',
+          'upload',
+          [
+            this.state.foto, // filePath
+            'http://192.168.1.5:8001/api/clientes/editar/perfil', // Server
+            'profilePicture', // fileKey
+            foto.substr(foto.lastIndexOf('/') + 1), // fileName
+            '', // mimeType
+            data, // params
+            false, // trustAllHost
+            true, // chunckedMode
+            { Authorization: localStorage.getItem('api_token') }, // headers
+            this.transferId, // _id
+            'POST', // httpMethod
+          ]
+        );
+      
+      } else {
+        
+        axios.post('api/clientes/editar/perfil', data, {
+          headers: {
+            Authorization: localStorage.getItem('api_token')
+          }
+        })
+        .then(res => {
+          console.log('res', res);
+        })
+        .catch(err => {
+          console.log('err', err);
+        })
+        .then(() => this.setState({ isLoading: false }))
       }
     }
 
@@ -463,7 +483,7 @@ class CambiarDatos extends Component {
               showHeader={true}
               headerFormat={'DD/MM/YYYY'}
               value={this.state.fechaNacimiento}
-              theme={this.state.theme}
+              theme="dark"
               isOpen={this.state.isOpen}
               onSelect={this.handleSelect}
               onCancel={(e) => this.handleToggle(false)}

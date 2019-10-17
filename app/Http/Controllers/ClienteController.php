@@ -10,7 +10,7 @@ use App\Models\MongoDB\Clubs;
 use App\Models\MongoDB\EstadoCivil;
 use App\Models\MongoDB\Pais;
 use Carbon\Carbon;
-use Image, Storage, File, Hash;
+use Image, Storage, File, Hash, DB;
 use MongoDB\BSON\ObjectId;
 use Illuminate\Support\Facades\Validator;
 
@@ -275,16 +275,42 @@ class ClienteController extends Controller
       Validator::make($request->all(), [
         'name' => 'required|string',
         'lastname' => 'required|string',
+        'birthdate' => 'required|date',
         'gender' => 'required|string',
+        'maritalStatus' => 'nullable|string|exists:EstadosCiviles,_id',
+        'profilePicture' => 'file|image',
         'phone' => 'nullable|string',
-        'birthdate' => 'required',
-        'profilePicture' => 'file',
-        'maritalStatus' => 'required|string',
-        'userId' => 'required|string',
-        'countryId' => 'required|string',
-        'teamId' => 'nullable|string',
+        'countryId' => 'required|string|exists:Pais,_id',
+        'teamId' => 'nullable|string|exists:Club,id',
+        'userId' => 'required|string|exists:Clientes,_id',
       ])->validate();
 
-      return 'success';
+      $client = Cliente::where('_id', $request->userId)->first();
+
+      $client->Nombre = $request->name; 
+      $client->Apellido = $request->lastname; 
+      $client->Sexo = $request->gender;
+      $client->FechaNacimiento = $request->birthdate;
+      $client->Equipo = $request->teamId;
+      $client->Telefono = $request->phone;
+      $client->Pais_id = $request->countryId;
+      $client->EstadoCivil_id = $request->maritalStatus;
+      if ($request->hasFile('profilePicture')) {
+        $client->Foto = $request->file('profilePicture')->store('avatars', 'public');
+      }
+
+      $client->save();
+
+      return response()->json([
+        'Nombre' => $client->Nombre,
+        'Apellido' => $client->Apellido,
+        'Sexo' => $client->Sexo,
+        'FechaNacimiento' => $client->FechaNacimiento,
+        'Equipo' => $client->Equipo,
+        'Telefono' => $client->Telefono,
+        'Pais_id' => $client->Pais_id,
+        'EstadoCivil_id' => $client->EstadoCivil_id,
+        'Foto' => $client->Foto,
+      ], 200);
     }
 }
