@@ -7,6 +7,7 @@ import { Switch, Route } from 'react-router-dom';
 import CambiarDatos from './../organisms/CambiarDatos';
 import Show from './Show';
 import Downloads from './Downloads';
+import RSS from './RSS';
 
 class Wrapper extends React.Component {
   constructor (props) {
@@ -22,6 +23,7 @@ class Wrapper extends React.Component {
           <Route exact path="/show" component={Show} />
           <Route exact path="/profile" component={CambiarDatos} />
           <Route exact path="/downloads" component={Downloads} />
+          <Route exact path="/rss" component={RSS} />
         </Switch>
       </div>
     );

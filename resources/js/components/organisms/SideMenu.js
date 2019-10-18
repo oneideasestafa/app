@@ -92,6 +92,17 @@ class SideMenu extends React.Component {
               <li className="nav-item">
                 <a 
                   onClick={this.navigate} 
+                  data-route="rss" 
+                  data-name="Social Wall" 
+                  className="nav-link"
+                  style={{backgroundColor: current === 'Social Wall' ? '#000 !important' : ''}}
+                >
+                  <i className="fas fa-photo-video fa-lg" /> {"    "} Social Wall
+                </a>
+              </li>
+              <li className="nav-item">
+                <a 
+                  onClick={this.navigate} 
                   data-route="stop" 
                   data-name="Detener" 
                   className="nav-link"
