@@ -117,9 +117,6 @@ class Login extends Component {
         let pass = this.state.pass;
         let url = this.state.url;
 
-        console.log('origin', window.location);
-        console.log('url', url);
-
         let urlRecuperar = "/recovery-password";
         let urlIndex = "/";
 

@@ -81,8 +81,6 @@ window.app = {
     initialize: function(datos) {
         this.datos=datos;
 
-      console.log('cordova', cordova);
-
       //  console.log('iniciar');
        // console.log(this.datos);
         this.bindEvents();

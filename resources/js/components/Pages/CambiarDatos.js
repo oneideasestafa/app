@@ -267,7 +267,7 @@ class CambiarDatos extends Component {
     this.setState({ isLoading: true });
 
     const birthdate = this.state.fechaNacimiento;
-    const birthdateString = `${birthdate.getDate()}/${birthdate.getMonth() + 1}/${birthdate.getFullYear()}`;
+    const birthdateString = `${birthdate.getFullYear()}/${birthdate.getMonth() + 1}/${birthdate.getDate()}`;
 
     let data = {
       userId: this.props.userId,
@@ -275,7 +275,7 @@ class CambiarDatos extends Component {
       gender: this.state.sexo,
       phone: this.state.telefono,
       birthdate: birthdateString,
-      teamId: this.state.equipo,
+      teamId: this.state.equipo ? parseInt(this.state.equipo) : null,
       maritalStatus: this.state.civil,
       name: this.state.nombre,
       avatarURL: this.state.foto,
@@ -303,7 +303,7 @@ class CambiarDatos extends Component {
         'upload',
         [
           foto, // filePath
-          'http://192.168.1.5:8001/api/clientes/editar/perfil', // Server
+          `${process.env.MIX_APP_URL}/api/clientes/editar/perfil`, // Server
           'profilePicture', // fileKey
           foto.substr(foto.lastIndexOf('/') + 1), // fileName
           '', // mimeType

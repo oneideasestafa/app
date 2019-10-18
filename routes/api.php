@@ -23,9 +23,9 @@ Route::get('auth/{provider}/callback', 'SocialAuthController@handleProviderCallb
 Route::group(['prefix' => 'usuarios'], function() {
 	Route::post('/login', 'LoginController@login');
     Route::post('/login-new','Api\AuthController@postLogin');
-    Route::post('/registro','Api\AuthController@postRegister');
+    // Route::post('/registro','Api\AuthController@postRegister');
     Route::get('/estado-civil', 'ClienteController@getEstadoCivil');
-    Route::post('/registro', 'ClienteController@crearCliente');
+    Route::post('/registro', 'ClienteController@create');
     Route::post('/clubs-perfil', 'ClienteController@getClubsPais');
     Route::post('/logout','LoginController@logout');
 });
