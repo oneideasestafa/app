@@ -67,11 +67,10 @@ function Wrapper (props) {
   }, [props.download]);
 
   useEffect(() => {
-    if (props.download === null) {      
+    if (props.download === null) {
       seeder = new WebTorrent();
-
-  render () {
-      /* props.getFileObjectsFromStorage().then(blobs => {
+      
+      props.getFileObjectsFromStorage().then(blobs => {
         blobs.forEach((blob, i) => {
           if (!blob)
             return;
@@ -86,14 +85,14 @@ function Wrapper (props) {
           })
         })
       })
+    }
 
     return () => {
       if (seeder) {
         seeder.destroy();
       }
     }
-
-  }, [props.download, props.existing]) */
+  }, [props.download, props.existing]);
 
   /**
    * Takes the downloaded file from torrent
