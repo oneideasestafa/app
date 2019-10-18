@@ -63,6 +63,7 @@ function VideoEvent (props) {
         window.plugins.streamingMedia.playVideo(url, {
           successCallback: () => props.turnShowOff(video.current),
           errorCallback: (err) => setSweetAlert({
+            type: 'error', 
             title: 'Error', 
             text: 'Algo ha ocurrido al intentar reproducir el video', 
             show: true
@@ -73,11 +74,21 @@ function VideoEvent (props) {
       .catch(err => {
         switch (err.code) {
           case 1:
-            setSweetAlert({ 
-              title: `${video.current.payload} no encontrado`, 
-              text: 'Vaya a la pestaña de descargas y obtenga el archivo', 
-              show: true 
-            });
+            if (process.env.NODE_ENV === 'development') {
+              setSweetAlert({ 
+                type: `info`, 
+                title: ``, 
+                text: '...', 
+                show: true 
+              });
+
+              setTimeout(() => setSweetAlert({
+                type: 'info',
+                title: '',
+                text: '...',
+                show: false,
+              }), 1000);
+            }
           break;
         }
       });
@@ -87,11 +98,11 @@ function VideoEvent (props) {
   return (
     <div>
       <SweetAlert
-        type="error"
+        type={sweetAlert.type}
         show={sweetAlert.show}
         title={sweetAlert.title}
         text={sweetAlert.text}
-        onConfirm={() => setSweetAlert({title: '', text: '', show: false})}
+        onConfirm={() => setSweetAlert({type: 'info', title: '', text: '', show: false})}
       />
     </div>
   );
