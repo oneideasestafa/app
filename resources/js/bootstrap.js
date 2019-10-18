@@ -79,13 +79,11 @@ window.app = {
         },
     // Application Constructor
     initialize: function(datos) {
-        this.datos=datos;
-
-      console.log('cordova', cordova);
+      this.datos=datos;
 
       //  console.log('iniciar');
-       // console.log(this.datos);
-        this.bindEvents();
+      // console.log(this.datos);
+      this.bindEvents();
     },
     // Bind Event Listeners
     //
