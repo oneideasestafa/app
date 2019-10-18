@@ -9,40 +9,61 @@ import {
 
 function VideoEvent (props) {
   const { video } = props;
-  const tracker = { timeout: null };
+  // const tracker = { timeout: null };
   const [sweetAlert, setSweetAlert] = useState({title: '', text: '', show: false});
+  const [isBrightnessAtMax, setBrightness] = useState(false);
   
+  useEffect(() => {
+    if (video.current && !isBrightnessAtMax) {
+      setBrightness(true);
+      
+      Cordova.exec(prevBright => {
+        Cordova.exec(() => {
+          console.log('Brightness change');
+        }, e => console.log(e), 'Brightness', 'setBrightness', [1]);      
+
+      }, e => console.log(e), 'Brightness', 'getBrightness', []);
+    } else if (video.current === null) {
+      setBrightness(false);
+    }
+
+    if (video.current && video.current.vibrate) {
+      navigator.vibrate(250);
+    }
+  }, [video.current]);
+
   /**
    * Time Tracker
    */
-  useEffect(() => {
-    if (video.current) {
-      clearTimeout(tracker.timeout);
+  // useEffect(() => {
+  //   if (video.current) {
+  //     clearTimeout(tracker.timeout);
 
-      let now = new Date();
-      let delay = video.current.startTime - now.getTime();
+  //     let now = new Date();
+  //     let delay = video.current.startTime - now.getTime();
 
-      if (delay > 0) {
-        tracker.timeout = setTimeout(props.executeJob, delay, video.current.type);
-      } else {
-        props.executeJob(video.current.type);
-      }      
-    } else {
-      clearTimeout(tracker.timeout);
-    }
+  //     if (delay > 0) {
+  //       tracker.timeout = setTimeout(props.executeJob, delay, video.current.type);
+  //     } else {
+  //       props.executeJob(video.current.type);
+  //     }      
+  //   } else {
+  //     clearTimeout(tracker.timeout);
+  //   }
 
-    return () => clearTimeout(tracker.timeout);
-  }, [video.current]);
+  //   return () => clearTimeout(tracker.timeout);
+  // }, [video.current]);
 
   /**
    * If a video is running, play the video
    */
   useEffect(() => {
-    if (video.running) {
+    if (video.current) {
       props.findFileInPhoneStorage(video.current.payload).then(({ url }) => {
         window.plugins.streamingMedia.playVideo(url, {
           successCallback: () => props.turnShowOff(video.current),
           errorCallback: (err) => setSweetAlert({
+            type: 'error', 
             title: 'Error', 
             text: 'Algo ha ocurrido al intentar reproducir el video', 
             show: true
@@ -53,25 +74,35 @@ function VideoEvent (props) {
       .catch(err => {
         switch (err.code) {
           case 1:
-            setSweetAlert({ 
-              title: `${video.current.payload} no encontrado`, 
-              text: 'Vaya a la pestaña de descargas y obtenga el archivo', 
-              show: true 
-            });
+            if (process.env.NODE_ENV === 'development') {
+              setSweetAlert({ 
+                type: `info`, 
+                title: ``, 
+                text: '...', 
+                show: true 
+              });
+
+              setTimeout(() => setSweetAlert({
+                type: 'info',
+                title: '',
+                text: '...',
+                show: false,
+              }), 1000);
+            }
           break;
         }
       });
     }   
-  }, [video.running]);
+  }, [video.current]);
   
   return (
     <div>
       <SweetAlert
-        type="error"
+        type={sweetAlert.type}
         show={sweetAlert.show}
         title={sweetAlert.title}
         text={sweetAlert.text}
-        onConfirm={() => setSweetAlert({title: '', text: '', show: false})}
+        onConfirm={() => setSweetAlert({type: 'info', title: '', text: '', show: false})}
       />
     </div>
   );

@@ -6,8 +6,8 @@ import ColorEvent from '../organisms/ColorEvent';
 import VideoEvent from '../organisms/VideoEvent';
 import PictureEvent from '../organisms/PictureEvent';
 import { 
-  setLastShow, 
-  setNextShow, 
+  setLastShow,
+  setNextShow,
   setShowRightNow,
   turnShowOff,
   executeJob,
@@ -20,8 +20,8 @@ import uuidv4 from 'uuid/v4';
 
 function Show (props) {
   const [isLoading, setLoading] = useState(true);  
-  const mqttHost = 'mqtt.oneshow.com.ar';
-  const mqttPort = 11344;
+  const mqttHost = process.env.MIX_MQTT_HOST;
+  const mqttPort = parseInt(process.env.MIX_MQTT_PORT);
   const mqttClientId = uuidv4();
   const mqttClient = new Paho.Client(mqttHost, mqttPort, mqttClientId);
 
@@ -46,7 +46,7 @@ function Show (props) {
     }
 
     mqttClient.connect({
-      useSSL: true,
+      useSSL: process.env.NODE_ENV === 'development' ? false : true,
       onSuccess: onMqttConnection
     })
 
@@ -57,8 +57,8 @@ function Show (props) {
   
   function onMessageArrived (message) {
     console.log('message arrived', message.payloadString);
-    const [type, momment, id, payload, startTime, endTime] = message.payloadString.split(',');
-    const job = { id, momment, type, payload, startTime, endTime, running: false };
+    const [type, momment, id, payload, vibrate] = message.payloadString.split(',');
+    const job = { id, momment, type, payload, vibrate: parseInt(vibrate) === 1 };
 
     switch (parseInt(momment)) {
       case 1:
