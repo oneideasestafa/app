@@ -264,9 +264,15 @@ class ClienteController extends Controller
   }
 
   public function create (Request $request) {
-    return $request->all();
-    
-    Validator::make($request->all(), [
+    /**
+     * This conversion is because the file upload plugin converts this
+     * variable to a string, making it impossible for the "exists"
+     * validation to work correctly
+     */
+    $data = $request->except('teamId');
+    $data['teamId'] = intval($request->teamId);
+
+    Validator::make($data, [
       'name' => 'required|string',
       'email' => 'required|unique:Clientes,Correo',
       'password' => 'required|string|min:6',
@@ -278,7 +284,7 @@ class ClienteController extends Controller
       'profilePicture' => 'file|image',
       'phone' => 'nullable|string',
       'avatarURL' => 'nullable|string',
-      'countryId' => 'required|string|exists:Pais,_id',
+      'countryId' => 'nullable|string|exists:Pais,_id',
       'teamId' => 'nullable|integer|exists:Clubs,id',
     ])->validate();
 

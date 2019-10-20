@@ -49,7 +49,7 @@ export default class RegistroCliente extends React.Component {
       apellido: '',
       correo: '',
       password: '',
-      pais: '5caf334dff6eff0ae30e450b',
+      pais: '',
       sexo:'m',
       equipo:'',
       clubs:[],
@@ -80,7 +80,7 @@ export default class RegistroCliente extends React.Component {
     this.chooseImageSource = this.chooseImageSource.bind(this);
     this.handleConfirmation = this.handleConfirmation.bind(this);
     this.handleSuccessfulSignup = this.handleSuccessfulSignup.bind(this);
-    this.handleErrorOnUpdate = this.handleErrorOnUpdate.bind(this);
+    this.handleErrorOnSignup = this.handleErrorOnSignup.bind(this);
   }
 
   /**
@@ -93,12 +93,7 @@ export default class RegistroCliente extends React.Component {
         this.setState({
           estadosciviles : res.data.estado_civil, 
           isLoading:false
-        }, () => this.clubs({
-          target: {
-            name: 'pais',
-            value: this.state.pais,
-          }
-        }))
+        })
       })
       .catch(function(error) {
         console.log(error);
@@ -221,10 +216,6 @@ export default class RegistroCliente extends React.Component {
     const birthdate = this.state.time;
     const birthdateString = `${birthdate.getFullYear()}/${birthdate.getMonth() + 1}/${birthdate.getDate()}`;
 
-    console.log(this.state);
-    console.log(typeof this.state.equipo, this.state.equipo);
-    console.log(this.state.equipo ? parseInt(this.state.equipo) : false);
-
     let data = {
       countryId: this.state.pais,
       email: this.state.correo,
@@ -255,7 +246,7 @@ export default class RegistroCliente extends React.Component {
        * I use this syntax because of a bug where the
        * FileTransfer constructor is undefined
        */
-      Cordova.exec(this.handleSuccessfulUpdate, this.handleErrorOnUpdate,
+      Cordova.exec(this.handleSuccessfulSignup, this.handleErrorOnSignup,
         'FileTransfer',
         'upload',
         [
@@ -285,7 +276,7 @@ export default class RegistroCliente extends React.Component {
       .then(res => this.handleSuccessfulSignup({ 
         response: JSON.stringify(res.data),
       }))
-      .catch(this.handleErrorOnUpdate)
+      .catch(this.handleErrorOnSignup)
       .then(() => this.setState({ isLoading: false }))
     }
   }
@@ -319,7 +310,7 @@ export default class RegistroCliente extends React.Component {
     }
   }
 
-  handleErrorOnUpdate (err) {
+  handleErrorOnSignup (err) {
     console.log(err);
     this.setState(state => ({
       isLoading: false,
