@@ -69,6 +69,7 @@ export default class RegistroCliente extends React.Component {
       foto: '',
       isLoading: false,
       isImageLoaded: false,
+      errors: null,
     };
 
     this.clubs = this.clubs.bind(this);
@@ -211,23 +212,23 @@ export default class RegistroCliente extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    this.setState({ isLoading: true });
+    this.setState({ isLoading: true, errors: null });
 
     const birthdate = this.state.time;
     const birthdateString = `${birthdate.getFullYear()}/${birthdate.getMonth() + 1}/${birthdate.getDate()}`;
 
     let data = {
-      countryId: this.state.pais,
-      email: this.state.correo,
+      pais: this.state.pais,
+      correo: this.state.correo,
       password: this.state.password,
-      gender: this.state.sexo,
-      phone: this.state.telefono,
-      birthdate: birthdateString,
-      teamId: this.state.equipo ? parseInt(this.state.equipo) : null,
-      maritalStatus: this.state.civil,
-      name: this.state.nombre,
+      genero: this.state.sexo,
+      telefono: this.state.telefono,
+      nacimiento: birthdateString,
+      equipo: this.state.equipo ? parseInt(this.state.equipo) : null,
+      estado_civil: this.state.civil,
+      nombre: this.state.nombre,
+      apellido: this.state.apellido,
       avatarURL: this.state.foto,
-      lastname: this.state.apellido,
     };
 
     if (this.state.isImageLoaded) {
@@ -276,7 +277,10 @@ export default class RegistroCliente extends React.Component {
       .then(res => this.handleSuccessfulSignup({ 
         response: JSON.stringify(res.data),
       }))
-      .catch(this.handleErrorOnSignup)
+      .catch(e => this.handleErrorOnSignup({
+        http_status: e.response.status,
+        body: JSON.stringify(e.response.data),
+      }))
       .then(() => this.setState({ isLoading: false }))
     }
   }
@@ -311,17 +315,24 @@ export default class RegistroCliente extends React.Component {
   }
 
   handleErrorOnSignup (err) {
-    console.log(err);
-    this.setState(state => ({
-      isLoading: false,
-      alert: {
-        ...state.alert,
-        show: true,
-        type: 'error',
-        title: '',
-        text: 'Por favor, revise el formulario e intentelo nuevamente'
-      }
-    }));
+    if (err.http_status === 422) {
+      const body = JSON.parse(err.body);
+      let errors = [];
+
+      Object.keys(body.errors).forEach(key => {
+        errors = errors.concat(body.errors[key]);
+      });
+
+      this.setState({
+        isLoading: false,
+        errors
+      });
+    } else {
+      this.setState({
+        isLoading: false,
+        errors: 'Algo ocurrió durante la creación del perfil, intentalo nuevamente.',
+      })
+    }    
   }
 
   render() {
@@ -352,6 +363,21 @@ export default class RegistroCliente extends React.Component {
             onRemove={e => this.setState({ foto: '', isImageLoaded: false })}
           />
         </div>
+        {this.state.errors !== null &&
+          <div className="alert alert-danger">
+            {typeof this.state.errors === 'string' ? (
+              this.state.errors
+            ) : (
+              <ul style={{ margin: 0, paddingInlineStart: '20px' }}>
+                {this.state.errors.map((err, i) => (
+                  <li key={i}>
+                    {err}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        }
         <form method="POST" onSubmit={this.handleSubmit}>
           <div className="input-group mb-4 mt-4">
             <div className="input-group-prepend">

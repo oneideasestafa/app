@@ -273,35 +273,34 @@ class ClienteController extends Controller
     $data['teamId'] = intval($request->teamId);
 
     Validator::make($data, [
-      'name' => 'required|string',
-      'email' => 'required|unique:Clientes,Correo',
+      'nombre' => 'required|string',
+      'correo' => 'required|unique:Clientes,Correo',
       'password' => 'required|string|min:6',
-      'name' => 'required|string',
-      'lastname' => 'required|string',
-      'birthdate' => 'required|date',
-      'gender' => 'required|string',
-      'maritalStatus' => 'nullable|string|exists:EstadosCiviles,_id',
+      'apellido' => 'required|string',
+      'nacimiento' => 'required|date',
+      'genero' => 'required|string',
+      'estado_civil' => 'nullable|string|exists:EstadosCiviles,_id',
       'profilePicture' => 'file|image',
-      'phone' => 'nullable|string',
+      'telefono' => 'nullable|string',
       'avatarURL' => 'nullable|string',
-      'countryId' => 'nullable|string|exists:Pais,_id',
-      'teamId' => 'nullable|integer|exists:Clubs,id',
+      'pais' => 'nullable|string|exists:Pais,_id',
+      'equipo' => 'nullable|integer|exists:Clubs,id',
     ])->validate();
 
     $client = new Cliente();
 
-    $client->Nombre = $request->name; 
-    $client->Apellido = $request->lastname; 
-    $client->Correo = $request->email;
+    $client->Nombre = $request->nombre; 
+    $client->Apellido = $request->apellido; 
+    $client->Correo = $request->correo;
     $client->Password = bcrypt($request->password);
     $client->TipoCuente = 'ONE';
     $client->ProviderID = '';
-    $client->Sexo = $request->gender;
-    $client->FechaNacimiento = $request->birthdate;
-    $client->Equipo = $request->teamId;
-    $client->Telefono = $request->phone;
-    $client->Pais_id = $request->countryId;
-    $client->EstadoCivil_id = $request->maritalStatus;
+    $client->Sexo = $request->genero;
+    $client->FechaNacimiento = $request->nacimiento;
+    $client->Equipo = $request->equipo;
+    $client->Telefono = $request->telefono;
+    $client->Pais_id = $request->pais;
+    $client->EstadoCivil_id = $request->estado_civil;
     $client->Borrado = false;
     $client->Activo = true;
 
