@@ -16,7 +16,7 @@ export default function (state = initialState, action) {
         ...state,
         isLoggedIn: true,
         user: { id: action.payload.uid },
-        apiToken: action.payload.token
+        apiToken: action.payload.apiToken
       };
     case LOG_USER_OUT:
       return {

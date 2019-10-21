@@ -11,7 +11,7 @@ class Header extends React.Component {
     const { section, toggleNavigationMenu } = this.props;
     
     return (
-      <header className="navbar navbar-dark navbar-full bg-rojo sticky-top">
+      <header className="navbar navbar-dark navbar-full bg-dark sticky-top">
         <button className="navbar-toggler" onClick={toggleNavigationMenu}>
             <span className="navbar-toggler-icon" />
         </button>

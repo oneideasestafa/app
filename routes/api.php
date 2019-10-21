@@ -16,16 +16,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('auth/{provider}', 'SocialAuthController@redirect');
-Route::get('auth/{provider}/callback', 'SocialAuthController@callback');
+Route::get('auth/{provider}', 'SocialAuthController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'SocialAuthController@handleProviderCallback');
 
 // Permite defifinir los puntos de entrada para los endpoints de usuarios
 Route::group(['prefix' => 'usuarios'], function() {
 	Route::post('/login', 'LoginController@login');
     Route::post('/login-new','Api\AuthController@postLogin');
-    Route::post('/registro','Api\AuthController@postRegister');
+    // Route::post('/registro','Api\AuthController@postRegister');
     Route::get('/estado-civil', 'ClienteController@getEstadoCivil');
-    Route::post('/registro', 'ClienteController@crearCliente');
+    Route::post('/registro', 'ClienteController@create');
     Route::post('/clubs-perfil', 'ClienteController@getClubsPais');
     Route::post('/logout','LoginController@logout');
 });
@@ -52,7 +52,7 @@ Route::group(['prefix' => 'event', 'middleware' => 'ApiToken'], function () {
 Route::group(['prefix' => 'clientes','middleware' => 'ApiToken'], function() {
     Route::get('/id/{id}', 'ClienteController@getCliente');
     
-    Route::post('/editar/perfil', 'ClienteController@editarCliente');
+    Route::post('/editar/perfil', 'ClienteController@update');
     Route::post('/editar/cambiar-clave', 'ClienteController@cambiarClave');
     Route::get('/estado-civil', 'ClienteController@getEstadoCivil');
     
