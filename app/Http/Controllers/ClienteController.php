@@ -269,8 +269,8 @@ class ClienteController extends Controller
      * variable to a string, making it impossible for the "exists"
      * validation to work correctly
      */
-    $data = $request->except('teamId');
-    $data['teamId'] = intval($request->teamId);
+    $data = $request->except('equipo');
+    $data['equipo'] = intval($request->equipo);
 
     Validator::make($data, [
       'nombre' => 'required|string',
@@ -291,7 +291,7 @@ class ClienteController extends Controller
 
     $client->Nombre = $request->nombre; 
     $client->Apellido = $request->apellido; 
-    $client->Correo = $request->correo;
+    $client->Correo = strtolower($request->correo);
     $client->Password = bcrypt($request->password);
     $client->TipoCuente = 'ONE';
     $client->ProviderID = '';
@@ -326,30 +326,38 @@ class ClienteController extends Controller
   }
 
   public function update (Request $request) {
-    Validator::make($request->all(), [
-      'name' => 'required|string',
-      'lastname' => 'required|string',
-      'birthdate' => 'required|date',
-      'gender' => 'required|string',
-      'maritalStatus' => 'nullable|string|exists:EstadosCiviles,_id',
+    /**
+     * This conversion is because the file upload plugin converts this
+     * variable to a string, making it impossible for the "exists"
+     * validation to work correctly
+     */
+    $data = $request->except('equipo');
+    $data['equipo'] = intval($request->equipo);
+
+    Validator::make($data, [
+      'nombre' => 'required|string',
+      'apellido' => 'required|string',
+      'nacimiento' => 'required|date',
+      'genero' => 'required|string',
+      'estado_civil' => 'nullable|string|exists:EstadosCiviles,_id',
       'profilePicture' => 'file|image',
-      'phone' => 'nullable|string',
+      'telefono' => 'nullable|string',
       'avatarURL' => 'nullable|string',
-      'countryId' => 'required|string|exists:Pais,_id',
-      'teamId' => 'nullable|integer|exists:Clubs,id',
+      'pais' => 'required|string|exists:Pais,_id',
+      'equipo' => 'nullable|integer|exists:Clubs,id',
       'userId' => 'required|string|exists:Clientes,_id',
     ])->validate();
 
     $client = Cliente::where('_id', $request->userId)->first();
 
-    $client->Nombre = $request->name; 
-    $client->Apellido = $request->lastname; 
-    $client->Sexo = $request->gender;
-    $client->FechaNacimiento = $request->birthdate;
-    $client->Equipo = $request->teamId;
-    $client->Telefono = $request->phone;
-    $client->Pais_id = $request->countryId;
-    $client->EstadoCivil_id = $request->maritalStatus;
+    $client->Nombre = $request->nombre; 
+    $client->Apellido = $request->apellido; 
+    $client->Sexo = $request->genero;
+    $client->FechaNacimiento = $request->nacimiento;
+    $client->Equipo = $request->equipo;
+    $client->Telefono = $request->telefono;
+    $client->Pais_id = $request->pais;
+    $client->EstadoCivil_id = $request->estado_civil;
     
     if ($request->hasFile('profilePicture')) {
       if ($client->Foto) 

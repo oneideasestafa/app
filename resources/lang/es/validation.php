@@ -40,7 +40,7 @@ return [
     'dimensions' => 'The :attribute has invalid image dimensions.',
     'distinct' => 'The :attribute field has a duplicate value.',
     'email' => 'The :attribute must be a valid email address.',
-    'exists' => 'The selected :attribute is invalid.',
+    'exists' => 'El :attribute seleccionado es inválido.',
     'file' => 'El campo :attribute debe contener un archivo.',
     'filled' => 'The :attribute field must have a value.',
     'gt' => [

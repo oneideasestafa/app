@@ -60,7 +60,9 @@ class CambiarDatos extends Component {
       foto: '',
       fotonew:'',
       flagPais: '',
+      errors: null,
       isImageLoaded: false,
+      isUpdated: false,
       isLoading: true
     };
 
@@ -264,22 +266,26 @@ class CambiarDatos extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    this.setState({ isLoading: true });
+    this.setState({
+      isLoading: true,
+      isUpdated: false,
+      errors: null 
+    });
 
     const birthdate = this.state.fechaNacimiento;
     const birthdateString = `${birthdate.getFullYear()}/${birthdate.getMonth() + 1}/${birthdate.getDate()}`;
 
     let data = {
       userId: this.props.userId,
-      countryId: this.state.pais,
-      gender: this.state.sexo,
-      phone: this.state.telefono,
-      birthdate: birthdateString,
-      teamId: this.state.equipo ? parseInt(this.state.equipo) : null,
-      maritalStatus: this.state.civil,
-      name: this.state.nombre,
+      pais: this.state.pais,
+      genero: this.state.sexo,
+      telefono: this.state.telefono,
+      nacimiento: birthdateString,
+      equipo: this.state.equipo ? parseInt(this.state.equipo) : null,
+      estado_civil: this.state.civil,
+      nombre: this.state.nombre,
+      apellido: this.state.apellido,
       avatarURL: this.state.foto,
-      lastname: this.state.apellido,
     };
 
     if (this.state.isImageLoaded) {
@@ -328,7 +334,10 @@ class CambiarDatos extends Component {
       .then(res => this.handleSuccessfulUpdate({ 
         response: JSON.stringify(res.data),
       }))
-      .catch(this.handleErrorOnUpdate)
+      .catch(e => this.handleErrorOnUpdate({
+        http_status: e.response.status,
+        body: JSON.stringify(e.response.data),
+      }))
       .then(() => this.setState({ isLoading: false }))
     }
   }
@@ -339,6 +348,7 @@ class CambiarDatos extends Component {
       
       this.setState({
         isLoading: false,
+        isUpdated: true,
         foto: client.Foto !== '' ? `storage/${client.Foto}` : '',
       });
 
@@ -347,7 +357,26 @@ class CambiarDatos extends Component {
   }
 
   handleErrorOnUpdate (err) {
-    console.log('error', err);
+    if (err.http_status === 422) {
+      const body = JSON.parse(err.body);
+      let errors = [];
+
+      Object.keys(body.errors).forEach(key => {
+        errors = errors.concat(body.errors[key]);
+      });
+
+      this.setState({
+        isLoading: false,
+        isUpdated: false,
+        errors
+      });
+    } else {
+      this.setState({
+        isLoading: false,
+        isUpdated: false,
+        errors: 'Algo ocurrió durante la creación del perfil, intentalo nuevamente.',
+      })
+    }
   }
 
   render () {
@@ -381,6 +410,26 @@ class CambiarDatos extends Component {
               onRemove={e => this.setState({ foto: null, isImageLoaded: false })}
             />
           </div>
+          {this.state.errors !== null &&
+            <div className="alert alert-danger">
+              {typeof this.state.errors === 'string' ? (
+                this.state.errors
+              ) : (
+                <ul style={{ margin: 0, paddingInlineStart: '20px' }}>
+                  {this.state.errors.map((err, i) => (
+                    <li key={i}>
+                      {err}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          }
+          {this.state.isUpdated && 
+            <div className="alert alert-success">
+              Perfil actualizado correctamente
+            </div>
+          }
           <div className="input-group mb-4">
             <div className="input-group-prepend">
               <i className="fa fa-address-card fa-lg"></i>
