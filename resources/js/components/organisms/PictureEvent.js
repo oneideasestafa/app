@@ -16,7 +16,7 @@ function PictureEvent (props) {
   const [isBrightnessAtMax, setBrightness] = useState(false);
 
   /**
-   * When a color command is beign executed
+   * When a command is beign executed
    * put brightness at maximum level
    */
   useEffect(() => {
@@ -77,11 +77,21 @@ function PictureEvent (props) {
         console.log('err', err);
         switch (err.code) {
           case 1:
-            setSweetAlert({ 
-              title: `${imagen.current.payload} no encontrado`, 
-              text: 'Vaya a la pestaña de descargas y obtenga el archivo', 
-              show: true 
-            });
+            if (process.env.NODE_ENV === 'development') {
+              setSweetAlert({ 
+                type: `info`, 
+                title: ``, 
+                text: '...', 
+                show: true 
+              });
+
+              setTimeout(() => setSweetAlert({
+                type: 'info',
+                title: '',
+                text: '...',
+                show: false,
+              }), 1000);
+            }
           break;
         }
       });

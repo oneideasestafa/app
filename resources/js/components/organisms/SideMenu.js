@@ -55,17 +55,19 @@ class SideMenu extends React.Component {
                   <i className="fas fa-home fa-lg" /> {"    "} Show
                 </a>
               </li>
-              <li className="nav-item">
-                <a 
-                  onClick={this.navigate} 
-                  data-route="/downloads" 
-                  data-name="Descargas" 
-                  className="nav-link"
-                  style={{backgroundColor: current === 'Descargas' ? '#000 !important' : ''}}
-                >
-                  <i className="fas fa-arrow-down fa-lg" /> {"    "} Descargas
-                </a>
-              </li>
+              {process.env.NODE_ENV === 'development' &&
+                <li className="nav-item">
+                  <a 
+                    onClick={this.navigate} 
+                    data-route="/downloads"
+                    data-name="Descargas" 
+                    className="nav-link"
+                    style={{backgroundColor: current === 'Descargas' ? '#000 !important' : ''}}
+                  >
+                    <i className="fas fa-arrow-down fa-lg" /> {"    "} Descargas
+                  </a>
+                </li>
+              }
               <li className="nav-item">
                 <a 
                   onClick={this.navigate} 
