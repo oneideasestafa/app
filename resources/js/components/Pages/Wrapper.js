@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import CambiarDatos from './../organisms/CambiarDatos';
 import Show from './Show';
 import Downloads from './Downloads';
+import RSS from './RSS';
 import WebTorrent from 'webtorrent';
 import Asked from './Asked/Asked';
 
@@ -67,9 +68,9 @@ function Wrapper (props) {
   }, [props.download]);
 
   useEffect(() => {
-    if (props.download === null) {      
+    if (props.download === null) {
       seeder = new WebTorrent();
-
+      
       props.getFileObjectsFromStorage().then(blobs => {
         blobs.forEach((blob, i) => {
           if (!blob)
@@ -92,8 +93,7 @@ function Wrapper (props) {
         seeder.destroy();
       }
     }
-
-  }, [props.download, props.existing])
+  }, [props.download, props.existing]);
 
   /**
    * Takes the downloaded file from torrent
@@ -137,6 +137,7 @@ function Wrapper (props) {
         <Route exact path="/profile" component={CambiarDatos} />
         <Route exact path="/downloads" component={Downloads} />
         <Route exact path="/asked" component={Asked} />
+        <Route exact path="/rss" component={RSS} />
       </Switch>
     </div>
   );

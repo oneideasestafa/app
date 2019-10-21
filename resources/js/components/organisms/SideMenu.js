@@ -5,6 +5,9 @@ import classnames from 'classnames';
 import logo from './../../../../public/images/logo-one.png';
 import { withRouter } from 'react-router-dom';
 import { toggleNavigationMenu, setCurrentPage } from '../../redux/actions/navigation';
+import { 
+  wipeJobs
+} from './../../redux/actions/show';
 import RedesSociales from './../organisms/RedesSociales';
 
 class SideMenu extends React.Component {
@@ -12,6 +15,7 @@ class SideMenu extends React.Component {
     super(props);
 
     this.navigate = this.navigate.bind(this);
+    this.stopEverything = this.stopEverything.bind(this);
   }
 
   navigate (e) {
@@ -21,6 +25,13 @@ class SideMenu extends React.Component {
 
     this.props.setCurrentPage(e.target.dataset.name);
     this.props.history.push(e.target.dataset.route);
+  }
+
+  stopEverything (e) {
+    e.preventDefault();
+
+    this.props.wipeJobs();
+    this.props.toggleNavigationMenu();
   }
 
   render () {
@@ -105,6 +116,17 @@ class SideMenu extends React.Component {
               <li className="nav-item">
                 <a 
                   onClick={this.navigate} 
+                  data-route="rss" 
+                  data-name="Social Wall" 
+                  className="nav-link"
+                  style={{backgroundColor: current === 'Social Wall' ? '#000 !important' : ''}}
+                >
+                  <i className="fas fa-photo-video fa-lg" /> {"    "} Social Wall
+                </a>
+              </li>
+              <li className="nav-item">
+                <a 
+                  onClick={this.stopEverything} 
                   data-route="stop" 
                   data-name="Detener" 
                   className="nav-link"
@@ -129,6 +151,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   toggleNavigationMenu: () => dispatch(toggleNavigationMenu()),
   setCurrentPage: (page) => dispatch(setCurrentPage(page)),
+  wipeJobs: () => dispatch(wipeJobs()),
 });
 
 export default compose(

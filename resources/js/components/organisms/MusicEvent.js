@@ -82,8 +82,10 @@ function MusicPlayer (props) {
         media.play();
       }      
     } else {
-      if (media)
+      if (media) {
+        media.stop();
         media.release();
+      }
     }
   }, [audio.current]);  
   

@@ -279,6 +279,37 @@ class EventoController extends Controller {
             'existen' => false
         ], 200);
     }
+
+    /**
+     * Registrar publicacion RSS
+     * 
+     * @param Request $request
+     * @return Response
+     */
+    public function registrarPublicacionRSS(Request $request) {
+
+        $rutaDeImagen = ($request->imagen) ? $this->guardarImagen($request->eventoId, $request->imagen) : null;
+
+        $publicacion = [
+            'descripcion' => $request->descripcion,
+            'rutaDeImagen' => $rutaDeImagen,
+            'fechaPublicacion' => date(DATE_RFC2822)
+        ];
+
+        $evento = Evento::find($request->eventoId);
+
+        if ($evento->PublicacionesRSS) {
+            $nuevasPublicaciones = $evento->PublicacionesRSS;
+            array_push($nuevasPublicaciones, $publicacion);
+        } else {
+            $nuevasPublicaciones = array($publicacion);
+        }
+
+        $evento->PublicacionesRSS = $nuevasPublicaciones;
+        $evento->save();
+
+        return response()->json(['guardado' => true], 200);
+    }
 }
 
 

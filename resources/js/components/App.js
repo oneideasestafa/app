@@ -16,6 +16,8 @@ import Registro from "./Pages/Registro";
 import QuestionEvent from "./Pages/QuestionEvent";
 import Wrapper from './Pages/Wrapper';
 
+import RSS from './Pages/RSS';
+
 library.add(faSyncAlt, faTrashAlt, faSync);
 
 function App() {
