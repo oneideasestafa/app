@@ -38,6 +38,8 @@ function MusicPlayer (props) {
   // }, [audio.current]);
 
   useEffect(() => {
+    console.log('audio current', audio.current);
+
     if (audio.current) {
       if (playing !== audio.current.payload) {
         props.findFileInPhoneStorage(audio.current.payload).then(({ url }) => {
@@ -82,10 +84,18 @@ function MusicPlayer (props) {
         media.play();
       }      
     } else {
+
       if (media) {
         media.stop();
         media.release();
       }
+    }
+
+    return () => {
+      if (media) {
+        media.stop();
+        media.release();
+      } 
     }
   }, [audio.current]);  
   
