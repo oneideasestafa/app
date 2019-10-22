@@ -384,4 +384,26 @@ class ClienteController extends Controller
       'Foto' => $client->Foto,
     ], 200);
   }
+
+  public function socialAuthenticate (Request $request) {
+    $token = $request->header('Authorization');
+
+    $client = Cliente::where('api_token', $token)->first();
+
+    if (!$client) {
+      return response()->json([
+        'errors' => [
+          'email' => 'El usuario no fue encontrado, inténtelo nuevamente'
+        ]
+      ], 422);
+    }
+
+    return response()->json([
+      '_id' => $client->_id,
+      'Nombre' => $client->Nombre,
+      'Correo' => $client->Correo,
+      'Foto' => $client->Foto,
+      'apiToken' => $token, 
+    ]);
+  }
 }

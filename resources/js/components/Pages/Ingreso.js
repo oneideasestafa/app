@@ -117,20 +117,20 @@ export default class Ingreso extends Component {
                             />
                         </a>
 
-                        <a href={urlGoogle}>
+                        <a href="/auth/google">
                             <img
                                 src={logoGoogle}
                                 className="img-fluid icon-social mr-3"
                             />
                         </a>
-                        <a href={urlTwitter}>
+                        <a href="/auth/twitter">
                             <img
                                 src={logoTwitter}
                                 className="img-fluid icon-social mr-3"
                             />
                         </a>
 
-                        <a href={urlInstagram}>
+                        <a href="/auth/instagram">
                             <img
                                 src={logoInstagram}
                                 className="img-fluid icon-social"

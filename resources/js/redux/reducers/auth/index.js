@@ -1,12 +1,15 @@
 import { 
   LOG_USER_IN,
-  LOG_USER_OUT
+  LOG_USER_OUT,
+  APP_START_LOADING,
+  APP_FINISH_LOADING
 } from '../../actions/auth/types';
 
 const initialState = {
   isLoggedIn: false,
   user: null,
   apiToken: '',
+  loading: false,
 };
 
 export default function (state = initialState, action) {
@@ -24,6 +27,16 @@ export default function (state = initialState, action) {
         isLoggedIn: false,
         user: null,
         apiToken: '',
+      };
+    case APP_START_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
+    case APP_FINISH_LOADING: 
+      return {
+        ...state,
+        loading: false,
       };
     default:
       return state;
