@@ -58,11 +58,11 @@ return [
         'client_secret' => env('TWITTER_CLIENT_SECRET'),
         'redirect' => 'https://app.oneshow.com.ar/auth/twitter/callback',
     ],
-    'linkedin' => [
-        'client_id' => env('LINKEDIN_CLIENT_ID'),
-        'client_secret' => env('LINKEDIN_CLIENT_SECRET'),
-        'redirect' => env('CALLBACK_URL_LINKEDIN'),
-    ],
+    // 'linkedin' => [
+    //     'client_id' => env('LINKEDIN_CLIENT_ID'),
+    //     'client_secret' => env('LINKEDIN_CLIENT_SECRET'),
+    //     'redirect' => env('CALLBACK_URL_LINKEDIN'),
+    // ],
     'instagram' => [
         'client_id' => env('INSTAGRAM_CLIENT_ID'),
         'client_secret' => env('INSTAGRAM_CLIENT_SECRET'),

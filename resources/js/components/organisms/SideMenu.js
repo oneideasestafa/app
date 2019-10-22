@@ -101,6 +101,17 @@ class SideMenu extends React.Component {
                   <i className="fab fa-weixin fa-lg" /> {"    "} Notificaciones
                 </a>
               </li>
+              <li className="nav-item">
+                <a 
+                  onClick={this.navigate} 
+                  data-route="/asked" 
+                  data-name="Preguntados" 
+                  className="nav-link"
+                  style={{backgroundColor: current === 'Preguntados' ? '#000 !important' : ''}}
+                >
+                  <i className="fab fa-weixin fa-lg" /> {"    "} Preguntados
+                </a>
+              </li>
               <RedesSociales />
               <li className="nav-item">
                 <a 

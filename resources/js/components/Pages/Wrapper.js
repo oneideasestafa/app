@@ -11,11 +11,12 @@ import {
 import { connect } from 'react-redux';
 
 // Pages
-import CambiarDatos from './../organisms/CambiarDatos';
+import CambiarDatos from './CambiarDatos';
 import Show from './Show';
 import Downloads from './Downloads';
 import RSS from './RSS';
 import WebTorrent from 'webtorrent';
+import Asked from './Asked/Asked';
 
 function Wrapper (props) {
   let client = null;
@@ -135,6 +136,7 @@ function Wrapper (props) {
         <Route exact path="/show" component={Show} />
         <Route exact path="/profile" component={CambiarDatos} />
         <Route exact path="/downloads" component={Downloads} />
+        <Route exact path="/asked" component={Asked} />
         <Route exact path="/rss" component={RSS} />
       </Switch>
     </div>

@@ -1,0 +1,49 @@
+/* Estilos de los hexagonos para las preguntas y respuestas */
+.hex {
+    position: relative;
+    float: left;
+    height: 100px;
+    min-width: 320px;
+    padding: 12px;
+    margin: 4px;
+    font-weight: bold;
+    text-align: center;
+    background: linear-gradient(to right, rgb(0, 0, 0), rgb(255, 255, 255));
+    -webkit-clip-path: polygon(25px 0px, calc(100% - 25px) 0px, 100% 50%, calc(100% - 25px) 100%, 25px 100%, 0px 50%);
+  }
+  .hex.gradient-bg {
+    color: white;
+  }
+  .hex.gradient-border {
+    color: #C62828;
+  }
+  .hex:before {
+    position: absolute;
+    content: '';
+    height: calc(100% - 14px);  /* 100% - 2 * border width */
+    width: calc(100% - 14px);  /* 100% - 2 * border width */
+    left: 7px; /* border width */
+    top: 7px; /* border width */
+    -webkit-clip-path: polygon(22px 0px, calc(100% - 22px) 0px, 100% 50%, calc(100% - 22px) 100%, 22px 100%, 0px 50%);
+    z-index: -1;
+  }
+  .hex.gradient-bg:before {
+    background: linear-gradient(to right, #C62828, #C62828);
+  }
+  .hex.gradient-bg-question:before {
+    background: linear-gradient(to right, black, black);
+  }
+  .hex.gradient-border:before {
+    background: rgb(245, 246, 248);
+  }
+
+  .span-text {
+    display: block;
+    margin-top: 40px;
+    padding: 8px;
+    transform: translateY(-50%);
+  }
+
+  /* Estilos de sweetalert 2 */
+
+  

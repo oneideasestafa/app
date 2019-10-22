@@ -13,28 +13,28 @@ class SocialAuthController extends Controller
 {
 
     //metodo para reedirigir a facebook o google
-    public function redirect($provider)
+    public function redirectToProvider($provider)
     {
-        return Socialite::driver($provider)->redirect();
+      return Socialite::driver($provider)->redirect();
     }
 
-    //metodo donde se devuelve la respuesta de google y facebook
-    public function callback($provider)
+    // metodo donde se devuelve la respuesta de google y facebook
+    public function handleProviderCallback($provider)
     {
 
-       try{
+      //  try {
            //obtengo los datos del usuario
            $user = Socialite::driver($provider)->user();
 
-        } catch (\Exception $e) {
+        // } catch (\Exception $e) {
 
-            //si oucrre un error redirijo a la pagina principal
-            return redirect('/');
-        }
+        //     //si oucrre un error redirijo a la pagina principal
+        //     return redirect('/');
+        // }
         
         $existingUser = Cliente::where('Correo', $user->email)->first();
 
-        if($existingUser){
+        if ($existingUser) {
 
             if($existingUser->TipoCuenta == ucwords($provider)){
 
@@ -44,7 +44,7 @@ class SocialAuthController extends Controller
 
                     Auth::login($existingUser);
 
-                }else{
+                } else {
                     return redirect()->route('login')->with('error', 'Error al iniciar sesion. Consulte al administrador.');
                 }
 
@@ -94,8 +94,5 @@ class SocialAuthController extends Controller
             'userid' => $user->_id, 
             'access_token' => $apiToken
         ]);
-
     }
-
-
 }
