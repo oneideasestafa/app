@@ -110,7 +110,7 @@ export default class Ingreso extends Component {
                     </div>
 
                     <div className="text-center mb-4">
-                        <a href={urlFacebook}>
+                        <a href="/auth/facebook">
                             <img
                                 src={logoFacebook}
                                 className="img-fluid icon-social mr-3"

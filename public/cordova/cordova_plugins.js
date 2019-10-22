@@ -351,14 +351,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-deeplinks.universalLinks",
-      "file": "plugins/cordova-plugin-deeplinks/www/universal_links.js",
-      "pluginId": "cordova-plugin-deeplinks",
-      "clobbers": [
-        "universalLinks"
-      ]
-    },
-    {
       "id": "cordova-plugin-dialogs.notification",
       "file": "plugins/cordova-plugin-dialogs/www/notification.js",
       "pluginId": "cordova-plugin-dialogs",
@@ -389,6 +381,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "window.FileTransfer"
       ]
+    },
+    {
+      "id": "cordova-plugin-deeplinks.universalLinks",
+      "file": "plugins/cordova-plugin-deeplinks/www/universal_links.js",
+      "pluginId": "cordova-plugin-deeplinks",
+      "clobbers": [
+        "universalLinks"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -409,8 +409,8 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-vibration": "3.1.1",
     "cordova-plugin-whitelist": "1.3.4",
     "de.appplant.cordova.plugin.local-notification": "0.8.5",
-    "cordova-plugin-deeplinks": "1.1.1",
     "cordova-plugin-dialogs": "2.0.2",
-    "cordova-plugin-file-transfer": "1.7.1"
+    "cordova-plugin-file-transfer": "1.7.1",
+    "cordova-plugin-deeplinks": "1.1.1"
   };
 });

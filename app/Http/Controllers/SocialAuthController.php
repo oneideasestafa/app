@@ -11,88 +11,53 @@ use Exception;
 //controlador encargado de la autenticacion de facebook y google
 class SocialAuthController extends Controller
 {
+  //metodo para reedirigir a facebook o google
+  public function redirectToProvider($provider)
+  {
+    return Socialite::driver($provider)->redirect();
+  }
 
-    //metodo para reedirigir a facebook o google
-    public function redirectToProvider($provider)
-    {
-      return Socialite::driver($provider)->redirect();
-    }
+  // metodo donde se devuelve la respuesta de google y facebook
+  public function handleProviderCallback($provider)
+  {
+    $user = Socialite::driver($provider)->stateless()->user();
+    $client = Cliente::where('Correo', $user->email)->first();
 
-    // metodo donde se devuelve la respuesta de google y facebook
-    public function handleProviderCallback($provider)
-    {
-
-      //  try {
-           //obtengo los datos del usuario
-           $user = Socialite::driver($provider)->user();
-
-        // } catch (\Exception $e) {
-
-        //     //si oucrre un error redirijo a la pagina principal
-        //     return redirect('/');
-        // }
+    if ($client) {
+      if ($client->provider == $provider) {
         
-        $existingUser = Cliente::where('Correo', $user->email)->first();
+        $client->api_token = $user->token;
+        $client->save();
 
-        if ($existingUser) {
+        return redirect('\/oauth\/' . $provider . '?apiToken=' . $user->token);
+      
+      } else {
+        
+      }
+    } else {
 
-            if($existingUser->TipoCuenta == ucwords($provider)){
+      $client = new Cliente;
+      $client->Nombre = $user->name;
+      $client->Apellido = '';
+      $client->Sexo = '';
+      $client->FechaNacimiento = '';
+      $client->Equipo = '';
+      $client->Correo = strtolower($user->email);
+      $client->Telefono = '';
+      $client->Password = '';
+      $client->TipoCuenta = $provider;
+      $client->ProviderID = $user->id;
+      $client->Pais_id = '';
+      $client->EstadoCivil_id = new ObjectId('5cbad5c4cf88fb319a3b5503');
+      $client->TipoFoto = '';
+      $client->Foto = $user->getAvatar();
+      $client->Borrado = false;
+      $client->Activo = true;
+      $client->QuestionEvent = true;
 
-                $existingUser->QuestionEvent = true;
+      $client->save();
 
-                if($existingUser->save()){
-
-                    Auth::login($existingUser);
-
-                } else {
-                    return redirect()->route('login')->with('error', 'Error al iniciar sesion. Consulte al administrador.');
-                }
-
-
-                //genero log de inicio de sesion
-                //$log = generateLog('inicio', 'web');
-
-            }else{
-
-                return redirect()->route('login')->with('error', 'Correo ya registrado');
-            }
-
-        } else {
-
-            $registro = new Cliente;
-            $registro->Nombre              = $user->name;
-            $registro->Apellido            = '';
-            $registro->Sexo                = '';
-            $registro->FechaNacimiento     = '';
-            $registro->Equipo              = '';
-            $registro->Correo              = strtolower($user->email);
-            $registro->Telefono            = '';
-            $registro->Password            = '';
-            $registro->TipoCuenta          = ucwords($provider);
-            $registro->ProviderID          = $user->id;
-            $registro->Pais_id             = '';
-            $registro->EstadoCivil_id      = new ObjectId('5cbad5c4cf88fb319a3b5503');
-            $registro->TipoFoto            = '';
-            $registro->Foto                = '';
-            $registro->Borrado             = false;
-            $registro->Activo              = true;
-            $registro->QuestionEvent       = true;
-
-            $registro->save();
-
-            Auth::login($registro);
-
-            //genero log de inicio de sesion
-           // $log = generateLog('inicio', 'web');
-
-        }
-
-        return response()->json([
-            'code' => 200, 
-            'msj' => 'exito', 
-            'tipo' => 'one' , 
-            'userid' => $user->_id, 
-            'access_token' => $apiToken
-        ]);
+      return redirect('\/oauth\/' . $provider . '?apiToken=' . $user->token);
     }
+  }
 }

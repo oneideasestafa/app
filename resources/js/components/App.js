@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -18,7 +18,15 @@ import Wrapper from './Pages/Wrapper';
 
 library.add(faSyncAlt, faTrashAlt, faSync, faCamera, faTimes, faTimesCircle);
 
-function App() {
+function App () {
+  useEffect(() => {
+    universalLinks.subscribe('oauthHandler', eventData => {
+      console.log('From deep linking', eventData);
+    });
+
+    return () => universalLinks.unsubscribe('oauthHandler');
+  }, [])
+
     return (
       <Provider store={store}>
         <Router>
