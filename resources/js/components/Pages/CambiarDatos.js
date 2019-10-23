@@ -86,7 +86,7 @@ class CambiarDatos extends Component {
   componentDidMount() {
     axios.get("api/clientes/id/" + this.props.userId, {
       headers: {
-        Authorization: this.state.api_token
+        Authorization: this.props.apiToken
       }
     })
     .then(res => {
@@ -105,7 +105,7 @@ class CambiarDatos extends Component {
           pais: cliente.Pais_id,
           estadosciviles: civiles,
           telefono: cliente.Telefono,
-          foto: cliente.Foto !== '' ? `storage/${cliente.Foto}` : cliente.Foto,
+          foto: cliente.Foto !== '' ? `${cliente.Foto}` : cliente.Foto,
           isLoading: false
         });
 
@@ -317,7 +317,7 @@ class CambiarDatos extends Component {
           false, // trustAllHost
           false, // chunckedMode
           { 
-            Authorization: localStorage.getItem('api_token'),
+            Authorization: this.props.apiToken,
             'X-Requested-With': 'XMLHttpRequest'
           }, // headers
           this.transferId, // _id
@@ -328,7 +328,7 @@ class CambiarDatos extends Component {
     } else {      
       axios.post('api/clientes/editar/perfil', data, {
         headers: {
-          Authorization: localStorage.getItem('api_token')
+          Authorization: this.props.apiToken
         }
       })
       .then(res => this.handleSuccessfulUpdate({ 
@@ -349,7 +349,7 @@ class CambiarDatos extends Component {
       this.setState({
         isLoading: false,
         isUpdated: true,
-        foto: client.Foto !== '' ? `storage/${client.Foto}` : '',
+        foto: client.Foto !== '' ? `${client.Foto}` : '',
       });
 
       this.transferId += 1;
@@ -606,6 +606,7 @@ class CambiarDatos extends Component {
 
 const mapDispatchToProps = state => ({
   userId: state.auth.user.id,
+  apiToken: state.auth.apiToken,
 });
 
 export default connect(mapDispatchToProps)(CambiarDatos);

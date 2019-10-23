@@ -7,10 +7,10 @@ import {
 
 export function getFilesFromEvent (eventId) {
   return (dispatch, getState) => {
-    const { events: { current }  } = getState();
+    const { events: { current }, auth: { apiToken }  } = getState();
 
     return axios.get(`api/event/${eventId}/files`, {
-      headers: { Authorization: localStorage.getItem('api_token') }
+      headers: { Authorization: apiToken }
     })
     .then(res => {
       const promises = res.data.map(file => ({

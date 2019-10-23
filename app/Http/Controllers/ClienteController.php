@@ -305,7 +305,7 @@ class ClienteController extends Controller
     $client->Activo = true;
 
     if ($request->hasFile('profilePicture')) {
-      $client->Foto = $request->file('profilePicture')->store('avatars', 'public');
+      $client->Foto = 'storage/' .$request->file('profilePicture')->store('avatars', 'public');
     } else {
       $client->Foto = '';
     }
@@ -363,7 +363,7 @@ class ClienteController extends Controller
       if ($client->Foto) 
         Storage::disk('public')->delete($client->Foto);
 
-      $client->Foto = $request->file('profilePicture')->store('avatars', 'public');
+      $client->Foto = 'storage/' . $request->file('profilePicture')->store('avatars', 'public');
     
     } else if (!$request->avatarURL && $client->Foto) {
       Storage::disk('public')->delete($client->Foto);

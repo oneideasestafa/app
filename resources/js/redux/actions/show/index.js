@@ -10,9 +10,12 @@ import {
 import axios from 'axios';
 
 export function fetchJobs (eventId, time) {
-  return dispatch => {
+  return (dispatch, getState) => {
+    
+    const { apiToken } = getState().auth;
+
     return axios.get(`api/eventos/jobs/${eventId}/${time.getTime()}`, {
-      headers: { Authorization: localStorage.getItem('api_token') }
+      headers: { Authorization: apiToken }
     })
     .then(res => dispatch(saveJobs(res.data.jobs)))
   }
