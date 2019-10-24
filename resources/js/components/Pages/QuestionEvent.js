@@ -28,6 +28,7 @@ class QuestionEvent extends Component {
     this.handleContinuar = this.handleContinuar.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleUbicacion = this.handleUbicacion.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   /**

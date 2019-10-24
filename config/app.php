@@ -168,7 +168,7 @@ return [
 
         Jenssegers\Mongodb\MongodbServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class,
-
+        DesignMyNight\Mongodb\MongodbPassportServiceProvider::class,
 
         /*
          * Application Service Providers...

@@ -23,7 +23,7 @@ library.add(faSyncAlt, faTrashAlt, faSync, faCamera, faTimes, faTimesCircle);
 function App () {
   useEffect(() => {
     universalLinks.subscribe('oauthHandler', eventData => {
-      console.log(eventData);
+      console.log('data', eventData);
       
       if (eventData.params.apiToken) {
         store.dispatch(socialAuthentication(eventData.params.apiToken))

@@ -123,7 +123,7 @@ export default class Ingreso extends Component {
                                 className="img-fluid icon-social mr-3"
                             />
                         </a>
-                        <a href="/auth/twitter">
+                        <a href="https://app.oneshow.com.ar/auth/twitter">
                             <img
                                 src={logoTwitter}
                                 className="img-fluid icon-social mr-3"
@@ -135,12 +135,6 @@ export default class Ingreso extends Component {
                                 src={logoInstagram}
                                 className="img-fluid icon-social"
                             />
-                        </a>
-                    </div>
-
-                    <div className="text-center">
-                        <a href={urlDemo}>
-                            <div className="btn btn-gris">Demo</div>
                         </a>
                     </div>
                 </div>
