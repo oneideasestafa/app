@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\User;
 use App\Http\Requests\ValidatePerfil;
 Use App\Http\Requests\ValidateCambiarPassword;
 use App\Http\Requests\ValidateRegistro;
@@ -287,41 +289,39 @@ class ClienteController extends Controller
       'equipo' => 'nullable|integer|exists:Clubs,id',
     ])->validate();
 
-    $client = new Cliente();
+    $client = new User();
 
-    $client->Nombre = $request->nombre; 
-    $client->Apellido = $request->apellido; 
-    $client->Correo = strtolower($request->correo);
-    $client->Password = bcrypt($request->password);
-    $client->TipoCuente = 'ONE';
-    $client->ProviderID = '';
-    $client->Sexo = $request->genero;
-    $client->FechaNacimiento = $request->nacimiento;
-    $client->Equipo = $request->equipo;
-    $client->Telefono = $request->telefono;
-    $client->Pais_id = $request->pais;
-    $client->EstadoCivil_id = $request->estado_civil;
-    $client->Borrado = false;
-    $client->Activo = true;
+    $client->nombre = $request->nombre; 
+    $client->apellido = $request->apellido; 
+    $client->email = strtolower($request->correo);
+    $client->password = bcrypt($request->password);
+    $client->tipoCuenta = 'ONE';
+    $client->providerId = '';
+    $client->sexo = $request->genero;
+    $client->fechaNacimiento = $request->nacimiento;
+    $client->equipo = $request->equipo;
+    $client->telefono = $request->telefono;
+    $client->paisId = $request->pais;
+    $client->estadoCivilId = $request->estado_civil;
 
     if ($request->hasFile('profilePicture')) {
-      $client->Foto = 'storage/' .$request->file('profilePicture')->store('avatars', 'public');
+      $client->foto = 'storage/' .$request->file('profilePicture')->store('avatars', 'public');
     } else {
-      $client->Foto = '';
+      $client->foto = '';
     }
 
     $client->save();
 
     return response()->json([
-      'Nombre' => $client->Nombre,
-      'Apellido' => $client->Apellido,
-      'Sexo' => $client->Sexo,
-      'FechaNacimiento' => $client->FechaNacimiento,
-      'Equipo' => $client->Equipo,
-      'Telefono' => $client->Telefono,
-      'Pais_id' => $client->Pais_id,
-      'EstadoCivil_id' => $client->EstadoCivil_id,
-      'Foto' => $client->Foto,
+      'Nombre' => $client->nombre,
+      'Apellido' => $client->apellido,
+      'Sexo' => $client->sexo,
+      'FechaNacimiento' => $client->fechaNacimiento,
+      'Equipo' => $client->equipo,
+      'Telefono' => $client->telefono,
+      'Pais_id' => $client->paisId,
+      'EstadoCivil_id' => $client->estadoCivilId,
+      'Foto' => $client->foto,
     ], 200);
   }
 

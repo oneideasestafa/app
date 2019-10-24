@@ -44,7 +44,7 @@ return [
         'api' => [
             'driver' => 'Passport',
             'provider' => 'Clientes',
-            //'provider' => 'users',
+            // 'provider' => 'Clientes',
             'hash' => true,
         ],
         'usuarios' => [

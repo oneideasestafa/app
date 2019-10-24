@@ -19,13 +19,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('auth/{provider}', 'SocialAuthController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'SocialAuthController@handleProviderCallback');
 
+Route::group(['prefix' => 'user'], function () {
+  Route::post('/', 'ClienteController@create');
+});
+
 // Permite defifinir los puntos de entrada para los endpoints de usuarios
 Route::group(['prefix' => 'usuarios'], function() {
 	Route::post('/login', 'LoginController@login');
   Route::post('/login-new','Api\AuthController@postLogin');
   // Route::post('/registro','Api\AuthController@postRegister');
   Route::get('/estado-civil', 'ClienteController@getEstadoCivil');
-  Route::post('/registro', 'ClienteController@create');
+  // Route::post('/registro', 'ClienteController@create');
   Route::post('/clubs-perfil', 'ClienteController@getClubsPais');
   Route::post('/logout','LoginController@logout');
   Route::get('/social/oauth', 'ClienteController@socialAuthenticate');
