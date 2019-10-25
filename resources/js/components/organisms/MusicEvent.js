@@ -38,8 +38,6 @@ function MusicPlayer (props) {
   // }, [audio.current]);
 
   useEffect(() => {
-    console.log('audio current', audio.current);
-
     if (audio.current) {
       if (playing !== audio.current.payload) {
         props.findFileInPhoneStorage(audio.current.payload).then(({ url }) => {

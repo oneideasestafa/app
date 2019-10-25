@@ -41,23 +41,22 @@ Route::group(['prefix' => 'events', 'middleware' => 'auth:api'], function () {
   Route::get('/', 'EventoController@get');
 });
 
+Route::group(['prefix' => 'event', 'middleware' => 'auth:api'], function () {
+  Route::get('/{event_id}/jobs/{current_time}', 'EventoController@getLatestJobs');
+  Route::get('/{id}/files', 'EventoController@getFilesFromEvent');
+});
+
 // Permite difinir los puntos de entrada para los endpoints de eventos
 Route::group(['prefix' => 'eventos', 'middleware' => 'ApiToken'], function() {
     Route::get('/', 'EventoController@get');
     Route::get('/id/{id}','EventoController@getEvento');
     Route::post('/check-ubicacion', 'EventoController@checkUbicacion');
     Route::get('/invitacion/{id}','EventoController@getInvitacion');
-    Route::get('/jobs/{event_id}/{current_time}', 'EventoController@getLatestJobs');
 
     Route::get('/redes-sociales/consultar','EventoController@consultarHashtagsDelEvento');
     
     Route::post('/RSS','EventoController@registrarPublicacionRSS');
 });
-
-Route::group(['prefix' => 'event', 'middleware' => 'ApiToken'], function () {
-  Route::get('/{id}/files', 'EventoController@getFilesFromEvent');
-});
-
   
 // Permite difinir los puntos de entrada para los endpoints de clientes
 Route::group(['prefix' => 'clientes','middleware' => 'ApiToken'], function() {

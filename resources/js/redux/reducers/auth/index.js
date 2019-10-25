@@ -26,7 +26,7 @@ export default function (state = initialState, action) {
         isLoggedIn: true,
         user: {...action.payload.user, id: action.payload.user.id },
         accessToken: action.payload.accessToken,
-        refreshtoken: action.payload.refreshToken
+        refreshToken: action.payload.refreshToken
       }; break;
     case LOG_USER_OUT:
       result = {

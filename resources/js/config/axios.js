@@ -3,7 +3,6 @@ import store from './../redux';
 import { refreshUserTokens } from './../redux/actions/auth';
 
 export const request = axios.create({
-  baseURL: process.env.MIX_APP_URL,
   headers: {
     'Content-Type': 'application/json',
   }
@@ -15,6 +14,8 @@ request.interceptors.response.use(response => {
   const { config, response } = error;
   let refresh = null;
 
+  console.log('response', response);
+
   if (response.status === 401) {
     const { auth } = store.getState();
 
@@ -22,7 +23,7 @@ request.interceptors.response.use(response => {
       return Promise.reject(error);
 
     if (process.env.NODE_ENV === 'development') {
-      refresh = axios.post(`${process.env.MIX_APP_URL}/oauth/token`, {
+      refresh = axios.post(`/oauth/token`, {
         grant_type: 'refresh_token',
         refresh_token: auth.refreshToken,
         client_id: process.env.MIX_APP_CLIENT_ID,

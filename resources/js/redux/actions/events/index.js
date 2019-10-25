@@ -8,7 +8,7 @@ export function getEvents () {
   return (dispatch, getState) => {
     const { auth: { accessToken } } = getState();
     
-    return axios.get('api/events/', {
+    return request.get('api/events/', {
       headers: { Authorization: `Bearer ${accessToken}` }
     })
     .then(res => dispatch(saveEvents(res.data.eventos)));

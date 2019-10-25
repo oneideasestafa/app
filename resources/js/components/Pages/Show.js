@@ -25,8 +25,6 @@ function Show (props) {
   const mqttClientId = uuidv4();
   const mqttClient = new Paho.Client(mqttHost, mqttPort, mqttClientId);
 
-  console.log('history', props.history);
-
   /**
    * Fetching jobs from database
    */
