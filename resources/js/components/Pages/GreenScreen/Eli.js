@@ -1,14 +1,9 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import { connect } from 'react-redux';
-import { chromaTypeCamera } from '../../redux/actions/ChromaStudios/index';
-import { Redirect } from "react-router-dom";
+import { chromaTypeCamera } from '../../../redux/actions/chroma/index';
 import { Link } from "react-router-dom";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSync } from "@fortawesome/free-solid-svg-icons";
 
-import "./../../../css/pages/ChromaBackground.css"
+import "./../../../../css/pages/ChromaBackground.css"
 
 	export class Eli extends Component {
 		constructor(props) {

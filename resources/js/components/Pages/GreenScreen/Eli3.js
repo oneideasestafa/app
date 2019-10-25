@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { chromaEffect } from '../../redux/actions/ChromaStudios/index';
+import { chromaEffect } from '../../../redux/actions/chroma/index';
 import { Link } from "react-router-dom";
-import Efecto from "../../../../public/images/chroma/effect/efecto.png";
+import Efecto from "../../../../../public/images/chroma/effect/efecto.png";
 
-import "./../../../css/pages/ChromaBackground.css"
+import "./../../../../css/pages/ChromaBackground.css"
 
 	class Eli3 extends Component {
 

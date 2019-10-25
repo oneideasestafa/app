@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { connect } from 'react-redux';
-import { chromaBackground } from '../../redux/actions/ChromaStudios/index';
+import { chromaBackground } from '../../../redux/actions/chroma/index';
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSync } from "@fortawesome/free-solid-svg-icons";
-import Canvas from "../../../../public/images/chroma/background/canvas.jpg";
-import Ocean from "../../../../public/images/chroma/background/ocean.jpg";
-import Moon from "../../../../public/images/chroma/background/Moon.jpg";
-import Desert from "../../../../public/images/chroma/background/desert.jpg";
+import Canvas from "../../../../../public/images/chroma/background/canvas.jpg";
+import Ocean from "../../../../../public/images/chroma/background/ocean.jpg";
+import Moon from "../../../../../public/images/chroma/background/moon.jpg";
+import Desert from "../../../../../public/images/chroma/background/desert.jpg";
 
 	class Eli2 extends Component {
 		constructor(props) {

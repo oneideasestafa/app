@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import store from './../../redux/index';
+import store from './../../../redux/index';
 
 export default class Eli4 extends Component {
 
@@ -64,35 +64,42 @@ export default class Eli4 extends Component {
 	
 
 	render() {
-	const background = "images/"+(store.getState().chromaStudios.background.chromaBackground)+".jpg"
-	const effect = "images/"+(store.getState().chromaStudios.effect.chromaEffect)+".png"
+	const background = "images/chroma/background/"+(store.getState().chroma.background.chromaBackground)+".jpg"
+	const effect = "images/chroma/effect/"+(store.getState().chroma.effect.chromaEffect)+".png"
 	console.log(effect+' '+background)
 
 		return(
 		<div className="abs-center row">
 			<div className="container">
 				<video 
-			ref="video"
-			src="images/travolta.mp4"
-			autoPlay
-			muted
-			onPlay={this.ChromaPaint}
-			></video>
-
+          ref="video"
+          src="images/chroma/video/travolta.mp4"
+          autoPlay
+          muted
+          onPlay={this.ChromaPaint}
+			  >
+        </video>
 			<canvas
-			ref="c1"
-			style={{backgroundSize: "contain", backgroundRepeat:"no-repeat", display: "none"}}
+        ref="c1"
+        style={{
+          backgroundSize: "contain", 
+          backgroundRepeat:"no-repeat", 
+          display: "none"
+        }}
+      >
+			</canvas>
+			<canvas
+        ref="c2"
+        style={{
+          backgroundImage: "url(" + background + ")", 
+          backgroundSize: "contain", 
+          backgroundRepeat:"no-repeat",
+          width: '100%',
+        }}
 			>
 			</canvas>
-
-			<canvas
-			ref="c2"
-			style={{backgroundImage: "url(" + background + ")", backgroundSize: "contain", backgroundRepeat:"no-repeat"}}
-			>
-			</canvas>
-			</div>
-			
+			</div>			
 		</div>
-			);
+	  );
 	}
 }
