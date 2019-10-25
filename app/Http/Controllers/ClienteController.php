@@ -370,40 +370,40 @@ class ClienteController extends Controller
       'userId' => 'required|string|exists:Clientes,_id',
     ])->validate();
 
-    $client = Cliente::where('_id', $request->userId)->first();
+    $client = $request->user();
 
-    $client->Nombre = $request->nombre; 
-    $client->Apellido = $request->apellido; 
-    $client->Sexo = $request->genero;
-    $client->FechaNacimiento = $request->nacimiento;
-    $client->Equipo = $request->equipo;
-    $client->Telefono = $request->telefono;
-    $client->Pais_id = $request->pais;
-    $client->EstadoCivil_id = $request->estado_civil;
+    $client->nombre = $request->nombre; 
+    $client->apellido = $request->apellido; 
+    $client->sexo = $request->genero;
+    $client->fechaNacimiento = $request->nacimiento;
+    $client->equipo = $request->equipo;
+    $client->telefono = $request->telefono;
+    $client->paisId = $request->pais;
+    $client->estadoCivilId = $request->estado_civil;
     
     if ($request->hasFile('profilePicture')) {
-      if ($client->Foto) 
-        Storage::disk('public')->delete($client->Foto);
+      if ($client->foto) 
+        Storage::disk('public')->delete($client->foto);
 
-      $client->Foto = 'storage/' . $request->file('profilePicture')->store('avatars', 'public');
+      $client->foto = 'storage/' . $request->file('profilePicture')->store('avatars', 'public');
     
-    } else if (!$request->avatarURL && $client->Foto) {
-      Storage::disk('public')->delete($client->Foto);
-      $client->Foto = '';
+    } else if (!$request->avatarURL && $client->foto) {
+      Storage::disk('public')->delete($client->foto);
+      $client->foto = '';
     }
 
     $client->save();
 
     return response()->json([
-      'Nombre' => $client->Nombre,
-      'Apellido' => $client->Apellido,
-      'Sexo' => $client->Sexo,
-      'FechaNacimiento' => $client->FechaNacimiento,
-      'Equipo' => $client->Equipo,
-      'Telefono' => $client->Telefono,
-      'Pais_id' => $client->Pais_id,
-      'EstadoCivil_id' => $client->EstadoCivil_id,
-      'Foto' => $client->Foto,
+      'nombre' => $client->nombre,
+      'apellido' => $client->apellido,
+      'sexo' => $client->sexo,
+      'fechaNacimiento' => $client->fechaNacimiento,
+      'equipo' => $client->equipo,
+      'telefonos' => $client->telefonos,
+      'paisId' => $client->paisId,
+      'estadoCivilId' => $client->estadoCivilId,
+      'foto' => $client->foto,
     ], 200);
   }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
+import { request } from './../../config/axios';
 import swal from "sweetalert2";
 import imgAR from '../../../../public/images/countrys/ar.png';
 import imgCL from '../../../../public/images/countrys/es.png';
@@ -84,9 +85,9 @@ class CambiarDatos extends Component {
    * aqui traigo la informacion del usuario logeado
    */
   componentDidMount() {
-    axios.get("api/clientes/id/" + this.props.userId, {
+    request.get("api/user/id/" + this.props.userId, {
       headers: {
-        Authorization: this.props.apiToken
+        Authorization: `Bearer ${this.props.accessToken}`
       }
     })
     .then(res => {
@@ -94,23 +95,23 @@ class CambiarDatos extends Component {
 
       if (code === 200) {
         this.setState({
-          nombre: cliente.Nombre,
-          apellido: cliente.Apellido,
-          correo: cliente.Correo,
-          sexo: cliente.Sexo,
-          equipo: cliente.Equipo,
-          fechaNacimiento: moment(cliente.FechaNacimiento, 'DD/MM/YYYY').toDate(),
-          civil: cliente.EstadoCivil_id,
-          cuenta: cliente.TipoCuenta,
-          pais: cliente.Pais_id,
+          nombre: cliente.nombre,
+          apellido: cliente.apellido,
+          correo: cliente.email,
+          sexo: cliente.sexo,
+          equipo: cliente.equipo,
+          fechaNacimiento: moment(cliente.fechaNacimiento, 'YYYY/MM/DD').toDate(),
+          civil: cliente.estadoCivilId,
+          cuenta: cliente.tipoCuenta,
+          pais: cliente.paisId,
           estadosciviles: civiles,
-          telefono: cliente.Telefono,
-          foto: cliente.Foto !== '' ? `${cliente.Foto}` : cliente.Foto,
+          telefono: cliente.telefono,
+          foto: cliente.foto,
           isLoading: false
         });
 
-        if (cliente.Pais_id) {
-          this.clubs2(cliente.Pais_id);
+        if (cliente.paisId) {
+          this.clubs2(cliente.paisId);
         }
 
       } else if (code === 500){
@@ -300,6 +301,8 @@ class CambiarDatos extends Component {
           data[key] = '';
       });
 
+      console.log('data', data);
+
       /**
        * I use this syntax because of a bug where the
        * FileTransfer constructor is undefined
@@ -309,7 +312,7 @@ class CambiarDatos extends Component {
         'upload',
         [
           foto, // filePath
-          `${process.env.MIX_APP_URL}/api/clientes/editar/perfil`, // Server
+          `${process.env.MIX_APP_URL}/api/user/${this.props.userId}`, // Server
           'profilePicture', // fileKey
           foto.substr(foto.lastIndexOf('/') + 1), // fileName
           '', // mimeType
@@ -317,7 +320,7 @@ class CambiarDatos extends Component {
           false, // trustAllHost
           false, // chunckedMode
           { 
-            Authorization: this.props.apiToken,
+            Authorization: `Bearer ${this.props.accessToken}`,
             'X-Requested-With': 'XMLHttpRequest'
           }, // headers
           this.transferId, // _id
@@ -326,9 +329,9 @@ class CambiarDatos extends Component {
       );
     
     } else {      
-      axios.post('api/clientes/editar/perfil', data, {
+      request.post(`api/user/${this.props.userId}`, data, {
         headers: {
-          Authorization: this.props.apiToken
+          Authorization: `Bearer ${this.props.accessToken}`
         }
       })
       .then(res => this.handleSuccessfulUpdate({ 
@@ -343,13 +346,15 @@ class CambiarDatos extends Component {
   }
 
   handleSuccessfulUpdate (res) {
+    console.log('res', res);
     if (res.response) {
       const client = JSON.parse(res.response);
       
       this.setState({
         isLoading: false,
         isUpdated: true,
-        foto: client.Foto !== '' ? `${client.Foto}` : '',
+        isImageLoaded: false,
+        foto: client.foto,
       });
 
       this.transferId += 1;
@@ -357,6 +362,7 @@ class CambiarDatos extends Component {
   }
 
   handleErrorOnUpdate (err) {
+    console.log('err', err);
     if (err.http_status === 422) {
       const body = JSON.parse(err.body);
       let errors = [];
@@ -606,7 +612,7 @@ class CambiarDatos extends Component {
 
 const mapDispatchToProps = state => ({
   userId: state.auth.user.id,
-  apiToken: state.auth.apiToken,
+  accessToken: state.auth.accessToken,
 });
 
 export default connect(mapDispatchToProps)(CambiarDatos);

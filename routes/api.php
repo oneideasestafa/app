@@ -23,7 +23,13 @@ Route::group(['prefix' => 'user'], function () {
   Route::post('/', 'ClienteController@create');
 });
 
-Route::get('/user', 'ClienteController@read')->middleware('auth:api');
+Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
+  Route::get('/', 'ClienteController@read');
+  Route::post('/{id}', 'ClienteController@update');
+  // Route::post('/', 'ClienteController@create'); CREATE
+  Route::get('/id/{id}', 'ClienteController@getCliente');
+});
+
 
 // Permite defifinir los puntos de entrada para los endpoints de usuarios
 Route::group(['prefix' => 'usuarios'], function() {
@@ -59,13 +65,9 @@ Route::group(['prefix' => 'eventos', 'middleware' => 'ApiToken'], function() {
 });
   
 // Permite difinir los puntos de entrada para los endpoints de clientes
-Route::group(['prefix' => 'clientes','middleware' => 'ApiToken'], function() {
-    Route::get('/id/{id}', 'ClienteController@getCliente');
-    
-    Route::post('/editar/perfil', 'ClienteController@update');
+Route::group(['prefix' => 'clientes','middleware' => 'ApiToken'], function() {    
     Route::post('/editar/cambiar-clave', 'ClienteController@cambiarClave');
-    Route::get('/estado-civil', 'ClienteController@getEstadoCivil');
-    
+    Route::get('/estado-civil', 'ClienteController@getEstadoCivil');    
 });
 
 // Permite defifinir los puntos de entrada para los endpoints de preguntados
