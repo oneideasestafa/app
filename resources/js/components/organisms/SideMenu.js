@@ -104,12 +104,12 @@ class SideMenu extends React.Component {
               <li className="nav-item">
                 <a 
                   onClick={this.navigate} 
-                  data-route="/asked" 
-                  data-name="Preguntados" 
+                  data-route="/green-step-1" 
+                  data-name="Pantalla Verde" 
                   className="nav-link"
-                  style={{backgroundColor: current === 'Preguntados' ? '#000 !important' : ''}}
+                  style={{backgroundColor: current === 'Pantalla Verde' ? '#000 !important' : ''}}
                 >
-                  <i className="fab fa-weixin fa-lg" /> {"    "} Preguntados
+                  <i className="fab fa-angellist fa-lg" /> {"    "} Pantalla Verde
                 </a>
               </li>
               <RedesSociales />
