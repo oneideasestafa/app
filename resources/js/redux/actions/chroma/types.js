@@ -1,0 +1,5 @@
+export const CHROMA_CAMERA = 'CHROMA_CAMERA';
+
+export const CHROMA_BACKGROUND = 'CHROMA_BACKGROUND';
+
+export const CHROMA_EFFECT = 'CHROMA_EFFECT';
