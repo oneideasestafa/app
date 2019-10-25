@@ -17,6 +17,10 @@ import Downloads from './Downloads';
 import RSS from './RSS';
 import WebTorrent from 'webtorrent';
 import Asked from './Asked/Asked';
+import GreenStep1 from './GreenScreen/Eli';
+import GreenStep2 from './GreenScreen/Eli2';
+import GreenStep3 from './GreenScreen/Eli3';
+import GreenStep4 from './GreenScreen/Eli4';
 
 function Wrapper (props) {
   let client = null;
@@ -138,6 +142,10 @@ function Wrapper (props) {
         <Route exact path="/downloads" component={Downloads} />
         <Route exact path="/asked" component={Asked} />
         <Route exact path="/rss" component={RSS} />
+        <Route exact path="/green-step-1" component={GreenStep1} />
+        <Route exact path="/green-step-2" component={GreenStep2} />
+        <Route exact path="/green-step-3" component={GreenStep3} />
+        <Route exact path="/green-step-4" component={GreenStep4} />
       </Switch>
     </div>
   );
