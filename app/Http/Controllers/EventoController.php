@@ -18,11 +18,15 @@ use DB, DataTables, Image, Storage, File, Auth, Mail, QrCode;
 //controlador encargado de la seccion de eventos
 class EventoController extends Controller {
 
-    // Retorna en orden ascendente todos los eventos que no hayan sido borrados y que esten activos
-    public function getEventosNoBorradosActivos(Request $request){
-        $eventos = Evento::borrado(false)->activo(true)->app(true)->orderBy('Nombre', 'asc')->get();
-        return response()->json(['code'=>200,'eventos'=>$eventos ? $eventos : []]);
-    }
+  // Retorna en orden ascendente todos los eventos que no hayan sido borrados y que esten activos
+  public function get (Request $request){
+    $eventos = Evento::borrado(false)->activo(true)->app(true)->orderBy('Nombre', 'asc')->get();
+    
+    return response()->json([
+      'code' => 200,
+      'eventos' => $eventos ? $eventos : []
+    ]);
+  }
 
     // Retorna el evento basado en su id
     public function getEvento($id){

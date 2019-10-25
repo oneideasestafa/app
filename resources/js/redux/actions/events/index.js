@@ -2,12 +2,14 @@ import {
   FETCHED_EVENTS,
   SELECTED_CURRENT_EVENT,
 } from './types';
-import axios from 'axios';
+import { request } from './../../../config/axios';
 
-export function getEvents (apiToken) {
-  return dispatch => {
-    return axios.get('api/eventos', {
-      headers: { Authorization: apiToken }
+export function getEvents () {
+  return (dispatch, getState) => {
+    const { auth: { accessToken } } = getState();
+    
+    return axios.get('api/events/', {
+      headers: { Authorization: `Bearer ${accessToken}` }
     })
     .then(res => dispatch(saveEvents(res.data.eventos)));
   }

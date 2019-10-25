@@ -37,9 +37,13 @@ Route::group(['prefix' => 'usuarios'], function() {
   Route::get('/social/oauth', 'ClienteController@socialAuthenticate');
 });
 
+Route::group(['prefix' => 'events', 'middleware' => 'auth:api'], function () {
+  Route::get('/', 'EventoController@get');
+});
+
 // Permite difinir los puntos de entrada para los endpoints de eventos
 Route::group(['prefix' => 'eventos', 'middleware' => 'ApiToken'], function() {
-    Route::get('/', 'EventoController@getEventosNoBorradosActivos');
+    Route::get('/', 'EventoController@get');
     Route::get('/id/{id}','EventoController@getEvento');
     Route::post('/check-ubicacion', 'EventoController@checkUbicacion');
     Route::get('/invitacion/{id}','EventoController@getInvitacion');

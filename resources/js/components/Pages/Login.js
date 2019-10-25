@@ -59,17 +59,10 @@ class Login extends Component {
       const password = this.state.pass;
 
       this.props.authenticate(email, password)
-      .then(() => this.setState({
-          correo: "",
-          pass: "",
-          isLoading: false
-        }, () => this.props.history.replace('/questionEvent')
-      ))
       .catch(error => {
-          console.log(error);
           if (error.response.status == 422) {
               this.setState({
-                  isLoading: false
+                isLoading: false
               });
 
               swal({

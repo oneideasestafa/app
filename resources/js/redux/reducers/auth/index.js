@@ -6,7 +6,7 @@ import {
   APP_FINISH_LOADING
 } from '../../actions/auth/types';
 
-let auth = localStorage.getItem('auth');
+let auth = JSON.parse(localStorage.getItem('auth'));
 
 const initialState = auth ? auth : {
   isLoggedIn: false,
@@ -26,7 +26,7 @@ export default function (state = initialState, action) {
         isLoggedIn: true,
         user: {...action.payload.user, id: action.payload.user.id },
         accessToken: action.payload.accessToken,
-        refreshtoken: action.payload.refreshtoken
+        refreshtoken: action.payload.refreshToken
       }; break;
     case LOG_USER_OUT:
       result = {

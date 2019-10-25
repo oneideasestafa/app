@@ -66,10 +66,10 @@ export function socialAuthentication (apiToken) {
   }
 }
 
-export function login (user, apiToken, refreshToken) {
+export function login (user, accessToken, refreshToken) {
   return {
     type: LOG_USER_IN,
-    payload: { user, apiToken, refreshToken }
+    payload: { user, accessToken, refreshToken }
   }
 }
 
