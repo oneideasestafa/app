@@ -1,6 +1,7 @@
 import { 
   LOG_USER_IN,
   LOG_USER_OUT,
+  REFRESH_USER_TOKENS,
   APP_START_LOADING,
   APP_FINISH_LOADING
 } from './types';
@@ -75,6 +76,13 @@ export function login (user, apiToken, refreshToken) {
 export function logout () {
   return {
     type: LOG_USER_OUT
+  }
+}
+
+export function refreshUserTokens (accessToken, refreshToken) {
+  return {
+    type: REFRESH_USER_TOKENS,
+    payload: { accessToken, refreshToken },
   }
 }
 

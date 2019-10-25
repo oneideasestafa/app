@@ -1,6 +1,7 @@
 import { 
   LOG_USER_IN,
   LOG_USER_OUT,
+  REFRESH_USER_TOKENS,
   APP_START_LOADING,
   APP_FINISH_LOADING
 } from '../../actions/auth/types';
@@ -10,7 +11,7 @@ let auth = localStorage.getItem('auth');
 const initialState = auth ? auth : {
   isLoggedIn: false,
   user: null,
-  apiToken: '',
+  accessToken: '',
   refreshToken: '',
   loading: false,
 };
@@ -24,7 +25,7 @@ export default function (state = initialState, action) {
         ...state,
         isLoggedIn: true,
         user: {...action.payload.user, id: action.payload.user.id },
-        apiToken: action.payload.apiToken,
+        accessToken: action.payload.accessToken,
         refreshtoken: action.payload.refreshtoken
       }; break;
     case LOG_USER_OUT:
@@ -32,7 +33,14 @@ export default function (state = initialState, action) {
         ...state,
         isLoggedIn: false,
         user: null,
-        apiToken: '',
+        accessToken: '',
+      }; break;
+    case REFRESH_USER_TOKENS:
+      result = {
+        ...state,
+        isLoggedIn: true,
+        accessToken: action.payload.accessToken,
+        refreshToken: action.payload.refreshToken
       }; break;
     case APP_START_LOADING:
       return {
