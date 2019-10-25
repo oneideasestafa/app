@@ -13,6 +13,7 @@ use App\Models\MongoDB\EstadoCivil;
 use App\Models\MongoDB\Pais;
 use Carbon\Carbon;
 use Image, Storage, File, Hash, DB;
+use Illuminate\Support\Facades\Auth;
 use MongoDB\BSON\ObjectId;
 use Illuminate\Support\Facades\Validator;
 
@@ -323,6 +324,27 @@ class ClienteController extends Controller
       'EstadoCivil_id' => $client->estadoCivilId,
       'Foto' => $client->foto,
     ], 200);
+  }
+
+  public function read (Request $request) {
+    $user = $request->user();
+
+    return response()->json([
+      '_id' => $user->_id,
+      'correo' => $user->email,
+      'nombre' => $user->nombre,
+      'apellido' => $user->apellido,
+      'fechaNacimiento' => $user->fechaNacimiento,
+      'sexo' => $user->sexo,
+      'foto' => $user->foto,
+      'telefono' => $user->telefono,
+      'tipoCuenta' => $user->tipoCuenta,
+      'providerId' => $user->providerId,
+      'equipoId' => $user->equipo,
+      'paisId' => $user->paisId,
+      'estadoCivilId' => $user->estadoCivilId,
+      'creado' => $user->creado,
+    ]);
   }
 
   public function update (Request $request) {

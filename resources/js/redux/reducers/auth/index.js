@@ -5,29 +5,35 @@ import {
   APP_FINISH_LOADING
 } from '../../actions/auth/types';
 
-const initialState = {
+let auth = localStorage.getItem('auth');
+
+const initialState = auth ? auth : {
   isLoggedIn: false,
   user: null,
   apiToken: '',
+  refreshToken: '',
   loading: false,
 };
 
 export default function (state = initialState, action) {
+  let result = state;
+
   switch (action.type) {
     case LOG_USER_IN:
-      return {
+      result = {
         ...state,
         isLoggedIn: true,
-        user: { id: action.payload.uid },
-        apiToken: action.payload.apiToken
-      };
+        user: {...action.payload.user, id: action.payload.user.id },
+        apiToken: action.payload.apiToken,
+        refreshtoken: action.payload.refreshtoken
+      }; break;
     case LOG_USER_OUT:
-      return {
+      result = {
         ...state,
         isLoggedIn: false,
         user: null,
         apiToken: '',
-      };
+      }; break;
     case APP_START_LOADING:
       return {
         ...state,
@@ -39,6 +45,10 @@ export default function (state = initialState, action) {
         loading: false,
       };
     default:
-      return state;
+      result = state; break;
   }
+
+  localStorage.setItem('auth', JSON.stringify(result));
+
+  return result;
 }

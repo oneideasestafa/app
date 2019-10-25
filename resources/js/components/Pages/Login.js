@@ -59,42 +59,12 @@ class Login extends Component {
       const password = this.state.pass;
 
       this.props.authenticate(email, password)
-      .then(res => {
-          console.log(res);
-          let r = res.data;
-          if (r.code == 200) {
-              this.setState({
-                  correo: "",
-                  pass: "",
-                  isLoading: false
-              });
-
-              if (r.tipo == "one") {
-                  localStorage.setItem("api_token", r.access_token);
-
-                  this.props.history.push({
-                      pathname: "/questionEvent",
-                      state: {
-                          idUsuario: r.userid,
-                          api_token: r.access_token
-                      }
-                  });
-              }
-          } else if (r.code == undefined) {
-              //window.location.href = window.app.url+'/logisticas';
-          } else if (r.code == 600) {
-              this.setState({
-                  isLoading: false
-              });
-
-              swal({
-                  title: '<i class="fas fa-exclamation-circle"></i>',
-                  text: r.msj,
-                  confirmButtonColor: "#343a40",
-                  confirmButtonText: "Ok"
-              });
-          }
-      })
+      .then(() => this.setState({
+          correo: "",
+          pass: "",
+          isLoading: false
+        }, () => this.props.history.replace('/questionEvent')
+      ))
       .catch(error => {
           console.log(error);
           if (error.response.status == 422) {

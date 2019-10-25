@@ -23,6 +23,8 @@ Route::group(['prefix' => 'user'], function () {
   Route::post('/', 'ClienteController@create');
 });
 
+Route::get('/user', 'ClienteController@read')->middleware('auth:api');
+
 // Permite defifinir los puntos de entrada para los endpoints de usuarios
 Route::group(['prefix' => 'usuarios'], function() {
 	Route::post('/login', 'LoginController@login');
