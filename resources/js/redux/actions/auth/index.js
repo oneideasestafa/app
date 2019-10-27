@@ -24,9 +24,11 @@ export function authenticate (email, password) {
       });
       
     } else {
-      requestToken = axios.post('/proxy', {
+      requestToken = axios.post('/oauth/token', {
         username: email,
         password
+      }, {
+        baseURL: process.env.MIX_APP_AUTH_PROXY
       });
     }
     

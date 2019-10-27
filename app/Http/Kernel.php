@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         'check-question-event' => \App\Http\Middleware\CheckQuestionEvent::class,
         'prevent-back-history' => \App\Http\Middleware\PreventBackHistory::class,
         'ApiToken' => \App\Http\Middleware\ApiToken::class,
+        'cors' => \Spatie\Cors\Cors::class
     ];
 
     /**
