@@ -2,6 +2,7 @@ import {
   LOG_USER_IN,
   LOG_USER_OUT,
   REFRESH_USER_TOKENS,
+  REFRESH_USER_DATA,
   APP_START_LOADING,
   APP_FINISH_LOADING
 } from '../../actions/auth/types';
@@ -34,6 +35,7 @@ export default function (state = initialState, action) {
         isLoggedIn: false,
         user: null,
         accessToken: '',
+        refreshToken: '',
       }; break;
     case REFRESH_USER_TOKENS:
       result = {
@@ -41,6 +43,11 @@ export default function (state = initialState, action) {
         isLoggedIn: true,
         accessToken: action.payload.accessToken,
         refreshToken: action.payload.refreshToken
+      }; break;
+    case REFRESH_USER_DATA: 
+      result = {
+        ...state,
+        user: action.payload.user
       }; break;
     case APP_START_LOADING:
       return {

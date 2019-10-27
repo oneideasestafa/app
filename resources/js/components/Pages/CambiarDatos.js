@@ -9,10 +9,9 @@ import iconCivil from '../../../../public/images/EstadoCivil01.png';
 import reactMobileDatePicker from 'react-mobile-datepicker';
 import ProfileImage from './../atoms/ProfileImage';
 import moment from 'moment';
+import { fetchUser } from './../../redux/actions/auth';
+import { fetchMaritalStatus, fetchFootballTeams } from './../../redux/actions/app';
 import { connect } from 'react-redux';
-
-/** Importando estilos css del componente */
-import "../../../css/components/CambiarDatos.css"
 
 const Datepicker = reactMobileDatePicker;
 
@@ -52,15 +51,10 @@ class CambiarDatos extends Component {
       estadosciviles: [],
       correo: '',
       cuenta: '',
-      api_token: localStorage.getItem("api_token"),
       pais: '',
       paises: [],
       telefono: '',
-      fileName: 'Seleccione imagen',
-      tipofoto: '',
       foto: '',
-      fotonew:'',
-      flagPais: '',
       errors: null,
       isImageLoaded: false,
       isUpdated: false,
@@ -71,8 +65,7 @@ class CambiarDatos extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSuccessfulUpdate = this.handleSuccessfulUpdate.bind(this);
     this.handleErrorOnUpdate = this.handleErrorOnUpdate.bind(this);
-    this.clubs = this.clubs.bind(this);
-    this.clubs2 = this.clubs2.bind(this);
+    this.handleCountryChange = this.handleCountryChange.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
     this.handleThemeToggle = this.handleThemeToggle.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
@@ -84,41 +77,32 @@ class CambiarDatos extends Component {
    * Componente que se carga al renderi ar por primera ve
    * aqui traigo la informacion del usuario logeado
    */
-  componentDidMount() {
-    request.get("api/user/id/" + this.props.userId, {
-      headers: {
-        Authorization: `Bearer ${this.props.accessToken}`
+  componentDidMount () {
+    const { fetchUser, fetchMaritalStatus, fetchFootballTeams } = this.props;
+    const promises = [fetchUser(), fetchMaritalStatus()];
+
+    Promise.all(promises).then(([user, status]) => {
+      this.setState({
+        nombre: user.nombre,
+        apellido: user.apellido,
+        correo: user.correo,
+        sexo: user.sexo,
+        equipo: user.equipoId,
+        fechaNacimiento: moment(user.fechaNacimiento, 'YYYY/MM/DD').toDate(),
+        cuenta: user.tipoCuenta,
+        civil: user.estadoCivilId,
+        pais: user.paisId,
+        telefono: user.telefono,
+        foto: user.foto,
+        estadosciviles: status,
+      });
+
+      if (user.paisId) {
+        return fetchFootballTeams(user.paisId);
       }
     })
-    .then(res => {
-      const { cliente, code, msj, civiles } = res.data;
-
-      if (code === 200) {
-        this.setState({
-          nombre: cliente.nombre,
-          apellido: cliente.apellido,
-          correo: cliente.email,
-          sexo: cliente.sexo,
-          equipo: cliente.equipo,
-          fechaNacimiento: moment(cliente.fechaNacimiento, 'YYYY/MM/DD').toDate(),
-          civil: cliente.estadoCivilId,
-          cuenta: cliente.tipoCuenta,
-          pais: cliente.paisId,
-          estadosciviles: civiles,
-          telefono: cliente.telefono,
-          foto: cliente.foto,
-          isLoading: false
-        });
-
-        if (cliente.paisId) {
-          this.clubs2(cliente.paisId);
-        }
-
-      } else if (code === 500){
-        console.log(msj);
-      }
-    })
-    .catch(error => console.log(error));
+    .then(teams => this.setState({ clubs: teams ? teams: [] }))
+    .then(() => this.setState({ isLoading: false }));
   }
 
   chooseImageSource (e) {
@@ -164,75 +148,19 @@ class CambiarDatos extends Component {
    * trae como resultado la lista de clubs de espa;a/argentina
    * @param {evento} e 
    */
-  clubs(e) {
+  handleCountryChange (e) {
     this.setState({
       [e.target.name]: e.target.value,
-      'equipo': ''
+      equipo: ''
     });
 
-    let pais = e.target.value;
+    const countryId = e.target.value;
 
-    axios.post('api/usuarios/clubs-perfil', { pais })
-      .then(res => {
-        let r = res.data;
-
-        if(r.code === 200){
-          this.setState({
-            'clubs': r.datos
-          });
-        }else if(r.code === 500){
-          swal({
-            title: '<i class="fas fa-exclamation-circle"></i>',
-            text: r.msj,
-            confirmButtonColor: '#343a40',
-            confirmButtonText: 'Ok'
-          });
-        }
-      })
-      .catch(error => {
-        if (error.response.status == 422){
-          this.setState({
-              isLoading: false
-          });
-
-          console.log('errores: ', error.response.data);
-        }
+    this.props.fetchFootballTeams(countryId).then(teams => {
+      this.setState({
+        clubs: teams,
       });
-  }
-
-  /**
-   * esta funcioncion se ejecuta al cargar por los componentes
-   * trae como resultado la lista de clubs de espa;a/argentina
-   * @param {evento} pais 
-   */
-  clubs2(pais) {
-    axios.post('api/usuarios/clubs-perfil', { pais })
-      .then(res => {
-        let r = res.data;
-
-        if(r.code === 200){
-          this.setState({
-            'clubs': r.datos
-          });
-
-        }else if (r.code === 500) {
-          swal({
-            title: '<i class="fas fa-exclamation-circle"></i>',
-            text: r.msj,
-            confirmButtonColor: '#343a40',
-            confirmButtonText: 'Ok'
-          });
-        }
-      })
-      .catch(error => {
-        if (error.response.status == 422){
-          this.setState({
-            isLoading: false
-          });
-
-          console.log('errores: ', error.response.data);
-        }
-      });
+    })
   }
 
   /**
@@ -240,7 +168,7 @@ class CambiarDatos extends Component {
    * @param {*} isOpen 
    */
   handleToggle(isOpen) {
-      this.setState({ isOpen });
+    this.setState({ isOpen });
   };
 
   /**
@@ -387,7 +315,7 @@ class CambiarDatos extends Component {
 
   render () {
     let tagClass;
-    let {nombre, apellido, correo, cuenta, pais, telefono, sexo, civil, equipo, foto, fechaNacimiento, tipofoto} = this.state;
+    let {nombre, apellido, correo, cuenta, pais, telefono, sexo, civil, equipo, foto, fechaNacimiento } = this.state;
 
     if(cuenta == 'ONE'){
         tagClass = 'badge badge-one';
@@ -572,11 +500,11 @@ class CambiarDatos extends Component {
               <label className="input-group-text"><i className="fa fa-globe-americas fa-lg"></i></label>
             </div>
             <div className="form-check form-check-inline">
-              <input className="form-check-input" onChange={this.clubs} type="radio" name="pais" id="inlineRadio1" value="5caf334dff6eff0ae30e450b" checked={pais === '5caf334dff6eff0ae30e450b'}  />
+              <input className="form-check-input" onChange={this.handleCountryChange} type="radio" name="pais" id="inlineRadio1" value="5caf334dff6eff0ae30e450b" checked={pais === '5caf334dff6eff0ae30e450b'}  />
               <label className="form-check-label" htmlFor="inlineRadio1"><img src={imgAR} className="img-country" /></label>
             </div>
             <div className="form-check form-check-inline">
-              <input className="form-check-input" onChange={this.clubs} type="radio" name="pais" id="inlineRadio2" value="5caf37adff6eff0ae30e450d" checked={pais === '5caf37adff6eff0ae30e450d'}  />
+              <input className="form-check-input" onChange={this.handleCountryChange} type="radio" name="pais" id="inlineRadio2" value="5caf37adff6eff0ae30e450d" checked={pais === '5caf37adff6eff0ae30e450d'}  />
               <label className="form-check-label" htmlFor="inlineRadio2"><img src={imgCL} className="img-country" /></label>
             </div>
           </div>
@@ -610,9 +538,15 @@ class CambiarDatos extends Component {
   }
 }
 
-const mapDispatchToProps = state => ({
+const mapStateToProps = state => ({
   userId: state.auth.user.id,
   accessToken: state.auth.accessToken,
 });
 
-export default connect(mapDispatchToProps)(CambiarDatos);
+const mapDispatchToProps = dispatch => ({
+  fetchUser: () => dispatch(fetchUser()),
+  fetchMaritalStatus: () => dispatch(fetchMaritalStatus()),
+  fetchFootballTeams: (countryId) => dispatch(fetchFootballTeams(countryId)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CambiarDatos);

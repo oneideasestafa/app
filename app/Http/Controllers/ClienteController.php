@@ -366,8 +366,7 @@ class ClienteController extends Controller
       'telefono' => 'nullable|string',
       'avatarURL' => 'nullable|string',
       'pais' => 'required|string|exists:Pais,_id',
-      'equipo' => 'nullable|integer|exists:Clubs,id',
-      'userId' => 'required|string|exists:Clientes,_id',
+      'equipo' => 'nullable|integer|exists:Clubs,id'
     ])->validate();
 
     $client = $request->user();

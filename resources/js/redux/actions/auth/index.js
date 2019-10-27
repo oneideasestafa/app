@@ -3,8 +3,10 @@ import {
   LOG_USER_OUT,
   REFRESH_USER_TOKENS,
   APP_START_LOADING,
-  APP_FINISH_LOADING
+  APP_FINISH_LOADING,
+  REFRESH_USER_DATA
 } from './types';
+import { request } from './../../../config/axios';
 import axios from 'axios';
 
 export function authenticate (email, password) {
@@ -66,6 +68,25 @@ export function socialAuthentication (apiToken) {
   }
 }
 
+export function fetchUser () {
+  return (dispatch, getState) => {
+    const { auth: { accessToken } } = getState();
+
+    return request.get('/api/user', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    })
+    .then(res => {
+      const { data } = res;
+
+      dispatch(refreshUserData(data));
+
+      return data;
+    });
+  }
+}
+
 export function login (user, accessToken, refreshToken) {
   return {
     type: LOG_USER_IN,
@@ -76,6 +97,13 @@ export function login (user, accessToken, refreshToken) {
 export function logout () {
   return {
     type: LOG_USER_OUT
+  }
+}
+
+export function refreshUserData (user) {
+  return {
+    type: REFRESH_USER_DATA,
+    payload: { user }
   }
 }
 

@@ -19,17 +19,22 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('auth/{provider}', 'SocialAuthController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'SocialAuthController@handleProviderCallback');
 
+// USER related routes
 Route::group(['prefix' => 'user'], function () {
   Route::post('/', 'ClienteController@create');
+  Route::get('/', 'ClienteController@read')->middleware('auth:api');
+  Route::post('/{id}', 'ClienteController@update')->middleware('auth:api');
 });
 
-Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
-  Route::get('/', 'ClienteController@read');
-  Route::post('/{id}', 'ClienteController@update');
-  // Route::post('/', 'ClienteController@create'); CREATE
-  Route::get('/id/{id}', 'ClienteController@getCliente');
+// COUNTRY related routes 
+Route::group(['prefix' => 'country', 'middleware' => 'auth:api'], function () {
+  Route::get('/{countryId}/teams', 'PaisController@getTeams');
 });
 
+// STATUS related routes
+Route::group(['prefix' => 'marital-status'], function () {
+  Route::get('/', 'MaritalStatusController@get')->middleware('auth:api');
+});
 
 // Permite defifinir los puntos de entrada para los endpoints de usuarios
 Route::group(['prefix' => 'usuarios'], function() {
