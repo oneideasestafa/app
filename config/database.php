@@ -89,11 +89,11 @@ return [
             'host'     => env('DB_HOST_MONGO', 'node69109-oneshowdb.mircloud.host'),
             'port'     => env('DB_PORT_MONGO', 27017),
             'database' => env('DB_DATABASE_MONGO', 'oneshow'),
-            'username' => env('DB_USERNAME_MONGO', 'admin'),
+            /* 'username' => env('DB_USERNAME_MONGO', 'admin'),
             'password' => env('DB_PASSWORD_MONGO', 'CGDend71791'),
             'options'  => [
                 'database' => env('DB_DATABASE_AUTHENTICATION_MONGO', 'admin') // sets the authentication database required by mongo 3
-            ]
+            ] */
         ],
     
     ],
