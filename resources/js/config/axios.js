@@ -14,8 +14,6 @@ request.interceptors.response.use(response => {
   const { config, response } = error;
   let refresh = null;
 
-  console.log('response', response);
-
   if (response.status === 401) {
     const { auth } = store.getState();
 

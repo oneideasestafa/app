@@ -39,11 +39,9 @@ class SocialAccountService {
           'apellido' => $providerUser->getName(),
           'email' => $providerUser->getEmail(),
           'tipoCuenta' => $provider,
-          'providerId' => $provider->getId(),
+          'providerId' => $providerUser->getId(),
           'foto' => $providerUser->getAvatar()
         ]);
-      } else {
-        return null;
       }
       
       return $user;

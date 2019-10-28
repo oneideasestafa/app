@@ -2,7 +2,15 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSyncAlt, faTrashAlt, faSync, faCamera, faTimes, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { 
+  faSyncAlt, 
+  faTrashAlt, 
+  faSync, 
+  faCamera, 
+  faTimes, 
+  faTimesCircle
+} from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 import LoadingScreen from './atoms/LoadingScreen';
 import NotAuthRoute from './atoms/NotAuthRoute';
 import PrivateRoute from './atoms/PrivateRoute';
@@ -18,21 +26,21 @@ import QuestionEvent from "./Pages/QuestionEvent";
 import Wrapper from './Pages/Wrapper';
 import { socialAuthentication } from './../redux/actions/auth';
 
-library.add(faSyncAlt, faTrashAlt, faSync, faCamera, faTimes, faTimesCircle);
+library.add(fab, faSyncAlt, faTrashAlt, faSync, faCamera, faTimes, faTimesCircle);
 
 function App () {
   useEffect(() => {
-    universalLinks.subscribe('oauthHandler', eventData => {
-      console.log('data', eventData);
+    // universalLinks.subscribe('oauthHandler', eventData => {
+    //   console.log('data', eventData);
       
-      if (eventData.params.apiToken) {
-        store.dispatch(socialAuthentication(eventData.params.apiToken))
-          .then(() => universalLinks.unsubscribe('oauthHandler'))
-          .catch(e => console.log(e));
-      }
-    });
+    //   if (eventData.params.apiToken) {
+    //     store.dispatch(socialAuthentication(eventData.params.apiToken))
+    //       .then(() => universalLinks.unsubscribe('oauthHandler'))
+    //       .catch(e => console.log(e));
+    //   }
+    // });
 
-    return () => universalLinks.unsubscribe('oauthHandler');
+    // return () => universalLinks.unsubscribe('oauthHandler');
   }, [])
 
     return (

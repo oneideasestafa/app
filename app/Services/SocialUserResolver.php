@@ -17,7 +17,7 @@ class SocialUserResolver implements SocialUserResolverInterface
    *
    * @return Authenticatable|null
    */
-  public function resolveUserByProviderCredentials(string $provider, string $accessToken)
+  public function resolveUserByProviderCredentials(string $provider, string $accessToken): ?Authenticatable
   {
     $providerUser = null;
     
@@ -28,7 +28,7 @@ class SocialUserResolver implements SocialUserResolverInterface
     }
     
     if ($providerUser) {
-      return (new SocialAccountsService())->findOrCreate($providerUser, $provider);
+      return (new SocialAccountService())->findOrCreate($providerUser, $provider);
     }
 
     return null;

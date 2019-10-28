@@ -57,6 +57,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
+      "id": "cordova-plugin-deeplinks.universalLinks",
+      "file": "plugins/cordova-plugin-deeplinks/www/universal_links.js",
+      "pluginId": "cordova-plugin-deeplinks",
+      "clobbers": [
+        "universalLinks"
+      ]
+    },
+    {
       "id": "cordova-plugin-device.device",
       "file": "plugins/cordova-plugin-device/www/device.js",
       "pluginId": "cordova-plugin-device",
@@ -78,6 +86,30 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "pluginId": "cordova-plugin-device-motion",
       "clobbers": [
         "navigator.accelerometer"
+      ]
+    },
+    {
+      "id": "cordova-plugin-dialogs.notification",
+      "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+      "pluginId": "cordova-plugin-dialogs",
+      "merges": [
+        "navigator.notification"
+      ]
+    },
+    {
+      "id": "cordova-plugin-dialogs.notification_android",
+      "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
+      "pluginId": "cordova-plugin-dialogs",
+      "merges": [
+        "navigator.notification"
+      ]
+    },
+    {
+      "id": "cordova-plugin-facebook4.FacebookConnectPlugin",
+      "file": "plugins/cordova-plugin-facebook4/www/facebook-native.js",
+      "pluginId": "cordova-plugin-facebook4",
+      "clobbers": [
+        "facebookConnectPlugin"
       ]
     },
     {
@@ -254,6 +286,22 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "runs": true
     },
     {
+      "id": "cordova-plugin-file-transfer.FileTransferError",
+      "file": "plugins/cordova-plugin-file-transfer/www/FileTransferError.js",
+      "pluginId": "cordova-plugin-file-transfer",
+      "clobbers": [
+        "window.FileTransferError"
+      ]
+    },
+    {
+      "id": "cordova-plugin-file-transfer.FileTransfer",
+      "file": "plugins/cordova-plugin-file-transfer/www/FileTransfer.js",
+      "pluginId": "cordova-plugin-file-transfer",
+      "clobbers": [
+        "window.FileTransfer"
+      ]
+    },
+    {
       "id": "cordova-plugin-flashlight.Flashlight",
       "file": "plugins/cordova-plugin-flashlight/www/Flashlight.js",
       "pluginId": "cordova-plugin-flashlight",
@@ -349,46 +397,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
         "cordova.plugins.notification.local.core",
         "plugin.notification.local.core"
       ]
-    },
-    {
-      "id": "cordova-plugin-dialogs.notification",
-      "file": "plugins/cordova-plugin-dialogs/www/notification.js",
-      "pluginId": "cordova-plugin-dialogs",
-      "merges": [
-        "navigator.notification"
-      ]
-    },
-    {
-      "id": "cordova-plugin-dialogs.notification_android",
-      "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
-      "pluginId": "cordova-plugin-dialogs",
-      "merges": [
-        "navigator.notification"
-      ]
-    },
-    {
-      "id": "cordova-plugin-file-transfer.FileTransferError",
-      "file": "plugins/cordova-plugin-file-transfer/www/FileTransferError.js",
-      "pluginId": "cordova-plugin-file-transfer",
-      "clobbers": [
-        "window.FileTransferError"
-      ]
-    },
-    {
-      "id": "cordova-plugin-file-transfer.FileTransfer",
-      "file": "plugins/cordova-plugin-file-transfer/www/FileTransfer.js",
-      "pluginId": "cordova-plugin-file-transfer",
-      "clobbers": [
-        "window.FileTransfer"
-      ]
-    },
-    {
-      "id": "cordova-plugin-deeplinks.universalLinks",
-      "file": "plugins/cordova-plugin-deeplinks/www/universal_links.js",
-      "pluginId": "cordova-plugin-deeplinks",
-      "clobbers": [
-        "universalLinks"
-      ]
     }
   ];
   module.exports.metadata = {
@@ -397,9 +405,13 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-audiotoggle": "1.0.3",
     "cordova-plugin-brightness": "0.1.5",
     "cordova-plugin-camera": "4.1.0",
+    "cordova-plugin-deeplinks": "1.1.1",
     "cordova-plugin-device": "2.0.3",
     "cordova-plugin-device-motion": "2.0.1",
+    "cordova-plugin-dialogs": "2.0.2",
+    "cordova-plugin-facebook4": "6.2.0",
     "cordova-plugin-file": "6.0.2",
+    "cordova-plugin-file-transfer": "1.7.1",
     "cordova-plugin-flashlight": "3.2.0",
     "cordova-plugin-geolocation": "4.0.2",
     "cordova-plugin-geolocation-android-activator": "1.1.2",
@@ -408,9 +420,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-streaming-media": "2.2.0",
     "cordova-plugin-vibration": "3.1.1",
     "cordova-plugin-whitelist": "1.3.4",
-    "de.appplant.cordova.plugin.local-notification": "0.8.5",
-    "cordova-plugin-dialogs": "2.0.2",
-    "cordova-plugin-file-transfer": "1.7.1",
-    "cordova-plugin-deeplinks": "1.1.1"
+    "de.appplant.cordova.plugin.local-notification": "0.8.5"
   };
 });

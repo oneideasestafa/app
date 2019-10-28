@@ -51,22 +51,49 @@ export function authenticate (email, password) {
   }
 }
 
-export function socialAuthentication (apiToken) {
+export function socialAuthentication (provider, provAccessToken) {
   return dispatch => {
-    
+    const auth = { accessToken: '', refreshToken: ''};
+    let requestToken = null;
+
     dispatch(appStartedLoading());
 
-    return axios.get('/api/usuarios/social/oauth', {
-      headers: {
-        Authorization: apiToken,
-      }
+    if (process.env.NODE_ENV !== 'development') {
+      
+      requestToken = axios.post('/oauth/token', {
+        grant_type: 'social',
+        client_id: process.env.MIX_APP_CLIENT_ID,
+        client_secret: process.env.MIX_APP_CLIENT_SECRET,
+        access_token: provAccessToken,
+        provider
+      });
+
+    } else {
+
+      requestToken = axios.post(`/oauth/${provider}/token`, {
+        access_token: provAccessToken,
+      }, {
+        baseURL: process.env.MIX_APP_AUTH_PROXY
+      });
+    }
+
+    return requestToken.then(res => {
+      const { access_token, refresh_token } = res.data;
+      auth.accessToken = access_token;
+      auth.refreshToken = refresh_token;
+
+      return request.get('/api/user', {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        }
+      })
     })
     .then(res => {
-      const { _id } = res.data;
+      const user = res.data;
 
-      dispatch(login(_id, apiToken));
+      dispatch(login(user, auth.accessToken, auth.refreshToken));
     })
-    .then(() => dispatch(appFinishLoading()))
+    .then(() => dispatch(appFinishLoading()));
   }
 }
 

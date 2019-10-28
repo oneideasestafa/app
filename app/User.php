@@ -48,6 +48,20 @@ class User extends Authenticatable
   const DELETED_AT = 'borrado';
 
   /**
+   * The attributes that are mass assignable.
+   *
+   * @var array
+   */
+  protected $fillable = [
+    'nombre',
+    'apellido',
+    'email',
+    'tipoCuenta',
+    'providerId',
+    'foto'
+  ];
+
+  /**
    * The model's default values for attributes.
    *
    * @var array
