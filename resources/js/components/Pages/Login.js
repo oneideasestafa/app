@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { connect } from 'react-redux';
 import { authenticate, socialAuthentication } from '../../redux/actions/auth';
-import swal from "sweetalert2";
 import logoOne from "../../../../public/images/logo-one.png";
+import GoogleAuthButton from './../atoms/GoogleAuthButton';
+import FacebookAuthButton from './../atoms/FacebookAuthButton';
+import swal from "sweetalert2";
 
 /**Importando estilos del componente */
 import "./../../../css/pages/Login.css";
@@ -160,30 +162,14 @@ class Login extends Component {
             </p>
           </div>
           <div className="text-center mb-5">
-            <button 
-              className="btn btn-block mb-2 text-white"
-              style={{ backgroundColor: '#1877f2' }}
-              onClick={this.handleFacebookAuth}
-            >
-              <FontAwesomeIcon
-                icon={['fab', 'facebook-f']}
-                color="#fff"
-                pull="left"
-              /> 
-              Inicia sesión con Facebook
-            </button>
-            <button 
-              className="btn btn-block mb-2 text-white"
-              style={{ backgroundColor: '#db4437' }}
-              onClick={this.handleGoogleAuth}
-            >
-              <FontAwesomeIcon
-                icon={['fab', 'google']}
-                color="#fff"
-                pull="left"
-              /> 
-              Inicia sesión con Google
-            </button>
+            <FacebookAuthButton 
+              block={true}
+              className="mb-2" 
+            />
+            <GoogleAuthButton 
+              block={true}
+              className="mb-2" 
+            />
           </div>
           <div className="text-center">
             <Link to="/">

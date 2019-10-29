@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from 'axios';
 import { request } from './../../config/axios';
-import swal from "sweetalert2";
 import imgAR from '../../../../public/images/countrys/ar.png';
 import imgCL from '../../../../public/images/countrys/es.png';
 import iconCivil from '../../../../public/images/EstadoCivil01.png';
@@ -12,6 +10,9 @@ import moment from 'moment';
 import { fetchUser } from './../../redux/actions/auth';
 import { fetchMaritalStatus, fetchFootballTeams } from './../../redux/actions/app';
 import { connect } from 'react-redux';
+
+/** Importando estilos css del componente */
+import "../../../css/components/CambiarDatos.css"
 
 const Datepicker = reactMobileDatePicker;
 

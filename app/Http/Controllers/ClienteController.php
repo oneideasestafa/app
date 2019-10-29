@@ -273,7 +273,7 @@ class ClienteController extends Controller
      * validation to work correctly
      */
     $data = $request->except('equipo');
-    $data['equipo'] = intval($request->equipo);
+    $data['equipo'] = $request->equipo == '' ?  null : intval($request->equipo);
 
     Validator::make($data, [
       'nombre' => 'required|string',
@@ -354,7 +354,7 @@ class ClienteController extends Controller
      * validation to work correctly
      */
     $data = $request->except('equipo');
-    $data['equipo'] = intval($request->equipo);
+    $data['equipo'] = $request->equipo == '' ?  null : intval($request->equipo);
 
     Validator::make($data, [
       'nombre' => 'required|string',
@@ -365,7 +365,7 @@ class ClienteController extends Controller
       'profilePicture' => 'file|image',
       'telefono' => 'nullable|string',
       'avatarURL' => 'nullable|string',
-      'pais' => 'required|string|exists:Pais,_id',
+      'pais' => 'nullable|string|exists:Pais,_id',
       'equipo' => 'nullable|integer|exists:Clubs,id'
     ])->validate();
 

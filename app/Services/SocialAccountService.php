@@ -43,6 +43,13 @@ class SocialAccountService {
         $user->tipoCuenta = $provider;
         $user->providerId = $providerUser->getId();
         $user->foto = $providerUser->getAvatar();
+        $user->password = '';
+        $user->sexo = '';
+        $user->telefono = '';
+        $user->fechaNacimiento = now()->format('YY/MM/DD');
+        $user->equipo = null;
+        $user->paisId = null;
+        $user->estadoCivilId = null;
         
         $user->save();
 

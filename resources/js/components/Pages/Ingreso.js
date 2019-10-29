@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSync } from "@fortawesome/free-solid-svg-icons";
+import GoogleAuthButton from './../atoms/GoogleAuthButton';
+import FacebookAuthButton from './../atoms/FacebookAuthButton';
 import logoOne from "../../../../public/images/logo-one.png";
 
 /**Importando estilos de la aplicacion */
@@ -66,12 +68,27 @@ export default class Ingreso extends Component {
                 </div>
               </Link>
             </div>
-            <div className="text-center">
+            <div className="text-center mb-5">
               <Link to="/registro">
                 <div className="btn btn-rojo btn-box-index">
                   Registrar
                 </div>
               </Link>
+            </div>
+            <div className="text-center roboto-condensed text-can-login-social">
+              <p style={{ color: "rgb(146, 143, 143)" }}>
+                o puedes ingresar con
+              </p>
+            </div>
+            <div className="text-center mb-5">
+              <FacebookAuthButton 
+                block={true}
+                className="mb-2" 
+              />
+              <GoogleAuthButton 
+                block={true}
+                className="mb-2" 
+              />
             </div>
           </div>
         </div>
