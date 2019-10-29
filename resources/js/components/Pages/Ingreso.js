@@ -21,9 +21,11 @@ export default class Ingreso extends Component {
             urlAppleStore: props.applestore
         };
     }
+
     isCordova() {
         return navigator.userAgent.match(/(Cordova)/);
     }
+    
     getOS() {
         let userAgent = window.navigator.userAgent,
             platform = window.navigator.platform,
