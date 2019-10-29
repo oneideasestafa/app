@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\User;
 use App\Http\Requests\ValidatePerfil;
 Use App\Http\Requests\ValidateCambiarPassword;
 use App\Http\Requests\ValidateRegistro;
@@ -11,6 +13,7 @@ use App\Models\MongoDB\EstadoCivil;
 use App\Models\MongoDB\Pais;
 use Carbon\Carbon;
 use Image, Storage, File, Hash, DB;
+use Illuminate\Support\Facades\Auth;
 use MongoDB\BSON\ObjectId;
 use Illuminate\Support\Facades\Validator;
 
@@ -270,11 +273,11 @@ class ClienteController extends Controller
      * validation to work correctly
      */
     $data = $request->except('equipo');
-    $data['equipo'] = intval($request->equipo);
+    $data['equipo'] = $request->equipo == '' ?  null : intval($request->equipo);
 
     Validator::make($data, [
       'nombre' => 'required|string',
-      'correo' => 'required|unique:Clientes,Correo',
+      'correo' => 'required|unique:Clientes,email',
       'password' => 'required|string|min:6',
       'apellido' => 'required|string',
       'nacimiento' => 'required|date',
@@ -287,42 +290,61 @@ class ClienteController extends Controller
       'equipo' => 'nullable|integer|exists:Clubs,id',
     ])->validate();
 
-    $client = new Cliente();
+    $client = new User();
 
-    $client->Nombre = $request->nombre; 
-    $client->Apellido = $request->apellido; 
-    $client->Correo = strtolower($request->correo);
-    $client->Password = bcrypt($request->password);
-    $client->TipoCuente = 'ONE';
-    $client->ProviderID = '';
-    $client->Sexo = $request->genero;
-    $client->FechaNacimiento = $request->nacimiento;
-    $client->Equipo = $request->equipo;
-    $client->Telefono = $request->telefono;
-    $client->Pais_id = $request->pais;
-    $client->EstadoCivil_id = $request->estado_civil;
-    $client->Borrado = false;
-    $client->Activo = true;
+    $client->nombre = $request->nombre; 
+    $client->apellido = $request->apellido; 
+    $client->email = strtolower($request->correo);
+    $client->password = bcrypt($request->password);
+    $client->tipoCuenta = 'ONE';
+    $client->providerId = '';
+    $client->sexo = $request->genero;
+    $client->fechaNacimiento = $request->nacimiento;
+    $client->equipo = $request->equipo;
+    $client->telefono = $request->telefono;
+    $client->paisId = $request->pais;
+    $client->estadoCivilId = $request->estado_civil;
 
     if ($request->hasFile('profilePicture')) {
-      $client->Foto = $request->file('profilePicture')->store('avatars', 'public');
+      $client->foto = 'storage/' .$request->file('profilePicture')->store('avatars', 'public');
     } else {
-      $client->Foto = '';
+      $client->foto = '';
     }
 
     $client->save();
 
     return response()->json([
-      'Nombre' => $client->Nombre,
-      'Apellido' => $client->Apellido,
-      'Sexo' => $client->Sexo,
-      'FechaNacimiento' => $client->FechaNacimiento,
-      'Equipo' => $client->Equipo,
-      'Telefono' => $client->Telefono,
-      'Pais_id' => $client->Pais_id,
-      'EstadoCivil_id' => $client->EstadoCivil_id,
-      'Foto' => $client->Foto,
+      'Nombre' => $client->nombre,
+      'Apellido' => $client->apellido,
+      'Sexo' => $client->sexo,
+      'FechaNacimiento' => $client->fechaNacimiento,
+      'Equipo' => $client->equipo,
+      'Telefono' => $client->telefono,
+      'Pais_id' => $client->paisId,
+      'EstadoCivil_id' => $client->estadoCivilId,
+      'Foto' => $client->foto,
     ], 200);
+  }
+
+  public function read (Request $request) {
+    $user = $request->user();
+
+    return response()->json([
+      '_id' => $user->_id,
+      'correo' => $user->email,
+      'nombre' => $user->nombre,
+      'apellido' => $user->apellido,
+      'fechaNacimiento' => $user->fechaNacimiento,
+      'sexo' => $user->sexo,
+      'foto' => $user->foto,
+      'telefono' => $user->telefono,
+      'tipoCuenta' => $user->tipoCuenta,
+      'providerId' => $user->providerId,
+      'equipoId' => $user->equipo,
+      'paisId' => $user->paisId,
+      'estadoCivilId' => $user->estadoCivilId,
+      'creado' => $user->creado,
+    ]);
   }
 
   public function update (Request $request) {
@@ -332,7 +354,7 @@ class ClienteController extends Controller
      * validation to work correctly
      */
     $data = $request->except('equipo');
-    $data['equipo'] = intval($request->equipo);
+    $data['equipo'] = $request->equipo == '' ?  null : intval($request->equipo);
 
     Validator::make($data, [
       'nombre' => 'required|string',
@@ -343,45 +365,66 @@ class ClienteController extends Controller
       'profilePicture' => 'file|image',
       'telefono' => 'nullable|string',
       'avatarURL' => 'nullable|string',
-      'pais' => 'required|string|exists:Pais,_id',
-      'equipo' => 'nullable|integer|exists:Clubs,id',
-      'userId' => 'required|string|exists:Clientes,_id',
+      'pais' => 'nullable|string|exists:Pais,_id',
+      'equipo' => 'nullable|integer|exists:Clubs,id'
     ])->validate();
 
-    $client = Cliente::where('_id', $request->userId)->first();
+    $client = $request->user();
 
-    $client->Nombre = $request->nombre; 
-    $client->Apellido = $request->apellido; 
-    $client->Sexo = $request->genero;
-    $client->FechaNacimiento = $request->nacimiento;
-    $client->Equipo = $request->equipo;
-    $client->Telefono = $request->telefono;
-    $client->Pais_id = $request->pais;
-    $client->EstadoCivil_id = $request->estado_civil;
+    $client->nombre = $request->nombre; 
+    $client->apellido = $request->apellido; 
+    $client->sexo = $request->genero;
+    $client->fechaNacimiento = $request->nacimiento;
+    $client->equipo = $request->equipo;
+    $client->telefono = $request->telefono;
+    $client->paisId = $request->pais;
+    $client->estadoCivilId = $request->estado_civil;
     
     if ($request->hasFile('profilePicture')) {
-      if ($client->Foto) 
-        Storage::disk('public')->delete($client->Foto);
+      if ($client->foto) 
+        Storage::disk('public')->delete($client->foto);
 
-      $client->Foto = $request->file('profilePicture')->store('avatars', 'public');
+      $client->foto = 'storage/' . $request->file('profilePicture')->store('avatars', 'public');
     
-    } else if (!$request->avatarURL && $client->Foto) {
-      Storage::disk('public')->delete($client->Foto);
-      $client->Foto = '';
+    } else if (!$request->avatarURL && $client->foto) {
+      Storage::disk('public')->delete($client->foto);
+      $client->foto = '';
     }
 
     $client->save();
 
     return response()->json([
-      'Nombre' => $client->Nombre,
-      'Apellido' => $client->Apellido,
-      'Sexo' => $client->Sexo,
-      'FechaNacimiento' => $client->FechaNacimiento,
-      'Equipo' => $client->Equipo,
-      'Telefono' => $client->Telefono,
-      'Pais_id' => $client->Pais_id,
-      'EstadoCivil_id' => $client->EstadoCivil_id,
-      'Foto' => $client->Foto,
+      'nombre' => $client->nombre,
+      'apellido' => $client->apellido,
+      'sexo' => $client->sexo,
+      'fechaNacimiento' => $client->fechaNacimiento,
+      'equipo' => $client->equipo,
+      'telefonos' => $client->telefonos,
+      'paisId' => $client->paisId,
+      'estadoCivilId' => $client->estadoCivilId,
+      'foto' => $client->foto,
     ], 200);
+  }
+
+  public function socialAuthenticate (Request $request) {
+    $token = $request->header('Authorization');
+
+    $client = Cliente::where('api_token', $token)->first();
+
+    if (!$client) {
+      return response()->json([
+        'errors' => [
+          'email' => 'El usuario no fue encontrado, inténtelo nuevamente'
+        ]
+      ], 422);
+    }
+
+    return response()->json([
+      '_id' => $client->_id,
+      'Nombre' => $client->Nombre,
+      'Correo' => $client->Correo,
+      'Foto' => $client->Foto,
+      'apiToken' => $token, 
+    ]);
   }
 }

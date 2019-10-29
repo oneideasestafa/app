@@ -11,7 +11,7 @@ function NotAuthRoute ({component: Component, isLoggedIn, ...rest}) {
       ) : (
         <Redirect 
           to={{
-            pathname: '/'
+            pathname: '/questionEvent'
           }}
         />
       )}

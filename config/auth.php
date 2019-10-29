@@ -42,9 +42,9 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver' => 'passport',
             'provider' => 'Clientes',
-            //'provider' => 'users',
+            // 'provider' => 'Clientes',
             'hash' => true,
         ],
         'usuarios' => [
@@ -77,7 +77,7 @@ return [
     'providers' => [
         'Clientes' => [
             'driver' => 'eloquent',
-            'model' => App\Models\MongoDB\Cliente::class,
+            'model' => App\User::class,
         ],
 
         'Usuarios' => [

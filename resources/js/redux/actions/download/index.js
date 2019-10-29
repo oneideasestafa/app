@@ -4,13 +4,14 @@ import {
   SET_DOWNLOAD_PROGRESS,
   FILE_FINISHED_DOWNLOADING
 } from './types';
+import { request } from './../../../config/axios';
 
 export function getFilesFromEvent (eventId) {
   return (dispatch, getState) => {
-    const { events: { current }  } = getState();
+    const { events: { current }, auth: { accessToken }  } = getState();
 
-    return axios.get(`api/event/${eventId}/files`, {
-      headers: { Authorization: localStorage.getItem('api_token') }
+    return request.get(`api/event/${eventId}/files`, {
+      headers: { Authorization: `Bearer ${accessToken}` }
     })
     .then(res => {
       const promises = res.data.map(file => ({

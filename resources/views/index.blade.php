@@ -6,7 +6,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="api-base-url" content="{{ url('/') }}" />
     <link rel="manifest" href="{{ url('/manifest.json') }}">
-    <link rel="alternate" href="android-app://ar.com.oneshow.app/http/192.168.1.4:8001" />
     <meta name="theme-color" content="#FFFFFF"/>
 
     {{-- checks for service worker support.if you have the push manager package then use this line
@@ -58,7 +57,7 @@
     <meta http-equiv="Content-Security-Policy" content="* * 'self' default-src * data: blob: 'unsafe-inline' 'unsafe-eval' ws: wss: cdvfile: file: ;">
 </head>
 
-<body class="roboto-condensed">
+<body class="roboto-condensed" style="background: rgb(49, 49, 49) !important">
 
  
 <div id="app" data-url="{{ url('/') }}" data-googleplay="{{ config('app.url-google-play') }}" data-applestore="{{ config('app.url-app-store') }}" >
@@ -85,7 +84,7 @@
         }else if (isCordovaAndroid()){
             var script = document.createElement( "script" );
             script.type = "text/javascript";
-            script.src = window.location.protocol+'//'+window.location.host+'/cordova_prueba/cordova.js';
+            script.src = window.location.protocol+'//'+window.location.host+'/cordova/cordova.js';
             document.getElementsByTagName('head')[0].appendChild(script)
         }
     </script>
