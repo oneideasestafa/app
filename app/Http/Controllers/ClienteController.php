@@ -277,7 +277,7 @@ class ClienteController extends Controller
 
     Validator::make($data, [
       'nombre' => 'required|string',
-      'correo' => 'required|unique:Clientes,Correo',
+      'correo' => 'required|unique:Clientes,email',
       'password' => 'required|string|min:6',
       'apellido' => 'required|string',
       'nacimiento' => 'required|date',

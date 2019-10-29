@@ -1,6 +1,6 @@
 import axios from 'axios';
 import store from './../redux';
-import { refreshUserTokens } from './../redux/actions/auth';
+import { refreshUserTokens, logout } from './../redux/actions/auth';
 
 export const request = axios.create({
   headers: {
@@ -43,6 +43,8 @@ request.interceptors.response.use(response => {
 
       return axios(config);
     })
+    .catch(err => store.dispatch(logout()));
+    
   } else {
     return Promise.reject(error);
   }

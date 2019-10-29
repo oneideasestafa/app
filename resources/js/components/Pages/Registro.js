@@ -252,7 +252,7 @@ export default class RegistroCliente extends React.Component {
         'upload',
         [
           foto, // filePath
-          `${process.env.MIX_APP_URL}/api/usuarios/registro`, // Server
+          `${process.env.MIX_APP_URL}/api/user`, // Server
           'profilePicture', // fileKey
           foto.substr(foto.lastIndexOf('/') + 1), // fileName
           '', // mimeType
@@ -269,7 +269,7 @@ export default class RegistroCliente extends React.Component {
       );
     
     } else {      
-      axios.post('/api/usuarios/registro', data, {
+      axios.post('/api/user', data, {
         headers: {
           Authorization: localStorage.getItem('api_token')
         }
@@ -305,8 +305,6 @@ export default class RegistroCliente extends React.Component {
   }
 
   handleSuccessfulSignup (res) {
-    console.log('res', res);
-
     if (res.response) {
       this.setState({
         isLoading: false,
@@ -347,9 +345,7 @@ export default class RegistroCliente extends React.Component {
       sexo, 
       equipo, 
       telefono, 
-      tipofoto, 
-      time,
-      alert
+      time
     } = this.state;
 
     return (

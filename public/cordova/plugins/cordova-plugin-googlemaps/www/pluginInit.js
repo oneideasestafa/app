@@ -91,7 +91,7 @@ function pluginInit() {
   var cssAdjuster = document.createElement('style');
   cssAdjuster.setAttribute('type', 'text/css');
   cssAdjuster.innerText = [
-    'html, ._gmaps_cdv_ {',
+    '._gmaps_cdv_ {',
     '   background-image: url() !important;',
     '   background: rgba(0,0,0,0) url() !important;',
     '   background-color: rgba(0,0,0,0) !important;',
