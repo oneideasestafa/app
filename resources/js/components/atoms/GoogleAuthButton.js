@@ -12,6 +12,8 @@ function GoogleAuthButton (props) {
   function handleGoogleAuth (e) {
     e.preventDefault();
 
+    props.onStart();
+
     window.plugins.googleplus.login({
       webClientId: process.env.MIX_APP_GOOGLE_CLIENT_ID,
       offline: true
@@ -19,9 +21,9 @@ function GoogleAuthButton (props) {
       const { accessToken } = success;
 
       props.socialAuthentication('google', accessToken)
-        .catch(e => console.log('error 2', e));
+        .catch(e => props.onError());
       
-    }, error => console.log('error', error))
+    }, error => props.onError())
   }
 
   

@@ -54,6 +54,8 @@ class SocialAccountService {
         $user->save();
 
         $user = User::where('tipoCuenta', $provider)->where('providerId', $providerUser->getId())->first();
+      } else {
+        return null;
       }
       
       return $user;

@@ -16,6 +16,7 @@ export default class Ingreso extends Component {
         super(props);
         this.state = {
             url: props.url,
+            error: '',
             urlGooglePlay: props.googleplay,
             urlAppleStore: props.applestore
         };
@@ -57,6 +58,11 @@ export default class Ingreso extends Component {
               />
             </div>
             <div className="text-center">
+              {this.state.error !== '' &&
+                <div className="alert alert-danger">
+                  {this.state.error}
+                </div>
+              }
               <Link
                 to={{
                   pathname: "/login",
@@ -83,11 +89,23 @@ export default class Ingreso extends Component {
             <div className="text-center mb-5">
               <FacebookAuthButton 
                 block={true}
-                className="mb-2" 
+                className="mb-2"
+                onStart={() => this.setState({
+                  error: '',
+                })}
+                onError={() => this.setState({
+                  error: 'El correo que utilizó ya está en uso'
+                })}
               />
               <GoogleAuthButton 
                 block={true}
-                className="mb-2" 
+                className="mb-2"
+                onStart={() => this.setState({
+                  error: '',
+                })}
+                onError={() => this.setState({
+                  error: 'El correo que utilizó ya está en uso'
+                })}
               />
             </div>
           </div>

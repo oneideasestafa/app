@@ -92,6 +92,10 @@ export function socialAuthentication (provider, provAccessToken) {
       const user = res.data;
 
       dispatch(login(user, auth.accessToken, auth.refreshToken));
+    }, err => {
+      dispatch(appFinishLoading());
+
+      return Promise.reject(err);
     })
     .then(() => dispatch(appFinishLoading()));
   }

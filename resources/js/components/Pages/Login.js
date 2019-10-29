@@ -18,13 +18,12 @@ class Login extends Component {
             url: window.location.origin.toString(),
             correo: "",
             pass: "",
+            error: '',
             isLoading: false
         };
 
         this.handleLogin = this.handleLogin.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.handleFacebookAuth = this.handleFacebookAuth.bind(this);
-        this.handleGoogleAuth = this.handleGoogleAuth.bind(this);
     }
 
     /**
@@ -47,7 +46,8 @@ class Login extends Component {
       e.preventDefault();
 
       this.setState({
-          isLoading: true
+          isLoading: true,
+          error: '',
       });
 
       const email = this.state.correo;
@@ -70,33 +70,6 @@ class Login extends Component {
       });
     }
 
-    handleFacebookAuth (e) {
-      e.preventDefault();
-
-      facebookConnectPlugin.login(['public_profile'], success => {
-        const { authResponse } = success;
-
-        this.props.socialAuthentication('facebook', authResponse.accessToken)
-        .catch(e => console.log('error 2', e));
-
-      }, error => console.log('error', error));
-    }
-
-    handleGoogleAuth (e) {
-      e.preventDefault();
-
-      window.plugins.googleplus.login({
-        webClientId: process.env.MIX_APP_GOOGLE_CLIENT_ID,
-        offline: true
-      }, success => {
-        const { accessToken } = success;
-
-        this.props.socialAuthentication('google', accessToken)
-        .catch(e => console.log('error 2', e));
-        
-      }, error => console.log('error', error))
-    }
-
     render() {
       let correo = this.state.correo;
       let pass = this.state.pass;
@@ -116,6 +89,11 @@ class Login extends Component {
                 className="img-fluid logo-box-index"
               />
             </div>
+            {this.state.error !== '' &&
+              <div className="alert alert-danger">
+                {this.state.error}
+              </div>
+            }
             <div className="input-group mb-4 mt-4">
               <div className="input-group-prepend">
                 <i className="fa fa-envelope fa-lg" />
@@ -164,11 +142,23 @@ class Login extends Component {
           <div className="text-center mb-5">
             <FacebookAuthButton 
               block={true}
-              className="mb-2" 
+              className="mb-2"
+              onStart={() => this.setState({
+                error: '',
+              })}
+              onError={() => this.setState({
+                error: 'El correo que utilizó ya está en uso'
+              })}
             />
             <GoogleAuthButton 
               block={true}
-              className="mb-2" 
+              className="mb-2"
+              onStart={() => this.setState({
+                error: '',
+              })}
+              onError={() => this.setState({
+                error: 'El correo que utilizó ya está en uso'
+              })}
             />
           </div>
           <div className="text-center">

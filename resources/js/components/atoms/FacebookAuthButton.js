@@ -12,13 +12,15 @@ function FacebookAuthButton (props) {
   function handleFacebookAuth (e) {
     e.preventDefault();
 
+    props.onStart();
+
     facebookConnectPlugin.login(['public_profile'], success => {
       const { authResponse } = success;
 
       props.socialAuthentication('facebook', authResponse.accessToken)
-        .catch(e => console.log('error 2', e));
+        .catch(e => props.onError());
 
-    }, error => console.log('error', error));
+    }, error => props.onError());
   }
   
   return (
