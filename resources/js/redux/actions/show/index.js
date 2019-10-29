@@ -7,12 +7,16 @@ import {
   WIPE_JOBS,
   GET_LATEST_JOBS
 } from './types';
+import { request } from './../../../config/axios';
 import axios from 'axios';
 
 export function fetchJobs (eventId, time) {
-  return dispatch => {
-    return axios.get(`api/eventos/jobs/${eventId}/${time.getTime()}`, {
-      headers: { Authorization: localStorage.getItem('api_token') }
+  return (dispatch, getState) => {
+    
+    const { accessToken } = getState().auth;
+
+    return request.get(`api/event/${eventId}/jobs/${time.getTime()}`, {
+      headers: { Authorization: `Bearer ${accessToken}` }
     })
     .then(res => dispatch(saveJobs(res.data.jobs)))
   }

@@ -1,3 +1,11 @@
 export const LOG_USER_IN = 'LOG_USER_IN';
 
 export const LOG_USER_OUT = 'LOG_USER_OUT';
+
+export const REFRESH_USER_TOKENS = 'REFRESH_USER_TOKENS';
+
+export const REFRESH_USER_DATA = 'REFRESH_USER_DATA';
+
+export const APP_START_LOADING = 'APP_START_LOADING';
+
+export const APP_FINISH_LOADING = 'APP_FINISHED_LOADING';

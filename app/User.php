@@ -2,42 +2,71 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-//use Illuminate\Foundation\Auth\User as Authenticatable;
-use Jenssegers\Mongodb\Auth\User as Authenticatable;
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
 use Jenssegers\Mongodb\Eloquent\Model;
-use HasApiTokens;
-
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use DesignMyNight\Mongodb\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+  use HasApiTokens, SoftDeletes, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+  /**
+   * The collection name in the database
+   * 
+   * @var string
+   */
+  protected $collection = 'Clientes';
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+  /**
+   * The primary key associated with the table.
+   *
+   * @var string
+   */
+  protected $primaryKey = '_id';
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+  /**
+   * Indicates if the IDs are auto-incrementing.
+   *
+   * @var bool
+   */
+  public $incrementing = false;
+
+  /**
+   * The "type" of the auto-incrementing ID.
+   *
+   * @var string
+   */
+  protected $keyType = 'string';
+
+  const CREATED_AT = 'creado';
+  
+  const UPDATED_AT = 'actualizado';
+  
+  const DELETED_AT = 'borrado';
+
+  /**
+   * The attributes that are mass assignable.
+   *
+   * @var array
+   */
+  protected $fillable = [
+    'nombre',
+    'apellido',
+    'email',
+    'tipoCuenta',
+    'providerId',
+    'foto'
+  ];
+
+  /**
+   * The model's default values for attributes.
+   *
+   * @var array
+   */
+  protected $attributes = [
+    'activo' => true,
+  ];
 }
