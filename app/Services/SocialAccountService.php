@@ -34,14 +34,19 @@ class SocialAccountService {
       }
 
       if (!$user) {
-        $user = User::create([
-          'nombre' => $providerUser->getName(),
-          'apellido' => $providerUser->getName(),
-          'email' => $providerUser->getEmail(),
-          'tipoCuenta' => $provider,
-          'providerId' => $providerUser->getId(),
-          'foto' => $providerUser->getAvatar()
-        ]);
+        
+        $user = new User();
+        
+        $user->nombre = $providerUser->getName();
+        $user->apellido = $providerUser->getName();
+        $user->email = $providerUser->getEmail();
+        $user->tipoCuenta = $provider;
+        $user->providerId = $providerUser->getId();
+        $user->foto = $providerUser->getAvatar();
+        
+        $user->save();
+
+        $user = User::where('tipoCuenta', $provider)->where('providerId', $providerUser->getId())->first();
       }
       
       return $user;

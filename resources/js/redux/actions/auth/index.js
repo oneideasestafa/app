@@ -58,7 +58,7 @@ export function socialAuthentication (provider, provAccessToken) {
 
     dispatch(appStartedLoading());
 
-    if (process.env.NODE_ENV !== 'development') {
+    if (process.env.NODE_ENV === 'development') {
       
       requestToken = axios.post('/oauth/token', {
         grant_type: 'social',

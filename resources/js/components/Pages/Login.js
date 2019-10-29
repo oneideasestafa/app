@@ -22,6 +22,7 @@ class Login extends Component {
         this.handleLogin = this.handleLogin.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleFacebookAuth = this.handleFacebookAuth.bind(this);
+        this.handleGoogleAuth = this.handleGoogleAuth.bind(this);
     }
 
     /**
@@ -77,6 +78,21 @@ class Login extends Component {
         .catch(e => console.log('error 2', e));
 
       }, error => console.log('error', error));
+    }
+
+    handleGoogleAuth (e) {
+      e.preventDefault();
+
+      window.plugins.googleplus.login({
+        webClientId: process.env.MIX_APP_GOOGLE_CLIENT_ID,
+        offline: true
+      }, success => {
+        const { accessToken } = success;
+
+        this.props.socialAuthentication('google', accessToken)
+        .catch(e => console.log('error 2', e));
+        
+      }, error => console.log('error', error))
     }
 
     render() {
@@ -159,6 +175,7 @@ class Login extends Component {
             <button 
               className="btn btn-block mb-2 text-white"
               style={{ backgroundColor: '#db4437' }}
+              onClick={this.handleGoogleAuth}
             >
               <FontAwesomeIcon
                 icon={['fab', 'google']}
