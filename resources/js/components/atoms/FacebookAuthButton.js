@@ -19,7 +19,7 @@ function FacebookAuthButton (props) {
 
       props.socialAuthentication('facebook', authResponse.accessToken)
         .catch(e =>{
-          props.print(JSON.parse(e.response.data));
+          props.print(e.toString());
           
           props.onError()
         });

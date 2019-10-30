@@ -22,7 +22,7 @@ function GoogleAuthButton (props) {
 
       props.socialAuthentication('google', accessToken)
         .catch(e => {
-          props.print(JSON.parse(e.response.data));
+          props.print(e.toString());
           
           props.onError()
         });
