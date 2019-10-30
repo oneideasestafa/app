@@ -21,13 +21,11 @@ function GoogleAuthButton (props) {
       const { accessToken } = success;
 
       props.socialAuthentication('google', accessToken)
-        .catch(e => {
-          props.print(JSON.stringify(e.response));
-          
-          props.onError()
+        .catch(e => {          
+          props.onError();
         });
       
-    }, error => props.onError())
+    }, error => {})
   }
 
   
