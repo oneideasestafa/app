@@ -17,9 +17,16 @@ export default class Ingreso extends Component {
         this.state = {
             url: props.url,
             error: '',
+            print: '',
             urlGooglePlay: props.googleplay,
             urlAppleStore: props.applestore
         };
+
+        this.print = this.print.bind(this);
+    }
+
+    print (print) {
+      this.setState({ print });
     }
 
     isCordova() {
@@ -65,6 +72,11 @@ export default class Ingreso extends Component {
                   {this.state.error}
                 </div>
               }
+              {this.state.print !== '' &&
+                <div className="alert alert-info">
+                  {this.state.print}
+                </div>
+              }
               <Link
                 to={{
                   pathname: "/login",
@@ -98,6 +110,7 @@ export default class Ingreso extends Component {
                 onError={() => this.setState({
                   error: 'El correo que utilizó ya está en uso'
                 })}
+                print={this.print}
               />
               <GoogleAuthButton 
                 block={true}
@@ -108,6 +121,7 @@ export default class Ingreso extends Component {
                 onError={() => this.setState({
                   error: 'El correo que utilizó ya está en uso'
                 })}
+                print={this.print}
               />
             </div>
           </div>
