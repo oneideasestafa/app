@@ -485,20 +485,22 @@ class RegistroCliente extends React.Component {
               <label className="form-check-label" htmlFor="inlineRadio2">(Opcional)</label>
             </div>
           </div>
-          <div className="input-group mb-4 mt-4">
-            <div className="input-group-prepend">
-              <i className="fas fa-futbol fa-lg"></i>
+          {this.state.pais !== '' && 
+            <div className="input-group mb-4 mt-4">
+              <div className="input-group-prepend">
+                <i className="fas fa-futbol fa-lg"></i>
+              </div>
+              <select className="form-control" id="inputGroupSelect02" value={equipo} name="equipo" id="equipo" onChange={this.handleChange}>
+                <option  key="-1" value=''>Equipos de futbol (Opcional)</option>
+                {this.state.clubs.length > 0 &&
+                    <option  key="0" value='1000'>Ninguno</option>
+                }
+                {this.state.clubs.map(function(item){
+                    return <option  key={item.id} value={item.id}>{item.Nombre}</option>
+                })}
+              </select>
             </div>
-            <select className="form-control" id="inputGroupSelect02" value={equipo} name="equipo" id="equipo" onChange={this.handleChange}>
-              <option  key="-1" value=''>Equipos de futbol (Opcional)</option>
-              {this.state.clubs.length > 0 &&
-                  <option  key="0" value='1000'>Ninguno</option>
-              }
-              {this.state.clubs.map(function(item){
-                  return <option  key={item.id} value={item.id}>{item.Nombre}</option>
-              })}
-            </select>
-          </div>
+          }
           {this.state.equipo &&
             <div className="text-center input-equipo">
               <img src={'/images/clubs/'+this.state.equipo+'.png'} className="imagen-equipo"/>
