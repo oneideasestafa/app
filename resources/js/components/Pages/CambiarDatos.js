@@ -4,7 +4,6 @@ import { request } from './../../config/axios';
 import imgAR from '../../../../public/images/countrys/ar.png';
 import imgCL from '../../../../public/images/countrys/es.png';
 import iconCivil from '../../../../public/images/EstadoCivil01.png';
-import reactMobileDatePicker from 'react-mobile-datepicker';
 import ProfileImage from './../atoms/ProfileImage';
 import moment from 'moment';
 import { fetchUser } from './../../redux/actions/auth';
@@ -12,30 +11,7 @@ import { fetchMaritalStatus, fetchFootballTeams } from './../../redux/actions/ap
 import { connect } from 'react-redux';
 
 /** Importando estilos css del componente */
-import "../../../css/components/CambiarDatos.css"
-
-const Datepicker = reactMobileDatePicker;
-
-/**
- * Creando el json para trabajar con las fechas
- */
-const dateConfig = {
-    'year': {
-        format: 'YYYY',
-        caption: 'Año',
-        step: 1,
-    },
-    'month': {
-        format: 'MM',
-        caption: 'Mes',
-        step: 1,
-    },
-    'date': {
-        format: 'DD',
-        caption: 'Dia',
-        step: 1,
-    }
-};
+import "../../../css/components/CambiarDatos.css";
 
 class CambiarDatos extends Component {
   constructor(props) {
@@ -45,7 +21,7 @@ class CambiarDatos extends Component {
       nombre: '',
       apellido: '',
       sexo: '',
-      FechaNacimiento: '',
+      fechaNacimiento: new Date(),
       equipo: '',
       civil: '',
       clubs:[],
@@ -67,10 +43,8 @@ class CambiarDatos extends Component {
     this.handleSuccessfulUpdate = this.handleSuccessfulUpdate.bind(this);
     this.handleErrorOnUpdate = this.handleErrorOnUpdate.bind(this);
     this.handleCountryChange = this.handleCountryChange.bind(this);
-    this.handleToggle = this.handleToggle.bind(this);
-    this.handleThemeToggle = this.handleThemeToggle.bind(this);
-    this.handleSelect = this.handleSelect.bind(this);
     this.chooseImageSource = this.chooseImageSource.bind(this);
+    this.handleDatePicker = this.handleDatePicker.bind(this);
     this.transferId = 1;
   }
 
@@ -88,11 +62,11 @@ class CambiarDatos extends Component {
         apellido: user.apellido,
         correo: user.correo,
         sexo: user.sexo,
-        equipo: user.equipoId,
+        equipo: user.equipoId === null ? '' : user.equipoId,
         fechaNacimiento: moment(user.fechaNacimiento, 'YYYY/MM/DD').toDate(),
         cuenta: user.tipoCuenta,
         civil: user.estadoCivilId,
-        pais: user.paisId,
+        pais: user.paisId === null ? '' : user.paisId,
         telefono: user.telefono,
         foto: user.foto,
         estadosciviles: status,
@@ -165,27 +139,17 @@ class CambiarDatos extends Component {
   }
 
   /**
-   * Esta funcion se activa al dar click fuera del modal de fecha
-   * @param {*} isOpen 
+   * Esta funcion abre el modal de fecha
    */
-  handleToggle(isOpen) {
-    this.setState({ isOpen });
-  };
-
-  /**
-   * Esta funcion abre el modal de fechas al dar click en fecha
-   */
-  handleThemeToggle() {
-      var theme='android-dark';
-      this.setState({ theme, isOpen: true });
-  };
-
-  /**
-   * Esta funcion recibe la fecha al seleccionar en el modal de fechas
-   * @param {fecha} time 
-   */
-  handleSelect(time){
-      this.setState({ fechaNacimiento: time, isOpen: false, FechaNacimiento:time });
+  handleDatePicker () {
+    datePicker.show({
+      mode: 'date',
+      androidTheme: datePicker.ANDROID_THEMES.THEME_DEVICE_DEFAULT_DARK,
+      date: this.state.fechaNacimiento,
+      maxDate: new Date(),
+    }, date => this.setState({
+      fechaNacimiento: date,
+    }), error => console.log('error picking', error));
   };
 
   /**
@@ -401,23 +365,9 @@ class CambiarDatos extends Component {
               type="text" 
               name="fecha"
               style={{ borderStyle: 'solid' }}
-              onClick={this.handleThemeToggle}
+              onClick={this.handleDatePicker}
               value={fechaNacimiento.getDate()+'/'+(fechaNacimiento.getMonth() + 1) +'/'+fechaNacimiento.getFullYear()} 
               className="form-control"
-            />
-            <Datepicker
-              theme="dark"
-              max={new Date()}
-              showHeader={true}
-              showCaption={true}
-              cancelText="Cancelar"
-              dateConfig={dateConfig}
-              confirmText="Seleccionar"
-              isOpen={this.state.isOpen}
-              headerFormat={'DD/MM/YYYY'}
-              onSelect={this.handleSelect}
-              value={this.state.fechaNacimiento}
-              onCancel={(e) => this.handleToggle(false)}
             />
           </div>
           <div className="input-group mb-4">
@@ -509,20 +459,22 @@ class CambiarDatos extends Component {
               <label className="form-check-label" htmlFor="inlineRadio2"><img src={imgCL} className="img-country" /></label>
             </div>
           </div>
-          <div className="input-group mb-4 mt-4">
-            <div className="input-group-prepend">
-              <i className="fas fa-futbol fa-lg"></i>
+          {this.state.pais !== '' && 
+            <div className="input-group mb-4 mt-4">
+              <div className="input-group-prepend">
+                <i className="fas fa-futbol fa-lg"></i>
+              </div>
+              <select className="form-control" id="inputGroupSelect02" value={equipo} name="equipo" id="equipo" onChange={this.handleChange}>
+                <option  value=''>Equipos de futbol</option>
+                { this.state.clubs.length > 0 &&
+                  <option  key="0" value='1000'>Ninguno</option>
+                }
+                {this.state.clubs.map(item => (
+                  <option  key={item.id} value={item.id}>{item.Nombre}</option>
+                ))}
+              </select>
             </div>
-            <select className="form-control" id="inputGroupSelect02" value={equipo} name="equipo" id="equipo" onChange={this.handleChange}>
-              <option  value=''>Equipos de futbol</option>
-              { this.state.clubs.length > 0 &&
-                <option  key="0" value='1000'>Ninguno</option>
-              }
-              {this.state.clubs.map(item => (
-                <option  key={item.id} value={item.id}>{item.Nombre}</option>
-              ))}
-            </select>
-          </div>
+          }
           { this.state.equipo !== '' &&
             <div className="text-center contenedor-imagen-equipo" >
               <img className="imagen-equipo" src={'/images/clubs/'+this.state.equipo+'.png'} />

@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { connect } from 'react-redux';
-import { authenticate, socialAuthentication } from '../../redux/actions/auth';
+import { authenticate, appFinishLoading, appStartedLoading } from '../../redux/actions/auth';
 import logoOne from "../../../../public/images/logo-one.png";
 import GoogleAuthButton from './../atoms/GoogleAuthButton';
 import FacebookAuthButton from './../atoms/FacebookAuthButton';
-import swal from "sweetalert2";
+import Alert from './../atoms/Alert';
 
 /**Importando estilos del componente */
 import "./../../../css/pages/Login.css";
@@ -16,8 +16,8 @@ class Login extends Component {
         super(props);
         this.state = {
             url: window.location.origin.toString(),
-            correo: "",
-            pass: "",
+            correo: '',
+            pass: '',
             error: '',
             isLoading: false
         };
@@ -46,28 +46,29 @@ class Login extends Component {
       e.preventDefault();
 
       this.setState({
-          isLoading: true,
-          error: '',
+        error: '',
       });
 
       const email = this.state.correo;
       const password = this.state.pass;
 
+      this.props.appStartedLoading();
+
       this.props.authenticate(email, password)
       .catch(error => {
-          if (error.response.status == 422) {
-              this.setState({
-                isLoading: false
-              });
+        let message = '';
 
-              swal({
-                  title: '<i class="fas fa-exclamation-circle"></i>',
-                  text: error.response.data,
-                  confirmButtonColor: "#343a40",
-                  confirmButtonText: "Ok"
-              });
-          }
-      });
+        if (error.response.status === 401) {
+          message = error.response.data.message;
+        } else {
+          message = 'Ha ocurrido un error al tratar de iniciar sesión, por favor intente de nuevo.'
+        }
+        
+        this.setState({
+          error: message
+        });
+      })
+      .then(() => this.props.appFinishLoading());
     }
 
     render() {
@@ -89,10 +90,13 @@ class Login extends Component {
                 className="img-fluid logo-box-index"
               />
             </div>
-            {this.state.error !== '' &&
-              <div className="alert alert-danger">
+            {this.state.error !== '' && 
+              <Alert 
+                type="danger" 
+                onClose={() => this.setState({error: ''})}
+              >
                 {this.state.error}
-              </div>
+              </Alert>
             }
             <div className="input-group mb-4 mt-4">
               <div className="input-group-prepend">
@@ -104,7 +108,7 @@ class Login extends Component {
                 name="correo"
                 value={correo}
                 onChange={this.handleChange}
-                className="form-control"
+                className="form-control p-2"
                 placeholder="Ingrese su correo"
               />
             </div>
@@ -118,7 +122,7 @@ class Login extends Component {
                 name="pass"
                 value={pass}
                 onChange={this.handleChange}
-                className="form-control"
+                className="form-control p-2"
                 placeholder="Ingrese su contraseña"
               />
             </div>
@@ -127,10 +131,7 @@ class Login extends Component {
                 type="submit"
                 className="btn btn-negro btn-box-index"
               >
-                {this.state.isLoading &&
-                  <FontAwesomeIcon icon="sync" size="lg" spin />
-                }
-                &nbsp;&nbsp; Ingresar
+                Ingresar
               </button>
             </div>
           </form>
@@ -181,7 +182,8 @@ class Login extends Component {
 
 const mapDispatchToProps = dispatch => ({
   authenticate: (email, password) => dispatch(authenticate(email, password)),
-  socialAuthentication: (provider, accessToken) => dispatch(socialAuthentication(provider, accessToken)),
+  appStartedLoading: () => dispatch(appStartedLoading()),
+  appFinishLoading: () => dispatch(appFinishLoading()),
 });
 
 export default connect(null, mapDispatchToProps)(Login);
