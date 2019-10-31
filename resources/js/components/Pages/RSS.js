@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import swal from "sweetalert2";
 import { connect } from 'react-redux';
+import { request } from './../../config/axios';
 import { setCurrentPage } from '../../redux/actions/navigation';
 import Spinner from '../atoms/Spinner';
 
@@ -10,7 +11,6 @@ class RSS extends React.Component {
     super(props);
 
     this.state = {
-        api_token: localStorage.getItem("api_token"),
         estilosCuadroDeComentarios: {
             'marginTop': '0.5rem',
             'color': '#000 !important',
@@ -82,13 +82,13 @@ class RSS extends React.Component {
     this.setState({ estaCargando: true });
     
     let datosDelFormulario = new FormData();
-    datosDelFormulario.append("eventoId", localStorage.getItem("eventoId"));
+    datosDelFormulario.append("eventoId", this.props.eventId);
     datosDelFormulario.append("descripcion", document.getElementById("descripcion").value);
     datosDelFormulario.append("rutaDeImagen", (this.state.imagenCodificada) ? this.state.imagenCodificada : null);
 
-    axios.post('api/eventos/RSS', datosDelFormulario, {
+    request.post('api/event/RSS', datosDelFormulario, {
         headers: {
-            Authorization: this.state.api_token
+            Authorization: `Bearer ${this.props.accessToken}`
         },
     }).then(() => {
         swal(
@@ -169,7 +169,9 @@ class RSS extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  current: state.navigation.current
+  current: state.navigation.current,
+  eventId: state.events.current._id,
+  accessToken: state.auth.accessToken
 });
 
 const mapDispatchToProps = dispatch => ({
