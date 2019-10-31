@@ -17,13 +17,16 @@ export default class Ingreso extends Component {
         this.state = {
             url: props.url,
             error: '',
+            print: '',
             urlGooglePlay: props.googleplay,
             urlAppleStore: props.applestore
         };
     }
+
     isCordova() {
         return navigator.userAgent.match(/(Cordova)/);
     }
+    
     getOS() {
         let userAgent = window.navigator.userAgent,
             platform = window.navigator.platform,
@@ -61,6 +64,11 @@ export default class Ingreso extends Component {
               {this.state.error !== '' &&
                 <div className="alert alert-danger">
                   {this.state.error}
+                </div>
+              }
+              {this.state.print !== '' &&
+                <div className="alert alert-info">
+                  {this.state.print}
                 </div>
               }
               <Link

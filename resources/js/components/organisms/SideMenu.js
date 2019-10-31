@@ -105,11 +105,11 @@ class SideMenu extends React.Component {
                 <a 
                   onClick={this.navigate} 
                   data-route="/green-step-1" 
-                  data-name="Pantalla Verde" 
+                  data-name="Chroma Studio" 
                   className="nav-link"
-                  style={{backgroundColor: current === 'Pantalla Verde' ? '#000 !important' : ''}}
+                  style={{backgroundColor: current === 'Chroma Studio' ? '#000 !important' : ''}}
                 >
-                  <i className="fab fa-angellist fa-lg" /> {"    "} Pantalla Verde
+                  <i className="fab fa-angellist fa-lg" /> {"    "} Chroma Studio
                 </a>
               </li>
               <RedesSociales />

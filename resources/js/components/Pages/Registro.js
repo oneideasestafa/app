@@ -1,46 +1,19 @@
 import React from 'react';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSync } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import ProfileImage from './../atoms/ProfileImage';
 import axios from 'axios';
 import swal from "sweetalert2";
-import logoOne from '../../../../public/images/logo-one.png';
-import logoFacebook from '../../../../public/images/social/facebook-icon.svg';
-import logoGoogle from '../../../../public/images/social/google-icon.svg';
-import logoTwitter from '../../../../public/images/social/twitter-icon.svg';
-import logoInstagram from '../../../../public/images/social/instagram-icon.svg';
 import imgAR from '../../../../public/images/countrys/ar.png';
 import imgCL from '../../../../public/images/countrys/es.png';
-import Datepicker from 'react-mobile-datepicker';
 import iconCivil from '../../../../public/images/EstadoCivil01.png';
+import { appStartedLoading, appFinishLoading } from './../../redux/actions/auth';
+import { connect } from 'react-redux';
 
 /**Importando estilos del componente */
 import "./../../../css/pages/Login.css"
 
-library.add(faSync);
-
-// formato JSON de las fechas
-const dateConfig = {
-    'year': {
-        format: 'YYYY',
-        caption: 'Año',
-        step: 1,
-    },
-    'month': {
-        format: 'MM',
-        caption: 'Mes',
-        step: 1,
-    },
-    'date': {
-        format: 'DD',
-        caption: 'Dia',
-        step: 1,
-    }
-};
-
-export default class RegistroCliente extends React.Component {
+class RegistroCliente extends React.Component {
   constructor() {
     super();
     
@@ -56,7 +29,6 @@ export default class RegistroCliente extends React.Component {
       estadosciviles:  [],
       civil: '',
       time: new Date(),
-      isOpen: false,
       fileName: 'Seleccione imagen',
       theme: 'default',
       telefono:'',
@@ -75,9 +47,7 @@ export default class RegistroCliente extends React.Component {
     this.clubs = this.clubs.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleToggle = this.handleToggle.bind(this);
-    this.handleSelect = this.handleSelect.bind(this);
-    this.handleThemeToggle = this.handleThemeToggle.bind(this);
+    this.handleDatePicker = this.handleDatePicker.bind(this);
     this.chooseImageSource = this.chooseImageSource.bind(this);
     this.handleConfirmation = this.handleConfirmation.bind(this);
     this.handleSuccessfulSignup = this.handleSuccessfulSignup.bind(this);
@@ -181,27 +151,17 @@ export default class RegistroCliente extends React.Component {
   }
 
   /**
-   * Esta funcion cambia el state para denotar que el modal de fehca esta open
-   * @param {*} isOpen 
-   */
-  handleToggle(isOpen) {
-    this.setState({ isOpen });
-  };
-
-  /**
    * Esta funcion abre el modal de fecha
    */
-  handleThemeToggle() {
-    this.setState({ isOpen: true });
-  };
-
-  /**
-   * Esta funcion se emite al elegir una fecha
-   * y cambia el state de la variable
-   * @param {fecha} time 
-   */
-  handleSelect(time){
-    this.setState({ time, isOpen: false, edad:time });
+  handleDatePicker () {
+    datePicker.show({
+      mode: 'date',
+      androidTheme: datePicker.ANDROID_THEMES.THEME_DEVICE_DEFAULT_DARK,
+      date: this.state.time,
+      maxDate: new Date(),
+    }, date => this.setState({
+      time: date,
+    }), error => console.log('error picking', error));
   };
 
   /**
@@ -412,23 +372,9 @@ export default class RegistroCliente extends React.Component {
               type="text" 
               name="fecha"
               style={{ borderStyle: 'solid' }}
-              onClick={this.handleThemeToggle}
+              onClick={this.handleDatePicker}
               value={time.getDate()+'/'+(time.getMonth() + 1) +'/'+time.getFullYear()} 
               className="form-control"
-            /> 
-            <Datepicker
-              showCaption={true}
-              showHeader={true}
-              headerFormat="DD/MM/YYYY"
-              value={this.state.time}
-              theme="dark"
-              isOpen={this.state.isOpen}
-              onSelect={this.handleSelect}
-              onCancel={(e) => this.handleToggle(false)} 
-              confirmText="Seleccionar"
-              cancelText="Cancelar"
-              max={new Date()}
-              dateConfig={dateConfig}
             />
           </div>
           <div className="input-group mb-4 mt-4 contenedor-genero" >
@@ -539,29 +485,41 @@ export default class RegistroCliente extends React.Component {
               <label className="form-check-label" htmlFor="inlineRadio2">(Opcional)</label>
             </div>
           </div>
-          <div className="input-group mb-4 mt-4">
-            <div className="input-group-prepend">
-              <i className="fas fa-futbol fa-lg"></i>
+          {this.state.pais !== '' && 
+            <div className="input-group mb-4 mt-4">
+              <div className="input-group-prepend">
+                <i className="fas fa-futbol fa-lg"></i>
+              </div>
+              <select className="form-control" id="inputGroupSelect02" value={equipo} name="equipo" id="equipo" onChange={this.handleChange}>
+                <option  key="-1" value=''>Equipos de futbol (Opcional)</option>
+                {this.state.clubs.length > 0 &&
+                    <option  key="0" value='1000'>Ninguno</option>
+                }
+                {this.state.clubs.map(function(item){
+                    return <option  key={item.id} value={item.id}>{item.Nombre}</option>
+                })}
+              </select>
             </div>
-            <select className="form-control" id="inputGroupSelect02" value={equipo} name="equipo" id="equipo" onChange={this.handleChange}>
-              <option  key="-1" value=''>Equipos de futbol (Opcional)</option>
-              {this.state.clubs.length > 0 &&
-                  <option  key="0" value='1000'>Ninguno</option>
-              }
-              {this.state.clubs.map(function(item){
-                  return <option  key={item.id} value={item.id}>{item.Nombre}</option>
-              })}
-            </select>
-          </div>
+          }
           {this.state.equipo &&
             <div className="text-center input-equipo">
               <img src={'/images/clubs/'+this.state.equipo+'.png'} className="imagen-equipo"/>
             </div>
           }
           <div className="text-center">
-            <button type="submit" className="btn btn-negro black btn-box-index">
-              { this.state.isLoading ? <FontAwesomeIcon icon="sync" size="lg" spin /> : '' }
-              &nbsp;&nbsp; Registrar
+            <button 
+              type="submit" 
+              className={'btn btn-negro black btn-box-index ' + (this.state.isLoading ? 'disabled' : '')}
+              disabled={this.state.isLoading}
+            >
+              {this.state.isLoading && 
+                <FontAwesomeIcon 
+                  icon="sync" 
+                  size="lg" 
+                  spin 
+                />
+              }
+              {`  `} Registrar
             </button>
           </div>
           <div className="text-center">
@@ -577,5 +535,9 @@ export default class RegistroCliente extends React.Component {
   }
 }
 
+const mapDispatchToProps = dispatch => ({
+  appStartedLoading: () => dispatch(appStartedLoading()),
+  appFinishLoading: () => dispatch(appFinishLoading()),
+});
 
-
+export default connect(null, mapDispatchToProps)(RegistroCliente);

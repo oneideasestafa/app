@@ -286,8 +286,7 @@ class ClienteController extends Controller
       'profilePicture' => 'file|image',
       'telefono' => 'nullable|string',
       'avatarURL' => 'nullable|string',
-      'pais' => 'nullable|string|exists:Pais,_id',
-      'equipo' => 'nullable|integer|exists:Clubs,id',
+      'pais' => 'nullable|string|exists:Pais,_id'
     ])->validate();
 
     $client = new User();

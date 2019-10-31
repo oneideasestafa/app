@@ -18,9 +18,11 @@ function FacebookAuthButton (props) {
       const { authResponse } = success;
 
       props.socialAuthentication('facebook', authResponse.accessToken)
-        .catch(e => props.onError());
+        .catch(e => {          
+          props.onError();
+        });
 
-    }, error => props.onError());
+    }, error => {});
   }
   
   return (

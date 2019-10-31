@@ -2,20 +2,22 @@ import React from 'react';
 import axios from 'axios';
 import swal from "sweetalert2";
 import { connect } from 'react-redux';
+import { request } from './../../config/axios';
 import { setCurrentPage } from '../../redux/actions/navigation';
+import Spinner from '../atoms/Spinner';
 
 class RSS extends React.Component {
   constructor (props) {
     super(props);
 
     this.state = {
-        api_token: localStorage.getItem("api_token"),
         estilosCuadroDeComentarios: {
-            'margin-top': '0.5rem',
+            'marginTop': '0.5rem',
             'color': '#000 !important',
-            'background-color': '#fff !important',
+            'backgroundColor': '#fff !important',
         },
-        imagenCodificada: null
+        imagenCodificada: null,
+        estaCargando: false
     }
 
     this.registrarPublicacion = this.registrarPublicacion.bind(this);
@@ -68,25 +70,29 @@ class RSS extends React.Component {
 
     if (!document.getElementById("descripcion").value) {
         swal(
+            'Sin información',
             'Ingresa un estado a compartir',
-            'error',
+            'warning',
             'sweet'
         );
 
         return
     }
 
+    this.setState({ estaCargando: true });
+    
     let datosDelFormulario = new FormData();
-    datosDelFormulario.append("eventoId", localStorage.getItem("eventoId"));
+    datosDelFormulario.append("eventoId", this.props.eventId);
     datosDelFormulario.append("descripcion", document.getElementById("descripcion").value);
     datosDelFormulario.append("rutaDeImagen", (this.state.imagenCodificada) ? this.state.imagenCodificada : null);
 
-    axios.post('api/eventos/RSS', datosDelFormulario, {
+    request.post('api/event/RSS', datosDelFormulario, {
         headers: {
-            Authorization: this.state.api_token
+            Authorization: `Bearer ${this.props.accessToken}`
         },
     }).then(() => {
         swal(
+            'Éxito',
             'Publicación enviada',
             'success',
             'sweet'
@@ -110,6 +116,9 @@ class RSS extends React.Component {
   render () {
     return (
         <div className="container-fluid">
+            { this.state.estaCargando &&
+                <Spinner />
+            }
             { this.state.imagenCodificada &&
                 <div className="row">
                     <div className="col">
@@ -117,46 +126,52 @@ class RSS extends React.Component {
                     </div>
                 </div>
             }
-            <div className="row">
-                <div className="col">
-                    <div className="form-group">
-                        <textarea
-                            rows="3"
-                            id="descripcion"
-                            className="form-control"
-                            placeholder="¿Qué estas pensando?"
-                            style={this.state.estilosCuadroDeComentarios}>
-                        </textarea>
+            { !this.state.estaCargando &&
+                <div>
+                     <div className="row">
+                        <div className="col">
+                            <div className="form-group">
+                                <textarea
+                                    rows="3"
+                                    id="descripcion"
+                                    className="form-control"
+                                    placeholder="¿Qué estas pensando?"
+                                    style={this.state.estilosCuadroDeComentarios}>
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-1">
+                            <button
+                                type="button"
+                                className="btn btn-rojo btn-box-index"
+                                onClick={this.tomarFoto}
+                            >
+                                <i className="fas fa-camera fa-lg"></i>
+                            </button>
+                        </div>
+                        <div className="col-6 offset-3">
+                            <button
+                                type="button"
+                                className="btn btn-rojo btn-box-index"
+                                onClick={this.registrarPublicacion}
+                            >
+                                Publicar
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="row">
-                <div className="col-1">
-                    <button
-                        type="button"
-                        className="btn btn-rojo btn-box-index"
-                        onClick={this.tomarFoto}
-                    >
-                        <i className="fas fa-camera fa-lg"></i>
-                    </button>
-                </div>
-                <div className="col-6 offset-3">
-                    <button
-                        type="button"
-                        className="btn btn-rojo btn-box-index"
-                        onClick={this.registrarPublicacion}
-                    >
-                        Publicar
-                    </button>
-                </div>
-            </div>
+            }
         </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  current: state.navigation.current
+  current: state.navigation.current,
+  eventId: state.events.current._id,
+  accessToken: state.auth.accessToken
 });
 
 const mapDispatchToProps = dispatch => ({
