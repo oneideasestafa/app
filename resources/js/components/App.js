@@ -24,12 +24,19 @@ import Login from "./Pages/Login";
 import Registro from "./Pages/Registro";
 import QuestionEvent from "./Pages/QuestionEvent";
 import Wrapper from './Pages/Wrapper';
-import { socialAuthentication } from './../redux/actions/auth';
 
 library.add(fab, faSyncAlt, faTrashAlt, faSync, faCamera, faTimes, faTimesCircle);
 
 function App () {
-  alert('UserAgent: ' + navigator.userAgent);
+  useEffect(() => {
+    function handler () {
+      navigator.splashscreen.hide();
+    }
+
+    window.addEventListener('load', handler);
+
+    return () => window.removeEventListener('load', handler);
+  }, [navigator.splashscreen]);
 
     return (
       <Provider store={store}>

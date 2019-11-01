@@ -6,15 +6,21 @@ export default class Eli4 extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-
+          typeCamera: store.getState().chroma.camera,
+          background: store.getState().chroma.background,
+          effect: store.getState().chroma.effect,
     }
     
-		this.ChromaPaint = this.ChromaPaint.bind(this);	
+		this.Video = this.Video.bind(this); 
+    this.Image = this.Image.bind(this); 
 	}
 
 	computeframe() {
 
     this.ctx1.drawImage(this.video, 0, 0, this.width, this.height);
+    if (this.state.effect) {
+      this.ctx1.drawImage(document.getElementById('effect'), 0, 0, this.width, this.height);
+    }
     let frame = this.ctx1.getImageData(0, 0, this.width, this.height);
     let l = frame.data.length / 4;
 
@@ -49,55 +55,125 @@ export default class Eli4 extends Component {
 
   }
 
-	ChromaPaint() {
-	   this.video = this.refs.video;
- 	   this.c1 = this.refs.c1;
- 	   this.ctx1 = this.c1.getContext("2d");
- 	   this.c2 = this.refs.c2;
- 	   this.ctx2 = this.c2.getContext("2d");
- 	   this.width = this.refs.video.videoWidth;
- 	   this.height = this.refs.video.videoHeight;
+  Effect () {
+    let  effect = "images/chroma/effect/"+(store.getState().chroma.effect)+".png"
+    return(
+        <img 
+        id="effect"
+        src={effect}
+        width="100px"
+        height="100px"
+        style={{
+          display: 'none',
+        }}
+        />
+      )
+  }
 
- 	   this.timerCallback()
- 	   
- 	   	}
+  componentDidMount(){
+
+        if(this.state.typeCamera == "video"){
+           navigator.device.capture.captureVideo(this.Video, (error) => { alert(error)}, {limit: 1, duration: 15});
+        }else{
+          let opcionesDeCamara = {
+          quality: 50,
+          MediaType: Camera.MediaType.VIDEO,
+          destinationType: Camera.DestinationType.DATA_URL,
+          sourceType: 1,
+          encodingType: 1,
+          correctOrientation: true
+      };
+      navigator.camera.getPicture(
+        (imagenCodificada) => {
+          this.Image(imagenCodificada);
+        },
+        (error) => {
+          alert(error);
+        }, opcionesDeCamara);
+        }
+      
+  }
+
+	Video(mediaFiles) {
+    alert(mediaFiles[0].localURL);
+     this.video = this.refs.video;
+     this.video.src=mediaFiles[0].localURL;
+     this.c1 = this.refs.c1;
+     this.ctx1 = this.c1.getContext("2d");
+     this.c2 = this.refs.c2;
+     this.ctx2 = this.c2.getContext("2d");
+     this.width = this.refs.video.videoWidth;
+     this.height = this.refs.video.videoHeight;
+
+     this.timerCallback()
+     
+      }
+
+  Image(imagenCodificada) {
+     this.video = document.getElementById('video');
+     document.getElementById('video').src = 'data:image/png;base64,' + imagenCodificada;
+     this.c1 = this.refs.c1;
+     this.ctx1 = this.c1.getContext("2d");
+     this.c2 = this.refs.c2;
+     this.c3 = document.getElementById('effect');
+     this.ctx2 = this.c2.getContext("2d");
+     this.width = document.getElementById('video').width;
+     this.height = document.getElementById('video').height;
+
+     this.timerCallback()
+     
+      }
 	
 
 	render() {
-	const background = "images/chroma/background/"+(store.getState().chroma.background.chromaBackground)+".jpg"
-	const effect = "images/chroma/effect/"+(store.getState().chroma.effect.chromaEffect)+".png"
-	console.log(effect+' '+background)
 
 		return(
 		<div className="abs-center row">
 			<div className="container">
-				<video 
-          ref="video"
-          src="images/chroma/video/travolta.mp4"
-          autoPlay
-          muted
-          onPlay={this.ChromaPaint}
-			  >
-        </video>
+
+				
 			<canvas
         ref="c1"
         style={{
-          backgroundSize: "contain", 
+          backgroundSize: "", 
           backgroundRepeat:"no-repeat", 
-          display: "none"
+          width: '100%',
+          height: '200px',
+          display: 'none',
         }}
       >
 			</canvas>
 			<canvas
         ref="c2"
         style={{
-          backgroundImage: "url(" + background + ")", 
-          backgroundSize: "contain", 
+          backgroundImage: "url(images/chroma/background/" + this.state.background + ".jpg)", 
+          backgroundSize: "", 
           backgroundRepeat:"no-repeat",
           width: '100%',
+          height: '200px',
         }}
 			>
 			</canvas>
+      {this.state.typeCamera == 'video' ? 
+        <video
+      src=""
+      controls
+      ref="video"
+      type="mp4"
+      ></video> : 
+      <img 
+        id="video"
+        
+        style={{
+          width: '100%',
+          height: '200px',
+          visibility: 'hidden',
+          }}
+        />
+
+    }
+      
+      {this.state.effect ? <this.Effect /> : ''}
 			</div>			
 		</div>
 	  );

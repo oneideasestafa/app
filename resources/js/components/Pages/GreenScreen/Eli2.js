@@ -24,26 +24,8 @@ import Desert from "../../../../../public/images/chroma/background/desert.jpg";
 
 		handleClick (e) {
 		
-		this.setState({
-            background: e.target.name
-        });
-        setTimeout(function () {
-		  	const chromaBackground = this.state.background;
-			this.props.chromaBackground({ chromaBackground })
-		}.bind(this), 1000)
-	}
-
-		ButtonNext() {
-		return(
-			<Link to="/green-step-3">
-                <button
-                    type="button"
-                    className="btn btn-rojo"
-                >
-                   Siguiente
-                </button>
-            </Link>
-			);
+		this.props.chromaBackground(e.target.name)
+		this.props.history.push('green-step-3')
 	}
 
 		render() {
@@ -91,7 +73,14 @@ import Desert from "../../../../../public/images/chroma/background/desert.jpg";
 						</div>
 					</div>
 					<div className="container text-center">
-                        {this.state.background ? < this.ButtonNext /> : ''}
+                        <Link to="/green-step-1">
+               				<button
+               				    type="button"
+               				    className="btn btn-gris"
+               				>
+               				   Volver
+               				</button>
+           				 </Link>
                     </div>
 				</div>
 

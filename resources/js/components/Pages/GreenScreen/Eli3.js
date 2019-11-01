@@ -18,13 +18,8 @@ import "./../../../../css/pages/ChromaBackground.css"
 
 		handleClick (e) {
 			
-			this.setState({
-  		         effect: e.target.name
-  		     });
-			setTimeout(function () {
-		  		const chromaEffect = this.state.effect;
-				this.props.chromaEffect({ chromaEffect })
-			}.bind(this), 1000)
+		this.props.chromaEffect(e.target.name)
+		this.props.history.push('green-step-4')
 		}
 
 		componentDidMount () {
@@ -54,13 +49,24 @@ import "./../../../../css/pages/ChromaBackground.css"
   		                     <Link to="/green-step-4">
   		                         <button
   		                             type="button"
-  		                             className= {"btn " + (this.state.effect ? 'btn-rojo' : 'btn-gris')}
+  		                             className= {"btn btn-rojo"}
   		                         >
-  		                            {this.state.effect ? 'Siguiente' : 'omitir'}
+  		                            Omitir
+  		                         </button>
+  		                     </Link>
+  		                 </div>
+  		                 <div className="container text-center">
+  		                     <Link to="/green-step-2">
+  		                         <button
+  		                             type="button"
+  		                             className= {"btn btn-gris"}
+  		                         >
+  		                            Volver
   		                         </button>
   		                     </Link>
   		                 </div>
 					</div>
+					
 
 
 					);

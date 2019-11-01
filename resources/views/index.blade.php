@@ -84,7 +84,7 @@
         }else if (isCordovaAndroid()){
             var script = document.createElement( "script" );
             script.type = "text/javascript";
-            script.src = window.location.protocol+'//'+window.location.host+'/cordova/cordova.js';
+            script.src = window.location.protocol+'//'+window.location.host+'/cordova-android/cordova.js';
             document.getElementsByTagName('head')[0].appendChild(script)
         }
     </script>
