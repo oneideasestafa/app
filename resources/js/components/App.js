@@ -24,25 +24,10 @@ import Login from "./Pages/Login";
 import Registro from "./Pages/Registro";
 import QuestionEvent from "./Pages/QuestionEvent";
 import Wrapper from './Pages/Wrapper';
-import { socialAuthentication } from './../redux/actions/auth';
 
 library.add(fab, faSyncAlt, faTrashAlt, faSync, faCamera, faTimes, faTimesCircle);
 
 function App () {
-  useEffect(() => {
-    // universalLinks.subscribe('oauthHandler', eventData => {
-    //   console.log('data', eventData);
-      
-    //   if (eventData.params.apiToken) {
-    //     store.dispatch(socialAuthentication(eventData.params.apiToken))
-    //       .then(() => universalLinks.unsubscribe('oauthHandler'))
-    //       .catch(e => console.log(e));
-    //   }
-    // });
-
-    // return () => universalLinks.unsubscribe('oauthHandler');
-  }, [])
-
     return (
       <Provider store={store}>
         <React.Fragment>

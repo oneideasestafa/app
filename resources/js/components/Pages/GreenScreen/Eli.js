@@ -15,28 +15,9 @@ import "./../../../../css/pages/ChromaBackground.css"
 		this.handleClick = this.handleClick.bind(this);	
 	};
 
-	ButtonNext() {
-		return(
-			<Link to="/green-step-2">
-                <button
-                    type="button"
-                    className="btn btn-rojo"
-                >
-                   Siguiente
-                </button>
-            </Link>
-			);
-	}
-
 	handleClick (e) {
-		
-		this.setState({
-            camera: e.target.id
-        });
-        setTimeout(function () {
-		  	const typeCamera = this.state.camera;
-		  	this.props.chromaTypeCamera({ typeCamera })
-		}.bind(this), 1000)
+		this.props.chromaTypeCamera(e.target.id)
+		this.props.history.push('green-step-2')
 		
 
 	}
@@ -74,7 +55,7 @@ import "./../../../../css/pages/ChromaBackground.css"
 	
 	
 	}
-
+	
 	function mapDispatchToProps(dispatch) {
 		  return {
 		    chromaTypeCamera: camera => dispatch(chromaTypeCamera(camera))
