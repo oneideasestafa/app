@@ -28,6 +28,16 @@ import Wrapper from './Pages/Wrapper';
 library.add(fab, faSyncAlt, faTrashAlt, faSync, faCamera, faTimes, faTimesCircle);
 
 function App () {
+  useEffect(() => {
+    function handler () {
+      navigator.splashscreen.hide();
+    }
+
+    window.addEventListener('load', handler);
+
+    return () => window.removeEventListener('load', handler);
+  }, [navigator.splashscreen]);
+
     return (
       <Provider store={store}>
         <React.Fragment>
