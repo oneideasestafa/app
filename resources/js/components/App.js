@@ -29,19 +29,7 @@ import { socialAuthentication } from './../redux/actions/auth';
 library.add(fab, faSyncAlt, faTrashAlt, faSync, faCamera, faTimes, faTimesCircle);
 
 function App () {
-  useEffect(() => {
-    // universalLinks.subscribe('oauthHandler', eventData => {
-    //   console.log('data', eventData);
-      
-    //   if (eventData.params.apiToken) {
-    //     store.dispatch(socialAuthentication(eventData.params.apiToken))
-    //       .then(() => universalLinks.unsubscribe('oauthHandler'))
-    //       .catch(e => console.log(e));
-    //   }
-    // });
-
-    // return () => universalLinks.unsubscribe('oauthHandler');
-  }, [])
+  alert('UserAgent: ' + navigator.userAgent);
 
     return (
       <Provider store={store}>
