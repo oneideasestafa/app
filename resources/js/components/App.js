@@ -36,7 +36,7 @@ function App () {
     window.addEventListener('load', handler);
 
     return () => window.removeEventListener('load', handler);
-  }, [navigator.splashscreen]);
+  }, []);
 
     return (
       <Provider store={store}>
