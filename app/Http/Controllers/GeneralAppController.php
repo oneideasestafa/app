@@ -25,6 +25,12 @@ class GeneralAppController extends Controller
     return response($value);
   }
 
+  public function getCurrentServerTime (Request $request) {
+    return response()->json([
+      'time' => time(),
+    ], 200);
+  }
+
   private function queryTimeServer ($timeServer, $socket) {
     # parameters: server, socket, error code, error text, timeout
     $fp = fsockopen($timeServer, $socket, $err, $errstr, 5);

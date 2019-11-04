@@ -1,11 +1,13 @@
 import { 
   FETCH_MARITAL_STATUS,
-  ADD_COUNTRY_FOOTBALL_TEAMS
+  ADD_COUNTRY_FOOTBALL_TEAMS,
+  SET_TIMESTAMP_DIFF,
 } from '../../actions/app/types';
 
 const initialState = {
   maritalStatus: [],
   teams: {},
+  timeOffset: 0,
 };
 
 export default function (state = initialState, action) {
@@ -22,6 +24,11 @@ export default function (state = initialState, action) {
           ...state.teams,
           [action.payload.country]: action.payload.teams,
         }
+      };
+    case SET_TIMESTAMP_DIFF:
+      return {
+        ...state,
+        timeOffset: action.payload.diff
       };
     default:
       return state;
