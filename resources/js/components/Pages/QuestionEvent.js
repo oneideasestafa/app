@@ -14,7 +14,7 @@ class QuestionEvent extends Component {
     
     this.state = {
       evento: '',
-      idevento: '',
+      eventoId: '',
       sector: '',
       fila: '',
       asiento: '',
@@ -25,6 +25,7 @@ class QuestionEvent extends Component {
       isLoading: true
     };
 
+    this.handleCodeChange = this.handleCodeChange.bind(this);
     this.handleContinuar = this.handleContinuar.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
@@ -50,6 +51,22 @@ class QuestionEvent extends Component {
 
     this.setState({
       [name]: value,
+    });
+  }
+
+  handleCodeChange (e) {
+    const { name, value } = e.target;
+
+    if (value.length > 6) {
+      return;
+    }
+
+    this.setState({
+      [name]: value,
+    }, () => {
+      if (value.length === 6) {
+        console.log('check event id', value);
+      }
     });
   }
 
@@ -79,7 +96,7 @@ class QuestionEvent extends Component {
 
   render() {
 
-    const { evento, isLoading } = this.state;
+    const { evento, eventoId, isLoading } = this.state;
 
     if (isLoading)
       return (
@@ -98,19 +115,35 @@ class QuestionEvent extends Component {
             <h2>Ubicación</h2>
           </div>
           <div className="input-group mb-4 mt-4">
-              <div className="input-group-prepend">
-                  <i className="fas fa-calendar-week fa-lg"></i>
-              </div>
-              <select className="form-control" value={evento} name="evento" onChange={this.handleChange}>
-                  <option value=''>Seleccione Evento</option>
-                  {/* <option value='eventoId'>Ingresas id del evento</option> */}
-                  {this.props.events.map((item) => (
-                    <option key={item._id} value={item._id}>
-                      {item.Nombre}
-                    </option>
-                  ))}
-              </select>
+            <div className="input-group-prepend">
+              <i className="fas fa-calendar-week fa-lg"></i>
+            </div>
+            <select className="form-control" value={evento} name="evento" onChange={this.handleChange}>
+              <option value=''>Seleccione Evento</option>
+              <option value='eventoId'>Ingresas id del evento</option>
+              {this.props.events.map((item) => (
+                <option key={item._id} value={item._id}>
+                  {item.Nombre}
+                </option>
+              ))}
+            </select>
           </div>
+          { evento == 'eventoId' &&
+            <div className="input-group mb-4 mt-4">
+              <div className="input-group-prepend">
+                <i className="fa fa-lock fa-lg"></i>
+              </div>
+              <InputMask
+                mask="******"
+                name="eventoId"
+                maskChar={null}
+                value={eventoId}
+                className="form-control"
+                onChange={this.handleCodeChange}
+                placeholder="Ingrese el codigo del evento"
+              />
+            </div>
+          }
           {evento !== "" &&
             <div className="text-center mt-4">
               <button type="submit" className="btn btn-negro btn-box-index">
