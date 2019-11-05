@@ -150,6 +150,16 @@ class EventoController extends Controller {
         }
     }
 
+    public function validateEventKey (Request $request, $eventKey) {
+      $event = Evento::where('IDEvento', $eventKey)->first();
+
+      if (!$event) {
+        return response('', 404);
+      }
+
+      return response()->json($event, 200);
+    }
+
     // Metodo para revisar si el evento tiene ubicacion
     public function checkUbicacion(Request $request)
     {
