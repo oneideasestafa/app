@@ -32,6 +32,8 @@ class SideMenu extends React.Component {
 
     this.props.wipeJobs();
     this.props.toggleNavigationMenu();
+
+    this.props.history.push('/questionEvent');
   }
 
   render () {
@@ -133,6 +135,15 @@ class SideMenu extends React.Component {
                   style={{backgroundColor: current === 'Detener' ? '#000 !important' : ''}}
                 >
                   <i className="fas fa-power-off fa-lg" /> {"    "} Detener
+                </a>
+              </li>
+              <li className="nav-item">
+                <a 
+                  onClick={this.stopEverything} 
+                  className="nav-link"
+                  style={{backgroundColor: current === 'Detener' ? '#000 !important' : ''}}
+                >
+                  <i className="fas fa-arrow-alt-circle-left fa-lg" /> {"    "} Salir
                 </a>
               </li>
             </ul>

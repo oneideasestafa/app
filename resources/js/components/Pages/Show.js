@@ -14,6 +14,7 @@ import {
   wipeJobs,
   fetchJobs
 } from './../../redux/actions/show';
+import { getTimestampDiff } from './../../redux/actions/app';
 import { connect } from 'react-redux';
 import Paho from 'paho-mqtt';
 import uuidv4 from 'uuid/v4';
@@ -33,7 +34,14 @@ function Show (props) {
       .then(() => setLoading(false));
     
     return () => props.wipeJobs();
-  }, [])
+  }, []);
+
+  /**
+   * Fetching server timestamp
+   */
+  useEffect(() => {
+    props.getTimestampDiff();
+  }, []);
   
   /**
    * Connection to mqtt broker
@@ -103,6 +111,7 @@ const mapDispatchToProps = dispatch => ({
   turnShowOff: (job) => dispatch(turnShowOff(job)),
   executeJob: (type) => dispatch(executeJob(type)),
   wipeJobs: () => dispatch(wipeJobs()),
+  getTimestampDiff: () => dispatch(getTimestampDiff()),
   fetchJobs: (event, time, apiKey) => dispatch(fetchJobs(event, time, apiKey)),
 });
 

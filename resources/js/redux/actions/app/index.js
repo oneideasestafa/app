@@ -1,7 +1,9 @@
 import {
   FETCH_MARITAL_STATUS,
   ADD_COUNTRY_FOOTBALL_TEAMS,
+  SET_TIMESTAMP_DIFF,
 } from './types';
+import axios from 'axios';
 import { request } from './../../../config/axios';
 
 export function fetchMaritalStatus () {
@@ -23,6 +25,22 @@ export function fetchMaritalStatus () {
 
       return data;
     });
+  }
+}
+
+export function getTimestampDiff () {
+  return dispatch => {
+    const now = Date.now();
+
+    return axios.get('/api/server/time').then(res => {
+      const { time } = res.data;
+
+      const diff = now - (time * 1000);
+      
+      dispatch(setTimestampDiff(diff));
+
+      return diff;
+    })
   }
 }
 
@@ -60,4 +78,11 @@ export function addCountryFootballTeams (country, teams) {
     type: ADD_COUNTRY_FOOTBALL_TEAMS,
     payload: { country, teams }
   }
+}
+
+export function setTimestampDiff (diff) {
+  return {
+    type: SET_TIMESTAMP_DIFF,
+    payload: { diff }
+  };
 }

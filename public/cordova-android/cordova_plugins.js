@@ -710,6 +710,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
         "cordova.plugins.notification.local.core",
         "plugin.notification.local.core"
       ]
+    },
+    {
+      "id": "cordova-plugin-sntp.sntp",
+      "file": "plugins/cordova-plugin-sntp/www/cordova-plugin-sntp.js",
+      "pluginId": "cordova-plugin-sntp",
+      "clobbers": [
+        "cordova.plugins.sntp"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -737,6 +745,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-streaming-media": "2.2.0",
     "cordova-plugin-vibration": "3.1.1",
     "cordova-plugin-whitelist": "1.3.4",
-    "de.appplant.cordova.plugin.local-notification": "0.8.5"
+    "de.appplant.cordova.plugin.local-notification": "0.8.5",
+    "cordova-plugin-sntp": "0.0.1"
   };
 });
