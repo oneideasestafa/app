@@ -1,6 +1,14 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
   module.exports = [
     {
+      "id": "cordova-plugin-flashlight.Flashlight",
+      "file": "plugins/cordova-plugin-flashlight/www/Flashlight.js",
+      "pluginId": "cordova-plugin-flashlight",
+      "clobbers": [
+        "window.plugins.flashlight"
+      ]
+    },
+    {
       "id": "cordova-plugin-audioinput.AudioInput",
       "file": "plugins/cordova-plugin-audioinput/www/audioInputCapture.js",
       "pluginId": "cordova-plugin-audioinput",
@@ -14,14 +22,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "pluginId": "cordova-plugin-audiotoggle",
       "clobbers": [
         "AudioToggle"
-      ]
-    },
-    {
-      "id": "cordova-plugin-brightness.Brightness",
-      "file": "plugins/cordova-plugin-brightness/www/brightness.js",
-      "pluginId": "cordova-plugin-brightness",
-      "clobbers": [
-        "cordova.plugins.brightness"
       ]
     },
     {
@@ -78,30 +78,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "pluginId": "cordova-plugin-device-motion",
       "clobbers": [
         "navigator.accelerometer"
-      ]
-    },
-    {
-      "id": "cordova-plugin-dialogs.notification",
-      "file": "plugins/cordova-plugin-dialogs/www/notification.js",
-      "pluginId": "cordova-plugin-dialogs",
-      "merges": [
-        "navigator.notification"
-      ]
-    },
-    {
-      "id": "cordova-plugin-dialogs.notification_android",
-      "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
-      "pluginId": "cordova-plugin-dialogs",
-      "merges": [
-        "navigator.notification"
-      ]
-    },
-    {
-      "id": "cordova-plugin-facebook4.FacebookConnectPlugin",
-      "file": "plugins/cordova-plugin-facebook4/www/facebook-native.js",
-      "pluginId": "cordova-plugin-facebook4",
-      "clobbers": [
-        "facebookConnectPlugin"
       ]
     },
     {
@@ -278,30 +254,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "runs": true
     },
     {
-      "id": "cordova-plugin-file-transfer.FileTransferError",
-      "file": "plugins/cordova-plugin-file-transfer/www/FileTransferError.js",
-      "pluginId": "cordova-plugin-file-transfer",
-      "clobbers": [
-        "window.FileTransferError"
-      ]
-    },
-    {
-      "id": "cordova-plugin-file-transfer.FileTransfer",
-      "file": "plugins/cordova-plugin-file-transfer/www/FileTransfer.js",
-      "pluginId": "cordova-plugin-file-transfer",
-      "clobbers": [
-        "window.FileTransfer"
-      ]
-    },
-    {
-      "id": "cordova-plugin-flashlight.Flashlight",
-      "file": "plugins/cordova-plugin-flashlight/www/Flashlight.js",
-      "pluginId": "cordova-plugin-flashlight",
-      "clobbers": [
-        "window.plugins.flashlight"
-      ]
-    },
-    {
       "id": "cordova-plugin-geolocation.geolocation",
       "file": "plugins/cordova-plugin-geolocation/www/android/geolocation.js",
       "pluginId": "cordova-plugin-geolocation",
@@ -324,22 +276,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-media.MediaError",
-      "file": "plugins/cordova-plugin-media/www/MediaError.js",
-      "pluginId": "cordova-plugin-media",
-      "clobbers": [
-        "window.MediaError"
-      ]
-    },
-    {
-      "id": "cordova-plugin-media.Media",
-      "file": "plugins/cordova-plugin-media/www/Media.js",
-      "pluginId": "cordova-plugin-media",
-      "clobbers": [
-        "window.Media"
-      ]
-    },
-    {
       "id": "cordova-plugin-mqtt.MQTTEmitter",
       "file": "plugins/cordova-plugin-mqtt/www/MQTTEmitter.js",
       "pluginId": "cordova-plugin-mqtt",
@@ -353,14 +289,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "pluginId": "cordova-plugin-mqtt",
       "clobbers": [
         "cordova.plugins.CordovaMqTTPlugin"
-      ]
-    },
-    {
-      "id": "cordova-plugin-streaming-media.StreamingMedia",
-      "file": "plugins/cordova-plugin-streaming-media/www/StreamingMedia.js",
-      "pluginId": "cordova-plugin-streaming-media",
-      "clobbers": [
-        "streamingMedia"
       ]
     },
     {
@@ -388,6 +316,78 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "merges": [
         "cordova.plugins.notification.local.core",
         "plugin.notification.local.core"
+      ]
+    },
+    {
+      "id": "cordova-plugin-media.MediaError",
+      "file": "plugins/cordova-plugin-media/www/MediaError.js",
+      "pluginId": "cordova-plugin-media",
+      "clobbers": [
+        "window.MediaError"
+      ]
+    },
+    {
+      "id": "cordova-plugin-media.Media",
+      "file": "plugins/cordova-plugin-media/www/Media.js",
+      "pluginId": "cordova-plugin-media",
+      "clobbers": [
+        "window.Media"
+      ]
+    },
+    {
+      "id": "cordova-plugin-streaming-media.StreamingMedia",
+      "file": "plugins/cordova-plugin-streaming-media/www/StreamingMedia.js",
+      "pluginId": "cordova-plugin-streaming-media",
+      "clobbers": [
+        "streamingMedia"
+      ]
+    },
+    {
+      "id": "cordova-plugin-brightness.Brightness",
+      "file": "plugins/cordova-plugin-brightness/www/brightness.js",
+      "pluginId": "cordova-plugin-brightness",
+      "clobbers": [
+        "cordova.plugins.brightness"
+      ]
+    },
+    {
+      "id": "cordova-plugin-dialogs.notification",
+      "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+      "pluginId": "cordova-plugin-dialogs",
+      "merges": [
+        "navigator.notification"
+      ]
+    },
+    {
+      "id": "cordova-plugin-dialogs.notification_android",
+      "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
+      "pluginId": "cordova-plugin-dialogs",
+      "merges": [
+        "navigator.notification"
+      ]
+    },
+    {
+      "id": "cordova-plugin-file-transfer.FileTransferError",
+      "file": "plugins/cordova-plugin-file-transfer/www/FileTransferError.js",
+      "pluginId": "cordova-plugin-file-transfer",
+      "clobbers": [
+        "window.FileTransferError"
+      ]
+    },
+    {
+      "id": "cordova-plugin-file-transfer.FileTransfer",
+      "file": "plugins/cordova-plugin-file-transfer/www/FileTransfer.js",
+      "pluginId": "cordova-plugin-file-transfer",
+      "clobbers": [
+        "window.FileTransfer"
+      ]
+    },
+    {
+      "id": "cordova-plugin-facebook4.FacebookConnectPlugin",
+      "file": "plugins/cordova-plugin-facebook4/www/facebook-native.js",
+      "pluginId": "cordova-plugin-facebook4",
+      "clobbers": [
+        "facebookConnectPlugin"
       ]
     },
     {
@@ -634,31 +634,128 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "datePicker"
       ]
+    },
+    {
+      "id": "cordova-plugin-splashscreen.SplashScreen",
+      "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+      "pluginId": "cordova-plugin-splashscreen",
+      "clobbers": [
+        "navigator.splashscreen"
+      ]
+    },
+    {
+      "id": "cordova-plugin-media-capture.CaptureAudioOptions",
+      "file": "plugins/cordova-plugin-media-capture/www/CaptureAudioOptions.js",
+      "pluginId": "cordova-plugin-media-capture",
+      "clobbers": [
+        "CaptureAudioOptions"
+      ]
+    },
+    {
+      "id": "cordova-plugin-media-capture.CaptureImageOptions",
+      "file": "plugins/cordova-plugin-media-capture/www/CaptureImageOptions.js",
+      "pluginId": "cordova-plugin-media-capture",
+      "clobbers": [
+        "CaptureImageOptions"
+      ]
+    },
+    {
+      "id": "cordova-plugin-media-capture.CaptureVideoOptions",
+      "file": "plugins/cordova-plugin-media-capture/www/CaptureVideoOptions.js",
+      "pluginId": "cordova-plugin-media-capture",
+      "clobbers": [
+        "CaptureVideoOptions"
+      ]
+    },
+    {
+      "id": "cordova-plugin-media-capture.CaptureError",
+      "file": "plugins/cordova-plugin-media-capture/www/CaptureError.js",
+      "pluginId": "cordova-plugin-media-capture",
+      "clobbers": [
+        "CaptureError"
+      ]
+    },
+    {
+      "id": "cordova-plugin-media-capture.MediaFileData",
+      "file": "plugins/cordova-plugin-media-capture/www/MediaFileData.js",
+      "pluginId": "cordova-plugin-media-capture",
+      "clobbers": [
+        "MediaFileData"
+      ]
+    },
+    {
+      "id": "cordova-plugin-media-capture.MediaFile",
+      "file": "plugins/cordova-plugin-media-capture/www/MediaFile.js",
+      "pluginId": "cordova-plugin-media-capture",
+      "clobbers": [
+        "MediaFile"
+      ]
+    },
+    {
+      "id": "cordova-plugin-media-capture.helpers",
+      "file": "plugins/cordova-plugin-media-capture/www/helpers.js",
+      "pluginId": "cordova-plugin-media-capture",
+      "runs": true
+    },
+    {
+      "id": "cordova-plugin-media-capture.capture",
+      "file": "plugins/cordova-plugin-media-capture/www/capture.js",
+      "pluginId": "cordova-plugin-media-capture",
+      "clobbers": [
+        "navigator.device.capture"
+      ]
+    },
+    {
+      "id": "cordova-plugin-media-capture.init",
+      "file": "plugins/cordova-plugin-media-capture/www/android/init.js",
+      "pluginId": "cordova-plugin-media-capture",
+      "runs": true
+    },
+    {
+      "id": "org.wbt11a.Canvas2ImagePlugin.Canvas2ImagePlugin",
+      "file": "plugins/org.wbt11a.Canvas2ImagePlugin/www/Canvas2ImagePlugin.js",
+      "pluginId": "org.wbt11a.Canvas2ImagePlugin",
+      "clobbers": [
+        "window.canvas2ImagePlugin"
+      ]
+    },
+    {
+      "id": "com.virtuoworks.cordova-plugin-canvascamera.CanvasCamera",
+      "file": "plugins/com.virtuoworks.cordova-plugin-canvascamera/www/CanvasCamera.js",
+      "pluginId": "com.virtuoworks.cordova-plugin-canvascamera",
+      "clobbers": [
+        "plugin.CanvasCamera",
+        "CanvasCamera"
+      ]
     }
   ];
   module.exports.metadata = {
+    "cordova-plugin-whitelist": "1.3.4",
+    "cordova-plugin-flashlight": "3.2.0",
     "cordova-plugin-app-event": "1.2.1",
     "cordova-plugin-audioinput": "1.0.2",
     "cordova-plugin-audiotoggle": "1.0.3",
-    "cordova-plugin-brightness": "0.1.5",
     "cordova-plugin-camera": "4.1.0",
     "cordova-plugin-device": "2.0.3",
     "cordova-plugin-device-motion": "2.0.1",
-    "cordova-plugin-dialogs": "2.0.2",
-    "cordova-plugin-facebook4": "6.2.0",
     "cordova-plugin-file": "6.0.2",
-    "cordova-plugin-file-transfer": "1.7.1",
-    "cordova-plugin-flashlight": "3.2.0",
     "cordova-plugin-geolocation": "4.0.2",
     "cordova-plugin-geolocation-android-activator": "1.1.2",
-    "cordova-plugin-media": "5.0.3",
     "cordova-plugin-mqtt": "0.3.8",
-    "cordova-plugin-streaming-media": "2.2.0",
-    "cordova-plugin-vibration": "3.1.1",
-    "cordova-plugin-whitelist": "1.3.4",
     "de.appplant.cordova.plugin.local-notification": "0.8.5",
+    "cordova-plugin-media": "5.0.3",
+    "cordova-plugin-streaming-media": "2.2.0",
+    "cordova-plugin-brightness": "0.1.5",
+    "cordova-plugin-vibration": "3.1.1",
+    "cordova-plugin-dialogs": "2.0.2",
+    "cordova-plugin-file-transfer": "1.7.1",
+    "cordova-plugin-facebook4": "6.2.0",
     "cordova-plugin-googlemaps": "2.6.2",
     "cordova-plugin-googleplus": "8.2.0",
-    "cordova-plugin-datepicker": "0.9.3"
+    "cordova-plugin-datepicker": "0.9.3",
+    "cordova-plugin-splashscreen": "5.0.3",
+    "cordova-plugin-media-capture": "3.0.3",
+    "org.wbt11a.Canvas2ImagePlugin": "0.7.1",
+    "com.virtuoworks.cordova-plugin-canvascamera": "1.2.0"
   };
 });
