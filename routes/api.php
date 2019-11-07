@@ -56,8 +56,8 @@ Route::group(['prefix' => 'events', 'middleware' => 'auth:api'], function () {
 Route::group(['prefix' => 'event', 'middleware' => 'auth:api'], function () {
   Route::get('/{event_id}/jobs/{current_time}', 'EventoController@getLatestJobs');
   Route::get('/{id}/files', 'EventoController@getFilesFromEvent');
+  Route::post('/{id}/rss','EventoController@registrarPublicacionRSS');
   Route::get('/{eventKey}/validate', 'EventoController@validateEventKey');
-  Route::post('/RSS','EventoController@registrarPublicacionRSS');
 });
 
 // Permite difinir los puntos de entrada para los endpoints de eventos

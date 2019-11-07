@@ -294,36 +294,59 @@ class EventoController extends Controller {
         ], 200);
     }
 
-    /**
-     * Registrar publicacion RSS
-     * 
-     * @param Request $request
-     * @return Response
-     */
-    public function registrarPublicacionRSS(Request $request) {
+  /**
+   * Registrar publicacion RSS
+   * 
+   * @param Request $request
+   * @return Response
+   */
+  public function registrarPublicacionRSS (Request $request, $id) {
+    $data = $request->all();
+    $data['eventId'] = $id;
 
-        $rutaDeImagen = ($request->imagen) ? $this->guardarImagen($request->eventoId, $request->imagen) : null;
+    $v = Validator::make($data, [
+      'eventId' => 'required|exists:Eventos,_id',
+    ]);
 
-        $publicacion = [
-            'descripcion' => $request->descripcion,
-            'rutaDeImagen' => $rutaDeImagen,
-            'fechaPublicacion' => date(DATE_RFC2822)
-        ];
+    $v->sometimes('description', 'required|string', function ($input) use ($request) {
+      return !$request->hasFile('image');
+    })->validate();
 
-        $evento = Evento::find($request->eventoId);
+    $v->sometimes('image', 'required|file', function ($input) {
+      return $input->description === null;
+    });
 
-        if ($evento->PublicacionesRSS) {
-            $nuevasPublicaciones = $evento->PublicacionesRSS;
-            array_push($nuevasPublicaciones, $publicacion);
-        } else {
-            $nuevasPublicaciones = array($publicacion);
-        }
+    $v->validate();
 
-        $evento->PublicacionesRSS = $nuevasPublicaciones;
-        $evento->save();
-
-        return response()->json(['guardado' => true], 200);
+    $event = Evento::find($id);
+    $user = Auth::user();
+    $path = 'rss/' . $event->Empresa_id . '/' . $id . '/'; 
+    $savedPath = '';
+    
+    if ($request->hasFile('image')) {
+      $fileName = Str::random(20) . '.' . $request->file('image')->extension();
+      $savedPath = $request->file('image')->storeAs($path, $fileName, 'public');
     }
+      
+    $publicacion = [
+      'description' => $request->description,
+      'image' => $savedPath,
+      'author' => $user->_id,
+      'createdAt' => Carbon::now(),
+    ];
+
+    if ($event->PublicacionesRSS) {
+        $nuevasPublicaciones = $event->PublicacionesRSS;
+        array_push($nuevasPublicaciones, $publicacion);
+    } else {
+        $nuevasPublicaciones = array($publicacion);
+    }
+
+    $event->PublicacionesRSS = $nuevasPublicaciones;
+    $event->save();
+
+    return response('', 200);
+  }
 }
 
 
