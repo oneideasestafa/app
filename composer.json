@@ -19,6 +19,7 @@
         "laravel/passport": "7.4.1",
         "laravel/socialite": "^4.1",
         "laravel/tinker": "^1.0",
+        "mtownsend/response-xml": "^1.1",
         "socialiteproviders/instagram": "^3.0",
         "spatie/laravel-cors": "^1.6"
     },

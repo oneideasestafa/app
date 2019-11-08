@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('server/time', 'GeneralAppController@getCurrentServerTime');
 Route::get('auth/{provider}', 'SocialAuthController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'SocialAuthController@handleProviderCallback');
+Route::get('/rss/{eventoId}','EventoController@getReallySimpleSyndication');
 
 // USER related routes
 Route::group(['prefix' => 'user'], function () {

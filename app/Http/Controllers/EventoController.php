@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\User;
 use MongoDB\BSON\ObjectID;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -346,6 +347,63 @@ class EventoController extends Controller {
     $event->save();
 
     return response('', 200);
+  }
+
+  /**
+   * Obtener publicaciones del evento en formato XML/RSS
+   * 
+   * @param Request $request
+   * @param string $eventoId
+   * @return Response
+   */
+  public function getReallySimpleSyndication (Request $request, $eventoId) {
+    $evento = Evento::find($eventoId);
+    $data = [
+      'channel' => [
+        'title' => $evento->Nombre,
+        'link' => 'http://oneshow.com.ar/',
+        'description' => 'Evento llevado a cabo gracias al equipo de OneShow',
+        'item' => [],
+      ],
+    ];
+
+    if (count($evento->PublicacionesRSS) === 0) {
+      return response('', 404);
+    }
+
+    foreach ($evento->PublicacionesRSS as $publicacion) {
+      $author = User::find($publicacion['author']);
+      $link = '';
+
+      if ($publicacion['image']) {
+        $link = env('APP_URL') . '/storage/' . $publicacion['image'];
+      }
+
+      $item = [
+        'title' => 'Post de ' . $author->nombre,
+        'link' => $link,
+        'description' => $publicacion['description'],
+        'media:thumbnail' => []
+      ];
+
+      if ($publicacion['image']) {
+        $item['media:thumbnail'][] = [
+          '_attributes' => [
+            'url' => env('APP_URL') . '/storage/' . $publicacion['image'],
+          ]
+        ];
+      }
+
+      $data['channel']['item'][] = $item;
+    }
+
+    return response()->xml($data, 200, [], [
+      'rootElementName' => 'rss',
+      '_attributes' => [
+        'version' => '2.0',
+        'xmlns:media' => 'http://search.yahoo.com/mrss/',
+      ]
+    ]);
   }
 }
 
