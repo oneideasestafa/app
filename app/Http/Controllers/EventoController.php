@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\User;
 use MongoDB\BSON\ObjectID;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -150,6 +151,16 @@ class EventoController extends Controller {
         }
     }
 
+    public function validateEventKey (Request $request, $eventKey) {
+      $event = Evento::where('IDEvento', $eventKey)->first();
+
+      if (!$event) {
+        return response('', 404);
+      }
+
+      return response()->json($event, 200);
+    }
+
     // Metodo para revisar si el evento tiene ubicacion
     public function checkUbicacion(Request $request)
     {
@@ -284,36 +295,116 @@ class EventoController extends Controller {
         ], 200);
     }
 
-    /**
-     * Registrar publicacion RSS
-     * 
-     * @param Request $request
-     * @return Response
-     */
-    public function registrarPublicacionRSS(Request $request) {
+  /**
+   * Registrar publicacion RSS
+   * 
+   * @param Request $request
+   * @return Response
+   */
+  public function registrarPublicacionRSS (Request $request, $id) {
+    $data = $request->all();
+    $data['eventId'] = $id;
 
-        $rutaDeImagen = ($request->imagen) ? $this->guardarImagen($request->eventoId, $request->imagen) : null;
+    $v = Validator::make($data, [
+      'eventId' => 'required|exists:Eventos,_id',
+    ]);
 
-        $publicacion = [
-            'descripcion' => $request->descripcion,
-            'rutaDeImagen' => $rutaDeImagen,
-            'fechaPublicacion' => date(DATE_RFC2822)
-        ];
+    $v->sometimes('description', 'required|string', function ($input) use ($request) {
+      return !$request->hasFile('image');
+    })->validate();
 
-        $evento = Evento::find($request->eventoId);
+    $v->sometimes('image', 'required|file', function ($input) {
+      return $input->description === null;
+    });
 
-        if ($evento->PublicacionesRSS) {
-            $nuevasPublicaciones = $evento->PublicacionesRSS;
-            array_push($nuevasPublicaciones, $publicacion);
-        } else {
-            $nuevasPublicaciones = array($publicacion);
-        }
+    $v->validate();
 
-        $evento->PublicacionesRSS = $nuevasPublicaciones;
-        $evento->save();
-
-        return response()->json(['guardado' => true], 200);
+    $event = Evento::find($id);
+    $user = Auth::user();
+    $path = 'rss/' . $event->Empresa_id . '/' . $id . '/'; 
+    $savedPath = '';
+    
+    if ($request->hasFile('image')) {
+      $fileName = Str::random(20) . '.' . $request->file('image')->extension();
+      $savedPath = $request->file('image')->storeAs($path, $fileName, 'public');
     }
+      
+    $publicacion = [
+      'description' => $request->description,
+      'image' => $savedPath,
+      'author' => $user->_id,
+      'createdAt' => Carbon::now(),
+    ];
+
+    if ($event->PublicacionesRSS) {
+        $nuevasPublicaciones = $event->PublicacionesRSS;
+        array_push($nuevasPublicaciones, $publicacion);
+    } else {
+        $nuevasPublicaciones = array($publicacion);
+    }
+
+    $event->PublicacionesRSS = $nuevasPublicaciones;
+    $event->save();
+
+    return response('', 200);
+  }
+
+  /**
+   * Obtener publicaciones del evento en formato XML/RSS
+   * 
+   * @param Request $request
+   * @param string $eventoId
+   * @return Response
+   */
+  public function getReallySimpleSyndication (Request $request, $eventoId) {
+    $evento = Evento::find($eventoId);
+    $data = [
+      'channel' => [
+        'title' => $evento->Nombre,
+        'link' => 'http://oneshow.com.ar/',
+        'description' => 'Evento llevado a cabo gracias al equipo de OneShow',
+        'item' => [],
+      ],
+    ];
+
+    if (count($evento->PublicacionesRSS) === 0) {
+      return response('', 404);
+    }
+
+    foreach ($evento->PublicacionesRSS as $publicacion) {
+      $author = User::find($publicacion['author']);
+      $link = '';
+
+      if ($publicacion['image']) {
+        $link = env('APP_URL') . '/storage/' . $publicacion['image'];
+      }
+
+      $item = [
+        'title' => 'Post de ' . $author->nombre,
+        'link' => $link,
+        'description' => $publicacion['description'],
+        'media:thumbnail' => []
+      ];
+
+      if ($publicacion['image']) {
+        $item['media:thumbnail'][] = [
+          '_attributes' => [
+            'url' => env('APP_URL') . '/storage/' . $publicacion['image'],
+          ]
+        ];
+      }
+
+      $data['channel']['item'][] = $item;
+    }
+
+    return response()->xml($data, 200, [], [
+      'rootElementName' => 'rss',
+      '_attributes' => [
+        'version' => '2.0',
+        'xmlns:media' => 'http://search.yahoo.com/mrss/',
+      ]
+    ]);
+  }
 }
 
 

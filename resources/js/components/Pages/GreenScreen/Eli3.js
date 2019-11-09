@@ -13,16 +13,19 @@ import "./../../../../css/pages/ChromaBackground.css"
 				this.state = {
 					effect: "",
 				}
-			this.handleClick = this.handleClick.bind(this);	
+			this.handleClick = this.handleClick.bind(this);
+			this.Omitir = this.Omitir.bind(this);	
 			}
 
 		handleClick (e) {
 			
-		this.props.chromaEffect(e.target.name)
-		this.props.history.push('green-step-4')
+		this.props.chromaEffect(e.target.name);
+		this.props.history.push('green-step-4');
 		}
 
-		componentDidMount () {
+		Omitir() {
+		this.props.chromaEffect('');
+		this.props.history.push('green-step-4');
   }
 
 		render() {
@@ -46,14 +49,13 @@ import "./../../../../css/pages/ChromaBackground.css"
 							</div>
 						</div>
 						<div className="container text-center">
-  		                     <Link to="/green-step-4">
   		                         <button
   		                             type="button"
   		                             className= {"btn btn-rojo"}
+  		                             onClick={this.Omitir}
   		                         >
   		                            Omitir
   		                         </button>
-  		                     </Link>
   		                 </div>
   		                 <div className="container text-center">
   		                     <Link to="/green-step-2">
