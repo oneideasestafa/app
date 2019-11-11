@@ -1,6 +1,22 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
   module.exports = [
     {
+      "id": "cordova-universal-clipboard.Clipboard",
+      "file": "plugins/cordova-universal-clipboard/www/clipboard.js",
+      "pluginId": "cordova-universal-clipboard",
+      "clobbers": [
+        "cordova.plugins.clipboard"
+      ]
+    },
+    {
+      "id": "cordova-instagram-plugin.InstagramPlugin",
+      "file": "plugins/cordova-instagram-plugin/www/CDVInstagramPlugin.js",
+      "pluginId": "cordova-instagram-plugin",
+      "clobbers": [
+        "Instagram"
+      ]
+    },
+    {
       "id": "cordova-plugin-audioinput.AudioInput",
       "file": "plugins/cordova-plugin-audioinput/www/audioInputCapture.js",
       "pluginId": "cordova-plugin-audioinput",
@@ -14,14 +30,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "pluginId": "cordova-plugin-audiotoggle",
       "clobbers": [
         "AudioToggle"
-      ]
-    },
-    {
-      "id": "cordova-plugin-brightness.Brightness",
-      "file": "plugins/cordova-plugin-brightness/www/brightness.js",
-      "pluginId": "cordova-plugin-brightness",
-      "clobbers": [
-        "cordova.plugins.brightness"
       ]
     },
     {
@@ -669,6 +677,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
+      "id": "cordova-plugin-sntp.sntp",
+      "file": "plugins/cordova-plugin-sntp/www/cordova-plugin-sntp.js",
+      "pluginId": "cordova-plugin-sntp",
+      "clobbers": [
+        "cordova.plugins.sntp"
+      ]
+    },
+    {
       "id": "cordova-plugin-splashscreen.SplashScreen",
       "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
       "pluginId": "cordova-plugin-splashscreen",
@@ -710,47 +726,15 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
         "cordova.plugins.notification.local.core",
         "plugin.notification.local.core"
       ]
-    },
-    {
-      "id": "cordova-plugin-sntp.sntp",
-      "file": "plugins/cordova-plugin-sntp/www/cordova-plugin-sntp.js",
-      "pluginId": "cordova-plugin-sntp",
-      "clobbers": [
-        "cordova.plugins.sntp"
-      ]
-    },
-    {
-      "id": "cordova-plugin-background-mode.BackgroundMode",
-      "file": "plugins/cordova-plugin-background-mode/www/background-mode.js",
-      "pluginId": "cordova-plugin-background-mode",
-      "clobbers": [
-        "cordova.plugins.backgroundMode",
-        "plugin.backgroundMode"
-      ]
-    },
-    {
-      "id": "cordova-universal-clipboard.Clipboard",
-      "file": "plugins/cordova-universal-clipboard/www/clipboard.js",
-      "pluginId": "cordova-universal-clipboard",
-      "clobbers": [
-        "cordova.plugins.clipboard"
-      ]
-    },
-    {
-      "id": "cordova-instagram-plugin.InstagramPlugin",
-      "file": "plugins/cordova-instagram-plugin/www/CDVInstagramPlugin.js",
-      "pluginId": "cordova-instagram-plugin",
-      "clobbers": [
-        "Instagram"
-      ]
     }
   ];
   module.exports.metadata = {
+    "cordova-universal-clipboard": "0.1.0",
+    "cordova-instagram-plugin": "0.5.8",
     "cordova-plugin-app-event": "1.2.1",
     "cordova-plugin-audioinput": "1.0.2",
     "cordova-plugin-audiotoggle": "1.0.3",
-    "cordova-plugin-brightness": "0.1.5",
-    "cordova-plugin-camera": "4.1.0",
+    "cordova-plugin-camera": "2.4.1",
     "cordova-plugin-datepicker": "0.9.3",
     "cordova-plugin-device": "2.0.3",
     "cordova-plugin-device-motion": "2.0.1",
@@ -759,21 +743,17 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-file": "6.0.2",
     "cordova-plugin-file-transfer": "1.7.1",
     "cordova-plugin-flashlight": "3.2.0",
-    "cordova-plugin-geolocation": "4.0.2",
+    "cordova-plugin-geolocation": "2.4.3",
     "cordova-plugin-geolocation-android-activator": "1.1.2",
     "cordova-plugin-googlemaps": "2.6.2",
     "cordova-plugin-googleplus": "8.2.0",
     "cordova-plugin-media": "5.0.3",
     "cordova-plugin-media-capture": "3.0.3",
     "cordova-plugin-mqtt": "0.3.8",
+    "cordova-plugin-sntp": "0.0.1",
     "cordova-plugin-splashscreen": "5.0.3",
     "cordova-plugin-streaming-media": "2.2.0",
-    "cordova-plugin-vibration": "3.1.1",
     "cordova-plugin-whitelist": "1.3.4",
-    "de.appplant.cordova.plugin.local-notification": "0.8.5",
-    "cordova-plugin-sntp": "0.0.1",
-    "cordova-plugin-background-mode": "0.7.3",
-    "cordova-universal-clipboard": "0.1.0",
-    "cordova-instagram-plugin": "0.5.8"
+    "de.appplant.cordova.plugin.local-notification": "0.8.5"
   };
 });
