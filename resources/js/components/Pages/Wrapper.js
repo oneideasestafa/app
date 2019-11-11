@@ -1,26 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import SideMenu from './../organisms/SideMenu';
 import Header from './../organisms/Header';
 import { Switch, Route } from 'react-router-dom';
+import SuspenseLoadingScreen from './../atoms/SuspenseLoadingScreen';
 import { 
   getFilesFromEvent,
   setDownloadProgress,
   fileFinishedDownloading,
   getFileObjectsFromStorage
 } from './../../redux/actions/download';
+import WebTorrent from 'webtorrent';
 import { connect } from 'react-redux';
 
 // Pages
-import CambiarDatos from './CambiarDatos';
-import Show from './Show';
-import Downloads from './Downloads';
-import RSS from './RSS';
-import WebTorrent from 'webtorrent';
-import Asked from './Asked/Asked';
-import GreenStep1 from './GreenScreen/Eli';
-import GreenStep2 from './GreenScreen/Eli2';
-import GreenStep3 from './GreenScreen/Eli3';
-import GreenStep4 from './GreenScreen/Eli4';
+const CambiarDatos = lazy(() => import('./CambiarDatos'));
+const Show = lazy(() => import('./Show'));
+const Downloads = lazy(() => import('./Downloads'));
+const RSS = lazy(() => import('./RSS'));
+const Asked = lazy(() => import('./Asked/Asked'));
+const GreenStep1 = lazy(() => import('./GreenScreen/Eli'));
+const GreenStep2 = lazy(() => import('./GreenScreen/Eli2'));
+const GreenStep3 = lazy(() => import('./GreenScreen/Eli3'));
+const GreenStep4 = lazy(() => import('./GreenScreen/Eli4'));
 
 function Wrapper (props) {
   let client = null;
@@ -136,17 +137,19 @@ function Wrapper (props) {
     <div>
       <SideMenu />
       <Header />
-      <Switch>
-        <Route exact path="/show" component={Show} />
-        <Route exact path="/profile" component={CambiarDatos} />
-        <Route exact path="/downloads" component={Downloads} />
-        <Route exact path="/asked" component={Asked} />
-        <Route exact path="/rss" component={RSS} />
-        <Route exact path="/green-step-1" component={GreenStep1} />
-        <Route exact path="/green-step-2" component={GreenStep2} />
-        <Route exact path="/green-step-3" component={GreenStep3} />
-        <Route exact path="/green-step-4" component={GreenStep4} />
-      </Switch>
+      <Suspense fallback={<SuspenseLoadingScreen />}>
+        <Switch>
+          <Route exact path="/show" component={Show} />
+          <Route exact path="/profile" component={CambiarDatos} />
+          <Route exact path="/downloads" component={Downloads} />
+          <Route exact path="/asked" component={Asked} />
+          <Route exact path="/rss" component={RSS} />
+          <Route exact path="/green-step-1" component={GreenStep1} />
+          <Route exact path="/green-step-2" component={GreenStep2} />
+          <Route exact path="/green-step-3" component={GreenStep3} />
+          <Route exact path="/green-step-4" component={GreenStep4} />
+        </Switch>
+      </Suspense>
     </div>
   );
 }
