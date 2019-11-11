@@ -7,10 +7,9 @@ routerConfig:{
     useDefaultRouter:type Boolean
 }*/
 var exec = require('cordova/exec'), cordova = require('cordova'),
-base64 = require('cordova/base64'),
 channel = require('cordova/channel'),
     utils = require('cordova/utils');
-    var url,uname,pass,iscls,router,mqtt,isBinaryPayload = null;
+    var url,uname,pass,iscls,router,mqtt = null;
     var isDefault,useJS = true;
     exports.connect = function(args){
         //SSL support is coming soon
@@ -32,11 +31,6 @@ channel = require('cordova/channel'),
             iscls = true;
         } else {
             iscls = args.isCleanSession;
-        }
-        if (args.isBinaryPayload===undefined) {
-            isBinaryPayload = false;
-        } else {
-            isBinaryPayload = args.isBinaryPayload;
         }
         if (args.routerConfig!==undefined) {
             if(Object.keys(args.routerConfig).length>0){
@@ -88,18 +82,17 @@ channel = require('cordova/channel'),
                             break;
                         case "onPublish":
                             delete cd.call;
-                            var payload = isBinaryPayload ? base64.toArrayBuffer(cd.payload) : cd.payload;
                             if(args.onPublish!==undefined){
-                                args.onPublish(cd.topic,payload);
+                                args.onPublish(cd.topic,cd.payload);
                             }
                             if(router!==null){
                                 if (args.routerConfig!==undefined) {
                                     if (args.routerConfig.publishMethod!==undefined) {
-                                        router[args.routerConfig.publishMethod](cd.topic,payload);
+                                        router[args.routerConfig.publishMethod](cd.topic,cd.payload);
                                     }
 
                                 } else {
-                                    router.emit(cd.topic,payload);
+                                    router.emit(cd.topic,cd.payload);
                                 }
 
                             }
@@ -111,11 +104,11 @@ channel = require('cordova/channel'),
                     }
                 }, function(e){
                     console.error(e);
-                }, "CordovaMqTTPlugin", "connect", [url,args.clientId,(args.keepAlive === undefined ? 60000 : args.keepAlive),iscls,args.connectionTimeout||30,args.username, args.password,args.willTopicConfig.topic,args.willTopicConfig.payload,args.willTopicConfig.qos||0,(args.willTopicConfig.retain === undefined ? true : args.willTopicConfig.retain),args.version||"3.1.1",isBinaryPayload,args.willTopicConfig.payload instanceof ArrayBuffer]);
+                }, "CordovaMqTTPlugin", "connect", [url,args.clientId,args.keepAlive||60000,iscls,args.connectionTimeout||30,args.username, args.password,args.willTopicConfig.topic,args.willTopicConfig.payload,args.willTopicConfig.qos||0,args.willTopicConfig.retain||true,args.version||"3.1.1"]);
             } else {
 
                 if (args.url.split("tcp://").length > 1) {
-                    client = new Paho.MQTT.Client(args.url.split("tcp://")[1], Number(args.wsPort ? args.wsPort : args.port), args.urlPath||"/ws", args.clientId);
+                    client = new Paho.MQTT.Client(args.url.split("tcp://")[1], Number(args.wsPort), args.urlPath||"/ws", args.clientId);
                 }
                 // if (args.url.split("local://").length > 1) {
                 //     client = new Paho.MQTT.Client(args.url.split("local://")[1], Number(args.wsPort), args.urlPath||"/ws", args.clientId);
@@ -127,18 +120,17 @@ channel = require('cordova/channel'),
                     }
                 };
                 client.onMessageArrived = function (payload) {
-                    var preparedPayload = isBinaryPayload ? payload.payloadBytes : payload.payloadString;
                     if(args.onPublish!==undefined){
-                        args.onPublish(payload.destinationName,preparedPayload);
+                        args.onPublish(payload.destinationName,payload.payloadString);
                     }
                     if(router!==null){
                         if (args.routerConfig!==undefined) {
                             if (args.routerConfig.publishMethod!==undefined) {
-                                router[args.routerConfig.publishMethod](payload.destinationName,preparedPayload);
+                                router[args.routerConfig.publishMethod](payload.destinationName,payload.payloadString);
                             }
 
                         } else {
-                            router.emit(payload.destinationName,preparedPayload);
+                            router.emit(payload.destinationName,payload.payloadString);
                         }
 
                     }
@@ -158,15 +150,15 @@ channel = require('cordova/channel'),
                     }
                 };
                 connOpts.timeout = args.connectionTimeout||30;
-                connOpts.keepAliveInterval = (args.keepAlive === undefined) ? 60000 : args.keepAlive;
+                connOpts.keepAliveInterval = args.keepAlive||60000;
                 connOpts.cleanSession = iscls;
                 //connOpts.mqttVersion = args.version||"3.1.1";
                 //console.log("will",args.willTopicConfig);
                 if (args.willTopicConfig.topic !== undefined) {
-                    var willMsg = new Paho.MQTT.Message(args.willTopicConfig.payload);
+                    var willMsg = new Paho.MQTT.Message(args.payloadString);
                     willMsg.destinationName = args.willTopicConfig.topic;
                     willMsg.qos = args.willTopicConfig.qos||0;
-                    willMsg.retained = (args.willTopicConfig.retain === undefined) ? true : args.willTopicConfig.retain;
+                    willMsg.retained = args.willTopicConfig.retain||true;
                     connOpts.willMessage = willMsg;
                 }
                 client.connect(connOpts);
@@ -178,7 +170,7 @@ channel = require('cordova/channel'),
 
     };
     exports.publish = function(args){
-        (args.retain===undefined) ? (args.retain=false) : "";
+        (args.retain===undefined) ? (args.retain=false) : (args.retain=true);
         if(args.topic.length>0){
             if (cordova.platformId === "android") {
                 exec(function(data){
@@ -203,7 +195,7 @@ channel = require('cordova/channel'),
                     if(args.error !== undefined){
                         args.error(e);
                     }
-                }, "CordovaMqTTPlugin", "publish", [args.topic,args.payload,args.qos||0,args.retain,args.payload instanceof ArrayBuffer]);
+                }, "CordovaMqTTPlugin", "publish", [args.topic,args.payload,args.qos||0,args.retain]);
             } else {
                 var message = new Paho.MQTT.Message(args.payload);
                 message.destinationName = args.topic;
