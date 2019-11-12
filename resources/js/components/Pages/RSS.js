@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { request } from './../../config/axios';
 import { appStartedLoading, appFinishLoading } from '../../redux/actions/auth';
 import { setCurrentPage } from '../../redux/actions/navigation';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class RSS extends React.Component {
   constructor (props) {
@@ -284,7 +285,7 @@ class RSS extends React.Component {
                 className="btn btn-rojo btn-box-index"
                 onClick={this.chooseImageSource}
               >
-                <i className="fas fa-camera fa-lg"></i>
+                <FontAwesomeIcon icon="camera" size="lg" />
               </button>
             </div>
             <div className="col-6 offset-3">

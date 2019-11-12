@@ -2,12 +2,11 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import logo from './../../../../public/images/logo-one.png';
 import { withRouter } from 'react-router-dom';
 import { toggleNavigationMenu, setCurrentPage } from '../../redux/actions/navigation';
-import { 
-  wipeJobs
-} from './../../redux/actions/show';
+import { wipeJobs } from './../../redux/actions/show';
 import RedesSociales from './../organisms/RedesSociales';
 
 class SideMenu extends React.Component {
@@ -32,6 +31,13 @@ class SideMenu extends React.Component {
 
     this.props.wipeJobs();
     this.props.toggleNavigationMenu();
+  }
+
+  handleOutRequest (e) {
+    e.preventDefault(); 
+
+    this.props.wipeJobs();
+    this.props.toggleNavigationMenu();
 
     this.props.history.push('/questionEvent');
   }
@@ -51,7 +57,7 @@ class SideMenu extends React.Component {
       <div className={navDrawer}>
         <div className="navdrawer-content">
           <div className="navdrawer-header roboto-condensed">
-            <a className="navbar-brand px-0 boton-logo" href="javascript:void(0)">
+            <a className="navbar-brand px-0 boton-logo" href="#">
               {" "}
               <img className="logo-imagen" src={logo} style={{height: '100%'}}/>
             </a>
@@ -65,7 +71,7 @@ class SideMenu extends React.Component {
                   className="nav-link"
                   style={{backgroundColor: current === 'Show' ? '#000 !important' : ''}}
                 >
-                  <i className="fas fa-home fa-lg" /> {"    "} Show
+                  <FontAwesomeIcon icon="star" size="lg" /> {`  `} Show
                 </a>
               </li>
               {process.env.NODE_ENV === 'development' &&
@@ -77,7 +83,7 @@ class SideMenu extends React.Component {
                     className="nav-link"
                     style={{backgroundColor: current === 'Descargas' ? '#000 !important' : ''}}
                   >
-                    <i className="fas fa-arrow-down fa-lg" /> {"    "} Descargas
+                    <FontAwesomeIcon icon="arrow-down" size="lg" /> {`  `} Descargas
                   </a>
                 </li>
               }
@@ -89,7 +95,7 @@ class SideMenu extends React.Component {
                   className="nav-link"
                   style={{backgroundColor: current === 'Perfil' ? '#000 !important' : ''}}
                 >
-                  <i className="fas fa-cog fa-lg" /> {"    "} Perfil
+                  <FontAwesomeIcon icon="user-cog" size="lg" /> {`  `} Perfil
                 </a>
               </li>
               <li className="nav-item">
@@ -100,7 +106,7 @@ class SideMenu extends React.Component {
                   className="nav-link"
                   style={{backgroundColor: current === 'Notificación' ? '#000 !important' : ''}}
                 >
-                  <i className="fab fa-weixin fa-lg" /> {"    "} Notificaciones
+                  <FontAwesomeIcon icon="comments" size="lg" /> {`  `} Notificaciones
                 </a>
               </li>
               <li className="nav-item">
@@ -111,7 +117,7 @@ class SideMenu extends React.Component {
                   className="nav-link"
                   style={{backgroundColor: current === 'Chroma Studio' ? '#000 !important' : ''}}
                 >
-                  <i className="fab fa-angellist fa-lg" /> {"    "} Chroma Studio
+                  <FontAwesomeIcon icon="video" size="lg" /> {`  `} Chroma Studio
                 </a>
               </li>
               <RedesSociales />
@@ -123,7 +129,7 @@ class SideMenu extends React.Component {
                   className="nav-link"
                   style={{backgroundColor: current === 'Social Wall' ? '#000 !important' : ''}}
                 >
-                  <i className="fas fa-photo-video fa-lg" /> {"    "} Social Wall
+                  <FontAwesomeIcon icon="heart" size="lg" /> {`  `} Social Wall
                 </a>
               </li>
               <li className="nav-item">
@@ -134,16 +140,16 @@ class SideMenu extends React.Component {
                   className="nav-link"
                   style={{backgroundColor: current === 'Detener' ? '#000 !important' : ''}}
                 >
-                  <i className="fas fa-power-off fa-lg" /> {"    "} Detener
+                  <FontAwesomeIcon icon="power-off" size="lg" /> {`  `} Detener
                 </a>
               </li>
               <li className="nav-item">
                 <a 
-                  onClick={this.stopEverything} 
+                  onClick={this.handleOutRequest} 
                   className="nav-link"
                   style={{backgroundColor: current === 'Detener' ? '#000 !important' : ''}}
                 >
-                  <i className="fas fa-arrow-alt-circle-left fa-lg" /> {"    "} Salir
+                  <FontAwesomeIcon icon="arrow-circle-left" size="lg" /> {`  `} Salir
                 </a>
               </li>
             </ul>

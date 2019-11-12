@@ -10,7 +10,27 @@ import {
   faTimes, 
   faTimesCircle,
   faExclamationCircle,
-  faRedoAlt
+  faRedoAlt,
+  faCheck,
+  faStar,
+  faKey,
+  faHeart,
+  faUserCog,
+  faArrowDown,
+  faVideo,
+  faPowerOff,
+  faComments,
+  faArrowCircleLeft,
+  faAddressCard,
+  faEnvelope,
+  faVenusMars,
+  faUserCircle,
+  faPhone,
+  faGlobeAmericas,
+  faFutbol,
+  faCalendar,
+  faCalendarWeek,
+  faLock,
 } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import LoadingScreen from './atoms/LoadingScreen';
@@ -29,7 +49,37 @@ const Registro = lazy(() => import('./Pages/Registro'));
 const QuestionEvent = lazy(() => import('./Pages/QuestionEvent'));
 const Wrapper = lazy(() => import('./Pages/Wrapper'));
 
-library.add(fab, faSyncAlt, faTrashAlt, faSync, faCamera, faTimes, faTimesCircle, faExclamationCircle, faRedoAlt);
+library.add(
+  fab, 
+  faSyncAlt, 
+  faTrashAlt, 
+  faSync, 
+  faCamera, 
+  faTimes, 
+  faTimesCircle, 
+  faExclamationCircle, 
+  faRedoAlt,
+  faCheck,
+  faStar,
+  faKey,
+  faHeart,
+  faUserCog,
+  faArrowDown,
+  faVideo,
+  faPowerOff,
+  faComments,
+  faArrowCircleLeft,
+  faAddressCard,
+  faEnvelope,
+  faVenusMars,
+  faUserCircle,
+  faPhone,
+  faGlobeAmericas,
+  faFutbol,
+  faCalendar,
+  faCalendarWeek,
+  faLock
+);
 
 function App () {
   useEffect(() => {

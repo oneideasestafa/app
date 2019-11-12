@@ -1,1 +1,390 @@
-webpackJsonp([11],{672:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=i(n(0)),a=i(n(673)),l=i(n(676)),o=n(153),u=n(6);function i(e){return e&&e.__esModule?e:{default:e}}t.default=(0,u.connect)(function(e){return{event:e.events.current,files:e.download}},function(e){return{getFilesFromEvent:function(t){return e((0,o.getFilesFromEvent)(t))}}})(function(e){var t=e.files,n=t.current?[t.current].concat(function(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}(t.download)):t.download;return r.default.createElement("div",null,r.default.createElement(a.default,{files:n}),r.default.createElement(l.default,{files:e.files.existing}))})},673:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=l(n(0)),a=l(n(674));function l(e){return e&&e.__esModule?e:{default:e}}t.default=function(e){var t=e.files.map(function(e){return r.default.createElement(a.default,{key:e.id,file:e})});return console.log("files length",t.length),0===t.length?r.default.createElement("div",{className:"m-5"},r.default.createElement("h4",{className:"text-center hint"},"No hay archivos pendientes por descargar en este momento")):r.default.createElement("div",{className:"m-3"},t)}},674:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=function(){return function(e,t){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return function(e,t){var n=[],r=!0,a=!1,l=void 0;try{for(var o,u=e[Symbol.iterator]();!(r=(o=u.next()).done)&&(n.push(o.value),!t||n.length!==t);r=!0);}catch(e){a=!0,l=e}finally{try{!r&&u.return&&u.return()}finally{if(a)throw l}}return n}(e,t);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),a=n(0),l=c(a),o=c(n(675)),u=n(153),i=n(6);function c(e){return e&&e.__esModule?e:{default:e}}t.default=(0,i.connect)(function(e){return{event:e.events.current,progress:e.download.progress,currentId:e.download.current.id}},function(e){return{fileFinishedDownloading:function(t){return e((0,u.fileFinishedDownloading)(t))}}})(function(e){var t=(0,a.useState)(!1),n=r(t,2),u=n[0],i=n[1],c=e.file,d=c.id,s=c.magnetURI,f=c.size,m=c.name,v=e.progress;return(0,a.useEffect)(function(){e.currentId===d&&s&&(console.log("download",m),i(!0))},[e.currentId]),l.default.createElement("div",{className:"download-box mb-2"},l.default.createElement("div",{className:"download-info"},l.default.createElement("div",{className:"info-header"},l.default.createElement("label",null,m),!s&&l.default.createElement("p",null,"El archivo aún no está disponible para descargar, intentelo de nuevo más tarde"),u&&v&&l.default.createElement("p",null,v.downloadSpeed+"Kb/s - "+v.downloaded+"Kb de "+f)),u&&v&&l.default.createElement("div",{className:"info-progress"},l.default.createElement(o.default,{color:"success",progress:v.progress}))))})},675:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=l(n(0)),a=l(n(111));function l(e){return e&&e.__esModule?e:{default:e}}t.default=function(e){var t=e.progress,n=e.color,l=void 0===n?"success":n,o=(0,a.default)("progress-bar","bg-"+l);return r.default.createElement("div",{className:"progress"},r.default.createElement("div",{className:o,role:"progressbar",style:{width:t+"%"},"aria-valuenow":""+t,"aria-valuemin":"0","aria-valuemax":"100"}))}},676:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=l(n(0)),a=l(n(677));function l(e){return e&&e.__esModule?e:{default:e}}t.default=function(e){var t=e.files.map(function(e){return console.log("file",e.id),r.default.createElement(a.default,{key:e.id,file:e})});return 0===t.length?null:r.default.createElement("div",{className:"m-3"},r.default.createElement("h5",{style:{fontFamily:"Roboto",fontWeight:500}},"Archivos descargados"),r.default.createElement("div",null,t))}},677:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r,a=function(){return function(e,t){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return function(e,t){var n=[],r=!0,a=!1,l=void 0;try{for(var o,u=e[Symbol.iterator]();!(r=(o=u.next()).done)&&(n.push(o.value),!t||n.length!==t);r=!0);}catch(e){a=!0,l=e}finally{try{!r&&u.return&&u.return()}finally{if(a)throw l}}return n}(e,t);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),l=n(0),o=(r=l)&&r.__esModule?r:{default:r},u=n(6),i=n(8),c=n(153);t.default=(0,u.connect)(null,function(e){return{deleteFile:function(t){return e((0,c.deleteFile)(t))}}})(function(e){var t=(0,l.useState)(!1),n=a(t,2),r=n[0],u=n[1];return o.default.createElement("div",{className:"download-box complete mb-2"},o.default.createElement("div",{className:"download-info"},o.default.createElement("div",{className:"info-header"},o.default.createElement("i",{className:"fas fa-check fa-lg text-success mx-2"}),o.default.createElement("label",null,e.file.name))),o.default.createElement("div",{className:"download-actions"},r?o.default.createElement(i.FontAwesomeIcon,{icon:"sync-alt",size:"lg",spin:!0}):o.default.createElement(i.FontAwesomeIcon,{icon:"trash-alt",size:"lg",onClick:function(t){u(!0),e.deleteFile(e.file.name).catch(function(e){u(!1),console.log("Something happend",e)})}})))})}});
+webpackJsonp([11],{
+
+/***/ 693:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _DownloadList = __webpack_require__(694);
+
+var _DownloadList2 = _interopRequireDefault(_DownloadList);
+
+var _SeedingList = __webpack_require__(697);
+
+var _SeedingList2 = _interopRequireDefault(_SeedingList);
+
+var _download = __webpack_require__(171);
+
+var _reactRedux = __webpack_require__(6);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function Downloads(props) {
+  var files = props.files;
+
+  var download = files.current ? [files.current].concat(_toConsumableArray(files.download)) : files.download;
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(_DownloadList2.default, { files: download }),
+    _react2.default.createElement(_SeedingList2.default, { files: props.files.existing })
+  );
+}
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    event: state.events.current,
+    files: state.download
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    getFilesFromEvent: function getFilesFromEvent(eventId) {
+      return dispatch((0, _download.getFilesFromEvent)(eventId));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Downloads);
+
+/***/ }),
+
+/***/ 694:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _FileDownload = __webpack_require__(695);
+
+var _FileDownload2 = _interopRequireDefault(_FileDownload);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function DownloadList(props) {
+  var files = props.files.map(function (file) {
+    return _react2.default.createElement(_FileDownload2.default, { key: file.id, file: file });
+  });
+
+  console.log('files length', files.length);
+
+  if (files.length === 0) return _react2.default.createElement(
+    'div',
+    { className: 'm-5' },
+    _react2.default.createElement(
+      'h4',
+      { className: 'text-center hint' },
+      'No hay archivos pendientes por descargar en este momento'
+    )
+  );
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'm-3' },
+    files
+  );
+}
+
+exports.default = DownloadList;
+
+/***/ }),
+
+/***/ 695:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Progress = __webpack_require__(696);
+
+var _Progress2 = _interopRequireDefault(_Progress);
+
+var _download = __webpack_require__(171);
+
+var _reactRedux = __webpack_require__(6);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function FileDownload(props) {
+  var _useState = (0, _react.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isDownloading = _useState2[0],
+      setDownloading = _useState2[1];
+
+  var _props$file = props.file,
+      id = _props$file.id,
+      magnetURI = _props$file.magnetURI,
+      size = _props$file.size,
+      name = _props$file.name;
+  var progress = props.progress;
+
+
+  (0, _react.useEffect)(function () {
+    if (props.currentId === id && magnetURI) {
+      console.log('download', name);
+      setDownloading(true);
+    }
+  }, [props.currentId]);
+
+  var color = 'success';
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'download-box mb-2' },
+    _react2.default.createElement(
+      'div',
+      { className: 'download-info' },
+      _react2.default.createElement(
+        'div',
+        { className: 'info-header' },
+        _react2.default.createElement(
+          'label',
+          null,
+          name
+        ),
+        !magnetURI && _react2.default.createElement(
+          'p',
+          null,
+          'El archivo a\xFAn no est\xE1 disponible para descargar, intentelo de nuevo m\xE1s tarde'
+        ),
+        isDownloading && progress && _react2.default.createElement(
+          'p',
+          null,
+          progress.downloadSpeed + 'Kb/s - ' + progress.downloaded + 'Kb de ' + size
+        )
+      ),
+      isDownloading && progress && _react2.default.createElement(
+        'div',
+        { className: 'info-progress' },
+        _react2.default.createElement(_Progress2.default, {
+          color: color,
+          progress: progress.progress
+        })
+      )
+    )
+  );
+}
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    event: state.events.current,
+    progress: state.download.progress,
+    currentId: state.download.current.id
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fileFinishedDownloading: function fileFinishedDownloading(id) {
+      return dispatch((0, _download.fileFinishedDownloading)(id));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(FileDownload);
+
+/***/ }),
+
+/***/ 696:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(111);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Progress(_ref) {
+  var progress = _ref.progress,
+      _ref$color = _ref.color,
+      color = _ref$color === undefined ? 'success' : _ref$color;
+
+  var classNames = (0, _classnames2.default)('progress-bar', 'bg-' + color);
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'progress' },
+    _react2.default.createElement('div', {
+      className: classNames,
+      role: 'progressbar',
+      style: { width: progress + '%' },
+      'aria-valuenow': '' + progress,
+      'aria-valuemin': '0',
+      'aria-valuemax': '100' })
+  );
+}
+
+exports.default = Progress;
+
+/***/ }),
+
+/***/ 697:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _FileSeeding = __webpack_require__(698);
+
+var _FileSeeding2 = _interopRequireDefault(_FileSeeding);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function SeedingList(props) {
+  var files = props.files.map(function (file) {
+    console.log('file', file.id);
+    return _react2.default.createElement(_FileSeeding2.default, { key: file.id, file: file });
+  });
+
+  if (files.length === 0) return null;
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'm-3' },
+    _react2.default.createElement(
+      'h5',
+      { style: { fontFamily: 'Roboto', fontWeight: 500 } },
+      'Archivos descargados'
+    ),
+    _react2.default.createElement(
+      'div',
+      null,
+      files
+    )
+  );
+}
+
+exports.default = SeedingList;
+
+/***/ }),
+
+/***/ 698:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(6);
+
+var _reactFontawesome = __webpack_require__(9);
+
+var _download = __webpack_require__(171);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function FileSeeding(props) {
+  var _useState = (0, _react.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isLoading = _useState2[0],
+      setLoading = _useState2[1];
+
+  function deleteFile(e) {
+    setLoading(true);
+
+    props.deleteFile(props.file.name).catch(function (e) {
+      setLoading(false);
+      console.log('Something happend', e);
+    });
+  }
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'download-box complete mb-2' },
+    _react2.default.createElement(
+      'div',
+      { className: 'download-info' },
+      _react2.default.createElement(
+        'div',
+        { className: 'info-header' },
+        _react2.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+          icon: 'check',
+          color: '#4caf50',
+          className: 'mx-2'
+        }),
+        _react2.default.createElement(
+          'label',
+          null,
+          props.file.name
+        )
+      )
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'download-actions' },
+      !isLoading ? _react2.default.createElement(_reactFontawesome.FontAwesomeIcon, { icon: 'trash-alt', size: 'lg', onClick: deleteFile }) : _react2.default.createElement(_reactFontawesome.FontAwesomeIcon, { icon: 'sync-alt', size: 'lg', spin: true })
+    )
+  );
+}
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    deleteFile: function deleteFile(name) {
+      return dispatch((0, _download.deleteFile)(name));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(FileSeeding);
+
+/***/ })
+
+});

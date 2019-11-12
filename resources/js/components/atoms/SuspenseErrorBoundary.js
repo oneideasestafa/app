@@ -19,7 +19,7 @@ class SuspenseErrorBoundary extends React.Component {
   onReload (e) {
     this.setState({
       loading: true
-    }, () => window.location.reload());
+    }, () => window.location.replae('/questionEvent'));
   }
 
   render () {

@@ -54,7 +54,7 @@ function Show (props) {
     }
 
     mqttClient.connect({
-      useSSL: process.env.NODE_ENV === 'development' ? false : true,
+      useSSL: false,
       onSuccess: onMqttConnection
     })
 
