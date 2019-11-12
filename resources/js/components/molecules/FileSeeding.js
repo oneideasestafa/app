@@ -20,7 +20,11 @@ function FileSeeding (props) {
     <div className="download-box complete mb-2">
       <div className="download-info">
         <div className="info-header">
-          <i className="fas fa-check fa-lg text-success mx-2"/>
+          <FontAwesomeIcon 
+            icon="check" 
+            color="#4caf50" 
+            className="mx-2"
+          />
           <label>{props.file.name}</label>
         </div>
       </div>

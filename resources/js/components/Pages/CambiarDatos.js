@@ -331,7 +331,7 @@ class CambiarDatos extends Component {
           }
           <div className="input-group mb-4">
             <div className="input-group-prepend">
-              <i className="fa fa-address-card fa-lg"></i>
+              <FontAwesomeIcon icon="address-card" size="lg" />
             </div>
             <input 
               type="text" 
@@ -344,7 +344,7 @@ class CambiarDatos extends Component {
           </div>
           <div className="input-group mb-4">
             <div className="input-group-prepend">
-              <i className="fa fa-address-card fa-lg"></i>
+              <FontAwesomeIcon icon="address-card" size="lg" />
             </div>
             <input 
               type="text" 
@@ -357,7 +357,7 @@ class CambiarDatos extends Component {
           </div>
           <div className="input-group mb-4 mt-4">
             <div className="input-group-prepend">
-              <i className="fas fa-calendar-alt fa-lg icono-fecha"></i>
+              <FontAwesomeIcon icon="calendar" size="lg" />
             </div>
             <input 
               readOnly
@@ -372,7 +372,7 @@ class CambiarDatos extends Component {
           </div>
           <div className="input-group mb-4">
             <div className="input-group-prepend">
-              <i className="fa fa-envelope fa-lg"></i>
+              <FontAwesomeIcon icon="envelope" size="lg" />
             </div>
             <input 
               readOnly 
@@ -386,7 +386,7 @@ class CambiarDatos extends Component {
           </div>
           <div className="input-group mb-4 mt-4">
             <div className="input-group-prepend">
-              <i className="fab fa-ello fa-lg"></i>
+              <FontAwesomeIcon icon="venus-mars" size="lg" />
             </div>
             <div className="form-check form-check-inline">
               <input 
@@ -415,7 +415,7 @@ class CambiarDatos extends Component {
           </div>
           <div className="input-group mb-4">
             <div className="input-group-prepend">
-              <i className="fa fa-user-circle fa-lg"></i>
+              <FontAwesomeIcon icon="user-circle" size="lg" />
             </div>
             <span className={tagClass}>Cuenta {cuenta}</span>
           </div>
@@ -432,7 +432,7 @@ class CambiarDatos extends Component {
           </div>
           <div className="input-group mb-4 mt-4">
             <div className="input-group-prepend">
-              <i className="fas fa-phone fa-lg"></i>
+              <FontAwesomeIcon icon="phone" size="lg" />
             </div>
             <input 
               type="number" 
@@ -448,7 +448,9 @@ class CambiarDatos extends Component {
           </div>
           <div className="input-group mb-4 mt-4">
             <div className="input-group-prepend">
-              <label className="input-group-text"><i className="fa fa-globe-americas fa-lg"></i></label>
+              <label className="input-group-text">
+                <FontAwesomeIcon icon="globe-americas" size="lg" />
+              </label>
             </div>
             <div className="form-check form-check-inline">
               <input className="form-check-input" onChange={this.handleCountryChange} type="radio" name="pais" id="inlineRadio1" value="5caf334dff6eff0ae30e450b" checked={pais === '5caf334dff6eff0ae30e450b'}  />
@@ -462,7 +464,7 @@ class CambiarDatos extends Component {
           {this.state.pais !== '' && 
             <div className="input-group mb-4 mt-4">
               <div className="input-group-prepend">
-                <i className="fas fa-futbol fa-lg"></i>
+                <FontAwesomeIcon icon="futbol" size="lg" />
               </div>
               <select className="form-control" id="inputGroupSelect02" value={equipo} name="equipo" id="equipo" onChange={this.handleChange}>
                 <option  value=''>Equipos de futbol</option>

@@ -132,7 +132,6 @@ class RegistroCliente extends React.Component {
 
       }else if(r.code === 500) {
         swal({
-          title: '<i class="fas fa-exclamation-circle"></i>',
           text: r.msj,
           confirmButtonColor: '#343a40',
           confirmButtonText: 'Ok'
@@ -337,7 +336,7 @@ class RegistroCliente extends React.Component {
         <form method="POST" onSubmit={this.handleSubmit}>
           <div className="input-group mb-4 mt-4">
             <div className="input-group-prepend">
-              <i className="fa fa-address-card fa-lg"></i>
+              <FontAwesomeIcon icon="address-card" size="lg" />
             </div>
             <input 
               type="text" 
@@ -351,7 +350,7 @@ class RegistroCliente extends React.Component {
           </div>
           <div className="input-group mb-4 mt-4">
             <div className="input-group-prepend">
-              <i className="fa fa-address-card fa-lg"></i>
+              <FontAwesomeIcon icon="address-card" size="lg" />
             </div>
             <input 
               type="text"
@@ -364,7 +363,7 @@ class RegistroCliente extends React.Component {
           </div>
           <div className="input-group mb-4 mt-4">
             <div className="input-group-prepend">
-              <i className="fas fa-calendar-alt fa-lg icono-calendario" ></i>
+              <FontAwesomeIcon icon="calendar" size="lg" />
             </div>
             <input 
               readOnly
@@ -379,7 +378,7 @@ class RegistroCliente extends React.Component {
           </div>
           <div className="input-group mb-4 mt-4 contenedor-genero" >
             <div className="input-group-prepend">
-              <i className="fab fa-ello fa-lg"></i>
+              <FontAwesomeIcon icon="venus-mars" size="lg" />
             </div>
             <div className="form-check form-check-inline">
               <input 
@@ -408,7 +407,7 @@ class RegistroCliente extends React.Component {
           </div>
           <div className="input-group mb-4 mt-4">
             <div className="input-group-prepend">
-              <i className="fa fa-envelope fa-lg"></i>
+              <FontAwesomeIcon icon="envelope" size="lg" />
             </div>
             <input
               type="email"
@@ -422,7 +421,7 @@ class RegistroCliente extends React.Component {
           </div>
           <div className="input-group mb-4 mt-4">
             <div className="input-group-prepend">
-              <i className="fas fa-phone fa-lg"></i>
+              <FontAwesomeIcon icon="phone" size="lg" />
             </div>
             <input 
               type="number" 
@@ -449,13 +448,15 @@ class RegistroCliente extends React.Component {
           </div>
           <div className="input-group mb-4 mt-4">
               <div className="input-group-prepend mr-3">
-                  <i className="fa fa-key fa-lg"></i>
+                <FontAwesomeIcon icon="key" size="lg" />
               </div>
               <input type="password" id="password" name="password" value={password} onChange={this.handleChange} className="form-control" placeholder="Ingrese su password" />
           </div>
           <div className="input-group mb-4 mt-4">
             <div className="input-group-prepend">
-              <label className="input-group-text"><i className="fa fa-globe-americas fa-lg"></i></label>
+              <label className="input-group-text">
+                <FontAwesomeIcon icon="globe-americas" size="lg" />
+              </label>
             </div>
             <div className="form-check form-check-inline">
               <input 
@@ -488,7 +489,7 @@ class RegistroCliente extends React.Component {
           {this.state.pais !== '' && 
             <div className="input-group mb-4 mt-4">
               <div className="input-group-prepend">
-                <i className="fas fa-futbol fa-lg"></i>
+                <FontAwesomeIcon icon="futbol" size="lg" />
               </div>
               <select className="form-control" id="inputGroupSelect02" value={equipo} name="equipo" id="equipo" onChange={this.handleChange}>
                 <option  key="-1" value=''>Equipos de futbol (Opcional)</option>

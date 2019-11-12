@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { chromaTypeCamera } from '../../../redux/actions/chroma/index';
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import "./../../../../css/pages/ChromaBackground.css"
 
@@ -15,11 +16,9 @@ import "./../../../../css/pages/ChromaBackground.css"
 		this.handleClick = this.handleClick.bind(this);	
 	};
 
-	handleClick (e) {
-		this.props.chromaTypeCamera(e.target.id)
-		this.props.history.push('green-step-2')
-		
-
+	handleClick (type) {
+		this.props.chromaTypeCamera(type);
+		this.props.history.push('green-step-2');
 	}
 
 	render() {
@@ -30,16 +29,18 @@ import "./../../../../css/pages/ChromaBackground.css"
 					<div className="container">
 						<div className="row">
 							<div className="mx-auto mb-2">
-								<i className="fa fa-video redBorder"
-								id="video"
-								style={{fontSize : '100px', paddingRight: '40px'}}
-								onClick={this.handleClick}
-								 />
-								 <i className="fa fa-camera redBorder"
-								 id="camara"
-								 style={{fontSize : '100px'}}
-								 onClick={this.handleClick}
-								 />
+                <FontAwesomeIcon 
+                  icon="video" 
+                  size="4x" 
+                  className="redBorder mr-5"
+                  onClick={() => this.handleClick('video')}
+                />
+                <FontAwesomeIcon 
+                  icon="camera" 
+                  size="4x" 
+                  className="redBorder ml-5"
+                  onClick={() => this.handleClick('camara')}
+                />
 							</div>
 						</div>
 					</div>

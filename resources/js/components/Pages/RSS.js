@@ -284,7 +284,7 @@ class RSS extends React.Component {
                 className="btn btn-rojo btn-box-index"
                 onClick={this.chooseImageSource}
               >
-                <i className="fas fa-camera fa-lg"></i>
+                <FontAwesomeIcon icon="camera" size="lg" />
               </button>
             </div>
             <div className="col-6 offset-3">

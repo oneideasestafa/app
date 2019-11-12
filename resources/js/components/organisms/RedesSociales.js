@@ -1,5 +1,7 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import swal from "sweetalert2";
+import axios from 'axios';
 
 class RedesSociales extends React.Component {
     constructor (props) {
@@ -118,14 +120,14 @@ class RedesSociales extends React.Component {
                     { this.state.hashtagsTwitter.length > 0 &&
                         <li className="nav-item">
                             <a className="nav-link" onClick={this.publicarEnTwitter}>
-                            <i className="fab fa-twitter fa-lg" /> {"    "} Twitter
+                              {/* <FontAwesomeIcon icon={['fab', 'twitter']} size="lg"/> {`  `} Twitter */}
                             </a>
                         </li>
                     }
                     { this.state.hashtagsInstagram.length > 0 &&
                         <li className="nav-item">
                             <a className="nav-link" onClick={this.publicarEnInstagram} >
-                                <i className="fab fa-instagram fg-lg" /> {"    "} Instagram
+                              {/* <FontAwesomeIcon icon={['fab', 'instagram']} size="lg"/> {`  `} Instagram */}
                             </a>
                         </li>
                     }

@@ -136,7 +136,7 @@ class QuestionEvent extends Component {
           }
           <div className="input-group mb-4 mt-4">
             <div className="input-group-prepend">
-              <i className="fas fa-calendar-week fa-lg"></i>
+              <FontAwesomeIcon icon="calendar-week" size="lg" />
             </div>
             <select className="form-control" value={evento} name="evento" onChange={this.handleChange}>
               <option value=''>Seleccione Evento</option>
@@ -151,7 +151,7 @@ class QuestionEvent extends Component {
           {evento == 'eventoId' &&
             <div className="input-group mb-4 mt-4">
               <div className="input-group-prepend">
-                <i className="fa fa-lock fa-lg"></i>
+                <FontAwesomeIcon icon="lock" size="lg" />
               </div>
               <InputMask
                 mask="******"

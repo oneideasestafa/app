@@ -91,7 +91,6 @@ export default class CambiarClave extends Component {
                     });
 
                     swal.fire({
-                        title: '<i class="fa fa-check-circle"></i>',
                         text: r.msj,
                         showCancelButton: false,
                         confirmButtonColor: "#343a40",
@@ -103,14 +102,12 @@ export default class CambiarClave extends Component {
                     });
                 } else if (r.code === 500) {
                     swal({
-                        title: '<i class="fas fa-exclamation-circle"></i>',
                         text: r.msj,
                         confirmButtonColor: "#343a40",
                         confirmButtonText: "Ok"
                     });
                 } else if (r.code === 600) {
                     swal({
-                        title: '<i class="fas fa-exclamation-circle"></i>',
                         text: r.msj,
                         confirmButtonColor: "#343a40",
                         confirmButtonText: "Ok"
@@ -124,7 +121,6 @@ export default class CambiarClave extends Component {
                     });
 
                     swal({
-                        title: '<i class="fas fa-exclamation-circle"></i>',
                         text: error.response.data,
                         confirmButtonColor: "#343a40",
                         confirmButtonText: "Ok"
@@ -145,7 +141,7 @@ export default class CambiarClave extends Component {
                 >
                     <div className="input-group mb-4">
                         <div className="input-group-prepend">
-                            <i className="fa fa-key fa-lg" />
+                          <FontAwesomeIcon icon="key" color="#fff" size="lg" />
                         </div>
                         <input
                             type="password"
@@ -160,7 +156,7 @@ export default class CambiarClave extends Component {
 
                     <div className="input-group mb-4">
                         <div className="input-group-prepend">
-                            <i className="fa fa-key fa-lg" />
+                          <FontAwesomeIcon icon="key" color="#fff" size="lg" />
                         </div>
                         <input
                             type="password"
@@ -175,7 +171,7 @@ export default class CambiarClave extends Component {
 
                     <div className="input-group mb-4">
                         <div className="input-group-prepend">
-                            <i className="fa fa-key fa-lg" />
+                          <FontAwesomeIcon icon="key" color="#fff" size="lg" />
                         </div>
                         <input
                             type="password"

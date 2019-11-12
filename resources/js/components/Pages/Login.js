@@ -100,7 +100,7 @@ class Login extends Component {
             }
             <div className="input-group mb-4 mt-4">
               <div className="input-group-prepend">
-                <i className="fa fa-envelope fa-lg" />
+                <FontAwesomeIcon icon="envelope" size="lg" />
               </div>
               <input
                 type="text"
@@ -114,7 +114,7 @@ class Login extends Component {
             </div>
             <div className="input-group mb-4 mt-3">
               <div className="input-group-prepend">
-                <i className="fa fa-key fa-lg" />
+                <FontAwesomeIcon icon="key" size="lg" />
               </div>
               <input
                 type="password"
