@@ -49111,7 +49111,7 @@ var SuspenseErrorBoundary = function (_React$Component) {
       this.setState({
         loading: true
       }, function () {
-        return window.location.reload();
+        return window.location.replae('/questionEvent');
       });
     }
   }, {

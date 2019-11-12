@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { request } from './../../config/axios';
 import { appStartedLoading, appFinishLoading } from '../../redux/actions/auth';
 import { setCurrentPage } from '../../redux/actions/navigation';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class RSS extends React.Component {
   constructor (props) {

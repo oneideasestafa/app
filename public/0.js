@@ -46409,6 +46409,14 @@ var SideMenu = function (_React$Component) {
 
       this.props.wipeJobs();
       this.props.toggleNavigationMenu();
+    }
+  }, {
+    key: 'handleOutRequest',
+    value: function handleOutRequest(e) {
+      e.preventDefault();
+
+      this.props.wipeJobs();
+      this.props.toggleNavigationMenu();
 
       this.props.history.push('/questionEvent');
     }
@@ -46577,7 +46585,7 @@ var SideMenu = function (_React$Component) {
               _react2.default.createElement(
                 'a',
                 {
-                  onClick: this.stopEverything,
+                  onClick: this.handleOutRequest,
                   className: 'nav-link',
                   style: { backgroundColor: current === 'Detener' ? '#000 !important' : '' }
                 },

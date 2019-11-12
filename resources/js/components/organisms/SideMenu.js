@@ -31,6 +31,13 @@ class SideMenu extends React.Component {
 
     this.props.wipeJobs();
     this.props.toggleNavigationMenu();
+  }
+
+  handleOutRequest (e) {
+    e.preventDefault(); 
+
+    this.props.wipeJobs();
+    this.props.toggleNavigationMenu();
 
     this.props.history.push('/questionEvent');
   }
@@ -138,7 +145,7 @@ class SideMenu extends React.Component {
               </li>
               <li className="nav-item">
                 <a 
-                  onClick={this.stopEverything} 
+                  onClick={this.handleOutRequest} 
                   className="nav-link"
                   style={{backgroundColor: current === 'Detener' ? '#000 !important' : ''}}
                 >

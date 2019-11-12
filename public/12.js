@@ -28,6 +28,8 @@ var _auth = __webpack_require__(99);
 
 var _navigation = __webpack_require__(190);
 
+var _reactFontawesome = __webpack_require__(9);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -342,7 +344,7 @@ var RSS = function (_React$Component) {
                   className: 'btn btn-rojo btn-box-index',
                   onClick: this.chooseImageSource
                 },
-                _react2.default.createElement(FontAwesomeIcon, { icon: 'camera', size: 'lg' })
+                _react2.default.createElement(_reactFontawesome.FontAwesomeIcon, { icon: 'camera', size: 'lg' })
               )
             ),
             _react2.default.createElement(
